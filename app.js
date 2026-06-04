@@ -1435,44 +1435,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const RC_DEFAULT_BLOGS = [
     {
       id: "blog-1",
-      title: "Concept Testing: Maximizing Validation for Early-Stage Product Dev",
-      category: "Methodology",
-      readtime: "5 min read",
-      excerpt: "How to structure rapid validation surveys that yield clear direction, optimize LOI, and prevent cognitive overload.",
-      content: "Concept testing is a critical phase in product development. This article outlines the key steps to structure surveys that yield clear direction...",
+      title: "Automating ERP Integrations: Bridging Database Silos in Enterprise Environments",
+      category: "Integration",
+      readtime: "6 min read",
+      excerpt: "How custom middleware and automated sync routines eliminate manual invoicing errors, streamline data mapping, and reduce overhead by 75%.",
+      content: "ERP integrations represent one of the most critical backbones of modern B2B business operations. When records are siloed across isolated systems, productivity drops and data discrepancy rates rise.",
       date: "May 2026",
       featured: false,
       timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000
     },
     {
       id: "blog-2",
-      title: "Device Comparison: Mobile vs. Desktop Response Quality in B2B",
-      category: "Technology",
-      readtime: "6 min read",
-      excerpt: "A comparative study of completion rates and survey straight-lining behavior across form factors in enterprise environments.",
-      content: "A comparative study of completion rates and survey straight-lining behavior across form factors...",
+      title: "Workforce Optimization: Designing Next-Gen HRMS Workflows",
+      category: "Automation",
+      readtime: "5 min read",
+      excerpt: "Strategies for automating employee onboarding, payroll allocations, and performance evaluations without database discrepancies.",
+      content: "Workforce optimization is no longer just about management—it is about technology. Siloed employee records, manual payroll calculation scripts, and disconnected onboarding spreadsheets slow down human resources.",
       date: "April 2026",
       featured: false,
       timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000
     },
     {
       id: "blog-3",
-      title: "Navigating Healthcare Panels: Reaching HCPs and C-Suite",
-      category: "Methodology",
+      title: "Secure Middleware: Auditing Enterprise Database Sync Protocols",
+      category: "Security",
       readtime: "8 min read",
-      excerpt: "Strategies for recruiting, profiling, and rewarding low-incidence healthcare professionals and decision-makers.",
-      content: "Strategies for recruiting, profiling, and rewarding low-incidence healthcare professionals...",
+      excerpt: "Establishing robust cryptographic security and token rotations across internal database integrations.",
+      content: "When synchronizing logs and operational data between external endpoints and main ERP clusters, establishing high-standard database security is critical.",
       date: "March 2026",
       featured: false,
       timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000
     },
     {
       id: "blog-featured",
-      title: "The Science of Quality: Shielding Online Panels from AI Bot Intrusion",
-      category: "Methodology",
+      title: "The ROI of Automation: Eliminating Manual Reconciliations",
+      category: "Automation",
       readtime: "6 min read",
-      excerpt: "How generative AI is changing the landscape of data fraud in survey panels, and the multi-layered cryptographic safeguards required to protect survey data integrity.",
-      content: "How generative AI is changing the landscape of data fraud in survey panels, and the multi-layered safeguards...",
+      excerpt: "How enterprise automation platforms audit billing registers, match ledger logs, and minimize transaction processing delays.",
+      content: "Manual billing reconciliation is slow, expensive, and prone to user error. Automated ledger matching engines can scan registers, verify billing logs, and resolve discrepancies in seconds.",
       date: "June 2026",
       featured: true,
       timestamp: Date.now()
@@ -1482,25 +1482,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const RC_DEFAULT_NEWS = [
     {
       id: "news-1",
-      title: "Opinion Genie v3.4 Cryptographic Fingerprinting Live",
-      category: "Security",
-      details: "Rollout of device-level entropy mapping reduces duplicate respondent profiles by 99.4% globally.",
+      title: "Automated Ledger Reconciliation Engine v2.1 Released",
+      category: "Platform",
+      details: "Deployment of cross-register ledger matching engine reduces reconciliation cycles from days to under 15 minutes.",
       date: "June 2026",
       timestamp: Date.now()
     },
     {
       id: "news-2",
-      title: "Enhanced GDPR Rules for B2B Trackers",
-      category: "Compliance",
-      details: "Automated variables hashing during real-time sync checkpoints with external client CRMs.",
+      title: "Custom ERP Sync Connector Upgraded to REST OAuth 2.0",
+      category: "Security",
+      details: "Integration of automated token refresh sequences and role-based data views for secure database mapping.",
       date: "May 2026",
       timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000
     },
     {
       id: "news-3",
-      title: "Advanced Proxy Database Integration",
-      category: "Anti-Fraud",
-      details: "Real-time threat evaluation for residential proxies and micro-VPN routing networks.",
+      title: "HRMS Onboarding Workflows Speed Up",
+      category: "Automation",
+      details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
       date: "April 2026",
       timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
     }
@@ -1508,12 +1508,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const RC_DEFAULT_POLL = {
     id: "active-poll",
-    question: "What is your primary research pipeline bottleneck?",
+    question: "What is your organization's primary operational bottleneck?",
     options: {
-      a: { text: "Panel Feasibility Verification", votes: 45 },
-      b: { text: "Data Deduplication & Fraud", votes: 78 },
-      c: { text: "Slow Turnaround Times", votes: 32 },
-      d: { text: "Legacy ERP Integration Issues", votes: 19 }
+      a: { text: "Manual Billing & Reconciliation", votes: 45 },
+      b: { text: "Siloed HRMS & Employee Data", votes: 78 },
+      c: { text: "Legacy ERP Integration Issues", votes: 32 },
+      d: { text: "Inefficient Document Workflows", votes: 19 }
     }
   };
 
@@ -1553,6 +1553,25 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupAppLocalFallback() {
     rcDbMode = "local";
     console.log("App: Dynamic database mode -> LocalStorage Fallback");
+    
+    // Migration check: Clear old market research content to allow new workflow/HRMS/ERP content to seed
+    const legacyCheck = localStorage.getItem("rc_blogs");
+    if (legacyCheck && (
+      legacyCheck.includes("concept-testing") || 
+      legacyCheck.includes("bot-intrusion") || 
+      legacyCheck.includes("panelist") || 
+      legacyCheck.includes("OpinionGenie") ||
+      legacyCheck.includes("Panel") || 
+      legacyCheck.includes("Survey") ||
+      legacyCheck.includes("Opinion Genie")
+    )) {
+      console.log("Legacy market research data detected in localStorage. Clearing database keys to re-seed.");
+      localStorage.removeItem("rc_blogs");
+      localStorage.removeItem("rc_news");
+      localStorage.removeItem("rc_poll");
+      localStorage.removeItem("rc_user_voted");
+    }
+
     if (!localStorage.getItem("rc_blogs")) {
       localStorage.setItem("rc_blogs", JSON.stringify(RC_DEFAULT_BLOGS));
     }
