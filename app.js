@@ -1800,16 +1800,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display total
     document.getElementById("poll-widget-total-votes").textContent = `Total Votes: ${total}`;
 
+    const submitBtn = document.getElementById("poll-widget-submit");
+
     if (userVoted) {
       pollCard.classList.add("voted");
-      pollForm.style.display = "none";
+      if (submitBtn) submitBtn.style.display = "none";
+      pollForm.querySelectorAll('input[name="poll-vote"]').forEach(input => input.disabled = true);
       votedMsg.style.display = "block";
 
       // Show percentages and anim-fill bars
       showOptionPercentages(pct(aVotes), pct(bVotes), pct(cVotes), pct(dVotes));
     } else {
       pollCard.classList.remove("voted");
-      pollForm.style.display = "block";
+      if (submitBtn) submitBtn.style.display = "block";
+      pollForm.querySelectorAll('input[name="poll-vote"]').forEach(input => input.disabled = false);
       votedMsg.style.display = "none";
 
       // Handle voting
