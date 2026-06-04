@@ -2449,9 +2449,192 @@ textarea:focus {
 
 .insights-top-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1.2fr;
+  grid-template-columns: 1.6fr 1.2fr 1.2fr;
   gap: 30px;
   margin-bottom: 50px;
+}
+
+@media (max-width: 1200px) {
+  .insights-top-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .poll-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 992px) {
+  .insights-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .poll-card {
+    grid-column: span 1;
+  }
+}
+
+/* ═══════════════════════════════════════════ */
+/* Interactive Poll Widget Styles              */
+/* ═══════════════════════════════════════════ */
+.poll-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.poll-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 8px;
+  background: rgba(4, 203, 194, 0.08);
+  border: 1px solid rgba(4, 203, 194, 0.15);
+  color: var(--turquoise-accent);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.poll-card h3 {
+  font-size: 18px;
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+.poll-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.45;
+}
+
+.poll-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.poll-option-label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 13px 15px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+.poll-option-label:hover {
+  border-color: rgba(4, 203, 194, 0.25);
+  background: rgba(4, 203, 194, 0.02);
+}
+
+.poll-option-label:has(input[type="radio"]:checked) {
+  border-color: var(--turquoise-accent);
+  background: rgba(4, 203, 194, 0.04);
+}
+
+.poll-option-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.poll-option-custom {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 50%;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  transition: var(--transition-smooth);
+}
+
+.poll-option-label:hover .poll-option-custom {
+  border-color: rgba(4, 203, 194, 0.6);
+}
+
+.poll-option-label input[type="radio"]:checked + .poll-option-custom {
+  border-color: var(--turquoise-accent);
+}
+
+.poll-option-label input[type="radio"]:checked + .poll-option-custom::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--turquoise-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--turquoise-accent);
+}
+
+.poll-option-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-light);
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  margin-right: 10px;
+  transition: var(--transition-smooth);
+}
+
+.poll-option-pct {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--turquoise-accent);
+  position: relative;
+  z-index: 2;
+  transition: var(--transition-smooth);
+  opacity: 0;
+  display: none;
+}
+
+.poll-card.voted .poll-option-pct {
+  opacity: 1;
+  display: inline;
+}
+
+.poll-card.voted .poll-option-custom {
+  display: none;
+}
+
+.poll-option-bg-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(4, 203, 194, 0.08);
+  z-index: 1;
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poll-widget-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 .featured-card {

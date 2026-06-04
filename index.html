@@ -1449,65 +1449,77 @@
           <p>Stay ahead with the latest methodologies, security frameworks, and research trends from our data experts.</p>
         </div>
 
-        <!-- Top Featured & Latest Updates -->
+        <!-- Top Featured, Latest Updates & Poll Grid -->
         <div class="insights-top-grid">
-          <!-- Featured Article -->
-          <div class="featured-card glass-card">
-            <div class="featured-image-placeholder">
-              <svg viewBox="0 0 100 50" class="featured-svg">
-                <defs>
-                  <linearGradient id="glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.2" />
-                    <stop offset="100%" stop-color="#04524e" stop-opacity="0.05" />
-                  </linearGradient>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#glow-grad)" rx="4"/>
-                <circle cx="50" cy="25" r="15" fill="none" stroke="#04cbc2" stroke-width="0.5" stroke-dasharray="1 1"/>
-                <circle cx="50" cy="25" r="10" fill="none" stroke="#04cbc2" stroke-width="0.3"/>
-                <path d="M20 25 L80 25" stroke="rgba(4, 203, 194, 0.15)" stroke-width="0.2"/>
-                <path d="M50 5 L50 45" stroke="rgba(4, 203, 194, 0.15)" stroke-width="0.2"/>
-              </svg>
-              <div class="feat-badge">Featured Methodology</div>
+          <!-- Featured Article (Dynamic) -->
+          <div id="dynamic-featured-article" class="featured-card glass-card">
+            <!-- Loading state placeholder -->
+            <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+              Loading featured report...
             </div>
-            <div class="featured-content">
-              <h3>The Science of Quality: Shielding Online Panels from AI Bot Intrusion</h3>
-              <p>How generative AI is changing the landscape of data fraud in survey panels, and the multi-layered cryptographic safeguards required to protect survey data integrity.</p>
-              <div class="feat-meta">
-                <span class="feat-date">June 2026</span>
-                <span class="feat-read">6 min read</span>
-                <a href="#contact" class="feat-link">Read Full Report <span class="arrow-right">&rarr;</span></a>
+          </div>
+
+          <!-- Tech & Safety Updates (Dynamic) -->
+          <div class="updates-card glass-card">
+            <h3>Latest Tech & Security Updates</h3>
+            <div id="dynamic-news-list" class="updates-list">
+              <!-- Loading state placeholder -->
+              <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+                Loading platform updates...
               </div>
             </div>
           </div>
 
-          <!-- Tech & Safety Updates -->
-          <div class="updates-card glass-card">
-            <h3>Latest Tech & Security Updates</h3>
-            <div class="updates-list">
-              <div class="update-item">
-                <div class="update-meta">
-                  <span class="update-badge badge-teal">Security</span>
-                  <span class="update-date">June 2026</span>
-                </div>
-                <h4>Opinion Genie v3.4 Cryptographic Fingerprinting Live</h4>
-                <p>Rollout of device-level entropy mapping reduces duplicate respondent profiles by 99.4% globally.</p>
+          <!-- Interactive Poll Widget -->
+          <div class="poll-card glass-card">
+            <div class="poll-badge">Live Panel Poll</div>
+            <h3 id="poll-widget-question">Loading bottleneck poll...</h3>
+            <p class="poll-sub">Your opinion drives our panels. Cast your vote below.</p>
+            
+            <form id="poll-widget-form">
+              <div class="poll-options-container">
+                <label class="poll-option-label" for="opt-a-input">
+                  <input type="radio" name="poll-vote" id="opt-a-input" value="a" required>
+                  <span class="poll-option-custom"></span>
+                  <span class="poll-option-text" id="poll-widget-lbl-a">Option A</span>
+                  <span class="poll-option-pct" id="poll-widget-pct-a">0%</span>
+                  <div class="poll-option-bg-bar" id="poll-widget-bar-a" style="width: 0%;"></div>
+                </label>
+                
+                <label class="poll-option-label" for="opt-b-input">
+                  <input type="radio" name="poll-vote" id="opt-b-input" value="b">
+                  <span class="poll-option-custom"></span>
+                  <span class="poll-option-text" id="poll-widget-lbl-b">Option B</span>
+                  <span class="poll-option-pct" id="poll-widget-pct-b">0%</span>
+                  <div class="poll-option-bg-bar" id="poll-widget-bar-b" style="width: 0%;"></div>
+                </label>
+                
+                <label class="poll-option-label" for="opt-c-input">
+                  <input type="radio" name="poll-vote" id="opt-c-input" value="c">
+                  <span class="poll-option-custom"></span>
+                  <span class="poll-option-text" id="poll-widget-lbl-c">Option C</span>
+                  <span class="poll-option-pct" id="poll-widget-pct-c">0%</span>
+                  <div class="poll-option-bg-bar" id="poll-widget-bar-c" style="width: 0%;"></div>
+                </label>
+                
+                <label class="poll-option-label" for="opt-d-input">
+                  <input type="radio" name="poll-vote" id="opt-d-input" value="d">
+                  <span class="poll-option-custom"></span>
+                  <span class="poll-option-text" id="poll-widget-lbl-d">Option D</span>
+                  <span class="poll-option-pct" id="poll-widget-pct-d">0%</span>
+                  <div class="poll-option-bg-bar" id="poll-widget-bar-d" style="width: 0%;"></div>
+                </label>
               </div>
-              <div class="update-item">
-                <div class="update-meta">
-                  <span class="update-badge badge-teal">Compliance</span>
-                  <span class="update-date">May 2026</span>
-                </div>
-                <h4>Enhanced GDPR Rules for B2B Trackers</h4>
-                <p>Automated variables hashing during real-time sync checkpoints with external client CRMs.</p>
-              </div>
-              <div class="update-item">
-                <div class="update-meta">
-                  <span class="update-badge badge-teal">Anti-Fraud</span>
-                  <span class="update-date">April 2026</span>
-                </div>
-                <h4>Advanced Proxy Database Integration</h4>
-                <p>Real-time threat evaluation for residential proxies and micro-VPN routing networks.</p>
-              </div>
+              
+              <button type="submit" id="poll-widget-submit" class="btn btn-secondary btn-sm btn-block" style="margin-top: 15px;">Cast Vote</button>
+            </form>
+            
+            <div id="poll-widget-voted-msg" style="display: none; text-align: center; margin-top: 15px; font-size: 13.5px; color: var(--turquoise-accent); font-weight: 600;">
+              ✓ Vote Recorded! Thanks for participating.
+            </div>
+            
+            <div class="poll-widget-footer">
+              <span id="poll-widget-total-votes">Total Votes: 0</span>
             </div>
           </div>
         </div>
@@ -1517,39 +1529,11 @@
           <h3>Recent Publications</h3>
         </div>
 
-        <!-- Blogs Grid -->
-        <div class="blogs-grid">
-          <!-- Blog 1 -->
-          <div class="blog-card glass-card">
-            <div class="blog-cat">Methodology</div>
-            <h4>Concept Testing: Maximizing Validation for Early-Stage Product Dev</h4>
-            <p>How to structure rapid validation surveys that yield clear direction, optimize LOI, and prevent cognitive overload.</p>
-            <div class="blog-meta">
-              <span>May 2026</span>
-              <a href="#contact" class="blog-link">Read Article</a>
-            </div>
-          </div>
-
-          <!-- Blog 2 -->
-          <div class="blog-card glass-card">
-            <div class="blog-cat">Device Optimization</div>
-            <h4>Device Comparison: Mobile vs. Desktop Response Quality in B2B</h4>
-            <p>A comparative study of completion rates and survey straight-lining behavior across form factors in enterprise environments.</p>
-            <div class="blog-meta">
-              <span>April 2026</span>
-              <a href="#contact" class="blog-link">Read Article</a>
-            </div>
-          </div>
-
-          <!-- Blog 3 -->
-          <div class="blog-card glass-card">
-            <div class="blog-cat">Healthcare Panel</div>
-            <h4>Navigating Healthcare Panels: Reaching HCPs and C-Suite</h4>
-            <p>Strategies for recruiting, profiling, and rewarding low-incidence healthcare professionals and decision-makers.</p>
-            <div class="blog-meta">
-              <span>March 2026</span>
-              <a href="#contact" class="blog-link">Read Article</a>
-            </div>
+        <!-- Blogs Grid (Dynamic) -->
+        <div id="dynamic-blogs-grid" class="blogs-grid">
+          <!-- Loading state placeholder -->
+          <div style="grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--text-muted);">
+            Loading recent publications...
           </div>
         </div>
       </div>
@@ -1805,6 +1789,11 @@
       </button>
     </form>
   </div>
+
+  <!-- Firebase Scripts (Modular imports) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
   <!-- Script -->
   <script src="app.js"></script>

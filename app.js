@@ -1415,5 +1415,459 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
- 
+
+  // ----------------------------------------------------
+  // 12. Dynamic Content & Interactive Poll Integration
+  // ----------------------------------------------------
+  const rcFirebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  let rcDbMode = "local";
+  let rcDb = null;
+
+  // Initial mock database arrays for seeding
+  const RC_DEFAULT_BLOGS = [
+    {
+      id: "blog-1",
+      title: "Concept Testing: Maximizing Validation for Early-Stage Product Dev",
+      category: "Methodology",
+      readtime: "5 min read",
+      excerpt: "How to structure rapid validation surveys that yield clear direction, optimize LOI, and prevent cognitive overload.",
+      content: "Concept testing is a critical phase in product development. This article outlines the key steps to structure surveys that yield clear direction...",
+      date: "May 2026",
+      featured: false,
+      timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "blog-2",
+      title: "Device Comparison: Mobile vs. Desktop Response Quality in B2B",
+      category: "Technology",
+      readtime: "6 min read",
+      excerpt: "A comparative study of completion rates and survey straight-lining behavior across form factors in enterprise environments.",
+      content: "A comparative study of completion rates and survey straight-lining behavior across form factors...",
+      date: "April 2026",
+      featured: false,
+      timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "blog-3",
+      title: "Navigating Healthcare Panels: Reaching HCPs and C-Suite",
+      category: "Methodology",
+      readtime: "8 min read",
+      excerpt: "Strategies for recruiting, profiling, and rewarding low-incidence healthcare professionals and decision-makers.",
+      content: "Strategies for recruiting, profiling, and rewarding low-incidence healthcare professionals...",
+      date: "March 2026",
+      featured: false,
+      timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "blog-featured",
+      title: "The Science of Quality: Shielding Online Panels from AI Bot Intrusion",
+      category: "Methodology",
+      readtime: "6 min read",
+      excerpt: "How generative AI is changing the landscape of data fraud in survey panels, and the multi-layered cryptographic safeguards required to protect survey data integrity.",
+      content: "How generative AI is changing the landscape of data fraud in survey panels, and the multi-layered safeguards...",
+      date: "June 2026",
+      featured: true,
+      timestamp: Date.now()
+    }
+  ];
+
+  const RC_DEFAULT_NEWS = [
+    {
+      id: "news-1",
+      title: "Opinion Genie v3.4 Cryptographic Fingerprinting Live",
+      category: "Security",
+      details: "Rollout of device-level entropy mapping reduces duplicate respondent profiles by 99.4% globally.",
+      date: "June 2026",
+      timestamp: Date.now()
+    },
+    {
+      id: "news-2",
+      title: "Enhanced GDPR Rules for B2B Trackers",
+      category: "Compliance",
+      details: "Automated variables hashing during real-time sync checkpoints with external client CRMs.",
+      date: "May 2026",
+      timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "news-3",
+      title: "Advanced Proxy Database Integration",
+      category: "Anti-Fraud",
+      details: "Real-time threat evaluation for residential proxies and micro-VPN routing networks.",
+      date: "April 2026",
+      timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
+    }
+  ];
+
+  const RC_DEFAULT_POLL = {
+    id: "active-poll",
+    question: "What is your primary research pipeline bottleneck?",
+    options: {
+      a: { text: "Panel Feasibility Verification", votes: 45 },
+      b: { text: "Data Deduplication & Fraud", votes: 78 },
+      c: { text: "Slow Turnaround Times", votes: 32 },
+      d: { text: "Legacy ERP Integration Issues", votes: 19 }
+    }
+  };
+
+  // Helper function to escape HTML output
+  function rcEscapeHtml(str) {
+    if (!str) return "";
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Connect database
+  const rcIsFirebaseConfigured = () => {
+    return rcFirebaseConfig && 
+           rcFirebaseConfig.apiKey && 
+           !rcFirebaseConfig.apiKey.startsWith("YOUR_") && 
+           rcFirebaseConfig.apiKey !== "";
+  };
+
+  if (rcIsFirebaseConfigured() && typeof firebase !== "undefined") {
+    try {
+      firebase.initializeApp(rcFirebaseConfig);
+      rcDb = firebase.firestore();
+      rcDbMode = "firebase";
+      console.log("App: Dynamic database mode -> LIVE Firebase");
+    } catch (e) {
+      console.error("App: Firebase failed, falling back to LocalStorage:", e);
+      setupAppLocalFallback();
+    }
+  } else {
+    setupAppLocalFallback();
+  }
+
+  function setupAppLocalFallback() {
+    rcDbMode = "local";
+    console.log("App: Dynamic database mode -> LocalStorage Fallback");
+    if (!localStorage.getItem("rc_blogs")) {
+      localStorage.setItem("rc_blogs", JSON.stringify(RC_DEFAULT_BLOGS));
+    }
+    if (!localStorage.getItem("rc_news")) {
+      localStorage.setItem("rc_news", JSON.stringify(RC_DEFAULT_NEWS));
+    }
+    if (!localStorage.getItem("rc_poll")) {
+      localStorage.setItem("rc_poll", JSON.stringify(RC_DEFAULT_POLL));
+    }
+  }
+
+  // Load and Render Dynamic Contents
+  function loadAndRenderDynamicContent() {
+    renderFeaturedBlog();
+    renderNewsAlerts();
+    renderBlogsGridList();
+    renderActivePollWidget();
+  }
+
+  // 12a. Render Featured Blog Post
+  function renderFeaturedBlog() {
+    const featuredContainer = document.getElementById("dynamic-featured-article");
+    if (!featuredContainer) return;
+
+    if (rcDbMode === "firebase") {
+      rcDb.collection("blogs").where("featured", "==", true).limit(1).get()
+        .then(snapshot => {
+          if (!snapshot.empty) {
+            const blog = snapshot.docs[0].data();
+            injectFeaturedHtml(featuredContainer, blog);
+          } else {
+            // Get latest overall as fallback
+            rcDb.collection("blogs").orderBy("timestamp", "desc").limit(1).get()
+              .then(snap => {
+                if (!snap.empty) {
+                  injectFeaturedHtml(featuredContainer, snap.docs[0].data());
+                } else {
+                  injectFeaturedHtml(featuredContainer, RC_DEFAULT_BLOGS[3]); // Fallback
+                }
+              });
+          }
+        })
+        .catch(err => {
+          console.error("Error reading featured blog:", err);
+          injectFeaturedHtml(featuredContainer, RC_DEFAULT_BLOGS[3]);
+        });
+    } else {
+      const blogs = JSON.parse(localStorage.getItem("rc_blogs") || "[]");
+      const featured = blogs.find(b => b.featured) || blogs[0] || RC_DEFAULT_BLOGS[3];
+      injectFeaturedHtml(featuredContainer, featured);
+    }
+  }
+
+  function injectFeaturedHtml(container, article) {
+    container.innerHTML = `
+      <div class="featured-image-placeholder">
+        <svg viewBox="0 0 100 50" class="featured-svg">
+          <defs>
+            <linearGradient id="glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.2" />
+              <stop offset="100%" stop-color="#04524e" stop-opacity="0.05" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#glow-grad)" rx="4"/>
+          <circle cx="50" cy="25" r="15" fill="none" stroke="#04cbc2" stroke-width="0.5" stroke-dasharray="1 1"/>
+          <circle cx="50" cy="25" r="10" fill="none" stroke="#04cbc2" stroke-width="0.3"/>
+          <path d="M20 25 L80 25" stroke="rgba(4, 203, 194, 0.15)" stroke-width="0.2"/>
+          <path d="M50 5 L50 45" stroke="rgba(4, 203, 194, 0.15)" stroke-width="0.2"/>
+        </svg>
+        <div class="feat-badge">${rcEscapeHtml(article.category)}</div>
+      </div>
+      <div class="featured-content">
+        <h3>${rcEscapeHtml(article.title)}</h3>
+        <p>${rcEscapeHtml(article.excerpt)}</p>
+        <div class="feat-meta">
+          <span class="feat-date">${rcEscapeHtml(article.date)}</span>
+          <span class="feat-read">${rcEscapeHtml(article.readtime)}</span>
+          <a href="#contact" class="feat-link">Read Full Report <span class="arrow-right">&rarr;</span></a>
+        </div>
+      </div>
+    `;
+  }
+
+  // 12b. Render Tech & Security News Alerts
+  function renderNewsAlerts() {
+    const newsContainer = document.getElementById("dynamic-news-list");
+    if (!newsContainer) return;
+
+    if (rcDbMode === "firebase") {
+      rcDb.collection("news").orderBy("timestamp", "desc").limit(3).get()
+        .then(snapshot => {
+          newsContainer.innerHTML = "";
+          if (!snapshot.empty) {
+            snapshot.forEach(doc => {
+              appendNewsItem(newsContainer, doc.data());
+            });
+          } else {
+            RC_DEFAULT_NEWS.forEach(item => appendNewsItem(newsContainer, item));
+          }
+        })
+        .catch(err => {
+          console.error("Error loading news alerts:", err);
+          newsContainer.innerHTML = "";
+          RC_DEFAULT_NEWS.forEach(item => appendNewsItem(newsContainer, item));
+        });
+    } else {
+      const news = JSON.parse(localStorage.getItem("rc_news") || "[]");
+      news.sort((a, b) => b.timestamp - a.timestamp);
+      newsContainer.innerHTML = "";
+      const limitNews = news.slice(0, 3);
+      if (limitNews.length > 0) {
+        limitNews.forEach(item => appendNewsItem(newsContainer, item));
+      } else {
+        RC_DEFAULT_NEWS.forEach(item => appendNewsItem(newsContainer, item));
+      }
+    }
+  }
+
+  function appendNewsItem(container, item) {
+    const div = document.createElement("div");
+    div.className = "update-item";
+    div.innerHTML = `
+      <div class="update-meta">
+        <span class="update-badge badge-teal">${rcEscapeHtml(item.category)}</span>
+        <span class="update-date">${rcEscapeHtml(item.date)}</span>
+      </div>
+      <h4>${rcEscapeHtml(item.title)}</h4>
+      <p>${rcEscapeHtml(item.details)}</p>
+    `;
+    container.appendChild(div);
+  }
+
+  // 12c. Render Recent Blogs Grid
+  function renderBlogsGridList() {
+    const blogsGrid = document.getElementById("dynamic-blogs-grid");
+    if (!blogsGrid) return;
+
+    if (rcDbMode === "firebase") {
+      rcDb.collection("blogs").orderBy("timestamp", "desc").get()
+        .then(snapshot => {
+          blogsGrid.innerHTML = "";
+          let count = 0;
+          snapshot.forEach(doc => {
+            const blog = doc.data();
+            // Skip featured blog from grid to avoid duplicate listing
+            if (!blog.featured) {
+              appendBlogCard(blogsGrid, blog);
+              count++;
+            }
+          });
+          if (count === 0) {
+            // Render something if all are featured or no blogs
+            RC_DEFAULT_BLOGS.forEach(b => {
+              if (!b.featured) appendBlogCard(blogsGrid, b);
+            });
+          }
+        })
+        .catch(err => {
+          console.error("Error loading blogs grid:", err);
+          blogsGrid.innerHTML = "";
+          RC_DEFAULT_BLOGS.forEach(b => {
+            if (!b.featured) appendBlogCard(blogsGrid, b);
+          });
+        });
+    } else {
+      const blogs = JSON.parse(localStorage.getItem("rc_blogs") || "[]");
+      blogs.sort((a, b) => b.timestamp - a.timestamp);
+      blogsGrid.innerHTML = "";
+      const nonFeatured = blogs.filter(b => !b.featured);
+      if (nonFeatured.length > 0) {
+        nonFeatured.forEach(blog => appendBlogCard(blogsGrid, blog));
+      } else {
+        RC_DEFAULT_BLOGS.forEach(b => {
+          if (!b.featured) appendBlogCard(blogsGrid, b);
+        });
+      }
+    }
+  }
+
+  function appendBlogCard(container, blog) {
+    const div = document.createElement("div");
+    div.className = "blog-card glass-card";
+    div.innerHTML = `
+      <div class="blog-cat">${rcEscapeHtml(blog.category)}</div>
+      <h4>${rcEscapeHtml(blog.title)}</h4>
+      <p>${rcEscapeHtml(blog.excerpt)}</p>
+      <div class="blog-meta">
+        <span>${rcEscapeHtml(blog.date)}</span>
+        <a href="#contact" class="blog-link">Read Article</a>
+      </div>
+    `;
+    container.appendChild(div);
+  }
+
+  // 12d. Interactive Poll Widget Handler
+  function renderActivePollWidget() {
+    const pollCard = document.querySelector(".poll-card");
+    const pollForm = document.getElementById("poll-widget-form");
+    const votedMsg = document.getElementById("poll-widget-voted-msg");
+    const pollQuestionEl = document.getElementById("poll-widget-question");
+
+    if (!pollCard || !pollForm) return;
+
+    // Fetch poll data
+    if (rcDbMode === "firebase") {
+      rcDb.collection("polls").doc("active-poll").get()
+        .then(doc => {
+          if (doc.exists) {
+            setupPollUI(doc.data(), pollCard, pollForm, votedMsg, pollQuestionEl);
+          } else {
+            setupPollUI(RC_DEFAULT_POLL, pollCard, pollForm, votedMsg, pollQuestionEl);
+          }
+        })
+        .catch(err => {
+          console.error("Error loading active poll widget:", err);
+          setupPollUI(RC_DEFAULT_POLL, pollCard, pollForm, votedMsg, pollQuestionEl);
+        });
+    } else {
+      const pollData = JSON.parse(localStorage.getItem("rc_poll")) || RC_DEFAULT_POLL;
+      setupPollUI(pollData, pollCard, pollForm, votedMsg, pollQuestionEl);
+    }
+  }
+
+  function setupPollUI(poll, pollCard, pollForm, votedMsg, pollQuestionEl) {
+    // Set Question
+    if (pollQuestionEl) pollQuestionEl.textContent = poll.question;
+
+    // Set Option Texts
+    document.getElementById("poll-widget-lbl-a").textContent = poll.options.a.text;
+    document.getElementById("poll-widget-lbl-b").textContent = poll.options.b.text;
+    document.getElementById("poll-widget-lbl-c").textContent = poll.options.c.text;
+    document.getElementById("poll-widget-lbl-d").textContent = poll.options.d.text;
+
+    // Check if voted already
+    const userVoted = localStorage.getItem("rc_user_voted") === "active-poll";
+
+    const aVotes = poll.options.a.votes || 0;
+    const bVotes = poll.options.b.votes || 0;
+    const cVotes = poll.options.c.votes || 0;
+    const dVotes = poll.options.d.votes || 0;
+    const total = aVotes + bVotes + cVotes + dVotes;
+
+    const pct = (votes) => total > 0 ? Math.round((votes / total) * 100) : 0;
+
+    // Display total
+    document.getElementById("poll-widget-total-votes").textContent = `Total Votes: ${total}`;
+
+    if (userVoted) {
+      pollCard.classList.add("voted");
+      pollForm.style.display = "none";
+      votedMsg.style.display = "block";
+
+      // Show percentages and anim-fill bars
+      showOptionPercentages(pct(aVotes), pct(bVotes), pct(cVotes), pct(dVotes));
+    } else {
+      pollCard.classList.remove("voted");
+      pollForm.style.display = "block";
+      votedMsg.style.display = "none";
+
+      // Handle voting
+      pollForm.onsubmit = (e) => {
+        e.preventDefault();
+        const selectedOpt = pollForm.querySelector('input[name="poll-vote"]:checked');
+        if (!selectedOpt) return;
+
+        const val = selectedOpt.value; // 'a', 'b', 'c', 'd'
+
+        if (rcDbMode === "firebase") {
+          rcDb.collection("polls").doc("active-poll").update({
+            [`options.${val}.votes`]: firebase.firestore.FieldValue.increment(1)
+          })
+          .then(() => {
+            localStorage.setItem("rc_user_voted", "active-poll");
+            renderActivePollWidget(); // Reload
+          })
+          .catch(err => {
+            alert("Voting error: " + err.message);
+          });
+        } else {
+          const localPoll = JSON.parse(localStorage.getItem("rc_poll")) || RC_DEFAULT_POLL;
+          localPoll.options[val].votes = (localPoll.options[val].votes || 0) + 1;
+          localStorage.setItem("rc_poll", JSON.stringify(localPoll));
+          localStorage.setItem("rc_user_voted", "active-poll");
+          renderActivePollWidget(); // Reload
+        }
+      };
+    }
+  }
+
+  function showOptionPercentages(aPct, bPct, cPct, dPct) {
+    const pcts = [aPct, bPct, cPct, dPct];
+    const keys = ["a", "b", "c", "d"];
+
+    keys.forEach((key, idx) => {
+      const pctEl = document.getElementById(`poll-widget-pct-${key}`);
+      const barEl = document.getElementById(`poll-widget-bar-${key}`);
+      const labelEl = pctEl.closest(".poll-option-label");
+
+      // Set text
+      if (pctEl) pctEl.textContent = `${pcts[idx]}%`;
+      
+      // Animate bar width
+      setTimeout(() => {
+        if (barEl) barEl.style.width = `${pcts[idx]}%`;
+      }, 100);
+
+      // Make label look non-clickable but nicely styled
+      if (labelEl) {
+        labelEl.style.cursor = "default";
+        labelEl.style.background = "rgba(255, 255, 255, 0.015)";
+      }
+    });
+  }
+
+  // Run dynamic loads
+  loadAndRenderDynamicContent();
+
 });
