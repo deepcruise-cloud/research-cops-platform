@@ -1630,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="feat-meta">
           <span class="feat-date">${rcEscapeHtml(article.date)}</span>
           <span class="feat-read">${rcEscapeHtml(article.readtime)}</span>
-          <a href="#contact" class="feat-link">Read Full Report <span class="arrow-right">&rarr;</span></a>
+          <a href="insights.html?type=blog&id=${article.id || 'blog-featured'}" class="feat-link">Read Full Report <span class="arrow-right">&rarr;</span></a>
         </div>
       </div>
     `;
@@ -1679,7 +1679,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="update-badge badge-teal">${rcEscapeHtml(item.category)}</span>
         <span class="update-date">${rcEscapeHtml(item.date)}</span>
       </div>
-      <h4>${rcEscapeHtml(item.title)}</h4>
+      <h4><a href="insights.html?type=news&id=${item.id || 'news-1'}" style="color: inherit; text-decoration: none;">${rcEscapeHtml(item.title)}</a></h4>
       <p>${rcEscapeHtml(item.details)}</p>
     `;
     container.appendChild(div);
@@ -1741,7 +1741,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>${rcEscapeHtml(blog.excerpt)}</p>
       <div class="blog-meta">
         <span>${rcEscapeHtml(blog.date)}</span>
-        <a href="#contact" class="blog-link">Read Article</a>
+        <a href="insights.html?type=blog&id=${blog.id}" class="blog-link">Read Article</a>
       </div>
     `;
     container.appendChild(div);
