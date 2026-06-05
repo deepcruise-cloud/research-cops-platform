@@ -328,4 +328,17 @@ You can prevent the setting of cookies by adjusting the settings on your browser
     displayPolicy(activePolicy);
   }, 100);
 
+  // ----------------------------------------------------
+  // Interactive Glass Card Cursor Spotlight
+  // ----------------------------------------------------
+  document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+
 });

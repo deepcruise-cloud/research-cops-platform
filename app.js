@@ -2301,12 +2301,47 @@ document.addEventListener('DOMContentLoaded', () => {
       btnB2c.style.borderColor = 'var(--turquoise-accent)';
       btnB2c.style.color = '#ffffff';
 
-      btnB2b.style.background = 'rgba(255,255,255,0.02)';
-      btnB2b.style.borderColor = 'rgba(255,255,255,0.08)';
       btnB2b.style.color = 'var(--text-muted)';
 
       gridB2c.style.display = 'grid';
       gridB2b.style.display = 'none';
+    });
+  }
+
+  // ----------------------------------------------------
+  // Interactive Glass Card Cursor Spotlight
+  // ----------------------------------------------------
+  document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+
+  // ----------------------------------------------------
+  // Hero 3D Parallax Tilt Effect
+  // ----------------------------------------------------
+  const heroSection = document.getElementById('hero');
+  const heroVisual = document.querySelector('.visual-card-wrapper');
+  if (heroSection && heroVisual) {
+    heroSection.addEventListener('mousemove', e => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left - (rect.width / 2);
+      const y = e.clientY - rect.top - (rect.height / 2);
+      
+      const rotateX = -(y / rect.height) * 10;
+      const rotateY = (x / rect.width) * 10;
+      
+      heroVisual.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      heroVisual.style.transition = 'transform 0.1s ease-out';
+    });
+    
+    heroSection.addEventListener('mouseleave', () => {
+      heroVisual.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      heroVisual.style.transition = 'transform 0.6s ease';
     });
   }
 
