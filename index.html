@@ -710,6 +710,30 @@
                   <option value="sg" data-multiplier="1.00">Singapore</option>
                   <option value="jp" data-multiplier="1.12">Japan</option>
                   <option value="br" data-multiplier="0.70">Brazil</option>
+                  <option value="es" data-multiplier="0.95">Spain</option>
+                  <option value="it" data-multiplier="0.94">Italy</option>
+                  <option value="nl" data-multiplier="1.05">Netherlands</option>
+                  <option value="se" data-multiplier="1.08">Sweden</option>
+                  <option value="ch" data-multiplier="1.20">Switzerland</option>
+                  <option value="mx" data-multiplier="0.65">Mexico</option>
+                  <option value="ar" data-multiplier="0.60">Argentina</option>
+                  <option value="co" data-multiplier="0.58">Colombia</option>
+                  <option value="ae" data-multiplier="1.15">United Arab Emirates</option>
+                  <option value="sa" data-multiplier="1.10">Saudi Arabia</option>
+                  <option value="za" data-multiplier="0.62">South Africa</option>
+                  <option value="pl" data-multiplier="0.75">Poland</option>
+                  <option value="tr" data-multiplier="0.55">Turkey</option>
+                  <option value="kr" data-multiplier="1.05">South Korea</option>
+                  <option value="cn" data-multiplier="0.85">China</option>
+                  <option value="id" data-multiplier="0.45">Indonesia</option>
+                  <option value="my" data-multiplier="0.52">Malaysia</option>
+                  <option value="th" data-multiplier="0.48">Thailand</option>
+                  <option value="vn" data-multiplier="0.42">Vietnam</option>
+                  <option value="ph" data-multiplier="0.44">Philippines</option>
+                  <option value="nz" data-multiplier="1.00">New Zealand</option>
+                  <option value="eg" data-multiplier="0.40">Egypt</option>
+                  <option value="ng" data-multiplier="0.38">Nigeria</option>
+                  <option value="ke" data-multiplier="0.35">Kenya</option>
                 </select>
               </div>
 
@@ -1061,8 +1085,57 @@
 
             <!-- Geography Tab -->
             <div id="tab-geography" class="tab-content">
-              <h3>Global Coverage</h3>
-              <p class="tab-desc">2M+ active panelists globally, powered by our partner network and Opinion Genie.</p>
+              <h3>Global Coverage & Country Profiler</h3>
+              <p class="tab-desc">2M+ active panelists globally. Select a country below to load live capacity feasibility profiles.</p>
+              
+              <div class="country-profiler-wrapper" style="margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 25px; margin-bottom: 25px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                  <h4 style="font-size: 16px; font-family: var(--font-family-sans); font-weight: 600;">Active Country Profile</h4>
+                  <select id="demographic-country-select" style="background: var(--bg-dark); border: 1px solid rgba(4,203,194,0.2); padding: 8px 16px; border-radius: var(--radius-md); color: #ffffff; font-family: var(--font-family-sans); cursor: pointer; outline: none;">
+                    <option value="us" selected>United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="de">Germany</option>
+                    <option value="fr">France</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="in">India</option>
+                    <option value="sg">Singapore</option>
+                    <option value="jp">Japan</option>
+                    <option value="br">Brazil</option>
+                    <option value="es">Spain</option>
+                    <option value="it">Italy</option>
+                    <option value="ae">United Arab Emirates</option>
+                    <option value="sa">Saudi Arabia</option>
+                    <option value="za">South Africa</option>
+                    <option value="mx">Mexico</option>
+                    <option value="kr">South Korea</option>
+                  </select>
+                </div>
+                
+                <div class="profile-stats-grid" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: center; background: rgba(0,0,0,0.2); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.03);">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+                      <span style="color: var(--text-body);">Panel Feasibility Score</span>
+                      <span id="demo-country-feasibility-pct" class="text-emerald">95% (High)</span>
+                    </div>
+                    <div class="bar-track" style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; position: relative;">
+                      <div id="demo-country-feasibility-bar" class="bar-fill bg-emerald" style="width: 95%; height: 100%; transition: width 0.6s ease; position: absolute; left: 0; top: 0;"></div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                      <div><strong style="color: var(--text-light);">Active Panel Size:</strong> <span id="demo-country-size" style="color: var(--turquoise-accent); font-weight: 600;">840,000+</span></div>
+                      <div><strong style="color: var(--text-light);">Primary Target Verticals:</strong> <span id="demo-country-verticals" style="color: var(--text-body);">B2B Tech, Healthcare HCPs, Finance</span></div>
+                    </div>
+                  </div>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 10px; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 20px;">
+                    <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-family-display);">Demographic Splits</div>
+                    <div style="font-size: 13px; color: var(--text-body);"><strong>Active Age (18–34):</strong> <span id="demo-country-age" style="color: var(--text-light);">52%</span></div>
+                    <div style="font-size: 13px; color: var(--text-body);"><strong>Gender (Female/Male):</strong> <span id="demo-country-gender" style="color: var(--text-light);">51% / 48%</span></div>
+                  </div>
+                </div>
+              </div>
+
               <div class="chart-container">
                 <div class="bar-chart">
                   <div class="bar-row">
@@ -1099,16 +1172,24 @@
 
             <!-- Verticals / Profiling Sectors Tab -->
             <div id="tab-verticals" class="tab-content">
-              <h3>Profiling Sectors</h3>
-              <p class="tab-desc">Panelists are deeply pre-profiled into core consumer and B2B categories.</p>
-              <div class="verticals-grid">
+              <h3>Panel Profiling Sectors</h3>
+              <p class="tab-desc">Our database is deeply pre-profiled into distinct segments. Toggle below to explore B2B and B2C profiling categories.</p>
+              
+              <!-- B2B/B2C Toggle Button -->
+              <div class="profiling-toggle-container" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
+                <button class="btn btn-secondary btn-sm" id="prof-btn-b2b" style="border-radius: var(--radius-md); padding: 8px 24px; font-size: 13px; background: rgba(4,203,194,0.1); border-color: var(--turquoise-accent); color: #ffffff;">B2B Profiling</button>
+                <button class="btn btn-secondary btn-sm" id="prof-btn-b2c" style="border-radius: var(--radius-md); padding: 8px 24px; font-size: 13px; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.08); color: var(--text-muted);">B2C Profiling</button>
+              </div>
+
+              <!-- B2B Profiling Grid -->
+              <div class="verticals-grid" id="verticals-b2b">
                 <div class="vertical-tag">
                   <span class="v-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 5v5h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                   </span>
                   <div class="v-info">
-                    <h4>Automotive</h4>
-                    <span>Owners, decision-makers, buyers</span>
+                    <h4>B2B IT & Tech</h4>
+                    <span>ITDMs, SaaS buyers, developers, CTOs, SysAdmins</span>
                   </div>
                 </div>
                 <div class="vertical-tag">
@@ -1117,25 +1198,7 @@
                   </span>
                   <div class="v-info">
                     <h4>Healthcare / HCPs</h4>
-                    <span>Physicians, nurses, patients, admins</span>
-                  </div>
-                </div>
-                <div class="vertical-tag">
-                  <span class="v-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                  </span>
-                  <div class="v-info">
-                    <h4>B2B IT & Tech</h4>
-                    <span>ITDMs, SaaS buyers, developers</span>
-                  </div>
-                </div>
-                <div class="vertical-tag">
-                  <span class="v-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  </span>
-                  <div class="v-info">
-                    <h4>Household / Parents</h4>
-                    <span>Primary shoppers, decision-makers</span>
+                    <span>Verified physicians, specialists, nurses, practice managers</span>
                   </div>
                 </div>
                 <div class="vertical-tag">
@@ -1144,7 +1207,29 @@
                   </span>
                   <div class="v-info">
                     <h4>Financial Decision Makers</h4>
-                    <span>Investors, account holders, advisors</span>
+                    <span>CFOs, investment leads, accounting heads, wealth managers</span>
+                  </div>
+                </div>
+                <div class="vertical-tag">
+                  <span class="v-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  </span>
+                  <div class="v-info">
+                    <h4>Corporate Leadership</h4>
+                    <span>C-Suite, VP level, HR directors, procurement leads</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- B2C Profiling Grid (Hidden initially) -->
+              <div class="verticals-grid" id="verticals-b2c" style="display: none;">
+                <div class="vertical-tag">
+                  <span class="v-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                  </span>
+                  <div class="v-info">
+                    <h4>Household & Parents</h4>
+                    <span>Primary shoppers, parents of kids, homeowners, pet owners</span>
                   </div>
                 </div>
                 <div class="vertical-tag">
@@ -1152,8 +1237,26 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                   </span>
                   <div class="v-info">
-                    <h4>Mobile Profiles</h4>
-                    <span>100% pre-profiled device IDs</span>
+                    <h4>Mobile Consumers</h4>
+                    <span>Verified device IDs, app users, mobile gamers, tech adopters</span>
+                  </div>
+                </div>
+                <div class="vertical-tag">
+                  <span class="v-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="2"></rect><path d="M16 8h4l3 5v5h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                  </span>
+                  <div class="v-info">
+                    <h4>Automotive</h4>
+                    <span>Car owners, EV buyers, motorcycle riders, auto intenders</span>
+                  </div>
+                </div>
+                <div class="vertical-tag">
+                  <span class="v-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                  </span>
+                  <div class="v-info">
+                    <h4>Travel & Lifestyle</h4>
+                    <span>Frequent flyers, fitness fans, foodies, luxury shoppers</span>
                   </div>
                 </div>
               </div>
