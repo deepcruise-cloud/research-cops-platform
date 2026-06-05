@@ -219,7 +219,7 @@ function setupLocalFallback(bannerEl) {
     console.log("Legacy market research data detected in localStorage. Clearing database keys to re-seed.");
     localStorage.removeItem("rc_blogs");
     localStorage.removeItem("rc_news");
-    localStorage.removeItem("rc_poll");
+    localStorage.removeItem("rc_polls");
     localStorage.removeItem("rc_user_voted");
   }
 
@@ -230,8 +230,8 @@ function setupLocalFallback(bannerEl) {
   if (!localStorage.getItem("rc_news")) {
     localStorage.setItem("rc_news", JSON.stringify(DEFAULT_NEWS));
   }
-  if (!localStorage.getItem("rc_poll")) {
-    localStorage.setItem("rc_poll", JSON.stringify(DEFAULT_POLL));
+  if (!localStorage.getItem("rc_polls")) {
+    localStorage.setItem("rc_polls", JSON.stringify(DEFAULT_POLLS));
   }
 }
 
