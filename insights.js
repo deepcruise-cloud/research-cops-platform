@@ -428,16 +428,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let category = defaultCat;
         const tags = (item.tag_list || []).map(t => t.toLowerCase());
         
-        if (tags.some(t => t.includes("security") || t.includes("auth") || t.includes("crypt") || t.includes("cybersecurity") || t.includes("privacy"))) {
-          category = "Security";
-        } else if (tags.some(t => t.includes("compliance") || t.includes("policy") || t.includes("gdpr") || t.includes("ccpa") || t.includes("audit"))) {
-          category = "Compliance";
-        } else if (tags.some(t => t.includes("news") || t.includes("announcement") || t.includes("release") || t.includes("event"))) {
-          category = "News";
-        } else if (tags.some(t => t.includes("automation") || t.includes("workflow") || t.includes("ai") || t.includes("gpt") || t.includes("robot") || t.includes("future"))) {
-          category = "Automation";
-        } else if (tags.some(t => t.includes("api") || t.includes("graphql") || t.includes("integration") || t.includes("cloud") || t.includes("web"))) {
-          category = "Integration";
+        if (tags.some(t => t.includes("sports") || t.includes("sport") || t.includes("game") || t.includes("olympic"))) {
+          category = "Sports";
+        } else if (tags.some(t => t.includes("tech") || t.includes("technology") || t.includes("code") || t.includes("program") || t.includes("dev") || t.includes("ai") || t.includes("api") || t.includes("database"))) {
+          category = "Tech";
+        } else if (tags.some(t => t.includes("business") || t.includes("startup") || t.includes("career") || t.includes("management") || t.includes("marketing"))) {
+          category = "Business";
+        } else if (tags.some(t => t.includes("finance") || t.includes("money") || t.includes("crypto") || t.includes("bitcoin") || t.includes("stock") || t.includes("bank"))) {
+          category = "Finance";
+        } else if (tags.some(t => t.includes("global") || t.includes("world") || t.includes("news") || t.includes("earth") || t.includes("country"))) {
+          category = "Global";
+        } else {
+          category = "Other";
         }
         
         let displayDate = "Live";
@@ -640,11 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Filter by category
     if (currentCategoryFilter !== "all") {
-      if (currentCategoryFilter === "News") {
-        filtered = filtered.filter(item => item.type === "news");
-      } else {
-        filtered = filtered.filter(item => item.category === currentCategoryFilter && (item.type === "blog" || item.type === "live-article"));
-      }
+      filtered = filtered.filter(item => item.category === currentCategoryFilter);
     }
 
     // Filter by search

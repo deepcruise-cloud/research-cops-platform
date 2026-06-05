@@ -1606,7 +1606,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "blog-1",
       title: "Agentic AI Orchestration: The Central Control Plane of 2026 Enterprise Workflows",
-      category: "Automation",
+      category: "Tech",
       readtime: "6 min read",
       excerpt: "How autonomous agents with human-in-the-loop controls are replacing rigid rule-based scripts to coordinate complex B2B operations.",
       content: "In 2026, enterprise workflow automation has moved far beyond simple task execution. Organizations are shifting from automating isolated tasks to implementing unified control planes that orchestrate end-to-end processes across hybrid cloud environments and legacy databases. The rise of Agentic AI is the defining trend of 2026. Task-specific AI agents, now integrated into 40% of enterprise software, are reasoning and making operational decisions within guardrails while preserving critical human-in-the-loop (HITL) checkpoints for compliance.",
@@ -1618,7 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "blog-2",
       title: "Rethinking Database Sync: High-Performance GraphQL Middleware & Schema Mapping",
-      category: "Integration",
+      category: "Tech",
       readtime: "5 min read",
       excerpt: "Techniques for connecting siloed legacy databases with modern SaaS endpoints using selective querying and schema-less integration.",
       content: "Connecting legacy systems with modern SaaS tools represents a major challenge for growing enterprises. Traditionally, developers had to build rigid, custom DB-links and SQL extraction scripts that were expensive to maintain. In 2026, GraphQL gateways have emerged as the standard middleware layer for database sync. This architecture allows developers to run selective column queries and manage schemas dynamically, reducing API payload sizes by 65% and preventing integration discrepancies.",
@@ -1630,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "blog-3",
       title: "Governed Intelligence: Cryptographic Policy Checks and Audit Trails in HRMS Automation",
-      category: "Security",
+      category: "Business",
       readtime: "8 min read",
       excerpt: "Establishing strict role-based access logs and zero-knowledge encryption protocols across automated employee onboarding flows.",
       content: "With AI agents and workflow scripts gaining increased authority over enterprise database systems, establishing proper governance has become a business risk priority. Credible automated HRMS platforms must embed audit trails and identity policy controls directly into their orchestration layer. This includes adopting zero-knowledge storage configurations and TLS 1.3 encryption protocols for employee profiles, protecting payroll allocations, document routing, and security rosters from data exposure.",
@@ -1642,7 +1642,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "blog-featured",
       title: "Self-Optimizing Middleware: AI-Assisted Index Tuning in Legacy ERP Syncs",
-      category: "Database",
+      category: "Tech",
       readtime: "6 min read",
       excerpt: "How self-optimizing pipelines audit database queries, detect database latency spikes, and optimize queries automatically.",
       content: "Manual database query indexing is slow and fails to scale with dynamic SaaS environments. Modern enterprise middleware incorporates self-optimizing pipelines that monitor queries in real-time. By applying AI-assisted index tuning, the system automatically detects slow query execution times across custom ERP syncs, modifying indexing strategies and improving database retrieval rates by up to 3.5x without human developer intervention.",
@@ -1657,7 +1657,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-1",
       title: "Automated Ledger Reconciliation Engine v2.1 Released",
-      category: "Platform",
+      category: "Finance",
       details: "Deployment of cross-register ledger matching engine reduces reconciliation cycles from days to under 15 minutes.",
       date: "June 2026",
       timestamp: Date.now(),
@@ -1666,7 +1666,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-2",
       title: "Custom ERP Sync Connector Upgraded to REST OAuth 2.0",
-      category: "Security",
+      category: "Tech",
       details: "Integration of automated token refresh sequences and role-based data views for secure database mapping.",
       date: "May 2026",
       timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000,
@@ -1675,7 +1675,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-3",
       title: "HRMS Onboarding Workflows Speed Up",
-      category: "Automation",
+      category: "Business",
       details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
       date: "April 2026",
       timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000,
@@ -1684,7 +1684,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-4",
       title: "Distributed Ledger Reconciliation Hub Implemented",
-      category: "Platform",
+      category: "Finance",
       details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
       date: "June 2026",
       timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
@@ -1693,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-5",
       title: "AI-Assisted Database Query Index Tuning System Live",
-      category: "Database",
+      category: "Tech",
       details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
       date: "May 2026",
       timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000,
@@ -1702,7 +1702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "news-6",
       title: "Zero-Knowledge Encryption Enforced for HRMS Personnel Records",
-      category: "Security",
+      category: "Global",
       details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
       date: "April 2026",
       timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000,
