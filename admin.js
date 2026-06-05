@@ -1131,8 +1131,10 @@ function injectLeadsIntoTable(tableBody, leads) {
       <td><span class="status-badge badge-teal" style="font-size:10px; padding: 2px 6px;">CPI: ${escapeHtml(lead.cpi) || 'N/A'}</span><br><span style="font-size:11px; color:var(--turquoise-accent); font-weight: 500;">Budget: ${escapeHtml(lead.budget) || 'N/A'}</span></td>
       <td style="font-size: 12.5px; line-height: 1.4; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">${escapeHtml(lead.message) || 'N/A'}</td>
       <td><span class="status-badge ${lead.source && lead.source.includes('Genie') ? 'badge-purple' : 'badge-emerald'}" style="font-size: 10px; padding: 2px 6px;">${escapeHtml(lead.source) || 'Form'}</span></td>
-      <td>
-        <button class="btn-delete-lead" data-id="${lead.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px;" title="Delete Lead">🗑</button>
+      <td style="text-align: center;">
+        <button class="btn-delete-lead" data-id="${lead.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 4px;" title="Delete Lead">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+        </button>
       </td>
     `;
     tableBody.appendChild(row);
