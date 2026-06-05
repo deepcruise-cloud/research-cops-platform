@@ -881,16 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
     skip: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`
   };
 
-  const genieAvatarSvg = `
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 17c4.5 0 8-3 8-6s-3.5-5-8-5-8 2-8 5 3.5 6 8 6z"></path>
-      <path d="M20 11c2.5-.5 3.5 1.5 2 2.5-1.8 1.2-3.5.5-4 .2"></path>
-      <path d="M4 11c-2 0-3-1.5-3-3s2-2 3.5-1c1.2.8 1.5 2.2 1.5 3.5"></path>
-      <path d="M9 17v2h6v-2"></path>
-      <path d="M7 19h10"></path>
-      <path d="M21.5 8c0-1.5 1-2.5.5-3.5-.8.8-.5 2-.5 3.5z"></path>
-    </svg>
-  `;
+  const genieAvatarHtml = '<img src="support_genie_avatar.png" alt="Support Genie" class="genie-avatar-img">';
 
   function appendChatMessage(text, sender = 'bot') {
     if (!chatMessagesLog) return;
@@ -901,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sender === 'bot') {
       const avatarDiv = document.createElement('div');
       avatarDiv.className = 'chat-message-avatar';
-      avatarDiv.innerHTML = genieAvatarSvg;
+      avatarDiv.innerHTML = genieAvatarHtml;
       msgWrapper.appendChild(avatarDiv);
     }
     
@@ -925,7 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const avatarDiv = document.createElement('div');
     avatarDiv.className = 'chat-message-avatar';
-    avatarDiv.innerHTML = genieAvatarSvg;
+    avatarDiv.innerHTML = genieAvatarHtml;
     msgWrapper.appendChild(avatarDiv);
 
     const cardDiv = document.createElement('div');
