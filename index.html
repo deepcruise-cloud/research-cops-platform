@@ -1920,12 +1920,34 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- Floating Action Button -->
   <div id="support-genie-trigger" class="support-genie-fab" aria-label="Open support chat">
-    <div class="fab-pulse"></div>
-    <div class="fab-avatar-container">
-      <img src="support_genie_avatar.png" alt="Support Genie" class="fab-avatar-img">
+    <span class="fab-text">Support Genie</span>
+    <div class="fab-lamp-container">
+      <div class="fab-emerging-genie">
+        <img src="support_genie_avatar.png" alt="Support Genie" class="fab-avatar-img">
+      </div>
+      <svg viewBox="0 0 64 64" class="magic-lamp-svg">
+        <defs>
+          <linearGradient id="lamp-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffe066" />
+            <stop offset="50%" stop-color="#f59e0b" />
+            <stop offset="100%" stop-color="#b45309" />
+          </linearGradient>
+        </defs>
+        <!-- Lamp body -->
+        <path d="M14 36c4 0 10-3 16-5c7-2.2 14-1 19 2c2.5 1.5 3 3 2.5 4.5c-1 3-5 5-10.5 5H21c-4.5 0-7-1.5-7-6.5z" fill="url(#lamp-gold-grad)" />
+        <!-- Spout -->
+        <path d="M8 29c2.5 1.5 4 4.5 5 7c0.5 1-1.5 1.5-3 0.5C8 35.5 6 32.5 7.5 30c0.3-0.5 0.5-1 0.5-1z" fill="url(#lamp-gold-grad)" />
+        <!-- Handle -->
+        <path d="M46 34.5c4.5-1.5 8.5 0 9.5 3.5c1 3.5-1.5 7-6 8c-3.5 0.8-7-0.7-8-4" fill="none" stroke="url(#lamp-gold-grad)" stroke-width="3.5" stroke-linecap="round" />
+        <!-- Base -->
+        <path d="M24 45.5c0 3 2 5.5 6.5 5.5s6.5-2.5 6.5-5.5" fill="none" stroke="url(#lamp-gold-grad)" stroke-width="3.5" stroke-linecap="round" />
+        <!-- Lid knob -->
+        <circle cx="33.5" cy="25.5" r="2.5" fill="url(#lamp-gold-grad)" />
+        <!-- Lid -->
+        <path d="M28 29.5c1.5-2 5.5-2 7 0" fill="none" stroke="url(#lamp-gold-grad)" stroke-width="3" stroke-linecap="round" />
+      </svg>
       <span class="fab-status-dot"></span>
     </div>
-    <span class="fab-text">Support Genie</span>
 
     <!-- Proactive Welcome Bubble -->
     <div id="genie-welcome-bubble" class="genie-welcome-bubble">

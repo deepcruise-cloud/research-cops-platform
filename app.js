@@ -830,6 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
       welcomeBubble.classList.remove('active');
       sessionStorage.setItem('genie_welcome_closed', 'true');
       chatBox.classList.add('active');
+      if (chatTrigger) chatTrigger.classList.add('active');
       triggerChatOnboarding();
       scrollChatToBottom();
     });
@@ -842,6 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const isOpening = !chatBox.classList.contains('active');
       chatBox.classList.toggle('active');
+      chatTrigger.classList.toggle('active');
       scrollChatToBottom();
 
       if (isOpening) {
@@ -853,6 +855,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (chatClose && chatBox) {
     chatClose.addEventListener('click', () => {
       chatBox.classList.remove('active');
+      if (chatTrigger) chatTrigger.classList.remove('active');
     });
   }
  

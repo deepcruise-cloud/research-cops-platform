@@ -1384,6 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         welcomeBubble.classList.remove('active');
         sessionStorage.setItem('genie_welcome_closed', 'true');
         genieBox.classList.add('active');
+        if (genieTrigger) genieTrigger.classList.add('active');
         triggerChatOnboarding();
       });
     }
@@ -1394,6 +1395,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const isOpening = !genieBox.classList.contains('active');
       genieBox.classList.toggle('active');
+      genieTrigger.classList.toggle('active');
       if (isOpening) {
         triggerChatOnboarding();
       }
@@ -1401,6 +1403,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     genieClose.addEventListener('click', () => {
       genieBox.classList.remove('active');
+      if (genieTrigger) genieTrigger.classList.remove('active');
     });
 
     if (chatForm && chatInput) {
