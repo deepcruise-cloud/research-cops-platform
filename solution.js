@@ -1128,6 +1128,40 @@ const SOLUTION_DATA = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Firebase Configurations
+  const rcFirebaseConfig = {
+    apiKey: "AIzaSyDknEqerA09CE3PT0L0m-nISkBCBPitWEw",
+    authDomain: "research-cops-platform-e6520.firebaseapp.com",
+    projectId: "research-cops-platform-e6520",
+    storageBucket: "research-cops-platform-e6520.firebasestorage.app",
+    messagingSenderId: "992558119740",
+    appId: "1:992558119740:web:c484f96c5b774e9d17fc39",
+    measurementId: "G-11SKJM62QW"
+  };
+
+  let rcDbMode = "local";
+  let rcDb = null;
+
+  const rcIsFirebaseConfigured = () => {
+    return rcFirebaseConfig && 
+           rcFirebaseConfig.apiKey && 
+           !rcFirebaseConfig.apiKey.startsWith("YOUR_") && 
+           rcFirebaseConfig.apiKey !== "";
+  };
+
+  if (rcIsFirebaseConfigured() && typeof firebase !== "undefined") {
+    try {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(rcFirebaseConfig);
+      }
+      rcDb = firebase.firestore();
+      rcDbMode = "firebase";
+      console.log("Solutions Page: Database Connection -> Live Firebase");
+    } catch (e) {
+      console.error("Solutions Page: Firebase failed. LocalStorage Fallback enabled:", e);
+    }
+  }
+
   // 1. Header Scroll Dynamics
   const header = document.getElementById('main-header');
   if (header) {
@@ -1415,10 +1449,11 @@ document.addEventListener('DOMContentLoaded', () => {
         addUsrMessage(msg);
         chatInput.value = '';
 
-        // Save lead to LocalStorage
+        // Save lead to Database/LocalStorage
         try {
           const lead = {
             id: 'lead_' + Date.now(),
+            timestamp: Date.now(),
             date: new Date().toLocaleString(),
             name: 'Visitor (Solutions Chat)',
             email: 'N/A',
@@ -1429,10 +1464,16 @@ document.addEventListener('DOMContentLoaded', () => {
             message: msg,
             source: 'Support Genie (Solutions Subpage)'
           };
-          const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
-          leads.unshift(lead);
-          localStorage.setItem('rc_leads', JSON.stringify(leads));
-          console.log("Solution chat lead saved successfully:", lead);
+          if (rcDbMode === "firebase" && rcDb) {
+            rcDb.collection("leads").doc(lead.id).set(lead)
+              .then(() => console.log("Solution chat lead saved to Firestore:", lead.id))
+              .catch(err => console.error("Firestore error saving lead:", err));
+          } else {
+            const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+            leads.unshift(lead);
+            localStorage.setItem('rc_leads', JSON.stringify(leads));
+          }
+          console.log("Solution chat lead logged successfully:", lead);
         } catch (err) {
           console.error("Error saving solution chat lead:", err);
         }

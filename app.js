@@ -528,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const lead = {
         id: 'lead_' + Date.now(),
+        timestamp: Date.now(),
         date: new Date().toLocaleString(),
         name: name,
         email: email,
@@ -538,10 +539,16 @@ document.addEventListener('DOMContentLoaded', () => {
         message: message,
         source: 'Website Form'
       };
-      const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
-      leads.unshift(lead);
-      localStorage.setItem('rc_leads', JSON.stringify(leads));
-      console.log("Lead saved successfully:", lead);
+      if (rcDbMode === "firebase" && rcDb) {
+        rcDb.collection("leads").doc(lead.id).set(lead)
+          .then(() => console.log("Form lead saved to Firestore:", lead.id))
+          .catch(err => console.error("Firestore error saving form lead:", err));
+      } else {
+        const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+        leads.unshift(lead);
+        localStorage.setItem('rc_leads', JSON.stringify(leads));
+      }
+      console.log("Lead logged successfully:", lead);
     } catch (err) {
       console.error("Error saving lead:", err);
     }
@@ -1459,6 +1466,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lead = {
           id: 'lead_' + Date.now(),
+          timestamp: Date.now(),
           date: new Date().toLocaleString(),
           name: chatState.userName,
           email: chatState.userEmail,
@@ -1469,10 +1477,16 @@ document.addEventListener('DOMContentLoaded', () => {
           message: inquiryDetailsText,
           source: 'Support Genie Chatbot'
         };
-        const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
-        leads.unshift(lead);
-        localStorage.setItem('rc_leads', JSON.stringify(leads));
-        console.log("Chat lead saved successfully:", lead);
+        if (rcDbMode === "firebase" && rcDb) {
+          rcDb.collection("leads").doc(lead.id).set(lead)
+            .then(() => console.log("Chat lead saved to Firestore:", lead.id))
+            .catch(err => console.error("Firestore error saving chat lead:", err));
+        } else {
+          const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+          leads.unshift(lead);
+          localStorage.setItem('rc_leads', JSON.stringify(leads));
+        }
+        console.log("Chat lead logged successfully:", lead);
       } catch (err) {
         console.error("Error saving chat lead:", err);
       }
@@ -1575,12 +1589,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 12. Dynamic Content & Interactive Poll Integration
   // ----------------------------------------------------
   const rcFirebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDknEqerA09CE3PT0L0m-nISkBCBPitWEw",
+    authDomain: "research-cops-platform-e6520.firebaseapp.com",
+    projectId: "research-cops-platform-e6520",
+    storageBucket: "research-cops-platform-e6520.firebasestorage.app",
+    messagingSenderId: "992558119740",
+    appId: "1:992558119740:web:c484f96c5b774e9d17fc39",
+    measurementId: "G-11SKJM62QW"
   };
 
   let rcDbMode = "local";

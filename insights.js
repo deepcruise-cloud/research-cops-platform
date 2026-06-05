@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Database Configurations (Identical to app.js)
   const rcFirebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDknEqerA09CE3PT0L0m-nISkBCBPitWEw",
+    authDomain: "research-cops-platform-e6520.firebaseapp.com",
+    projectId: "research-cops-platform-e6520",
+    storageBucket: "research-cops-platform-e6520.firebasestorage.app",
+    messagingSenderId: "992558119740",
+    appId: "1:992558119740:web:c484f96c5b774e9d17fc39",
+    measurementId: "G-11SKJM62QW"
   };
 
   let rcDbMode = "local";

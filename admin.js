@@ -1,14 +1,14 @@
 // Research COPS - Admin Portal Controller
 // Integrates Firebase Authentication and Firestore with a robust LocalStorage fallback
 
-// 1. Firebase Configuration (Replace with your own credentials)
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDknEqerA09CE3PT0L0m-nISkBCBPitWEw",
+  authDomain: "research-cops-platform-e6520.firebaseapp.com",
+  projectId: "research-cops-platform-e6520",
+  storageBucket: "research-cops-platform-e6520.firebasestorage.app",
+  messagingSenderId: "992558119740",
+  appId: "1:992558119740:web:c484f96c5b774e9d17fc39",
+  measurementId: "G-11SKJM62QW"
 };
 
 // 2. Database Mode & State Initialize
@@ -184,6 +184,7 @@ function initDatabaseMode() {
         `;
       }
       console.log("Admin Portal: Live Firebase DB Connected successfully.");
+      checkAndSeedFirestore();
     } catch (e) {
       console.error("Firebase init failed. Reverting to LocalStorage:", e);
       setupLocalFallback(dbStatusBanner);
@@ -191,6 +192,68 @@ function initDatabaseMode() {
   } else {
     setupLocalFallback(dbStatusBanner);
   }
+}
+
+// Check and Seed Default Content into clean Firestore Database
+function checkAndSeedFirestore() {
+  if (dbMode !== "firebase" || !db) return;
+
+  // Idempotent seeding of default blogs
+  db.collection("blogs").limit(1).get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        console.log("Firestore 'blogs' collection is empty. Seeding default blogs...");
+        const batch = db.batch();
+        DEFAULT_BLOGS.forEach(blog => {
+          const docRef = db.collection("blogs").doc(blog.id);
+          batch.set(docRef, blog);
+        });
+        batch.commit()
+          .then(() => {
+            console.log("Firestore 'blogs' collection successfully seeded.");
+            renderBlogsList();
+          })
+          .catch(err => console.error("Error seeding blogs:", err));
+      }
+    });
+
+  // Idempotent seeding of default news
+  db.collection("news").limit(1).get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        console.log("Firestore 'news' collection is empty. Seeding default news...");
+        const batch = db.batch();
+        DEFAULT_NEWS.forEach(item => {
+          const docRef = db.collection("news").doc(item.id);
+          batch.set(docRef, item);
+        });
+        batch.commit()
+          .then(() => {
+            console.log("Firestore 'news' collection successfully seeded.");
+            renderNewsList();
+          })
+          .catch(err => console.error("Error seeding news:", err));
+      }
+    });
+
+  // Idempotent seeding of default polls
+  db.collection("polls").limit(1).get()
+    .then(snapshot => {
+      if (snapshot.empty) {
+        console.log("Firestore 'polls' collection is empty. Seeding default polls...");
+        const batch = db.batch();
+        DEFAULT_POLLS.forEach(poll => {
+          const docRef = db.collection("polls").doc(poll.id);
+          batch.set(docRef, poll);
+        });
+        batch.commit()
+          .then(() => {
+            console.log("Firestore 'polls' collection successfully seeded.");
+            renderPollFormAndStats();
+          })
+          .catch(err => console.error("Error seeding polls:", err));
+      }
+    });
 }
 
 function setupLocalFallback(bannerEl) {
@@ -929,8 +992,39 @@ function renderLeadsList() {
   if (!tableBody) return;
   tableBody.innerHTML = "";
   
-  const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
-  
+  if (dbMode === "firebase") {
+    db.collection("leads").get()
+      .then(snapshot => {
+        const leads = [];
+        snapshot.forEach(doc => {
+          const lead = doc.data();
+          lead.id = doc.id;
+          leads.push(lead);
+        });
+        // Sort by timestamp desc, fallback to date
+        leads.sort((a, b) => {
+          const tA = a.timestamp || 0;
+          const tB = b.timestamp || 0;
+          return tB - tA;
+        });
+        injectLeadsIntoTable(tableBody, leads);
+      })
+      .catch(err => {
+        console.error("Error fetching leads from Firestore:", err);
+        tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: #ef4444; padding: 30px;">Error loading leads from cloud database: ${escapeHtml(err.message)}</td></tr>`;
+      });
+  } else {
+    const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+    leads.sort((a, b) => {
+      const tA = a.timestamp || 0;
+      const tB = b.timestamp || 0;
+      return tB - tA;
+    });
+    injectLeadsIntoTable(tableBody, leads);
+  }
+}
+
+function injectLeadsIntoTable(tableBody, leads) {
   if (leads.length === 0) {
     tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No leads received yet. Complete the CPI calculator or chat with the Support Genie to submit leads.</td></tr>`;
     return;
@@ -944,7 +1038,7 @@ function renderLeadsList() {
       <td style="font-size: 12.5px;"><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a><br><span style="font-size: 11px; color: var(--text-muted);">${escapeHtml(lead.phone) || 'N/A'}</span></td>
       <td><span class="status-badge badge-teal" style="font-size:10px; padding: 2px 6px;">CPI: ${escapeHtml(lead.cpi) || 'N/A'}</span><br><span style="font-size:11px; color:var(--turquoise-accent); font-weight: 500;">Budget: ${escapeHtml(lead.budget) || 'N/A'}</span></td>
       <td style="font-size: 12.5px; line-height: 1.4; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">${escapeHtml(lead.message) || 'N/A'}</td>
-      <td><span class="status-badge ${lead.source === 'Support Genie Chatbot' ? 'badge-purple' : 'badge-emerald'}" style="font-size: 10px; padding: 2px 6px;">${escapeHtml(lead.source) || 'Form'}</span></td>
+      <td><span class="status-badge ${lead.source && lead.source.includes('Genie') ? 'badge-purple' : 'badge-emerald'}" style="font-size: 10px; padding: 2px 6px;">${escapeHtml(lead.source) || 'Form'}</span></td>
       <td>
         <button class="btn-delete-lead" data-id="${lead.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px;" title="Delete Lead">🗑</button>
       </td>
@@ -954,7 +1048,6 @@ function renderLeadsList() {
   
   // Attach delete listeners
   document.querySelectorAll(".btn-delete-lead").forEach(btn => {
-    btn.removeAttribute("onclick");
     btn.addEventListener("click", () => {
       const leadId = btn.getAttribute("data-id");
       deleteLead(leadId);
@@ -964,17 +1057,44 @@ function renderLeadsList() {
 
 function deleteLead(id) {
   if (confirm("Are you sure you want to delete this lead?")) {
-    let leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
-    leads = leads.filter(l => l.id !== id);
-    localStorage.setItem('rc_leads', JSON.stringify(leads));
-    renderLeadsList();
+    if (dbMode === "firebase") {
+      db.collection("leads").doc(id).delete()
+        .then(() => {
+          renderLeadsList();
+        })
+        .catch(err => {
+          alert("Failed to delete lead from Firestore: " + err.message);
+        });
+    } else {
+      let leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+      leads = leads.filter(l => l.id !== id);
+      localStorage.setItem('rc_leads', JSON.stringify(leads));
+      renderLeadsList();
+    }
   }
 }
 
 function clearAllLeads() {
   if (confirm("Are you sure you want to clear all leads? This cannot be undone.")) {
-    localStorage.setItem('rc_leads', JSON.stringify([]));
-    renderLeadsList();
+    if (dbMode === "firebase") {
+      db.collection("leads").get()
+        .then(snapshot => {
+          const batch = db.batch();
+          snapshot.forEach(doc => {
+            batch.delete(doc.ref);
+          });
+          return batch.commit().then(() => {
+            renderLeadsList();
+            alert("All leads cleared from Firestore!");
+          });
+        })
+        .catch(err => {
+          alert("Failed to clear leads from Firestore: " + err.message);
+        });
+    } else {
+      localStorage.setItem('rc_leads', JSON.stringify([]));
+      renderLeadsList();
+    }
   }
 }
 
