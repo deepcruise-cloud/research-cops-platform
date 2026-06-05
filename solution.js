@@ -1415,6 +1415,28 @@ document.addEventListener('DOMContentLoaded', () => {
         addUsrMessage(msg);
         chatInput.value = '';
 
+        // Save lead to LocalStorage
+        try {
+          const lead = {
+            id: 'lead_' + Date.now(),
+            date: new Date().toLocaleString(),
+            name: 'Visitor (Solutions Chat)',
+            email: 'N/A',
+            company: 'N/A',
+            phone: 'N/A',
+            cpi: 'N/A',
+            budget: 'N/A',
+            message: msg,
+            source: 'Support Genie (Solutions Subpage)'
+          };
+          const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+          leads.unshift(lead);
+          localStorage.setItem('rc_leads', JSON.stringify(leads));
+          console.log("Solution chat lead saved successfully:", lead);
+        } catch (err) {
+          console.error("Error saving solution chat lead:", err);
+        }
+
         showTypingIndicator();
 
         // Standard auto response

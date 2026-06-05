@@ -338,6 +338,10 @@ function setupTabs() {
       if (targetPanel) {
         targetPanel.classList.add("active");
       }
+
+      if (target === "panel-leads") {
+        renderLeadsList();
+      }
     });
   });
 }
@@ -347,6 +351,7 @@ function loadDashboardData() {
   renderBlogsList();
   renderNewsList();
   renderPollFormAndStats();
+  renderLeadsList();
 }
 
 // 6. BLOG OPERATIONS
@@ -918,10 +923,73 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
+// 10b. LEADS OPERATIONS
+function renderLeadsList() {
+  const tableBody = document.getElementById("leads-table-body");
+  if (!tableBody) return;
+  tableBody.innerHTML = "";
+  
+  const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+  
+  if (leads.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No leads received yet. Complete the CPI calculator or chat with the Support Genie to submit leads.</td></tr>`;
+    return;
+  }
+  
+  leads.forEach(lead => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td style="font-size: 12px; color: var(--text-muted);">${escapeHtml(lead.date) || 'N/A'}</td>
+      <td><strong>${escapeHtml(lead.name) || 'N/A'}</strong><br><span style="font-size: 11px; color: var(--text-muted);">${escapeHtml(lead.company) || 'N/A'}</span></td>
+      <td style="font-size: 12.5px;"><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a><br><span style="font-size: 11px; color: var(--text-muted);">${escapeHtml(lead.phone) || 'N/A'}</span></td>
+      <td><span class="status-badge badge-teal" style="font-size:10px; padding: 2px 6px;">CPI: ${escapeHtml(lead.cpi) || 'N/A'}</span><br><span style="font-size:11px; color:var(--turquoise-accent); font-weight: 500;">Budget: ${escapeHtml(lead.budget) || 'N/A'}</span></td>
+      <td style="font-size: 12.5px; line-height: 1.4; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: normal;">${escapeHtml(lead.message) || 'N/A'}</td>
+      <td><span class="status-badge ${lead.source === 'Support Genie Chatbot' ? 'badge-purple' : 'badge-emerald'}" style="font-size: 10px; padding: 2px 6px;">${escapeHtml(lead.source) || 'Form'}</span></td>
+      <td>
+        <button class="btn-delete-lead" data-id="${lead.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px;" title="Delete Lead">🗑</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+  
+  // Attach delete listeners
+  document.querySelectorAll(".btn-delete-lead").forEach(btn => {
+    btn.removeAttribute("onclick");
+    btn.addEventListener("click", () => {
+      const leadId = btn.getAttribute("data-id");
+      deleteLead(leadId);
+    });
+  });
+}
+
+function deleteLead(id) {
+  if (confirm("Are you sure you want to delete this lead?")) {
+    let leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+    leads = leads.filter(l => l.id !== id);
+    localStorage.setItem('rc_leads', JSON.stringify(leads));
+    renderLeadsList();
+  }
+}
+
+function clearAllLeads() {
+  if (confirm("Are you sure you want to clear all leads? This cannot be undone.")) {
+    localStorage.setItem('rc_leads', JSON.stringify([]));
+    renderLeadsList();
+  }
+}
+
+function setupLeadsHook() {
+  const btnClearLeads = document.getElementById("btn-clear-leads");
+  if (btnClearLeads) {
+    btnClearLeads.addEventListener("click", clearAllLeads);
+  }
+}
+
 // 11. DOM INITIALIZATION RUNNER
 document.addEventListener("DOMContentLoaded", () => {
   initDatabaseMode();
   setupAuth();
   setupTabs();
   setupFormSubmissions();
+  setupLeadsHook();
 });

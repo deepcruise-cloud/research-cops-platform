@@ -524,7 +524,28 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    // Submit Simulation
+    // Save lead to LocalStorage Database
+    try {
+      const lead = {
+        id: 'lead_' + Date.now(),
+        date: new Date().toLocaleString(),
+        name: name,
+        email: email,
+        company: company,
+        phone: phone,
+        cpi: formCpi ? formCpi.value : 'N/A',
+        budget: formBudget ? formBudget.value : 'N/A',
+        message: message,
+        source: 'Website Form'
+      };
+      const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+      leads.unshift(lead);
+      localStorage.setItem('rc_leads', JSON.stringify(leads));
+      console.log("Lead saved successfully:", lead);
+    } catch (err) {
+      console.error("Error saving lead:", err);
+    }
+
     btnSubmit.disabled = true;
     btnSubmit.textContent = 'Submitting Quote Request...';
 
@@ -1418,6 +1439,42 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (formMessage) {
         formMessage.value = `Submitted via chatbot Support Genie:\n${summaryText.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '')}`;
+      }
+
+      // Save chatbot lead to LocalStorage Database
+      try {
+        let inquiryDetailsText = "";
+        let leadCpi = 'N/A';
+        let leadBudget = 'N/A';
+        if (chatState.panelType) {
+          const est = calculateChatbotEstimate(chatState.panelType, chatState.region, chatState.sampleSize, chatState.loi);
+          leadCpi = est.cpi;
+          leadBudget = est.budget;
+          inquiryDetailsText = `Panel: ${chatState.panelType.toUpperCase()}, Region: ${chatState.region.toUpperCase()}, N: ${chatState.sampleSize}, LOI: ${chatState.loi} mins`;
+        } else if (chatState.wfSolution) {
+          inquiryDetailsText = `Workflow Solution: ${chatState.wfSolution}, Scale: ${chatState.wfScale}, Integration: ${chatState.wfIntegration}`;
+        } else if (chatState.intScale) {
+          inquiryDetailsText = `ERP Database Sync Feasibility Audit, Scale: ${chatState.intScale}`;
+        }
+
+        const lead = {
+          id: 'lead_' + Date.now(),
+          date: new Date().toLocaleString(),
+          name: chatState.userName,
+          email: chatState.userEmail,
+          company: 'Chatbot User',
+          phone: chatState.userPhone,
+          cpi: leadCpi,
+          budget: leadBudget,
+          message: inquiryDetailsText,
+          source: 'Support Genie Chatbot'
+        };
+        const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+        leads.unshift(lead);
+        localStorage.setItem('rc_leads', JSON.stringify(leads));
+        console.log("Chat lead saved successfully:", lead);
+      } catch (err) {
+        console.error("Error saving chat lead:", err);
       }
 
       // Reset state variables

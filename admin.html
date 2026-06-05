@@ -219,6 +219,16 @@
       background: rgba(16, 185, 129, 0.15);
       color: #10b981;
     }
+
+    .badge-teal {
+      background: rgba(4, 203, 194, 0.15);
+      color: #04cbc2;
+    }
+
+    .badge-purple {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+    }
     
     .poll-stats-box {
       background: rgba(255, 255, 255, 0.01);
@@ -317,6 +327,7 @@
         <button class="admin-tab-btn active" data-target="panel-blogs">📝 Manage Blogs</button>
         <button class="admin-tab-btn" data-target="panel-news">⚡ Latest News</button>
         <button class="admin-tab-btn" data-target="panel-polls">🗳 Poll Settings</button>
+        <button class="admin-tab-btn" data-target="panel-leads">💼 Quote Leads</button>
       </div>
       
       <!-- Content Panels -->
@@ -538,6 +549,35 @@
               <p id="admin-poll-total" style="font-size: 13px; color: var(--text-muted); margin-top: 20px; text-align: right;">Total Votes: 0</p>
             </div>
             
+          </div>
+        </div>
+        
+        <!-- Panel 4: Leads -->
+        <div id="panel-leads" class="admin-panel">
+          <div class="glass-card admin-card" style="width: 100%; max-width: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+              <h3 style="margin: 0; font-size: 20px;">💼 Received Leads & Estimates</h3>
+              <button id="btn-clear-leads" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">Clear All Leads</button>
+            </div>
+            
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 12%;">Date</th>
+                    <th style="width: 15%;">Prospect</th>
+                    <th style="width: 20%;">Contact Info</th>
+                    <th style="width: 15%;">Cost Details</th>
+                    <th style="width: 25%;">Message Details</th>
+                    <th style="width: 10%;">Source</th>
+                    <th style="width: 3%;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         
