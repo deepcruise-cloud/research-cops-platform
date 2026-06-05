@@ -283,6 +283,22 @@ header {
   height: 40px;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 3px rgba(4, 203, 194, 0.3));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo-wrapper:hover .logo-svg {
+  transform: scale(1.08) rotate(5deg);
+}
+
+/* Radar-like rotating circles inside logo SVG */
+.logo-svg g[transform*="rotate(-110"] {
+  transform-origin: 12px 7.2px;
+  animation: logo-spin 20s infinite linear;
+}
+
+@keyframes logo-spin {
+  0% { transform: rotate(-110deg); }
+  100% { transform: rotate(250deg); }
 }
 
 .logo-text-group {
@@ -301,10 +317,18 @@ header {
 }
 
 .logo-accent {
-  background: linear-gradient(135deg, var(--turquoise-accent) 0%, var(--emerald-success) 100%);
+  background: linear-gradient(135deg, var(--turquoise-accent) 0%, var(--emerald-success) 50%, #06b6d4 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-right: 2px;
+  animation: logo-gradient-shift 6s infinite linear;
+}
+
+@keyframes logo-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .logo-tagline {
@@ -315,6 +339,19 @@ header {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-top: 2px;
+  animation: logo-tagline-glimmer 4s infinite ease-in-out;
+}
+
+@keyframes logo-tagline-glimmer {
+  0%, 100% {
+    opacity: 0.65;
+    text-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    color: var(--text-light);
+    text-shadow: 0 0 8px rgba(4, 203, 194, 0.4);
+  }
 }
 
 .nav-links {
