@@ -89,19 +89,65 @@ const DEFAULT_NEWS = [
     details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
     date: "April 2026",
     timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
+  },
+  {
+    id: "news-4",
+    title: "Distributed Ledger Reconciliation Hub Implemented",
+    category: "Platform",
+    details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
+    date: "June 2026",
+    timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000
+  },
+  {
+    id: "news-5",
+    title: "AI-Assisted Database Query Index Tuning System Live",
+    category: "Database",
+    details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
+    date: "May 2026",
+    timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000
+  },
+  {
+    id: "news-6",
+    title: "Zero-Knowledge Encryption Enforced for HRMS Personnel Records",
+    category: "Security",
+    details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
+    date: "April 2026",
+    timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000
   }
 ];
 
-const DEFAULT_POLL = {
-  id: "active-poll",
-  question: "What is your organization's primary operational bottleneck?",
-  options: {
-    a: { text: "Manual Billing & Reconciliation", votes: 45 },
-    b: { text: "Siloed HRMS & Employee Data", votes: 78 },
-    c: { text: "Legacy ERP Integration Issues", votes: 32 },
-    d: { text: "Inefficient Document Workflows", votes: 19 }
+const DEFAULT_POLLS = [
+  {
+    id: "poll-1",
+    question: "What is your organization's primary operational bottleneck?",
+    options: {
+      a: { text: "Manual Billing & Reconciliation", votes: 45 },
+      b: { text: "Siloed HRMS & Employee Data", votes: 78 },
+      c: { text: "Legacy ERP Integration Issues", votes: 32 },
+      d: { text: "Inefficient Document Workflows", votes: 19 }
+    }
+  },
+  {
+    id: "poll-2",
+    question: "Which database integration technology is most critical for your ERP sync?",
+    options: {
+      a: { text: "Real-time API Webhooks", votes: 62 },
+      b: { text: "Scheduled SQL Batch Jobs", votes: 29 },
+      c: { text: "Message Queues (RabbitMQ/Kafka)", votes: 41 },
+      d: { text: "Direct Database DB-Links", votes: 15 }
+    }
+  },
+  {
+    id: "poll-3",
+         question: "What is the biggest hurdle in your custom HRMS automation workflow?",
+    options: {
+      a: { text: "Legacy Software Incompatibility", votes: 53 },
+      b: { text: "High API Maintenance Overhead", votes: 38 },
+      c: { text: "Data Format/Schema Discrepancies", votes: 71 },
+      d: { text: "Security, Compliance & HIPAA Audits", votes: 24 }
+    }
   }
-};
+];
 
 // Initialize Database Connection Mode
 function initDatabaseMode() {
@@ -424,42 +470,112 @@ function deleteNews(id) {
 }
 
 // 8. POLL OPERATIONS
+let adminPollsList = [];
+
+function populateAdminPollSelector(polls, selectEl) {
+  if (!selectEl) return;
+  const currentVal = selectEl.value;
+  selectEl.innerHTML = "";
+  
+  polls.forEach(poll => {
+    const opt = document.createElement("option");
+    opt.value = poll.id;
+    opt.textContent = poll.question.length > 50 ? poll.question.slice(0, 47) + "..." : poll.question;
+    selectEl.appendChild(opt);
+  });
+  
+  const newOpt = document.createElement("option");
+  newOpt.value = "new";
+  newOpt.textContent = "[ + Create New Poll ]";
+  selectEl.appendChild(newOpt);
+  
+  if (currentVal && (polls.some(p => p.id === currentVal) || currentVal === "new")) {
+    selectEl.value = currentVal;
+  } else if (polls.length > 0) {
+    selectEl.value = polls[0].id;
+  }
+}
+
 function renderPollFormAndStats() {
   const pollQuestion = document.getElementById("poll-question");
   const pollA = document.getElementById("poll-opt-a");
   const pollB = document.getElementById("poll-opt-b");
   const pollC = document.getElementById("poll-opt-c");
   const pollD = document.getElementById("poll-opt-d");
+  const adminPollSelect = document.getElementById("admin-poll-active-select");
 
   if (dbMode === "firebase") {
-    db.collection("polls").doc("active-poll").get()
-      .then(doc => {
-        if (doc.exists) {
-          const pollData = doc.data();
-          populatePollUI(pollData);
-          // Set inputs to match
-          if (pollQuestion) pollQuestion.value = pollData.question;
-          if (pollA) pollA.value = pollData.options.a.text;
-          if (pollB) pollB.value = pollData.options.b.text;
-          if (pollC) pollC.value = pollData.options.c.text;
-          if (pollD) pollD.value = pollData.options.d.text;
-        } else {
-          // Initialize poll in Firestore if missing
-          db.collection("polls").doc("active-poll").set(DEFAULT_POLL)
-            .then(() => renderPollFormAndStats());
+    db.collection("polls").get()
+      .then(snapshot => {
+        adminPollsList = [];
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          data.id = doc.id;
+          adminPollsList.push(data);
+        });
+        if (adminPollsList.length === 0) {
+          adminPollsList = DEFAULT_POLLS;
         }
+        setupAdminPollUI(adminPollsList, adminPollSelect, pollQuestion, pollA, pollB, pollC, pollD);
       })
       .catch(err => {
-        console.error("Error reading active poll: ", err);
+        console.error("Error loading polls for admin:", err);
       });
   } else {
-    const pollData = JSON.parse(localStorage.getItem("rc_poll")) || DEFAULT_POLL;
-    populatePollUI(pollData);
-    if (pollQuestion) pollQuestion.value = pollData.question;
-    if (pollA) pollA.value = pollData.options.a.text;
-    if (pollB) pollB.value = pollData.options.b.text;
-    if (pollC) pollC.value = pollData.options.c.text;
-    if (pollD) pollD.value = pollData.options.d.text;
+    adminPollsList = JSON.parse(localStorage.getItem("rc_polls")) || DEFAULT_POLLS;
+    setupAdminPollUI(adminPollsList, adminPollSelect, pollQuestion, pollA, pollB, pollC, pollD);
+  }
+}
+
+function setupAdminPollUI(polls, selectEl, pollQuestion, pollA, pollB, pollC, pollD) {
+  if (!selectEl) return;
+  
+  if (selectEl.children.length === 0) {
+    populateAdminPollSelector(polls, selectEl);
+    selectEl.onchange = () => {
+      onAdminPollSelectionChange(polls, selectEl, pollQuestion, pollA, pollB, pollC, pollD);
+    };
+  } else {
+    // Sync list options but preserve selection
+    populateAdminPollSelector(polls, selectEl);
+  }
+  
+  onAdminPollSelectionChange(polls, selectEl, pollQuestion, pollA, pollB, pollC, pollD);
+}
+
+function onAdminPollSelectionChange(polls, selectEl, pollQuestion, pollA, pollB, pollC, pollD) {
+  const selectedId = selectEl.value;
+  const submitBtn = document.getElementById("admin-poll-submit-btn");
+  
+  if (selectedId === "new") {
+    if (pollQuestion) pollQuestion.value = "";
+    if (pollA) pollA.value = "";
+    if (pollB) pollB.value = "";
+    if (pollC) pollC.value = "";
+    if (pollD) pollD.value = "";
+    if (submitBtn) submitBtn.textContent = "Create Poll";
+    
+    // Show empty stats dashboard
+    populatePollUI({
+      question: "New Poll Questionnaire Draft",
+      options: {
+        a: { text: "Option A", votes: 0 },
+        b: { text: "Option B", votes: 0 },
+        c: { text: "Option C", votes: 0 },
+        d: { text: "Option D", votes: 0 }
+      }
+    });
+  } else {
+    const selectedPoll = polls.find(p => p.id === selectedId) || polls[0];
+    if (selectedPoll) {
+      if (pollQuestion) pollQuestion.value = selectedPoll.question;
+      if (pollA) pollA.value = selectedPoll.options.a.text;
+      if (pollB) pollB.value = selectedPoll.options.b.text;
+      if (pollC) pollC.value = selectedPoll.options.c.text;
+      if (pollD) pollD.value = selectedPoll.options.d.text;
+      if (submitBtn) submitBtn.textContent = "Save Poll Settings";
+      populatePollUI(selectedPoll);
+    }
   }
 }
 
@@ -503,6 +619,8 @@ function setupFormSubmissions() {
   const newsForm = document.getElementById("news-form");
   const pollForm = document.getElementById("poll-form");
   const resetPollBtn = document.getElementById("reset-poll-votes");
+  const deletePollBtn = document.getElementById("delete-poll");
+  const adminPollSelect = document.getElementById("admin-poll-active-select");
 
   // Format Helper for Dates
   const getFormattedDate = () => {
@@ -511,7 +629,7 @@ function setupFormSubmissions() {
     return `${months[d.getMonth()]} ${d.getFullYear()}`;
   };
 
-  // Blog Submision
+  // Blog Submission
   if (blogForm) {
     blogForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -592,44 +710,92 @@ function setupFormSubmissions() {
     });
   }
 
-  // Active Poll Config Submission
+  // Poll Settings Form Submit
   if (pollForm) {
     pollForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      const selectedId = adminPollSelect.value;
       const question = document.getElementById("poll-question").value.trim();
       const optA = document.getElementById("poll-opt-a").value.trim();
       const optB = document.getElementById("poll-opt-b").value.trim();
       const optC = document.getElementById("poll-opt-c").value.trim();
       const optD = document.getElementById("poll-opt-d").value.trim();
 
-      // Keep votes from matching options if they align, or reset them
-      // To keep things simple, modifying the question or option text retains structure with 0 votes on configuration change (acts as a new poll)
-      const newPoll = {
-        id: "active-poll",
-        question,
-        options: {
-          a: { text: optA, votes: 0 },
-          b: { text: optB, votes: 0 },
-          c: { text: optC, votes: 0 },
-          d: { text: optD, votes: 0 }
-        }
-      };
+      if (selectedId === "new") {
+        // Create new poll
+        const newId = "poll-" + Date.now();
+        const newPoll = {
+          id: newId,
+          question,
+          options: {
+            a: { text: optA, votes: 0 },
+            b: { text: optB, votes: 0 },
+            c: { text: optC, votes: 0 },
+            d: { text: optD, votes: 0 }
+          }
+        };
 
-      if (dbMode === "firebase") {
-        db.collection("polls").doc("active-poll").set(newPoll)
-          .then(() => {
+        if (dbMode === "firebase") {
+          db.collection("polls").doc(newId).set(newPoll)
+            .then(() => {
+              adminPollSelect.innerHTML = ""; // Force rebuild list
+              renderPollFormAndStats();
+              alert("New poll created and activated successfully!");
+            })
+            .catch(err => {
+              alert("Firebase Error creating poll: " + err.message);
+            });
+        } else {
+          const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || DEFAULT_POLLS;
+          localPolls.push(newPoll);
+          localStorage.setItem("rc_polls", JSON.stringify(localPolls));
+          
+          adminPollSelect.innerHTML = ""; // Force rebuild list
+          localStorage.setItem("admin_last_selected_poll", newId);
+          setTimeout(() => {
+            adminPollSelect.value = newId;
             renderPollFormAndStats();
-            alert("Active poll updated and votes reset!");
-          })
-          .catch(err => {
-            alert("Firebase Error updating poll: " + err.message);
-          });
+          }, 100);
+          alert("New poll created in LocalStorage database!");
+        }
       } else {
-        localStorage.setItem("rc_poll", JSON.stringify(newPoll));
-        // Clear user vote cookie block as well for the new poll
-        localStorage.removeItem("rc_user_voted");
-        renderPollFormAndStats();
-        alert("Active poll updated in LocalStorage and votes reset!");
+        // Update existing poll
+        if (dbMode === "firebase") {
+          db.collection("polls").doc(selectedId).get()
+            .then(doc => {
+              if (doc.exists) {
+                const poll = doc.data();
+                poll.question = question;
+                poll.options.a.text = optA;
+                poll.options.b.text = optB;
+                poll.options.c.text = optC;
+                poll.options.d.text = optD;
+                return db.collection("polls").doc(selectedId).set(poll);
+              }
+            })
+            .then(() => {
+              adminPollSelect.innerHTML = ""; // Force list title update
+              renderPollFormAndStats();
+              alert("Poll settings updated successfully!");
+            })
+            .catch(err => {
+              alert("Firebase Error updating poll: " + err.message);
+            });
+        } else {
+          const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || DEFAULT_POLLS;
+          const idx = localPolls.findIndex(p => p.id === selectedId);
+          if (idx !== -1) {
+            localPolls[idx].question = question;
+            localPolls[idx].options.a.text = optA;
+            localPolls[idx].options.b.text = optB;
+            localPolls[idx].options.c.text = optC;
+            localPolls[idx].options.d.text = optD;
+            localStorage.setItem("rc_polls", JSON.stringify(localPolls));
+          }
+          adminPollSelect.innerHTML = ""; // Force list title update
+          renderPollFormAndStats();
+          alert("Poll settings updated in LocalStorage!");
+        }
       }
     });
   }
@@ -637,10 +803,13 @@ function setupFormSubmissions() {
   // Reset votes click
   if (resetPollBtn) {
     resetPollBtn.addEventListener("click", () => {
-      if (!confirm("Are you sure you want to reset all vote counts to 0 for the active poll?")) return;
+      const selectedId = adminPollSelect.value;
+      if (selectedId === "new") return;
+
+      if (!confirm("Are you sure you want to reset all vote counts to 0 for this poll?")) return;
 
       if (dbMode === "firebase") {
-        db.collection("polls").doc("active-poll").get()
+        db.collection("polls").doc(selectedId).get()
           .then(doc => {
             if (doc.exists) {
               const poll = doc.data();
@@ -648,7 +817,7 @@ function setupFormSubmissions() {
               poll.options.b.votes = 0;
               poll.options.c.votes = 0;
               poll.options.d.votes = 0;
-              return db.collection("polls").doc("active-poll").set(poll);
+              return db.collection("polls").doc(selectedId).set(poll);
             }
           })
           .then(() => {
@@ -659,15 +828,63 @@ function setupFormSubmissions() {
             alert("Firebase Error resetting votes: " + err.message);
           });
       } else {
-        const poll = JSON.parse(localStorage.getItem("rc_poll")) || DEFAULT_POLL;
-        poll.options.a.votes = 0;
-        poll.options.b.votes = 0;
-        poll.options.c.votes = 0;
-        poll.options.d.votes = 0;
-        localStorage.setItem("rc_poll", JSON.stringify(poll));
-        localStorage.removeItem("rc_user_voted");
+        const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || DEFAULT_POLLS;
+        const idx = localPolls.findIndex(p => p.id === selectedId);
+        if (idx !== -1) {
+          localPolls[idx].options.a.votes = 0;
+          localPolls[idx].options.b.votes = 0;
+          localPolls[idx].options.c.votes = 0;
+          localPolls[idx].options.d.votes = 0;
+          localStorage.setItem("rc_polls", JSON.stringify(localPolls));
+          // Clear local voted cookies for this poll ID
+          localStorage.removeItem("rc_voted_" + selectedId);
+        }
         renderPollFormAndStats();
         alert("Votes reset in LocalStorage database!");
+      }
+    });
+  }
+
+  // Delete poll click
+  if (deletePollBtn) {
+    deletePollBtn.addEventListener("click", () => {
+      const selectedId = adminPollSelect.value;
+      if (selectedId === "new") return;
+
+      if (dbMode === "firebase") {
+        // Count total polls
+        db.collection("polls").get()
+          .then(snapshot => {
+            if (snapshot.size <= 1) {
+              alert("Cannot delete the only remaining poll in the database.");
+              return;
+            }
+            if (!confirm("Are you sure you want to delete this poll permanently?")) return;
+            
+            db.collection("polls").doc(selectedId).delete()
+              .then(() => {
+                adminPollSelect.innerHTML = "";
+                renderPollFormAndStats();
+                alert("Poll deleted successfully!");
+              });
+          })
+          .catch(err => {
+            alert("Error: " + err.message);
+          });
+      } else {
+        const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || DEFAULT_POLLS;
+        if (localPolls.length <= 1) {
+          alert("Cannot delete the only remaining poll in the database.");
+          return;
+        }
+        if (!confirm("Are you sure you want to delete this poll permanently?")) return;
+
+        const filtered = localPolls.filter(p => p.id !== selectedId);
+        localStorage.setItem("rc_polls", JSON.stringify(filtered));
+        localStorage.removeItem("rc_voted_" + selectedId);
+        adminPollSelect.innerHTML = "";
+        renderPollFormAndStats();
+        alert("Poll deleted from LocalStorage database!");
       }
     });
   }

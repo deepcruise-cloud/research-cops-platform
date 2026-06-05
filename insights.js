@@ -110,19 +110,65 @@ document.addEventListener('DOMContentLoaded', () => {
       details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
       date: "April 2026",
       timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "news-4",
+      title: "Distributed Ledger Reconciliation Hub Implemented",
+      category: "Platform",
+      details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
+      date: "June 2026",
+      timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "news-5",
+      title: "AI-Assisted Database Query Index Tuning System Live",
+      category: "Database",
+      details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
+      date: "May 2026",
+      timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000
+    },
+    {
+      id: "news-6",
+      title: "Zero-Knowledge Encryption Enforced for HRMS Personnel Records",
+      category: "Security",
+      details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
+      date: "April 2026",
+      timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000
     }
   ];
 
-  const RC_DEFAULT_POLL = {
-    id: "active-poll",
-    question: "What is your organization's primary operational bottleneck?",
-    options: {
-      a: { text: "Manual Billing & Reconciliation", votes: 45 },
-      b: { text: "Siloed HRMS & Employee Data", votes: 78 },
-      c: { text: "Legacy ERP Integration Issues", votes: 32 },
-      d: { text: "Inefficient Document Workflows", votes: 19 }
+  const RC_DEFAULT_POLLS = [
+    {
+      id: "poll-1",
+      question: "What is your organization's primary operational bottleneck?",
+      options: {
+        a: { text: "Manual Billing & Reconciliation", votes: 45 },
+        b: { text: "Siloed HRMS & Employee Data", votes: 78 },
+        c: { text: "Legacy ERP Integration Issues", votes: 32 },
+        d: { text: "Inefficient Document Workflows", votes: 19 }
+      }
+    },
+    {
+      id: "poll-2",
+      question: "Which database integration technology is most critical for your ERP sync?",
+      options: {
+        a: { text: "Real-time API Webhooks", votes: 62 },
+        b: { text: "Scheduled SQL Batch Jobs", votes: 29 },
+        c: { text: "Message Queues (RabbitMQ/Kafka)", votes: 41 },
+        d: { text: "Direct Database DB-Links", votes: 15 }
+      }
+    },
+    {
+      id: "poll-3",
+      question: "What is the biggest hurdle in your custom HRMS automation workflow?",
+      options: {
+        a: { text: "Legacy Software Incompatibility", votes: 53 },
+        b: { text: "High API Maintenance Overhead", votes: 38 },
+        c: { text: "Data Format/Schema Discrepancies", votes: 71 },
+        d: { text: "Security, Compliance & HIPAA Audits", votes: 24 }
+      }
     }
-  };
+  ];
 
   // Helper function to escape HTML
   function rcEscapeHtml(str) {
@@ -192,9 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
     rcDbMode = "local";
     console.log("Insights Hub: Database Connection -> LocalStorage Fallback Mode");
     
-    // Migration check: Clear old market research content to allow new workflow/HRMS/ERP content to seed
+    // Migration check: Clear old market research content or legacy poll formats to allow fresh seeding
     const legacyCheck = localStorage.getItem("rc_blogs");
-    if (legacyCheck && (
+    const hasOldPollVal = localStorage.getItem("rc_poll");
+    if (hasOldPollVal || (legacyCheck && (
       legacyCheck.includes("concept-testing") || 
       legacyCheck.includes("bot-intrusion") || 
       legacyCheck.includes("panelist") || 
@@ -202,11 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
       legacyCheck.includes("Panel") || 
       legacyCheck.includes("Survey") ||
       legacyCheck.includes("Opinion Genie")
-    )) {
-      console.log("Legacy market research data detected in localStorage. Clearing database keys to re-seed.");
+    ))) {
+      console.log("Legacy data or single-poll detected. Clearing database keys to transition to multi-poll system.");
       localStorage.removeItem("rc_blogs");
       localStorage.removeItem("rc_news");
       localStorage.removeItem("rc_poll");
+      localStorage.removeItem("rc_polls");
       localStorage.removeItem("rc_user_voted");
     }
 
@@ -216,8 +264,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem("rc_news")) {
       localStorage.setItem("rc_news", JSON.stringify(RC_DEFAULT_NEWS));
     }
-    if (!localStorage.getItem("rc_poll")) {
-      localStorage.setItem("rc_poll", JSON.stringify(RC_DEFAULT_POLL));
+    if (!localStorage.getItem("rc_polls")) {
+      localStorage.setItem("rc_polls", JSON.stringify(RC_DEFAULT_POLLS));
     }
   }
 
@@ -475,31 +523,74 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backBtnFooter) backBtnFooter.addEventListener("click", clearReaderUrlParam);
 
   // 4. SIDEBAR POLL WIDGET SYNC (Identical to app.js)
+  function populatePollSelector(polls, activeSelectEl) {
+    if (!activeSelectEl) return;
+    const currentVal = activeSelectEl.value;
+    activeSelectEl.innerHTML = "";
+    polls.forEach(poll => {
+      const opt = document.createElement("option");
+      opt.value = poll.id;
+      opt.textContent = poll.question.length > 50 ? poll.question.slice(0, 47) + "..." : poll.question;
+      activeSelectEl.appendChild(opt);
+    });
+    if (currentVal && polls.some(p => p.id === currentVal)) {
+      activeSelectEl.value = currentVal;
+    } else if (polls.length > 0) {
+      activeSelectEl.value = polls[0].id;
+    }
+  }
+
   function renderActivePollWidget() {
     const pollCard = document.querySelector(".poll-card");
     const pollForm = document.getElementById("poll-widget-form");
     const votedMsg = document.getElementById("poll-widget-voted-msg");
     const pollQuestionEl = document.getElementById("poll-widget-question");
+    const activeSelect = document.getElementById("poll-active-select");
 
     if (!pollCard || !pollForm) return;
 
     if (rcDbMode === "firebase") {
-      rcDb.collection("polls").doc("active-poll").get()
-        .then(doc => {
-          if (doc.exists) {
-            setupPollUI(doc.data(), pollCard, pollForm, votedMsg, pollQuestionEl);
-          } else {
-            setupPollUI(RC_DEFAULT_POLL, pollCard, pollForm, votedMsg, pollQuestionEl);
+      rcDb.collection("polls").get()
+        .then(snapshot => {
+          let polls = [];
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            data.id = doc.id;
+            polls.push(data);
+          });
+          if (polls.length === 0) {
+            polls = RC_DEFAULT_POLLS;
           }
+          if (activeSelect && activeSelect.children.length !== polls.length) {
+            populatePollSelector(polls, activeSelect);
+            activeSelect.onchange = () => {
+              renderActivePollWidget();
+            };
+          }
+          const selectedId = activeSelect ? activeSelect.value : (polls[0] ? polls[0].id : "poll-1");
+          const selectedPoll = polls.find(p => p.id === selectedId) || polls[0] || RC_DEFAULT_POLLS[0];
+          setupPollUI(selectedPoll, pollCard, pollForm, votedMsg, pollQuestionEl);
         })
         .catch(err => {
-          console.error("Sidebar Poll error: ", err);
-          setupPollUI(RC_DEFAULT_POLL, pollCard, pollForm, votedMsg, pollQuestionEl);
+          console.error("Error loading active polls:", err);
+          fallbackLocalPolls(activeSelect, pollCard, pollForm, votedMsg, pollQuestionEl);
         });
     } else {
-      const pollData = JSON.parse(localStorage.getItem("rc_poll")) || RC_DEFAULT_POLL;
-      setupPollUI(pollData, pollCard, pollForm, votedMsg, pollQuestionEl);
+      fallbackLocalPolls(activeSelect, pollCard, pollForm, votedMsg, pollQuestionEl);
     }
+  }
+
+  function fallbackLocalPolls(activeSelect, pollCard, pollForm, votedMsg, pollQuestionEl) {
+    const polls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
+    if (activeSelect && activeSelect.children.length !== polls.length) {
+      populatePollSelector(polls, activeSelect);
+      activeSelect.onchange = () => {
+        renderActivePollWidget();
+      };
+    }
+    const selectedId = activeSelect ? activeSelect.value : (polls[0] ? polls[0].id : "poll-1");
+    const selectedPoll = polls.find(p => p.id === selectedId) || polls[0] || RC_DEFAULT_POLLS[0];
+    setupPollUI(selectedPoll, pollCard, pollForm, votedMsg, pollQuestionEl);
   }
 
   function setupPollUI(poll, pollCard, pollForm, votedMsg, pollQuestionEl) {
@@ -510,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("poll-widget-lbl-c").textContent = poll.options.c.text;
     document.getElementById("poll-widget-lbl-d").textContent = poll.options.d.text;
 
-    const userVoted = localStorage.getItem("rc_user_voted") === "active-poll";
+    const userVoted = localStorage.getItem("rc_voted_" + poll.id) === "true";
 
     const aVotes = poll.options.a.votes || 0;
     const bVotes = poll.options.b.votes || 0;
@@ -524,18 +615,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const submitBtn = document.getElementById("poll-widget-submit");
 
+    pollForm.querySelectorAll('input[name="poll-vote"]').forEach(input => {
+      input.checked = false;
+    });
+
     if (userVoted) {
       pollCard.classList.add("voted");
       if (submitBtn) submitBtn.style.display = "none";
       pollForm.querySelectorAll('input[name="poll-vote"]').forEach(input => input.disabled = true);
       votedMsg.style.display = "block";
-
       showOptionPercentages(pct(aVotes), pct(bVotes), pct(cVotes), pct(dVotes));
     } else {
       pollCard.classList.remove("voted");
       if (submitBtn) submitBtn.style.display = "block";
       pollForm.querySelectorAll('input[name="poll-vote"]').forEach(input => input.disabled = false);
       votedMsg.style.display = "none";
+      resetOptionPercentages();
 
       pollForm.onsubmit = (e) => {
         e.preventDefault();
@@ -545,42 +640,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = selectedOpt.value;
 
         if (rcDbMode === "firebase") {
-          rcDb.collection("polls").doc("active-poll").update({
+          rcDb.collection("polls").doc(poll.id).update({
             [`options.${val}.votes`]: firebase.firestore.FieldValue.increment(1)
           })
           .then(() => {
-            localStorage.setItem("rc_user_voted", "active-poll");
+            localStorage.setItem("rc_voted_" + poll.id, "true");
             renderActivePollWidget();
           })
           .catch(err => {
             alert("Voting error: " + err.message);
           });
         } else {
-          const localPoll = JSON.parse(localStorage.getItem("rc_poll")) || RC_DEFAULT_POLL;
-          localPoll.options[val].votes = (localPoll.options[val].votes || 0) + 1;
-          localStorage.setItem("rc_poll", JSON.stringify(localPoll));
-          localStorage.setItem("rc_user_voted", "active-poll");
+          const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
+          const pollIndex = localPolls.findIndex(p => p.id === poll.id);
+          if (pollIndex !== -1) {
+            localPolls[pollIndex].options[val].votes = (localPolls[pollIndex].options[val].votes || 0) + 1;
+            localStorage.setItem("rc_polls", JSON.stringify(localPolls));
+          }
+          localStorage.setItem("rc_voted_" + poll.id, "true");
           renderActivePollWidget();
         }
       };
     }
   }
 
+  function resetOptionPercentages() {
+    const keys = ["a", "b", "c", "d"];
+    keys.forEach(key => {
+      const pctEl = document.getElementById(`poll-widget-pct-${key}`);
+      const barEl = document.getElementById(`poll-widget-bar-${key}`);
+      const labelEl = pctEl ? pctEl.closest(".poll-option-label") : null;
+      if (pctEl) pctEl.textContent = "";
+      if (barEl) barEl.style.width = "0%";
+      if (labelEl) {
+        labelEl.style.cursor = "pointer";
+        labelEl.style.background = "";
+      }
+    });
+  }
+
   function showOptionPercentages(aPct, bPct, cPct, dPct) {
     const pcts = [aPct, bPct, cPct, dPct];
     const keys = ["a", "b", "c", "d"];
-
     keys.forEach((key, idx) => {
       const pctEl = document.getElementById(`poll-widget-pct-${key}`);
       const barEl = document.getElementById(`poll-widget-bar-${key}`);
       const labelEl = pctEl.closest(".poll-option-label");
-
       if (pctEl) pctEl.textContent = `${pcts[idx]}%`;
-      
       setTimeout(() => {
         if (barEl) barEl.style.width = `${pcts[idx]}%`;
       }, 100);
-
       if (labelEl) {
         labelEl.style.cursor = "default";
         labelEl.style.background = "rgba(255, 255, 255, 0.015)";

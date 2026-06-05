@@ -440,7 +440,15 @@
             
             <!-- Create active poll -->
             <div class="glass-card admin-card">
-              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Configure Active Poll</h3>
+              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Configure Poll Settings</h3>
+              
+              <div class="form-group-admin" style="margin-bottom: 20px;">
+                <label for="admin-poll-active-select">Select Poll to Manage / Edit *</label>
+                <select id="admin-poll-active-select" style="padding: 10px 14px; background: rgba(5, 10, 10, 0.8); font-size: 13.5px; border-radius: var(--radius-sm);">
+                  <!-- Dynamically populated -->
+                </select>
+              </div>
+
               <form id="poll-form">
                 <div class="form-group-admin">
                   <label for="poll-question">Poll Question *</label>
@@ -463,9 +471,10 @@
                   <input type="text" id="poll-opt-d" required placeholder="e.g. Inefficient Document Workflows">
                 </div>
                 
-                <div style="display: flex; gap: 15px;">
-                  <button type="submit" class="btn btn-primary">Activate Poll</button>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                  <button type="submit" id="admin-poll-submit-btn" class="btn btn-primary">Save Poll</button>
                   <button type="button" id="reset-poll-votes" class="btn btn-secondary">Reset Votes</button>
+                  <button type="button" id="delete-poll" class="btn btn-secondary" style="border-color: #ef4444; color: #f87171;">Delete Poll</button>
                 </div>
               </form>
             </div>
