@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Research COPS | Solution Details</title>
+  <meta name="description" content="Technical infrastructure details and live interactive simulations for Research COPS global online research data collection and workflow automation solutions.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon Placeholder -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts: Inter & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Solutions-specific Layout Styles */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .capabilities-list-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .capability-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(4, 203, 194, 0.04);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      transition: var(--transition-smooth);
+    }
+
+    .capability-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(4, 203, 194, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .capability-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--turquoise-accent);
+      margin-top: 2px;
+    }
+
+    .capability-text h4 {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+      font-family: var(--font-family-sans);
+      font-weight: 600;
+    }
+
+    .capability-text p {
+      font-size: 13px;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    /* Animation Visual Elements */
+    .live-pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--emerald-success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--emerald-success);
+      animation: pulse-glow-dot 2s infinite;
+    }
+
+    @keyframes pulse-glow-dot {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .capabilities-list-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient Glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header id="main-header" class="header-floating">
+    <div class="nav-container">
+      <a href="index.html" class="logo-wrapper">
+        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <!-- Top Half (Dark) -->
+          <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#060f0e" />
+          <!-- Bottom Half (White) -->
+          <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
+          <!-- Outer Shield border stroke -->
+          <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Horizontal Divider line -->
+          <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
+          <!-- Concentric target circles inside top half -->
+          <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
+          <g transform="rotate(-110, 12, 7.2)">
+            <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
+            <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
+            <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
+          </g>
+        </svg>
+        <div class="logo-text-group">
+          <span class="logo-text"><span class="logo-accent">Research</span>COPS</span>
+          <span class="logo-tagline">Research Centric OPS</span>
+        </div>
+      </a>
+
+      <nav id="nav-menu" class="nav-links">
+        <a href="index.html#services" class="nav-link">Platform</a>
+
+        <!-- Solutions Dropdown -->
+        <div class="nav-dropdown">
+          <a href="index.html#services" class="nav-link dropdown-toggle">Solutions <span class="chevron">&#9662;</span></a>
+          <div class="dropdown-menu">
+            <a href="solution.html?id=management">Full-Cycle Project Management</a>
+            <a href="solution.html?id=sampling">Global Online Sampling</a>
+            <a href="solution.html?id=development">Survey Design & Methodology</a>
+            <a href="solution.html?id=programming">Advanced Survey Programming</a>
+            <a href="solution.html?id=translations">Multi-Language Localization</a>
+            <a href="solution.html?id=processing">Data Processing & Delivery</a>
+            <a href="solution.html?id=consulting">Strategic Insights & Reporting</a>
+            <a href="solution.html?id=automation">Business Consulting & Workflow Automation</a>
+            <div class="dropdown-divider"></div>
+            <a href="solution.html?id=workflow-hub" style="font-weight: 600; color: #04cbc2;">Enterprise Workflow Automation Hub</a>
+          </div>
+        </div>
+
+        <a href="index.html#competitive-edge" class="nav-link">Why Us</a>
+        <a href="index.html#demographics" class="nav-link">Demographics</a>
+        <a href="index.html#api-section" class="nav-link">API</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+        <a href="index.html#estimator" class="nav-link">Pricing</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn btn-primary btn-sm">Get a Quote</a>
+        <button id="mobile-toggle" class="hamburger" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main style="margin-top: 100px; min-height: 85vh;">
+    
+    <!-- Breadcrumbs / Back navigation -->
+    <section style="padding: 40px 0 0px 0; position: relative; z-index: 2;">
+      <div class="container">
+        <a href="index.html#services" class="btn btn-secondary btn-sm" style="display: inline-flex; gap: 8px; align-items: center; border-radius: var(--radius-md);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg> 
+          Back to Platform
+        </a>
+      </div>
+    </section>
+
+    <!-- Split Grid Section -->
+    <section style="padding: 20px 0 60px 0; position: relative; z-index: 2;">
+      <div class="container">
+        <div class="solution-grid">
+          
+          <!-- Left Column: Detailed Content -->
+          <div class="solution-content-panel">
+            <div class="badge badge-teal" id="solution-badge">Platform Capability</div>
+            <h1 id="solution-title" class="text-gradient" style="font-size: 42px; margin-bottom: 20px; font-weight: 700; line-height: 1.2;">Loading Solution...</h1>
+            <p id="solution-desc" class="hero-lead" style="font-size: 17px; color: var(--text-body); line-height: 1.6; margin-bottom: 35px; max-width: 640px;">
+              Loading details for this capability. Please wait while the platform builds the dynamic content dashboard.
+            </p>
+
+            <h3 style="font-size: 20px; font-family: var(--font-family-display); color: var(--text-light); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              Core Technical Capabilities
+            </h3>
+            
+            <div id="solution-capabilities-grid" class="capabilities-list-grid">
+              <!-- Dynamically populated via solution.js -->
+            </div>
+
+            <h3 style="font-size: 20px; font-family: var(--font-family-display); color: var(--text-light); margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
+              Systems Integration & Architecture
+            </h3>
+            <p id="solution-architecture" style="color: var(--text-body); font-size: 14px; line-height: 1.7; margin-bottom: 30px;">
+              Loading technical systems specification...
+            </p>
+          </div>
+
+          <!-- Right Column: Interactive Moving Visual Card -->
+          <div class="solution-visual-panel">
+            <div class="glass-card" style="padding: 24px; border-radius: var(--radius-lg); position: sticky; top: 110px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                <div style="display: flex; gap: 6px;">
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #ef4444;"></span>
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #f59e0b;"></span>
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #10b981;"></span>
+                </div>
+                <span style="font-size: 12px; font-weight: 600; color: var(--turquoise-accent); font-family: var(--font-family-display); letter-spacing: 0.05em; text-transform: uppercase;">
+                  Engine Simulation Visualizer
+                </span>
+              </div>
+              
+              <!-- Animation Viewport Container -->
+              <div id="visual-viewport" style="width: 100%; height: 380px; background: rgba(5,10,10,0.55); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.03); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
+                <!-- Dynamically loaded animated SVG via solution.js -->
+              </div>
+              
+              <div style="margin-top: 15px; display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 13px;">
+                <span class="live-pulse"></span>
+                <span id="visual-caption" style="font-family: var(--font-family-display);">System simulation connecting...</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Calculator CTA Banner -->
+    <section style="padding: 40px 0 100px 0; position: relative; z-index: 2;">
+      <div class="container">
+        <div class="glass-card" style="padding: 45px 30px; text-align: center; border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(10,20,20,0.92) 0%, rgba(4,82,78,0.22) 100%); border-color: rgba(4,203,194,0.12);">
+          <h2 style="font-size: 32px; margin-bottom: 12px; font-family: var(--font-family-display);">Calculate customized project specifications</h2>
+          <p style="max-width: 650px; margin: 0 auto 30px auto; color: var(--text-body); font-size: 15px; line-height: 1.6;">
+            Access our Instant Estimator to configure panel segments, sample thresholds, average length-of-interview, and target regional parameters for this solution.
+          </p>
+          <a href="index.html#estimator" id="solution-cta-btn" class="btn btn-primary" style="border-radius: var(--radius-md);">
+            Launch Audience Estimator
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="logo-wrapper">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <!-- Top Half (Dark) -->
+            <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#060f0e" />
+            <!-- Bottom Half (White) -->
+            <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
+            <!-- Outer Shield border stroke -->
+            <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <!-- Horizontal Divider line -->
+            <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
+            <!-- Concentric target circles inside top half -->
+            <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
+            <g transform="rotate(-110, 12, 7.2)">
+              <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
+              <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
+              <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
+            </g>
+          </svg>
+          <div class="logo-text-group">
+            <span class="logo-text"><span class="logo-accent">Research</span>COPS</span>
+            <span class="logo-tagline">Research Centric OPS</span>
+          </div>
+        </a>
+        <p class="footer-desc">
+          Precision data collection infrastructure for global market research. 2M+ verified panelists globally through our partner network and our panel Opinion Genie.
+        </p>
+        <div class="footer-social-wrapper">
+          <a href="https://m.facebook.com/ResearchCOPS" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://instagram.com/researchcops1111" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/researchcops" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCLIMnaQD8RTwLNbROi1OQQQ" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html#services">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="http://www.researchcops.com/home/panel" target="_blank" rel="noopener noreferrer">Panel Book</a>
+          <a href="insights.html">Insights</a>
+          <a href="index.html#estimator">CPI Calculator</a>
+        </div>
+        <div class="footer-col">
+          <h4>Network</h4>
+          <a href="http://www.opiniongenie.com" target="_blank" rel="noopener noreferrer">Opinion Genie</a>
+          <a href="index.html#demographics">Demographics</a>
+          <a href="index.html#api-section">API Docs</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <span class="contact-detail"><strong>Phone:</strong> <a href="tel:+91-0120-605-1391">+91-0120-605-1391</a></span>
+          <span class="contact-detail"><strong>Emails:</strong><br>
+            <a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br>
+            <a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a>
+          </span>
+          <span class="contact-detail"><strong>Office:</strong><br>
+            T4-A11, NX One Avenue, Plot No - 17,<br>Techzone 4, Greater Noida, UP 201306
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright-bar">
+      <div class="container">
+        <p>&copy; 2026 Research COPS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button for Chatbot Widget -->
+  <div id="support-genie-trigger" class="support-genie-fab" aria-label="Open support chat">
+    <div class="fab-pulse"></div>
+    <div class="fab-avatar-container">
+      <img src="support_genie_avatar.png" alt="SupportGenie" class="fab-avatar-img">
+    </div>
+    <span class="fab-tooltip">Chat with SupportGenie</span>
+  </div>
+
+  <!-- Chat Box Container -->
+  <div id="support-genie-box" class="support-genie-chatbox glass-card">
+    <div class="chatbox-header">
+      <div class="header-avatar-group">
+        <div class="header-avatar"><img src="support_genie_avatar.png" alt="SupportGenie" class="genie-avatar-img"></div>
+        <div class="header-details">
+          <h4>SupportGenie AI</h4>
+          <span class="status-online"><span class="status-dot"></span> Online</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="chatbox-close" class="chatbox-btn-close" aria-label="Close chat">&times;</button>
+      </div>
+    </div>
+
+    <div id="chatbox-messages" class="chatbox-messages-log">
+      <div class="chat-message-wrapper bot-wrapper">
+        <div class="chat-message-avatar"><img src="support_genie_avatar.png" alt="SupportGenie" class="genie-avatar-img"></div>
+        <div class="chat-message bot-msg">
+          <p>Hello! I am <strong>SupportGenie</strong>, your virtual assistant. How can I help you today?</p>
+        </div>
+      </div>
+      <div class="chat-chips-container">
+        <button class="chat-chip" data-chip="pricing">📊 CPI Estimate & Calculator</button>
+        <button class="chat-chip" data-chip="workflow">👥 Workflow Automation Hub</button>
+        <button class="chat-chip" data-chip="integrations">🔒 Enterprise ERP & Integrations</button>
+        <button class="chat-chip" data-chip="quote">✉ Get Custom Quote & Demo</button>
+      </div>
+    </div>
+
+    <form id="chatbox-input-form" class="chatbox-footer">
+      <input type="text" id="chatbox-input" placeholder="Type a message..." required autocomplete="off">
+      <button type="submit" class="chatbox-send-btn" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Script links -->
+  <script src="solution.js"></script>
+</body>
+</html>

@@ -49,14 +49,16 @@
         <div class="nav-dropdown">
           <a href="index.html#services" class="nav-link dropdown-toggle">Solutions <span class="chevron">&#9662;</span></a>
           <div class="dropdown-menu">
-            <a href="index.html#service-management">Full-Cycle Project Management</a>
-            <a href="index.html#service-sampling">Global Online Sampling</a>
-            <a href="index.html#service-development">Survey Design & Methodology</a>
-            <a href="index.html#service-programming">Advanced Survey Programming</a>
-            <a href="index.html#service-translations">Multi-Language Localization</a>
-            <a href="index.html#service-processing">Data Processing & Delivery</a>
-            <a href="index.html#service-consulting">Strategic Insights & Reporting</a>
-            <a href="index.html#service-automation">Business Consulting & Workflow Automation</a>
+            <a href="solution.html?id=management">Full-Cycle Project Management</a>
+            <a href="solution.html?id=sampling">Global Online Sampling</a>
+            <a href="solution.html?id=development">Survey Design & Methodology</a>
+            <a href="solution.html?id=programming">Advanced Survey Programming</a>
+            <a href="solution.html?id=translations">Multi-Language Localization</a>
+            <a href="solution.html?id=processing">Data Processing & Delivery</a>
+            <a href="solution.html?id=consulting">Strategic Insights & Reporting</a>
+            <a href="solution.html?id=automation">Business Consulting & Workflow Automation</a>
+            <div class="dropdown-divider"></div>
+            <a href="solution.html?id=workflow-hub" style="font-weight: 600; color: #04cbc2;">Enterprise Workflow Automation Hub</a>
           </div>
         </div>
 
@@ -107,6 +109,19 @@
               
               <!-- Search and Filter Bar -->
               <div class="glass-card search-filter-box" style="padding: 20px; margin-bottom: 30px; border-radius: var(--radius-md);">
+                
+                <!-- Live Global Trends Toggle -->
+                <div class="live-feed-toggle-wrapper" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="live-feed-pulse" class="live-pulse" style="width: 8px; height: 8px; background: #64748b; border-radius: 50%; display: inline-block; transition: background 0.3s ease;"></span>
+                    <span id="live-feed-status-text" style="font-size: 13px; font-weight: 600; color: var(--text-muted); font-family: var(--font-family-display);">Curated Insights (Offline Mode)</span>
+                  </div>
+                  <label class="switch-toggle" style="position: relative; display: inline-block; width: 44px; height: 22px;">
+                    <input type="checkbox" id="live-feed-switch" style="opacity: 0; width: 0; height: 0;">
+                    <span class="switch-slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.08); transition: .3s; border-radius: 22px; border: 1px solid rgba(255,255,255,0.05);"></span>
+                  </label>
+                </div>
+
                 <div class="search-input-wrapper" style="position: relative; margin-bottom: 15px;">
                   <input type="text" id="insights-search-input" placeholder="Search by title, keywords or details..." 
                          style="width: 100%; padding: 12px 16px; background: #0b1111; border: 1px solid var(--glass-border); border-radius: var(--radius-md); color: var(--text-light); outline: none; font-size: 14.5px;">

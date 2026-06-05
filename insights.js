@@ -42,47 +42,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const RC_DEFAULT_BLOGS = [
     {
       id: "blog-1",
-      title: "Automating ERP Integrations: Bridging Database Silos in Enterprise Environments",
-      category: "Integration",
+      title: "Agentic AI Orchestration: The Central Control Plane of 2026 Enterprise Workflows",
+      category: "Automation",
       readtime: "6 min read",
-      excerpt: "How custom middleware and automated sync routines eliminate manual invoicing errors, streamline data mapping, and reduce overhead by 75%.",
-      content: "ERP integrations represent one of the most critical backbones of modern B2B business operations. When records are siloed across isolated systems, team productivity drops and entry errors multiply.\n\n### Key Pillars of ERP Database Synchronization\n1. **Establish Secure API Middlewares**: Implement robust OAuth 2.0 validation checks to safeguard token requests.\n2. **Optimize Data Mappings**: Resolve discrepancies by setting strict primary key mapping routines.\n3. **Automate Invoice Reconciliations**: Establish hourly sync gates that query billing endpoints, run auditing algorithms, and log reports automatically.\n\nBy following this structured approach, enterprises can achieve complete data harmony and streamline operational speed.",
+      excerpt: "How autonomous agents with human-in-the-loop controls are replacing rigid rule-based scripts to coordinate complex B2B operations.",
+      content: "In 2026, enterprise workflow automation has moved far beyond simple task execution. Organizations are shifting from automating isolated tasks to implementing unified control planes that orchestrate end-to-end processes across hybrid cloud environments and legacy databases. The rise of Agentic AI is the defining trend of 2026. Task-specific AI agents, now integrated into 40% of enterprise software, are reasoning and making operational decisions within guardrails while preserving critical human-in-the-loop (HITL) checkpoints for compliance.",
       date: "May 2026",
       featured: false,
-      timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600"
     },
     {
       id: "blog-2",
-      title: "Workforce Optimization: Designing Next-Gen HRMS Workflows",
-      category: "Automation",
+      title: "Rethinking Database Sync: High-Performance GraphQL Middleware & Schema Mapping",
+      category: "Integration",
       readtime: "5 min read",
-      excerpt: "Strategies for automating employee onboarding, payroll allocations, and performance evaluations without database discrepancies.",
-      content: "Workforce optimization is no longer just about management—it is about technology. Siloed employee records, manual payroll calculation scripts, and disconnected onboarding spreadsheets slow down human resources.\n\n### Strategic Onboarding Flows\n* **Single-Point Dispatch**: Entering a new hire automatically maps profiles to payroll registers, active directories, and security rosters.\n* **Automated Escalation Logic**: Triggers custom notifications to coordinators when tasks linger in cue.\n* **Real-time Payroll Auditing**: Automated background checkpoints scan ledger registers to eliminate discrepancy flags before allocations execute.\n\nModern workflow configurations keep teams agile, reducing admin lifecycle delays.",
+      excerpt: "Techniques for connecting siloed legacy databases with modern SaaS endpoints using selective querying and schema-less integration.",
+      content: "Connecting legacy systems with modern SaaS tools represents a major challenge for growing enterprises. Traditionally, developers had to build rigid, custom DB-links and SQL extraction scripts that were expensive to maintain. In 2026, GraphQL gateways have emerged as the standard middleware layer for database sync. This architecture allows developers to run selective column queries and manage schemas dynamically, reducing API payload sizes by 65% and preventing integration discrepancies.",
       date: "April 2026",
       featured: false,
-      timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=600"
     },
     {
       id: "blog-3",
-      title: "Secure Middleware: Auditing Enterprise Database Sync Protocols",
+      title: "Governed Intelligence: Cryptographic Policy Checks and Audit Trails in HRMS Automation",
       category: "Security",
       readtime: "8 min read",
-      excerpt: "Establishing robust cryptographic security and token rotations across internal database integrations.",
-      content: "When synchronizing logs and operational data between external endpoints and main ERP clusters, establishing high-standard database security is critical.\n\n### Security Best Practices\n1. **Cryptographic Validation**: Hash sensitive variables using secure protocols prior to data synchronization checkpoints.\n2. **Dynamic Token Rotation**: Rotate API tokens dynamically and monitor endpoints for unauthorized access traces.\n3. **Role-Based Access Logs**: Configure custom permissions so only designated admin sessions can update sync settings.\n\nEnsuring strict compliance protections helps protect valuable operations from network breaches.",
+      excerpt: "Establishing strict role-based access logs and zero-knowledge encryption protocols across automated employee onboarding flows.",
+      content: "With AI agents and workflow scripts gaining increased authority over enterprise database systems, establishing proper governance has become a business risk priority. Credible automated HRMS platforms must embed audit trails and identity policy controls directly into their orchestration layer. This includes adopting zero-knowledge storage configurations and TLS 1.3 encryption protocols for employee profiles, protecting payroll allocations, document routing, and security rosters from data exposure.",
       date: "March 2026",
       featured: false,
-      timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=600"
     },
     {
       id: "blog-featured",
-      title: "The ROI of Automation: Eliminating Manual Reconciliations",
-      category: "Automation",
+      title: "Self-Optimizing Middleware: AI-Assisted Index Tuning in Legacy ERP Syncs",
+      category: "Database",
       readtime: "6 min read",
-      excerpt: "How enterprise automation platforms audit billing registers, match ledger logs, and minimize transaction processing delays.",
-      content: "Manual billing reconciliation is slow, expensive, and prone to user error. Automated ledger matching engines can scan registers, verify billing logs, and resolve discrepancies in seconds.\n\n### The Operations Advantage\n* **Ledger Auditing**: Match incoming ledgers against internal database invoices instantly.\n* **Discrepancy Flags**: Identify and report mismatch issues in real-time, preventing transaction delays.\n* **Automated Callbacks**: Trigger API webhooks to update dashboard metrics as soon as matching resolves.\n\nResearch COPS custom workflow connectors are engineered to automate operations directly across enterprise setups.",
+      excerpt: "How self-optimizing pipelines audit database queries, detect database latency spikes, and optimize queries automatically.",
+      content: "Manual database query indexing is slow and fails to scale with dynamic SaaS environments. Modern enterprise middleware incorporates self-optimizing pipelines that monitor queries in real-time. By applying AI-assisted index tuning, the system automatically detects slow query execution times across custom ERP syncs, modifying indexing strategies and improving database retrieval rates by up to 3.5x without human developer intervention.",
       date: "June 2026",
       featured: true,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600"
     }
   ];
 
@@ -93,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Platform",
       details: "Deployment of cross-register ledger matching engine reduces reconciliation cycles from days to under 15 minutes.",
       date: "June 2026",
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600"
     },
     {
       id: "news-2",
@@ -101,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Security",
       details: "Integration of automated token refresh sequences and role-based data views for secure database mapping.",
       date: "May 2026",
-      timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600"
     },
     {
       id: "news-3",
@@ -109,7 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Automation",
       details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
       date: "April 2026",
-      timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600"
     },
     {
       id: "news-4",
@@ -117,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Platform",
       details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
       date: "June 2026",
-      timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=600"
     },
     {
       id: "news-5",
@@ -125,7 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Database",
       details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
       date: "May 2026",
-      timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600"
     },
     {
       id: "news-6",
@@ -133,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Security",
       details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
       date: "April 2026",
-      timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000
+      timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000,
+      image: "https://images.unsplash.com/photo-1601597111158-2fceff270190?q=80&w=600"
     }
   ];
 
@@ -170,6 +180,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  const RC_TREND_POLLS = {
+    Automation: {
+      id: "poll-trend-automation",
+      question: "What is your biggest operational concern with Agentic AI integration?",
+      options: {
+        a: { text: "AI hallucinations & decision errors", votes: 42 },
+        b: { text: "High API usage & token costs", votes: 24 },
+        c: { text: "Security compliance & data leaks", votes: 53 },
+        d: { text: "Integrating with legacy ERP data", votes: 19 }
+      }
+    },
+    Security: {
+      id: "poll-trend-security",
+      question: "Which security layer is most critical for your automated database syncs?",
+      options: {
+        a: { text: "Zero-Knowledge Encryption (ZKP)", votes: 31 },
+        b: { text: "Strict role-based access logs (RBAC)", votes: 64 },
+        c: { text: "VPN/IP address verification gates", votes: 18 },
+        d: { text: "Third-party dependency scanning", votes: 27 }
+      }
+    },
+    Compliance: {
+      id: "poll-trend-compliance",
+      question: "What is your main driver for establishing automated audit trails?",
+      options: {
+        a: { text: "Compliance with GDPR/CCPA data laws", votes: 58 },
+        b: { text: "Preventing internal security breaches", votes: 36 },
+        c: { text: "Client requests & vendor verification", votes: 22 },
+        d: { text: "Simplifying manual annual audits", votes: 14 }
+      }
+    },
+    Integration: {
+      id: "poll-trend-integration",
+      question: "Which integration middleware architecture is most critical for your operations?",
+      options: {
+        a: { text: "Real-time API Webhooks", votes: 62 },
+        b: { text: "Scheduled SQL Batch Jobs", votes: 29 },
+        c: { text: "Message Queues (RabbitMQ/Kafka)", votes: 41 },
+        d: { text: "Direct Database DB-Links", votes: 15 }
+      }
+    }
+  };
+
   // Helper function to escape HTML
   function rcEscapeHtml(str) {
     if (!str) return "";
@@ -184,8 +237,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Compile Markdown to Basic Styled HTML
   function compileMarkdown(markdown) {
     if (!markdown) return "";
-    let html = rcEscapeHtml(markdown);
     
+    // Strip YAML front matter if present
+    let contentStr = markdown.trim();
+    if (contentStr.startsWith("---")) {
+      const parts = contentStr.split("---");
+      if (parts.length >= 3) {
+        contentStr = parts.slice(2).join("---").trim();
+      }
+    }
+    
+    let html = rcEscapeHtml(contentStr);
+    
+    // Code blocks (triple backticks)
+    html = html.replace(/```([\s\S]*?)```/g, '<pre style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 15px; border-radius: var(--radius-sm); overflow-x: auto; font-family: monospace; font-size: 13.5px; color: var(--turquoise-accent); margin: 15px 0; white-space: pre-wrap; word-break: break-all;">$1</pre>');
+    
+    // Inline code (single backtick)
+    html = html.replace(/`([^`\n]+)`/g, '<code style="background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 90%; color: var(--turquoise-accent);">$1</code>');
+
     // Headers
     html = html.replace(/^### (.*?)$/gm, '<h3 style="color:var(--turquoise-accent); font-family:var(--font-family-display); font-size: 19px; font-weight:600; margin-top:25px; margin-bottom:12px;">$1</h3>');
     html = html.replace(/^## (.*?)$/gm, '<h2 style="color:var(--text-light); font-family:var(--font-family-display); font-size: 22px; font-weight:600; margin-top:30px; margin-bottom:15px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">$1</h2>');
@@ -198,12 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bold text
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Markdown Links: [text](url)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color: var(--turquoise-accent); text-decoration: underline;">$1</a>');
+    
+    // Blockquotes
+    html = html.replace(/^&gt;\s+(.*?)$/gm, '<blockquote style="border-left: 3px solid var(--turquoise-accent); padding-left: 15px; margin: 15px 0; color: var(--text-muted); font-style: italic;">$1</blockquote>');
 
     // Split paragraphs
     const lines = html.split(/\n\n+/);
     const formatted = lines.map(line => {
       const trimmed = line.trim();
-      if (trimmed.startsWith('<h') || trimmed.startsWith('<li')) {
+      if (trimmed.startsWith('<h') || trimmed.startsWith('<li') || trimmed.startsWith('<pre') || trimmed.startsWith('<blockquote')) {
         return line;
       }
       return `<p style="margin-bottom: 15px; line-height: 1.7; color: #cbd5e1; font-size: 15px;">${line}</p>`;
@@ -242,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const legacyCheck = localStorage.getItem("rc_blogs");
     const hasOldPollVal = localStorage.getItem("rc_poll");
     if (hasOldPollVal || (legacyCheck && (
+      !legacyCheck.includes("image") ||
       legacyCheck.includes("concept-testing") || 
       legacyCheck.includes("bot-intrusion") || 
       legacyCheck.includes("panelist") || 
@@ -273,6 +349,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let allFeedItems = [];
   let currentCategoryFilter = "all";
   let currentSearchQuery = "";
+  let liveFeedActive = false;
+  let liveTrendingCategory = "Integration";
 
   // Elements
   const feedList = document.getElementById("insights-feed-list");
@@ -286,8 +364,153 @@ document.addEventListener('DOMContentLoaded', () => {
   const backBtn = document.getElementById("reader-back-btn");
   const backBtnFooter = document.getElementById("reader-back-btn-footer");
 
+  const liveFeedSwitch = document.getElementById("live-feed-switch");
+  const liveFeedPulse = document.getElementById("live-feed-pulse");
+  const liveFeedStatusText = document.getElementById("live-feed-status-text");
+
+  // Toggle switch listener
+  if (liveFeedSwitch) {
+    liveFeedSwitch.addEventListener("change", (e) => {
+      liveFeedActive = e.target.checked;
+      
+      // Reset filter tags visually
+      filterTags.forEach(b => b.classList.remove("active"));
+      const allTag = Array.from(filterTags).find(b => b.getAttribute("data-filter") === "all");
+      if (allTag) allTag.classList.add("active");
+      
+      // Clear filters
+      if (searchInput) searchInput.value = "";
+      currentSearchQuery = "";
+      currentCategoryFilter = "all";
+      
+      if (liveFeedActive) {
+        if (liveFeedPulse) liveFeedPulse.classList.add("active");
+        if (liveFeedStatusText) liveFeedStatusText.textContent = "Live Feed Active (Connected)";
+        sessionStorage.removeItem("rc_trend_poll_autoswitch");
+      } else {
+        if (liveFeedPulse) liveFeedPulse.classList.remove("active");
+        if (liveFeedStatusText) liveFeedStatusText.textContent = "Curated Insights (Offline Mode)";
+        
+        // Reset active poll to poll-1 if currently on a trend poll
+        const activeSelect = document.getElementById("poll-active-select");
+        if (activeSelect && activeSelect.value.startsWith("poll-trend-")) {
+          activeSelect.value = "poll-1";
+        }
+        sessionStorage.removeItem("rc_trend_poll_autoswitch");
+      }
+      
+      loadHubFeed();
+    });
+  }
+
+  function fetchLiveGlobalArticles() {
+    if (feedList) {
+      feedList.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+          <span class="live-pulse active" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px;"></span>
+          Fetching live global trends...
+        </div>
+      `;
+    }
+    
+    Promise.all([
+      fetch("https://dev.to/api/articles?tag=news&per_page=15").then(res => res.json()),
+      fetch("https://dev.to/api/articles?tag=technology&per_page=15").then(res => res.json())
+    ])
+    .then(([dbArticles, autoArticles]) => {
+      const seen = new Set();
+      const combined = [];
+      
+      const processArticle = (item, defaultCat) => {
+        if (!item || seen.has(item.id)) return;
+        seen.add(item.id);
+        
+        let category = defaultCat;
+        const tags = (item.tag_list || []).map(t => t.toLowerCase());
+        
+        if (tags.some(t => t.includes("security") || t.includes("auth") || t.includes("crypt") || t.includes("cybersecurity") || t.includes("privacy"))) {
+          category = "Security";
+        } else if (tags.some(t => t.includes("compliance") || t.includes("policy") || t.includes("gdpr") || t.includes("ccpa") || t.includes("audit"))) {
+          category = "Compliance";
+        } else if (tags.some(t => t.includes("news") || t.includes("announcement") || t.includes("release") || t.includes("event"))) {
+          category = "News";
+        } else if (tags.some(t => t.includes("automation") || t.includes("workflow") || t.includes("ai") || t.includes("gpt") || t.includes("robot") || t.includes("future"))) {
+          category = "Automation";
+        } else if (tags.some(t => t.includes("api") || t.includes("graphql") || t.includes("integration") || t.includes("cloud") || t.includes("web"))) {
+          category = "Integration";
+        }
+        
+        let displayDate = "Live";
+        if (item.published_at) {
+          const d = new Date(item.published_at);
+          const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          displayDate = `${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+        
+        combined.push({
+          id: item.id.toString(),
+          title: item.title,
+          category: category,
+          readtime: `${item.reading_time_minutes || 3} min read`,
+          excerpt: item.description || "No description provided.",
+          content: "", 
+          date: displayDate,
+          featured: false,
+          timestamp: item.published_at ? new Date(item.published_at).getTime() : Date.now(),
+          type: "live-article",
+          image: item.cover_image || item.social_image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600"
+        });
+      };
+      
+      if (Array.isArray(dbArticles)) {
+        dbArticles.forEach(item => processArticle(item, "News"));
+      }
+      if (Array.isArray(autoArticles)) {
+        autoArticles.forEach(item => processArticle(item, "Integration"));
+      }
+      
+      combined.sort((a, b) => b.timestamp - a.timestamp);
+      allFeedItems = combined;
+      
+      // Calculate trending category from articles
+      const categoryCounts = { Automation: 0, Security: 0, Compliance: 0, Integration: 0 };
+      combined.forEach(item => {
+        if (categoryCounts[item.category] !== undefined) {
+          categoryCounts[item.category]++;
+        }
+      });
+      let maxCat = "Integration";
+      let maxVal = -1;
+      for (const cat in categoryCounts) {
+        if (categoryCounts[cat] > maxVal) {
+          maxVal = categoryCounts[cat];
+          maxCat = cat;
+        }
+      }
+      liveTrendingCategory = maxCat;
+      
+      applyFiltersAndRender();
+      checkUrlForDeepLinking();
+      renderActivePollWidget();
+    })
+    .catch(err => {
+      console.error("Error fetching live DEV.to feed:", err);
+      if (feedList) {
+        feedList.innerHTML = `
+          <div class="glass-card" style="padding: 40px; text-align: center; color: var(--text-muted); border-radius: var(--radius-md);">
+            Failed to connect to the live global feed. Check your internet connection or toggle back to Curated Insights.
+          </div>
+        `;
+      }
+    });
+  }
+
   // Initialize and Fetch Hub Feed Data
   function loadHubFeed() {
+    if (liveFeedActive) {
+      fetchLiveGlobalArticles();
+      return;
+    }
     if (rcDbMode === "firebase") {
       // Fetch both blogs and news and compile
       Promise.all([
@@ -375,24 +598,31 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "blog-card glass-card insights-feed-card";
       card.style.cursor = "pointer";
+      card.style.padding = "0";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.overflow = "hidden";
       
-      const badgeClass = item.type === "news" ? "badge-teal" : "blog-cat";
-      const displayCategory = item.type === "news" ? `News: ${item.category}` : item.category;
+      const displayCategory = item.type === "news" ? `News: ${item.category}` : 
+                              item.type === "live-article" ? `Global: ${item.category}` : item.category;
+
+      const imageUrl = item.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600";
 
       card.innerHTML = `
-        <div class="${badgeClass}" style="display: inline-block; margin-bottom: 12px;">${rcEscapeHtml(displayCategory)}</div>
-        <h4 style="font-family: var(--font-family-display); font-size: 19px; font-weight: 600; color: var(--text-light); margin-bottom: 10px;">
-          ${rcEscapeHtml(item.title)}
-        </h4>
-        <p style="color: var(--text-muted); font-size: 13.5px; line-height: 1.5; margin-bottom: 15px;">
-          ${rcEscapeHtml(item.excerpt)}
-        </p>
-        <div class="blog-meta" style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 12px; font-size: 12px; color: var(--text-muted);">
-          <span>📅 ${rcEscapeHtml(item.date)}</span>
-          <span style="display: flex; align-items: center; gap: 15px;">
+        <div style="width: 100%; height: 160px; overflow: hidden; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.04);">
+          <img src="${imageUrl}" alt="${rcEscapeHtml(item.title)}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600';" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="feed-card-image">
+        </div>
+        <div style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1;">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--turquoise-accent); margin-bottom: 8px;">
+            ${rcEscapeHtml(displayCategory)}
+          </div>
+          <h4 style="font-family: var(--font-family-display); font-size: 15.5px; font-weight: 600; color: var(--text-light); line-height: 1.45; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 44px;">
+            ${rcEscapeHtml(item.title)}
+          </h4>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 10px; font-size: 11.5px; color: var(--text-muted);">
+            <span>📅 ${rcEscapeHtml(item.date)}</span>
             <span>⏱ ${rcEscapeHtml(item.readtime)}</span>
-            <span class="blog-link" style="color: var(--turquoise-accent); font-weight:600; text-decoration: underline;">Read Detail &rarr;</span>
-          </span>
+          </div>
         </div>
       `;
 
@@ -413,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentCategoryFilter === "News") {
         filtered = filtered.filter(item => item.type === "news");
       } else {
-        filtered = filtered.filter(item => item.category === currentCategoryFilter && item.type === "blog");
+        filtered = filtered.filter(item => item.category === currentCategoryFilter && (item.type === "blog" || item.type === "live-article"));
       }
     }
 
@@ -468,9 +698,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const type = params.get("type");
 
     if (id && type) {
-      const article = allFeedItems.find(item => item.id === id && item.type === type);
+      const article = allFeedItems.find(item => item.id.toString() === id.toString() && item.type === type);
       if (article) {
         showArticleInReader(article);
+      } else if (type === "live-article") {
+        // Fetch article detail directly from API even if not in current allFeedItems list (deep linked)
+        const placeholder = {
+          id: id,
+          type: "live-article",
+          title: "Loading Live Trend...",
+          category: "Technology",
+          date: "Live",
+          readtime: "Calculating...",
+          content: ""
+        };
+        showArticleInReader(placeholder);
       } else {
         // Fallback if not loaded/found
         showFeedView();
@@ -488,9 +730,68 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     const isNews = article.type === "news";
+    const isLive = article.type === "live-article";
     const headerBadgeClass = isNews ? "badge-teal" : "blog-cat";
-    const headerCategory = isNews ? `News Alerts: ${article.category}` : article.category;
+    const headerCategory = isNews ? `News Alerts: ${article.category}` : 
+                            isLive ? `Global: ${article.category}` : article.category;
     
+    // Check if we need to fetch details for a live article
+    if (isLive && !article.content) {
+      readerArticle.innerHTML = `
+        <div style="margin-bottom: 20px;">
+          <span class="blog-cat" style="display:inline-block; margin-bottom: 15px;">Global: ${rcEscapeHtml(article.category)}</span>
+          <h1 style="font-family: var(--font-family-display); font-size: 32px; font-weight: 700; color: var(--text-light); line-height:1.3; margin-bottom: 15px;">
+            ${rcEscapeHtml(article.title)}
+          </h1>
+          <div style="display: flex; gap: 20px; font-size: 13.5px; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px;">
+            <span>📅 Date: <strong>${rcEscapeHtml(article.date)}</strong></span>
+            <span>⏱ Length: <strong>${rcEscapeHtml(article.readtime)}</strong></span>
+          </div>
+        </div>
+        
+        <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
+          <span class="live-pulse active" style="width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-bottom: 12px;"></span>
+          <p>Retrieving article details from DEV.to API...</p>
+        </div>
+      `;
+
+      fetch(`https://dev.to/api/articles/${article.id}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && (data.body_markdown || data.description)) {
+            article.content = data.body_markdown || data.description;
+            if (data.title) article.title = data.title;
+            if (data.reading_time_minutes) article.readtime = `${data.reading_time_minutes} min read`;
+            
+            let displayDate = "Live";
+            if (data.published_at) {
+              const d = new Date(data.published_at);
+              const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              displayDate = `${months[d.getMonth()]} ${d.getFullYear()}`;
+            }
+            article.date = displayDate;
+            
+            // Re-render now that content is loaded
+            showArticleInReader(article);
+          } else {
+            throw new Error("No content received");
+          }
+        })
+        .catch(err => {
+          console.error("Error retrieving article details:", err);
+          readerArticle.innerHTML = `
+            <div style="margin-bottom: 20px;">
+              <span class="blog-cat" style="display:inline-block; margin-bottom: 15px; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #ef4444;">Connection Error</span>
+              <h1 style="font-family: var(--font-family-display); font-size: 32px; font-weight: 700; color: var(--text-light); line-height:1.3; margin-bottom: 15px;">
+                Failed to fetch article details
+              </h1>
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.6;">We were unable to load the full markdown body from the DEV.to API. Please check your network connection and try again.</p>
+          `;
+        });
+      return;
+    }
+
     const displayBodyHtml = isNews ? `<p style="font-size:16px; line-height:1.7; color:#e2e8f0; white-space: pre-wrap;">${rcEscapeHtml(article.content)}</p>` : compileMarkdown(article.content);
 
     readerArticle.innerHTML = `
@@ -509,6 +810,14 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="reader-markdown-body" style="margin-top: 30px;">
         ${displayBodyHtml}
       </div>
+
+      ${isLive ? `
+      <!-- Live Transparency Note -->
+      <div style="margin-top: 40px; padding: 15px; background: rgba(4, 203, 194, 0.05); border: 1px solid rgba(4, 203, 194, 0.15); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+        <span class="live-pulse active" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
+        <span>This article was fetched live via the public DEV.to API on global developer trends.</span>
+      </div>
+      ` : ""}
     `;
   }
 
@@ -523,6 +832,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backBtnFooter) backBtnFooter.addEventListener("click", clearReaderUrlParam);
 
   // 4. SIDEBAR POLL WIDGET SYNC (Identical to app.js)
+  function getTrendingPollObject(allPolls) {
+    const trendPollTemplate = RC_TREND_POLLS[liveTrendingCategory] || RC_TREND_POLLS.Integration;
+    const existing = allPolls.find(p => p.id === trendPollTemplate.id);
+    if (existing) {
+      return existing;
+    } else {
+      if (rcDbMode === "firebase") {
+        rcDb.collection("polls").doc(trendPollTemplate.id).set(trendPollTemplate).catch(console.error);
+      } else {
+        const localPolls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
+        if (!localPolls.some(p => p.id === trendPollTemplate.id)) {
+          localPolls.push(trendPollTemplate);
+          localStorage.setItem("rc_polls", JSON.stringify(localPolls));
+        }
+      }
+      return trendPollTemplate;
+    }
+  }
+
   function populatePollSelector(polls, activeSelectEl) {
     if (!activeSelectEl) return;
     const currentVal = activeSelectEl.value;
@@ -530,7 +858,9 @@ document.addEventListener('DOMContentLoaded', () => {
     polls.forEach(poll => {
       const opt = document.createElement("option");
       opt.value = poll.id;
-      opt.textContent = poll.question.length > 50 ? poll.question.slice(0, 47) + "..." : poll.question;
+      
+      const isTrend = poll.id.startsWith("poll-trend-");
+      opt.textContent = isTrend ? `🔥 [Trend] ${poll.question.slice(0, 35)}...` : (poll.question.length > 50 ? poll.question.slice(0, 47) + "..." : poll.question);
       activeSelectEl.appendChild(opt);
     });
     if (currentVal && polls.some(p => p.id === currentVal)) {
@@ -559,9 +889,20 @@ document.addEventListener('DOMContentLoaded', () => {
             polls.push(data);
           });
           if (polls.length === 0) {
-            polls = RC_DEFAULT_POLLS;
+            polls = [...RC_DEFAULT_POLLS];
           }
-          if (activeSelect && activeSelect.children.length !== polls.length) {
+
+          if (liveFeedActive) {
+            const trendPoll = getTrendingPollObject(polls);
+            polls = [trendPoll, ...polls.filter(p => p.id !== trendPoll.id)];
+            if (activeSelect && !activeSelect.value.startsWith("poll-trend-") && !sessionStorage.getItem("rc_trend_poll_autoswitch")) {
+              activeSelect.value = trendPoll.id;
+              sessionStorage.setItem("rc_trend_poll_autoswitch", "true");
+            }
+          }
+
+          const expectedLength = polls.length;
+          if (activeSelect && activeSelect.children.length !== expectedLength) {
             populatePollSelector(polls, activeSelect);
             activeSelect.onchange = () => {
               renderActivePollWidget();
@@ -581,8 +922,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function fallbackLocalPolls(activeSelect, pollCard, pollForm, votedMsg, pollQuestionEl) {
-    const polls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
-    if (activeSelect && activeSelect.children.length !== polls.length) {
+    let polls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
+
+    if (liveFeedActive) {
+      const trendPoll = getTrendingPollObject(polls);
+      polls = JSON.parse(localStorage.getItem("rc_polls")) || RC_DEFAULT_POLLS;
+      polls = [trendPoll, ...polls.filter(p => p.id !== trendPoll.id)];
+      if (activeSelect && !activeSelect.value.startsWith("poll-trend-") && !sessionStorage.getItem("rc_trend_poll_autoswitch")) {
+        activeSelect.value = trendPoll.id;
+        sessionStorage.setItem("rc_trend_poll_autoswitch", "true");
+      }
+    }
+
+    const expectedLength = polls.length;
+    if (activeSelect && activeSelect.children.length !== expectedLength) {
       populatePollSelector(polls, activeSelect);
       activeSelect.onchange = () => {
         renderActivePollWidget();

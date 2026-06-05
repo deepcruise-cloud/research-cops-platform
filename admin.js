@@ -21,47 +21,51 @@ let activeUser = null;
 const DEFAULT_BLOGS = [
   {
     id: "blog-1",
-    title: "Automating ERP Integrations: Bridging Database Silos in Enterprise Environments",
-    category: "Integration",
+    title: "Agentic AI Orchestration: The Central Control Plane of 2026 Enterprise Workflows",
+    category: "Automation",
     readtime: "6 min read",
-    excerpt: "How custom middleware and automated sync routines eliminate manual invoicing errors, streamline data mapping, and reduce overhead by 75%.",
-    content: "ERP integrations represent one of the most critical backbones of modern B2B business operations. When records are siloed across isolated systems, team productivity drops and entry errors multiply.\n\n### Key Pillars of ERP Database Synchronization\n1. **Establish Secure API Middlewares**: Implement robust OAuth 2.0 validation checks to safeguard token requests.\n2. **Optimize Data Mappings**: Resolve discrepancies by setting strict primary key mapping routines.\n3. **Automate Invoice Reconciliations**: Establish hourly sync gates that query billing endpoints, run auditing algorithms, and log reports automatically.\n\nBy following this structured approach, enterprises can achieve complete data harmony and streamline operational speed.",
+    excerpt: "How autonomous agents with human-in-the-loop controls are replacing rigid rule-based scripts to coordinate complex B2B operations.",
+    content: "In 2026, enterprise workflow automation has moved far beyond simple task execution. Organizations are shifting from automating isolated tasks to implementing unified control planes that orchestrate end-to-end processes across hybrid cloud environments and legacy databases. The rise of Agentic AI is the defining trend of 2026. Task-specific AI agents, now integrated into 40% of enterprise software, are reasoning and making operational decisions within guardrails while preserving critical human-in-the-loop (HITL) checkpoints for compliance.",
     date: "May 2026",
     featured: false,
-    timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600"
   },
   {
     id: "blog-2",
-    title: "Workforce Optimization: Designing Next-Gen HRMS Workflows",
-    category: "Automation",
+    title: "Rethinking Database Sync: High-Performance GraphQL Middleware & Schema Mapping",
+    category: "Integration",
     readtime: "5 min read",
-    excerpt: "Strategies for automating employee onboarding, payroll allocations, and performance evaluations without database discrepancies.",
-    content: "Workforce optimization is no longer just about management—it is about technology. Siloed employee records, manual payroll calculation scripts, and disconnected onboarding spreadsheets slow down human resources.\n\n### Strategic Onboarding Flows\n* **Single-Point Dispatch**: Entering a new hire automatically maps profiles to payroll registers, active directories, and security rosters.\n* **Automated Escalation Logic**: Triggers custom notifications to coordinators when tasks linger in cue.\n* **Real-time Payroll Auditing**: Automated background checkpoints scan ledger registers to eliminate discrepancy flags before allocations execute.\n\nModern workflow configurations keep teams agile, reducing admin lifecycle delays.",
+    excerpt: "Techniques for connecting siloed legacy databases with modern SaaS endpoints using selective querying and schema-less integration.",
+    content: "Connecting legacy systems with modern SaaS tools represents a major challenge for growing enterprises. Traditionally, developers had to build rigid, custom DB-links and SQL extraction scripts that were expensive to maintain. In 2026, GraphQL gateways have emerged as the standard middleware layer for database sync. This architecture allows developers to run selective column queries and manage schemas dynamically, reducing API payload sizes by 65% and preventing integration discrepancies.",
     date: "April 2026",
     featured: false,
-    timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=600"
   },
   {
     id: "blog-3",
-    title: "Secure Middleware: Auditing Enterprise Database Sync Protocols",
+    title: "Governed Intelligence: Cryptographic Policy Checks and Audit Trails in HRMS Automation",
     category: "Security",
     readtime: "8 min read",
-    excerpt: "Establishing robust cryptographic security and token rotations across internal database integrations.",
-    content: "When synchronizing logs and operational data between external endpoints and main ERP clusters, establishing high-standard database security is critical.\n\n### Security Best Practices\n1. **Cryptographic Validation**: Hash sensitive variables using secure protocols prior to data synchronization checkpoints.\n2. **Dynamic Token Rotation**: Rotate API tokens dynamically and monitor endpoints for unauthorized access traces.\n3. **Role-Based Access Logs**: Configure custom permissions so only designated admin sessions can update sync settings.\n\nEnsuring strict compliance protections helps protect valuable operations from network breaches.",
+    excerpt: "Establishing strict role-based access logs and zero-knowledge encryption protocols across automated employee onboarding flows.",
+    content: "With AI agents and workflow scripts gaining increased authority over enterprise database systems, establishing proper governance has become a business risk priority. Credible automated HRMS platforms must embed audit trails and identity policy controls directly into their orchestration layer. This includes adopting zero-knowledge storage configurations and TLS 1.3 encryption protocols for employee profiles, protecting payroll allocations, document routing, and security rosters from data exposure.",
     date: "March 2026",
     featured: false,
-    timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=600"
   },
   {
     id: "blog-featured",
-    title: "The ROI of Automation: Eliminating Manual Reconciliations",
-    category: "Automation",
+    title: "Self-Optimizing Middleware: AI-Assisted Index Tuning in Legacy ERP Syncs",
+    category: "Database",
     readtime: "6 min read",
-    excerpt: "How enterprise automation platforms audit billing registers, match ledger logs, and minimize transaction processing delays.",
-    content: "Manual billing reconciliation is slow, expensive, and prone to user error. Automated ledger matching engines can scan registers, verify billing logs, and resolve discrepancies in seconds.\n\n### The Operations Advantage\n* **Ledger Auditing**: Match incoming ledgers against internal database invoices instantly.\n* **Discrepancy Flags**: Identify and report mismatch issues in real-time, preventing transaction delays.\n* **Automated Callbacks**: Trigger API webhooks to update dashboard metrics as soon as matching resolves.\n\nResearch COPS custom workflow connectors are engineered to automate operations directly across enterprise setups.",
+    excerpt: "How self-optimizing pipelines audit database queries, detect database latency spikes, and optimize queries automatically.",
+    content: "Manual database query indexing is slow and fails to scale with dynamic SaaS environments. Modern enterprise middleware incorporates self-optimizing pipelines that monitor queries in real-time. By applying AI-assisted index tuning, the system automatically detects slow query execution times across custom ERP syncs, modifying indexing strategies and improving database retrieval rates by up to 3.5x without human developer intervention.",
     date: "June 2026",
     featured: true,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600"
   }
 ];
 
@@ -72,7 +76,8 @@ const DEFAULT_NEWS = [
     category: "Platform",
     details: "Deployment of cross-register ledger matching engine reduces reconciliation cycles from days to under 15 minutes.",
     date: "June 2026",
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600"
   },
   {
     id: "news-2",
@@ -80,7 +85,8 @@ const DEFAULT_NEWS = [
     category: "Security",
     details: "Integration of automated token refresh sequences and role-based data views for secure database mapping.",
     date: "May 2026",
-    timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600"
   },
   {
     id: "news-3",
@@ -88,7 +94,8 @@ const DEFAULT_NEWS = [
     category: "Automation",
     details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
     date: "April 2026",
-    timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600"
   },
   {
     id: "news-4",
@@ -96,7 +103,8 @@ const DEFAULT_NEWS = [
     category: "Platform",
     details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
     date: "June 2026",
-    timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=600"
   },
   {
     id: "news-5",
@@ -104,7 +112,8 @@ const DEFAULT_NEWS = [
     category: "Database",
     details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
     date: "May 2026",
-    timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600"
   },
   {
     id: "news-6",
@@ -112,7 +121,8 @@ const DEFAULT_NEWS = [
     category: "Security",
     details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
     date: "April 2026",
-    timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000
+    timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000,
+    image: "https://images.unsplash.com/photo-1601597111158-2fceff270190?q=80&w=600"
   }
 ];
 
@@ -197,6 +207,7 @@ function setupLocalFallback(bannerEl) {
   // Migration check: Clear old market research content to allow new workflow/HRMS/ERP content to seed
   const legacyCheck = localStorage.getItem("rc_blogs");
   if (legacyCheck && (
+    !legacyCheck.includes("image") ||
     legacyCheck.includes("concept-testing") || 
     legacyCheck.includes("bot-intrusion") || 
     legacyCheck.includes("panelist") || 
@@ -638,6 +649,8 @@ function setupFormSubmissions() {
       const readtime = document.getElementById("blog-readtime").value.trim();
       const excerpt = document.getElementById("blog-excerpt").value.trim();
       const content = document.getElementById("blog-content").value.trim();
+      const imageEl = document.getElementById("blog-image");
+      const image = imageEl ? imageEl.value.trim() : "";
 
       const newBlog = {
         title,
@@ -645,6 +658,7 @@ function setupFormSubmissions() {
         readtime,
         excerpt,
         content,
+        image: image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600",
         date: getFormattedDate(),
         featured: false,
         timestamp: Date.now()
@@ -679,11 +693,14 @@ function setupFormSubmissions() {
       const title = document.getElementById("news-title").value.trim();
       const category = document.getElementById("news-category").value;
       const details = document.getElementById("news-details").value.trim();
+      const imageEl = document.getElementById("news-image");
+      const image = imageEl ? imageEl.value.trim() : "";
 
       const newNews = {
         title,
         category,
         details,
+        image: image || "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600",
         date: getFormattedDate(),
         timestamp: Date.now()
       };
