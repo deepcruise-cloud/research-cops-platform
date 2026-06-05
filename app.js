@@ -2011,24 +2011,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const demoCountrySelect = document.getElementById('demographic-country-select');
   if (demoCountrySelect) {
     const countryData = {
-      us: { feasibility: 95, label: "95% (High)", verticals: "B2B Tech, Healthcare HCPs, Finance", age: "52%", gender: "51% / 48%" },
-      uk: { feasibility: 92, label: "92% (High)", verticals: "Financial Services, Tech, Retail", age: "48%", gender: "52% / 47%" },
-      de: { feasibility: 88, label: "88% (High)", verticals: "Automotive, Engineering, IT Decisions", age: "45%", gender: "50% / 49%" },
-      fr: { feasibility: 86, label: "86% (High)", verticals: "Luxury Goods, Automotive, Media", age: "46%", gender: "53% / 46%" },
-      ca: { feasibility: 93, label: "93% (High)", verticals: "Natural Resources, Tech, Banking", age: "50%", gender: "51% / 48%" },
-      au: { feasibility: 32, label: "32% (Low)", verticals: "Services, Healthcare, Tech", age: "49%", gender: "52% / 47%" },
-      in: { feasibility: 94, label: "94% (High)", verticals: "Software Development, IT Decisions, Mobile Profiles", age: "68%", gender: "45% / 54%" },
-      sg: { feasibility: 82, label: "82% (Medium-High)", verticals: "Wealth Management, Tech, Shipping", age: "55%", gender: "49% / 50%" },
-      jp: { feasibility: 87, label: "87% (High)", verticals: "Electronics, Manufacturing, Automotive", age: "38%", gender: "48% / 51%" },
-      br: { feasibility: 90, label: "90% (High)", verticals: "Agriculture, Finance, Mobile Gamers", age: "60%", gender: "53% / 46%" },
-      cn: { feasibility: 25, label: "25% (Low)", verticals: "Manufacturing, Tech, Retail", age: "48%", gender: "49% / 51%" },
-      es: { feasibility: 84, label: "84% (Medium-High)", verticals: "Tourism, Retail, Renewable Energy", age: "44%", gender: "51% / 48%" },
-      it: { feasibility: 83, label: "83% (Medium-High)", verticals: "Manufacturing, Luxury, Retail", age: "42%", gender: "50% / 49%" },
-      ae: { feasibility: 34, label: "34% (Low)", verticals: "Real Estate, Finance, Tech", age: "58%", gender: "40% / 59%" },
-      sa: { feasibility: 28, label: "28% (Low)", verticals: "Energy, Construction, Public Sector", age: "62%", gender: "42% / 57%" },
-      za: { feasibility: 80, label: "80% (Medium-High)", verticals: "Mining, Banking, Telecommunications", age: "57%", gender: "52% / 47%" },
-      mx: { feasibility: 86, label: "86% (High)", verticals: "Manufacturing, Auto, Tech", age: "61%", gender: "52% / 47%" },
-      kr: { feasibility: 85, label: "85% (High)", verticals: "Consumer Tech, Semiconductor, Auto", age: "47%", gender: "49% / 50%" }
+      us: { feasibility: 95, label: "95% (High)", verticals: "B2B Tech, Healthcare HCPs, Finance, Shoppers", age: "52%", gender: "51% / 48%" },
+      uk: { feasibility: 92, label: "92% (High)", verticals: "Financial Services, Tech, Retail, Beverage Drinkers", age: "48%", gender: "52% / 47%" },
+      de: { feasibility: 88, label: "88% (High)", verticals: "Automotive, Engineering, IT Decisions, Tobacco Consumers", age: "45%", gender: "50% / 49%" },
+      fr: { feasibility: 86, label: "86% (High)", verticals: "Luxury Goods, Automotive, Media, Wine Drinkers", age: "46%", gender: "53% / 46%" },
+      ca: { feasibility: 93, label: "93% (High)", verticals: "Natural Resources, Tech, Banking, Shoppers", age: "50%", gender: "51% / 48%" },
+      au: { feasibility: 32, label: "32% (Low)", verticals: "Services, Healthcare, Tech, Retail Shoppers", age: "49%", gender: "52% / 47%" },
+      in: { feasibility: 94, label: "94% (High)", verticals: "Software Development, IT Decisions, Mobile Profiles, Tech Adopters", age: "68%", gender: "45% / 54%" },
+      sg: { feasibility: 82, label: "82% (Medium-High)", verticals: "Wealth Management, Tech, Shipping, B2B Influencers", age: "55%", gender: "49% / 50%" },
+      jp: { feasibility: 87, label: "87% (High)", verticals: "Electronics, Manufacturing, Automotive, Gamers", age: "38%", gender: "48% / 51%" },
+      br: { feasibility: 90, label: "90% (High)", verticals: "Agriculture, Finance, Mobile Gamers, Shoppers", age: "60%", gender: "53% / 46%" },
+      cn: { feasibility: 25, label: "25% (Low)", verticals: "Manufacturing, Tech, Retail, Mobile Consumers", age: "48%", gender: "49% / 51%" },
+      es: { feasibility: 84, label: "84% (Medium-High)", verticals: "Tourism, Retail, Renewable Energy, Lifestyle", age: "44%", gender: "51% / 48%" },
+      it: { feasibility: 83, label: "83% (Medium-High)", verticals: "Manufacturing, Luxury, Retail, Wine Collectors", age: "42%", gender: "50% / 49%" },
+      ae: { feasibility: 34, label: "34% (Low)", verticals: "Real Estate, Finance, Tech, B2B Decision Makers", age: "58%", gender: "40% / 59%" },
+      sa: { feasibility: 28, label: "28% (Low)", verticals: "Energy, Construction, Public Sector, Mobile Consumers", age: "62%", gender: "42% / 57%" },
+      za: { feasibility: 80, label: "80% (Medium-High)", verticals: "Mining, Banking, Telecommunications, Retail Shoppers", age: "57%", gender: "52% / 47%" },
+      mx: { feasibility: 86, label: "86% (High)", verticals: "Manufacturing, Auto, Tech, Shoppers", age: "61%", gender: "52% / 47%" },
+      kr: { feasibility: 85, label: "85% (High)", verticals: "Consumer Tech, Semiconductor, Auto, Gamers", age: "47%", gender: "49% / 50%" }
     };
 
     const dFeasPct = document.getElementById('demo-country-feasibility-pct');
