@@ -287,8 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
       feasibilityScore = 40;
     }
 
-    // Adjust for country scarcity
-    if (countryMultiplier > 1.05) {
+    // Adjust for country scarcity / niche markets (AU, CN, Middle East)
+    if (country === 'au' || country === 'cn' || country === 'ae' || country === 'sa') {
+      feasibilityScore -= 45;
+    } else if (countryMultiplier > 1.05) {
       feasibilityScore -= 10;
     } else if (countryMultiplier < 0.8) {
       feasibilityScore += 5;
@@ -2009,26 +2011,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const demoCountrySelect = document.getElementById('demographic-country-select');
   if (demoCountrySelect) {
     const countryData = {
-      us: { size: "840,000+", feasibility: 95, label: "95% (High)", verticals: "B2B Tech, Healthcare HCPs, Finance", age: "52%", gender: "51% / 48%" },
-      uk: { size: "180,000+", feasibility: 92, label: "92% (High)", verticals: "Financial Services, Tech, Retail", age: "48%", gender: "52% / 47%" },
-      de: { size: "140,000+", feasibility: 88, label: "88% (High)", verticals: "Automotive, Engineering, IT Decisions", age: "45%", gender: "50% / 49%" },
-      fr: { size: "120,000+", feasibility: 86, label: "86% (High)", verticals: "Luxury Goods, Automotive, Media", age: "46%", gender: "53% / 46%" },
-      ca: { size: "95,000+", feasibility: 93, label: "93% (High)", verticals: "Natural Resources, Tech, Banking", age: "50%", gender: "51% / 48%" },
-      au: { size: "85,000+", feasibility: 91, label: "91% (High)", verticals: "Services, Healthcare, Tech", age: "49%", gender: "52% / 47%" },
-      in: { size: "340,000+", feasibility: 94, label: "94% (High)", verticals: "Software Development, IT Decisions, Mobile Profiles", age: "68%", gender: "45% / 54%" },
-      sg: { size: "40,000+", feasibility: 82, label: "82% (Medium-High)", verticals: "Wealth Management, Tech, Shipping", age: "55%", gender: "49% / 50%" },
-      jp: { size: "110,000+", feasibility: 87, label: "87% (High)", verticals: "Electronics, Manufacturing, Automotive", age: "38%", gender: "48% / 51%" },
-      br: { size: "150,000+", feasibility: 90, label: "90% (High)", verticals: "Agriculture, Finance, Mobile Gamers", age: "60%", gender: "53% / 46%" },
-      es: { size: "70,000+", feasibility: 84, label: "84% (Medium-High)", verticals: "Tourism, Retail, Renewable Energy", age: "44%", gender: "51% / 48%" },
-      it: { size: "65,000+", feasibility: 83, label: "83% (Medium-High)", verticals: "Manufacturing, Luxury, Retail", age: "42%", gender: "50% / 49%" },
-      ae: { size: "35,000+", feasibility: 78, label: "78% (Medium-High)", verticals: "Real Estate, Finance, Tech", age: "58%", gender: "40% / 59%" },
-      sa: { size: "45,000+", feasibility: 75, label: "75% (Medium-High)", verticals: "Energy, Construction, Public Sector", age: "62%", gender: "42% / 57%" },
-      za: { size: "50,000+", feasibility: 80, label: "80% (Medium-High)", verticals: "Mining, Banking, Telecommunications", age: "57%", gender: "52% / 47%" },
-      mx: { size: "90,000+", feasibility: 86, label: "86% (High)", verticals: "Manufacturing, Auto, Tech", age: "61%", gender: "52% / 47%" },
-      kr: { size: "75,000+", feasibility: 85, label: "85% (High)", verticals: "Consumer Tech, Semiconductor, Auto", age: "47%", gender: "49% / 50%" }
+      us: { feasibility: 95, label: "95% (High)", verticals: "B2B Tech, Healthcare HCPs, Finance", age: "52%", gender: "51% / 48%" },
+      uk: { feasibility: 92, label: "92% (High)", verticals: "Financial Services, Tech, Retail", age: "48%", gender: "52% / 47%" },
+      de: { feasibility: 88, label: "88% (High)", verticals: "Automotive, Engineering, IT Decisions", age: "45%", gender: "50% / 49%" },
+      fr: { feasibility: 86, label: "86% (High)", verticals: "Luxury Goods, Automotive, Media", age: "46%", gender: "53% / 46%" },
+      ca: { feasibility: 93, label: "93% (High)", verticals: "Natural Resources, Tech, Banking", age: "50%", gender: "51% / 48%" },
+      au: { feasibility: 32, label: "32% (Low)", verticals: "Services, Healthcare, Tech", age: "49%", gender: "52% / 47%" },
+      in: { feasibility: 94, label: "94% (High)", verticals: "Software Development, IT Decisions, Mobile Profiles", age: "68%", gender: "45% / 54%" },
+      sg: { feasibility: 82, label: "82% (Medium-High)", verticals: "Wealth Management, Tech, Shipping", age: "55%", gender: "49% / 50%" },
+      jp: { feasibility: 87, label: "87% (High)", verticals: "Electronics, Manufacturing, Automotive", age: "38%", gender: "48% / 51%" },
+      br: { feasibility: 90, label: "90% (High)", verticals: "Agriculture, Finance, Mobile Gamers", age: "60%", gender: "53% / 46%" },
+      cn: { feasibility: 25, label: "25% (Low)", verticals: "Manufacturing, Tech, Retail", age: "48%", gender: "49% / 51%" },
+      es: { feasibility: 84, label: "84% (Medium-High)", verticals: "Tourism, Retail, Renewable Energy", age: "44%", gender: "51% / 48%" },
+      it: { feasibility: 83, label: "83% (Medium-High)", verticals: "Manufacturing, Luxury, Retail", age: "42%", gender: "50% / 49%" },
+      ae: { feasibility: 34, label: "34% (Low)", verticals: "Real Estate, Finance, Tech", age: "58%", gender: "40% / 59%" },
+      sa: { feasibility: 28, label: "28% (Low)", verticals: "Energy, Construction, Public Sector", age: "62%", gender: "42% / 57%" },
+      za: { feasibility: 80, label: "80% (Medium-High)", verticals: "Mining, Banking, Telecommunications", age: "57%", gender: "52% / 47%" },
+      mx: { feasibility: 86, label: "86% (High)", verticals: "Manufacturing, Auto, Tech", age: "61%", gender: "52% / 47%" },
+      kr: { feasibility: 85, label: "85% (High)", verticals: "Consumer Tech, Semiconductor, Auto", age: "47%", gender: "49% / 50%" }
     };
 
-    const dSize = document.getElementById('demo-country-size');
     const dFeasPct = document.getElementById('demo-country-feasibility-pct');
     const dFeasBar = document.getElementById('demo-country-feasibility-bar');
     const dVerts = document.getElementById('demo-country-verticals');
@@ -2040,7 +2042,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const d = countryData[val];
       if (!d) return;
 
-      dSize.textContent = d.size;
       dFeasPct.textContent = d.label;
       dFeasBar.style.width = `${d.feasibility}%`;
       dVerts.textContent = d.verticals;
@@ -2052,9 +2053,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (d.feasibility >= 85) {
         dFeasPct.classList.add('text-emerald');
         dFeasBar.classList.add('bg-emerald');
-      } else {
+      } else if (d.feasibility >= 45) {
         dFeasPct.classList.add('text-yellow');
         dFeasBar.classList.add('bg-yellow');
+      } else {
+        dFeasPct.classList.add('text-red');
+        dFeasBar.classList.add('bg-red');
       }
     };
 
