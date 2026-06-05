@@ -1252,7 +1252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 6. SupportGenie Widget Actions (Identical to app.js chatbot layout triggers)
+  // 6. Support Genie Widget Actions (Identical to app.js chatbot layout triggers)
   const genieTrigger = document.getElementById('support-genie-trigger');
   const genieBox = document.getElementById('support-genie-box');
   const genieClose = document.getElementById('chatbox-close');
@@ -1263,6 +1263,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (genieTrigger && genieBox && genieClose) {
     let chatOnboarded = false;
     let typingIndicatorElement = null;
+
+    const chatbotIcons = {
+      cpi: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+      workflow: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+      erp: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+      quote: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`
+    };
+
+    const genieAvatarSvg = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 17c4.5 0 8-3 8-6s-3.5-5-8-5-8 2-8 5 3.5 6 8 6z"></path>
+        <path d="M20 11c2.5-.5 3.5 1.5 2 2.5-1.8 1.2-3.5.5-4 .2"></path>
+        <path d="M4 11c-2 0-3-1.5-3-3s2-2 3.5-1c1.2.8 1.5 2.2 1.5 3.5"></path>
+        <path d="M9 17v2h6v-2"></path>
+        <path d="M7 19h10"></path>
+        <path d="M21.5 8c0-1.5 1-2.5.5-3.5-.8.8-.5 2-.5 3.5z"></path>
+      </svg>
+    `;
 
     const showTypingIndicator = () => {
       if (typingIndicatorElement || !chatLogs) return;
@@ -1284,7 +1302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const wrapper = document.createElement('div');
       wrapper.className = 'chat-message-wrapper bot-wrapper';
       wrapper.innerHTML = `
-        <div class="chat-message-avatar"><img src="support_genie_avatar.png" alt="SupportGenie" class="genie-avatar-img"></div>
+        <div class="chat-message-avatar">${genieAvatarSvg}</div>
         <div class="chat-message bot-msg">
           <p>${text}</p>
         </div>
@@ -1316,7 +1334,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         hideTypingIndicator();
-        addBotMessage("Hello! I am <strong>SupportGenie</strong>, your virtual assistant. How can I help you today?");
+        addBotMessage("Hello! I am <strong>Support Genie</strong>, your virtual assistant. How can I help you today?");
         
         showTypingIndicator();
         setTimeout(() => {
@@ -1327,17 +1345,20 @@ document.addEventListener('DOMContentLoaded', () => {
           const chipsContainer = document.createElement('div');
           chipsContainer.className = 'chat-chips-container';
           const chipsData = [
-            { label: "📊 CPI Estimate & Calculator", chip: "pricing" },
-            { label: "👥 Workflow Automation Hub", chip: "workflow" },
-            { label: "🔒 Enterprise ERP & Integrations", chip: "integrations" },
-            { label: "✉ Get Custom Quote & Demo", chip: "quote" }
+            { label: "CPI Estimate & Calculator", icon: "cpi", chip: "pricing" },
+            { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
+            { label: "Enterprise ERP & Integrations", icon: "erp", chip: "integrations" },
+            { label: "Get Custom Quote & Demo", icon: "quote", chip: "quote" }
           ];
 
           chipsData.forEach(data => {
             const btn = document.createElement('button');
             btn.className = 'chat-chip';
             btn.setAttribute('data-chip', data.chip);
-            btn.textContent = data.label;
+            
+            const svgIcon = chatbotIcons[data.icon] || '';
+            btn.innerHTML = `${svgIcon}<span>${data.label}</span>`;
+            
             btn.addEventListener('click', () => {
               handleChipClick(btn);
             });
@@ -1412,7 +1433,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle Quick Reply chips
     const handleChipClick = (chip) => {
-      const text = chip.textContent;
+      const spanEl = chip.querySelector('span');
+      const text = spanEl ? spanEl.textContent.trim() : chip.textContent.trim();
       addUsrMessage(text);
       
       showTypingIndicator();

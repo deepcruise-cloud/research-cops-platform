@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   // ----------------------------------------------------
-  // 9. SupportGenie Chatbot Core Logic (Multi-turn State Machine)
+  // 9. Support Genie Chatbot Core Logic (Multi-turn State Machine)
   // ----------------------------------------------------
   const chatTrigger = document.getElementById('support-genie-trigger');
   const chatBox = document.getElementById('support-genie-box');
@@ -789,17 +789,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       hideTypingIndicator();
-      appendChatMessage("Hello! I am <strong>SupportGenie</strong>, your virtual assistant. How can I help you today?");
+      appendChatMessage("Hello! I am <strong>Support Genie</strong>, your virtual assistant. How can I help you today?");
       
       showTypingIndicator();
       setTimeout(() => {
         hideTypingIndicator();
         appendChatMessage("Select a quick topic below or type your question:");
         renderQuickChips([
-          { label: "📊 CPI Estimate & Calculator", action: "cpi-start" },
-          { label: "👥 Workflow Automation Hub", action: "wf-start" },
-          { label: "🔒 ERP Systems Sync Audit", action: "int-start" },
-          { label: "✉ Get Custom Quote & Demo", action: "go-quote" }
+          { label: "CPI Estimate & Calculator", icon: "cpi", action: "cpi-start" },
+          { label: "Workflow Automation Hub", icon: "workflow", action: "wf-start" },
+          { label: "ERP Systems Sync Audit", icon: "erp", action: "int-start" },
+          { label: "Get Custom Quote & Demo", icon: "quote", action: "go-quote" }
         ]);
       }, 1200);
     }, 1000);
@@ -862,6 +862,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
  
+  const chatbotIcons = {
+    cpi: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+    workflow: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+    erp: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+    quote: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+    back: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>`,
+    b2b: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="16"></line><line x1="15" y1="22" x2="15" y2="16"></line><line x1="9" y1="16" x2="15" y2="16"></line><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M12 6h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01"></path></svg>`,
+    healthcare: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"></path><path d="M9 22V12h6v10"></path><path d="M12 5V2m-2 0h4"></path><path d="M12 11v6m-3-3h6"></path></svg>`,
+    consumer: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`,
+    csuite: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"></path></svg>`,
+    globe: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+    refresh: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>`,
+    finance: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>`,
+    coach: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2l-7 20-4-9-9-4 20-7z"></path><line x1="22" y1="2" x2="11" y2="13"></line></svg>`,
+    api: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 15v5a2 2 0 0 0 4 0v-5a3 3 0 0 1 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2V10z"></path><line x1="12" y1="2" x2="12" y2="4"></line></svg>`,
+    db: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>`,
+    skip: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`
+  };
+
+  const genieAvatarSvg = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 17c4.5 0 8-3 8-6s-3.5-5-8-5-8 2-8 5 3.5 6 8 6z"></path>
+      <path d="M20 11c2.5-.5 3.5 1.5 2 2.5-1.8 1.2-3.5.5-4 .2"></path>
+      <path d="M4 11c-2 0-3-1.5-3-3s2-2 3.5-1c1.2.8 1.5 2.2 1.5 3.5"></path>
+      <path d="M9 17v2h6v-2"></path>
+      <path d="M7 19h10"></path>
+      <path d="M21.5 8c0-1.5 1-2.5.5-3.5-.8.8-.5 2-.5 3.5z"></path>
+    </svg>
+  `;
+
   function appendChatMessage(text, sender = 'bot') {
     if (!chatMessagesLog) return;
     
@@ -871,7 +901,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sender === 'bot') {
       const avatarDiv = document.createElement('div');
       avatarDiv.className = 'chat-message-avatar';
-      avatarDiv.innerHTML = '<img src="support_genie_avatar.png" alt="SupportGenie" class="genie-avatar-img">';
+      avatarDiv.innerHTML = genieAvatarSvg;
       msgWrapper.appendChild(avatarDiv);
     }
     
@@ -895,7 +925,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const avatarDiv = document.createElement('div');
     avatarDiv.className = 'chat-message-avatar';
-    avatarDiv.innerHTML = '<img src="support_genie_avatar.png" alt="SupportGenie" class="genie-avatar-img">';
+    avatarDiv.innerHTML = genieAvatarSvg;
     msgWrapper.appendChild(avatarDiv);
 
     const cardDiv = document.createElement('div');
@@ -946,7 +976,10 @@ document.addEventListener('DOMContentLoaded', () => {
     chipsList.forEach(chip => {
       const btn = document.createElement('button');
       btn.className = 'chat-chip';
-      btn.textContent = chip.label;
+      
+      const svgIcon = chatbotIcons[chip.icon] || '';
+      btn.innerHTML = `${svgIcon}<span>${chip.label}</span>`;
+      
       btn.addEventListener('click', () => {
         appendChatMessage(chip.label, 'user');
         handleStateTransition(chip.action);
@@ -1032,10 +1065,10 @@ document.addEventListener('DOMContentLoaded', () => {
           
           appendChatMessage("Sure, let's head back. What general area would you like to inquire about?");
           renderQuickChips([
-            { label: "📊 CPI Estimate & Calculator", action: "cpi-start" },
-            { label: "👥 Workflow Automation Hub", action: "wf-start" },
-            { label: "🔒 ERP Systems Sync Audit", action: "int-start" },
-            { label: "✉ Get Custom Quote & Demo", action: "go-quote" }
+            { label: "CPI Estimate & Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Workflow Automation Hub", icon: "workflow", action: "wf-start" },
+            { label: "ERP Systems Sync Audit", icon: "erp", action: "int-start" },
+            { label: "Get Custom Quote & Demo", icon: "quote", action: "go-quote" }
           ]);
           break;
  
@@ -1044,11 +1077,11 @@ document.addEventListener('DOMContentLoaded', () => {
           chatState.step = 'cpi-panel';
           appendChatMessage("Our **Feasibility Engine** calculates sampling parameters. First, which panel audience are you looking to study?");
           renderQuickChips([
-            { label: "🏢 B2B Professionals", action: "cpi-p-b2b" },
-            { label: "🏥 Healthcare & HCPs", action: "cpi-p-healthcare" },
-            { label: "🛍 Consumers", action: "cpi-p-consumer" },
-            { label: "👑 C-Suite / Executives", action: "cpi-p-csuite" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "B2B Professionals", icon: "b2b", action: "cpi-p-b2b" },
+            { label: "Healthcare & HCPs", icon: "healthcare", action: "cpi-p-healthcare" },
+            { label: "Consumers", icon: "consumer", action: "cpi-p-consumer" },
+            { label: "C-Suite / Executives", icon: "csuite", action: "cpi-p-csuite" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1060,11 +1093,11 @@ document.addEventListener('DOMContentLoaded', () => {
           chatState.step = 'cpi-region';
           appendChatMessage("Got it. Next, what is your target geographic region for the panel recruitment?");
           renderQuickChips([
-            { label: "🇺🇸 North America", action: "cpi-r-na" },
-            { label: "🇪🇺 Europe", action: "cpi-r-eu" },
-            { label: "🌏 APAC", action: "cpi-r-apac" },
-            { label: "🌍 LATAM & MEA", action: "cpi-r-latam" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "North America", icon: "globe", action: "cpi-r-na" },
+            { label: "Europe", icon: "globe", action: "cpi-r-eu" },
+            { label: "APAC", icon: "globe", action: "cpi-r-apac" },
+            { label: "LATAM & MEA", icon: "globe", action: "cpi-r-latam" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1081,7 +1114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: "500 Completes", action: "cpi-s-500" },
             { label: "1,000 Completes", action: "cpi-s-1000" },
             { label: "2,500 Completes", action: "cpi-s-2500" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1099,7 +1132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: "15 Minutes", action: "cpi-l-15" },
             { label: "20 Minutes", action: "cpi-l-20" },
             { label: "30 Minutes", action: "cpi-l-30" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1127,9 +1160,9 @@ document.addEventListener('DOMContentLoaded', () => {
           
           appendChatMessage("Would you like to submit this estimate as an official quote request directly to **Info-team@researchcops.com**?");
           renderQuickChips([
-            { label: "✉ Submit Estimate Request", action: "trigger-submit-flow" },
-            { label: "🔄 Recalculate", action: "cpi-start" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Submit Estimate Request", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Recalculate", icon: "refresh", action: "cpi-start" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1138,11 +1171,11 @@ document.addEventListener('DOMContentLoaded', () => {
           chatState.step = 'wf-solution';
           appendChatMessage("We design custom automated pipelines that link time-tracking, billing, CRM hubs, and ERPs. Which solution suite would you like to explore?");
           renderQuickChips([
-            { label: "👥 HR & Onboarding (HRMS/Payroll)", action: "wf-s-hr" },
-            { label: "💳 Financial Operations", action: "wf-s-finance" },
-            { label: "📊 Executive Analytics", action: "wf-s-analytics" },
-            { label: "🚀 Smart Coach Optimizer", action: "wf-s-coach" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "HR & Onboarding (HRMS/Payroll)", icon: "workflow", action: "wf-s-hr" },
+            { label: "Financial Operations", icon: "finance", action: "wf-s-finance" },
+            { label: "Executive Analytics", icon: "cpi", action: "wf-s-analytics" },
+            { label: "Smart Coach Optimizer", icon: "coach", action: "wf-s-coach" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1164,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: "Mid-Market (100-1000 employees)", action: "wf-sc-mid" },
             { label: "Large Enterprise (1000-4000 employees)", action: "wf-sc-large" },
             { label: "Global/BPO Scale (4000+ employees)", action: "wf-sc-bpo" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1182,9 +1215,9 @@ document.addEventListener('DOMContentLoaded', () => {
           chatState.step = 'wf-integration';
           appendChatMessage("Final question: Do you need to sync this workflow with a central enterprise ERP system database?");
           renderQuickChips([
-            { label: "🔌 Standalone / Custom REST API", action: "wf-i-api" },
-            { label: "💾 Enterprise ERP Sync (Parallel Sync)", action: "wf-i-erp" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Standalone / Custom REST API", icon: "api", action: "wf-i-api" },
+            { label: "Enterprise ERP Sync (Parallel Sync)", icon: "db", action: "wf-i-erp" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1210,9 +1243,9 @@ document.addEventListener('DOMContentLoaded', () => {
  
           appendChatMessage("Would you like to submit this proposal as a demo request directly to **Info-team@researchcops.com**?");
           renderQuickChips([
-            { label: "✉ Submit Demo Request", action: "trigger-submit-flow" },
-            { label: "🔄 Start Over", action: "wf-start" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Submit Demo Request", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Start Over", icon: "refresh", action: "wf-start" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1225,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: "Mid-Market (100-1000 employees)", action: "int-sc-mid" },
             { label: "Large Enterprise (1000-4000 employees)", action: "int-sc-large" },
             { label: "Global/BPO Scale (4000+ employees)", action: "int-sc-bpo" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1252,9 +1285,9 @@ document.addEventListener('DOMContentLoaded', () => {
  
           appendChatMessage("Would you like to request an integration feasibility audit with our developers at **Info-team@researchcops.com**?");
           renderQuickChips([
-            { label: "✉ Request ERP Sync Audit", action: "trigger-submit-flow" },
-            { label: "🔄 Start Over", action: "int-start" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Request ERP Sync Audit", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Start Over", icon: "refresh", action: "int-start" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1263,8 +1296,8 @@ document.addEventListener('DOMContentLoaded', () => {
           chatState.step = 'quote-confirm';
           appendChatMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like me to raise a general proposal request to **Info-team@researchcops.com**?");
           renderQuickChips([
-            { label: "✉ Request Proposal", action: "trigger-submit-flow" },
-            { label: "↩ Back to Main Menu", action: "go-main" }
+            { label: "Request Proposal", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
 
@@ -1310,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hideTypingIndicator();
       appendChatMessage("Got it. Lastly, what is your **Phone Number**? (Or type 'skip' if you prefer not to share)");
       renderQuickChips([
-        { label: "⏭ Skip Phone Number", action: "skip-phone" }
+        { label: "Skip Phone Number", icon: "skip", action: "skip-phone" }
       ]);
     }, 800);
   }
@@ -1390,7 +1423,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (formMessage) {
-        formMessage.value = `Submitted via chatbot SupportGenie:\n${summaryText.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '')}`;
+        formMessage.value = `Submitted via chatbot Support Genie:\n${summaryText.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '')}`;
       }
 
       // Reset state variables
@@ -1405,8 +1438,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Offer new session options
       renderQuickChips([
-        { label: "🔄 Start New Session", action: "go-main" },
-        { label: "↩ Back to Main Menu", action: "go-main" }
+        { label: "Start New Session", icon: "refresh", action: "go-main" },
+        { label: "Back to Main Menu", icon: "back", action: "go-main" }
       ]);
       
     }, 1500);
@@ -1437,10 +1470,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         appendChatMessage("I want to make sure you get the exact answer! You can select one of the core categories below or type a query about **pricing**, **workflow automation (HRMS)**, or **database ERP integrations**.");
         renderQuickChips([
-          { label: "📊 CPI Estimate & Calculator", action: "cpi-start" },
-          { label: "👥 Workflow Automation Hub", action: "wf-start" },
-          { label: "🔒 ERP Systems Sync Audit", action: "int-start" },
-          { label: "✉ Get Custom Quote & Demo", action: "go-quote" }
+          { label: "CPI Estimate & Calculator", icon: "cpi", action: "cpi-start" },
+          { label: "Workflow Automation Hub", icon: "workflow", action: "wf-start" },
+          { label: "ERP Systems Sync Audit", icon: "erp", action: "int-start" },
+          { label: "Get Custom Quote & Demo", icon: "quote", action: "go-quote" }
         ]);
       }
     }, 1000);
@@ -1450,7 +1483,8 @@ document.addEventListener('DOMContentLoaded', () => {
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       const chipKey = chip.getAttribute('data-chip');
-      const chipText = chip.textContent;
+      const spanEl = chip.querySelector('span');
+      const chipText = spanEl ? spanEl.textContent.trim() : chip.textContent.trim();
       
       appendChatMessage(chipText, 'user');
       
