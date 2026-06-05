@@ -1261,13 +1261,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatLogs = document.getElementById('chatbox-messages');
 
   if (genieTrigger && genieBox && genieClose) {
-    genieTrigger.addEventListener('click', () => {
-      genieBox.classList.add('active');
-    });
+    let chatOnboarded = false;
+    let typingIndicatorElement = null;
 
-    genieClose.addEventListener('click', () => {
-      genieBox.classList.remove('active');
-    });
+    const showTypingIndicator = () => {
+      if (typingIndicatorElement || !chatLogs) return;
+      typingIndicatorElement = document.createElement('div');
+      typingIndicatorElement.className = 'typing-indicator';
+      typingIndicatorElement.innerHTML = '<span></span><span></span><span></span>';
+      chatLogs.appendChild(typingIndicatorElement);
+      chatLogs.scrollTop = chatLogs.scrollHeight;
+    };
+   
+    const hideTypingIndicator = () => {
+      if (typingIndicatorElement && chatLogs) {
+        chatLogs.removeChild(typingIndicatorElement);
+        typingIndicatorElement = null;
+      }
+    };
 
     const addBotMessage = (text) => {
       const wrapper = document.createElement('div');
@@ -1294,6 +1305,92 @@ document.addEventListener('DOMContentLoaded', () => {
       chatLogs.scrollTop = chatLogs.scrollHeight;
     };
 
+    const triggerChatOnboarding = () => {
+      if (chatOnboarded) return;
+      chatOnboarded = true;
+
+      // Clear the container
+      chatLogs.innerHTML = '';
+
+      showTypingIndicator();
+
+      setTimeout(() => {
+        hideTypingIndicator();
+        addBotMessage("Hello! I am <strong>SupportGenie</strong>, your virtual assistant. How can I help you today?");
+        
+        showTypingIndicator();
+        setTimeout(() => {
+          hideTypingIndicator();
+          addBotMessage("Select a quick topic below or type your question:");
+          
+          // Render chips dynamically
+          const chipsContainer = document.createElement('div');
+          chipsContainer.className = 'chat-chips-container';
+          const chipsData = [
+            { label: "📊 CPI Estimate & Calculator", chip: "pricing" },
+            { label: "👥 Workflow Automation Hub", chip: "workflow" },
+            { label: "🔒 Enterprise ERP & Integrations", chip: "integrations" },
+            { label: "✉ Get Custom Quote & Demo", chip: "quote" }
+          ];
+
+          chipsData.forEach(data => {
+            const btn = document.createElement('button');
+            btn.className = 'chat-chip';
+            btn.setAttribute('data-chip', data.chip);
+            btn.textContent = data.label;
+            btn.addEventListener('click', () => {
+              handleChipClick(btn);
+            });
+            chipsContainer.appendChild(btn);
+          });
+          chatLogs.appendChild(chipsContainer);
+          chatLogs.scrollTop = chatLogs.scrollHeight;
+        }, 1200);
+      }, 1000);
+    };
+
+    // Proactive Welcome Bubble
+    const welcomeBubble = document.getElementById('genie-welcome-bubble');
+    const welcomeClose = document.getElementById('welcome-bubble-close');
+
+    if (welcomeBubble && welcomeClose) {
+      setTimeout(() => {
+        const hasClosed = sessionStorage.getItem('genie_welcome_closed') === 'true';
+        const isChatActive = genieBox.classList.contains('active');
+        if (!hasClosed && !isChatActive) {
+          welcomeBubble.classList.add('active');
+        }
+      }, 4000);
+
+      welcomeClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        welcomeBubble.classList.remove('active');
+        sessionStorage.setItem('genie_welcome_closed', 'true');
+      });
+
+      welcomeBubble.addEventListener('click', (e) => {
+        welcomeBubble.classList.remove('active');
+        sessionStorage.setItem('genie_welcome_closed', 'true');
+        genieBox.classList.add('active');
+        triggerChatOnboarding();
+      });
+    }
+
+    genieTrigger.addEventListener('click', () => {
+      if (welcomeBubble) welcomeBubble.classList.remove('active');
+      sessionStorage.setItem('genie_welcome_closed', 'true');
+      
+      const isOpening = !genieBox.classList.contains('active');
+      genieBox.classList.toggle('active');
+      if (isOpening) {
+        triggerChatOnboarding();
+      }
+    });
+
+    genieClose.addEventListener('click', () => {
+      genieBox.classList.remove('active');
+    });
+
     if (chatForm && chatInput) {
       chatForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1303,29 +1400,40 @@ document.addEventListener('DOMContentLoaded', () => {
         addUsrMessage(msg);
         chatInput.value = '';
 
+        showTypingIndicator();
+
         // Standard auto response
         setTimeout(() => {
+          hideTypingIndicator();
           addBotMessage("Thank you for your message! Our bidding and technical teams will review your request. For immediate quotes, please use our CPI Estimator on the homepage.");
-        }, 1000);
+        }, 1200);
       });
     }
 
     // Handle Quick Reply chips
-    const chips = document.querySelectorAll('.chat-chip');
-    chips.forEach(chip => {
+    const handleChipClick = (chip) => {
+      const text = chip.textContent;
+      addUsrMessage(text);
+      
+      showTypingIndicator();
+
+      setTimeout(() => {
+        hideTypingIndicator();
+        const chipType = chip.getAttribute('data-chip');
+        if (chipType === 'pricing') {
+          addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page to redirect to our CPI calculator.");
+        } else if (chipType === 'workflow') {
+          addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
+        } else {
+          addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");
+        }
+      }, 1200);
+    };
+
+    // Attach to any existing hardcoded chips if they are clicked before onboarding resets container
+    document.querySelectorAll('.chat-chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        const text = chip.textContent;
-        addUsrMessage(text);
-        setTimeout(() => {
-          const chipType = chip.getAttribute('data-chip');
-          if (chipType === 'pricing') {
-            addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page to redirect to our CPI calculator.");
-          } else if (chipType === 'workflow') {
-            addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
-          } else {
-            addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");
-          }
-        }, 1000);
+        handleChipClick(chip);
       });
     });
   }

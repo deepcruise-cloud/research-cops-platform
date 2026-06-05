@@ -775,10 +775,78 @@ document.addEventListener('DOMContentLoaded', () => {
     intScale: null
   };
   
+  let chatOnboarded = false;
+
+  function triggerChatOnboarding() {
+    if (chatOnboarded) return;
+    chatOnboarded = true;
+
+    // Clear the container
+    chatMessagesLog.innerHTML = '';
+
+    // Show typing
+    showTypingIndicator();
+
+    setTimeout(() => {
+      hideTypingIndicator();
+      appendChatMessage("Hello! I am <strong>SupportGenie</strong>, your virtual assistant. How can I help you today?");
+      
+      showTypingIndicator();
+      setTimeout(() => {
+        hideTypingIndicator();
+        appendChatMessage("Select a quick topic below or type your question:");
+        renderQuickChips([
+          { label: "📊 CPI Estimate & Calculator", action: "cpi-start" },
+          { label: "👥 Workflow Automation Hub", action: "wf-start" },
+          { label: "🔒 ERP Systems Sync Audit", action: "int-start" },
+          { label: "✉ Get Custom Quote & Demo", action: "go-quote" }
+        ]);
+      }, 1200);
+    }, 1000);
+  }
+
+  // Proactive Welcome Bubble
+  const welcomeBubble = document.getElementById('genie-welcome-bubble');
+  const welcomeClose = document.getElementById('welcome-bubble-close');
+
+  if (welcomeBubble && welcomeClose) {
+    // Show welcome bubble after 4 seconds
+    setTimeout(() => {
+      const hasClosed = sessionStorage.getItem('genie_welcome_closed') === 'true';
+      const isChatActive = chatBox.classList.contains('active');
+      if (!hasClosed && !isChatActive) {
+        welcomeBubble.classList.add('active');
+      }
+    }, 4000);
+
+    welcomeClose.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent opening chat
+      welcomeBubble.classList.remove('active');
+      sessionStorage.setItem('genie_welcome_closed', 'true');
+    });
+
+    // Clicking welcome bubble opens the chat
+    welcomeBubble.addEventListener('click', (e) => {
+      welcomeBubble.classList.remove('active');
+      sessionStorage.setItem('genie_welcome_closed', 'true');
+      chatBox.classList.add('active');
+      triggerChatOnboarding();
+      scrollChatToBottom();
+    });
+  }
+
   if (chatTrigger && chatBox) {
     chatTrigger.addEventListener('click', () => {
+      if (welcomeBubble) welcomeBubble.classList.remove('active');
+      sessionStorage.setItem('genie_welcome_closed', 'true');
+      
+      const isOpening = !chatBox.classList.contains('active');
       chatBox.classList.toggle('active');
       scrollChatToBottom();
+
+      if (isOpening) {
+        triggerChatOnboarding();
+      }
     });
   }
  
