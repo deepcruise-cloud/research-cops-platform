@@ -1,5 +1,6 @@
 // Research COPS - Admin Portal Controller
 // Integrates Firebase Authentication and Firestore with a robust LocalStorage fallback
+// Manages Blogs, News, Polls, Leads, and General Site Settings (Footer & Policies)
 
 const firebaseConfig = {
   apiKey: "AIzaSyDknEqerA09CE3PT0L0m-nISkBCBPitWEw",
@@ -149,7 +150,7 @@ const DEFAULT_POLLS = [
   },
   {
     id: "poll-3",
-         question: "What is the biggest hurdle in your custom HRMS automation workflow?",
+    question: "What is the biggest hurdle in your custom HRMS automation workflow?",
     options: {
       a: { text: "Legacy Software Incompatibility", votes: 53 },
       b: { text: "High API Maintenance Overhead", votes: 38 },
@@ -159,6 +160,21 @@ const DEFAULT_POLLS = [
   }
 ];
 
+const DEFAULT_POLICIES = {
+  privacy: {
+    title: "Privacy Policy",
+    content: `# Privacy Policy\n\nAt **Research COPS**, accessible from [https://researchcops.com](https://researchcops.com), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Research COPS and how we use it.\n\nIf you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.\n\n## 1. Consent\nBy using our website, you hereby consent to our Privacy Policy and agree to its terms.\n\n## 2. Information We Collect\nThe personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.\n* If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.\n* When you request a B2B project estimate or chat with our Support Genie, we collect contact credentials (name, email, phone) alongside project parameters (sample size, CPI margin) to build your proposal.\n\n## 3. How We Use Your Information\nWe use the information we collect in various ways, including to:\n* Provide, operate, and maintain our website\n* Improve, personalize, and expand our website\n* Understand and analyze how you use our website\n* Develop new products, services, features, and functionality\n* Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes\n* Send you emails\n* Find and prevent fraud\n\n## 4. Log Files\nResearch COPS follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable.`
+  },
+  terms: {
+    title: "Terms & Conditions",
+    content: `# Terms & Conditions\n\nWelcome to **Research COPS**!\n\nThese terms and conditions outline the rules and regulations for the use of Research COPS's Website, located at [https://researchcops.com](https://researchcops.com).\n\nBy accessing this website we assume you accept these terms and conditions. Do not continue to use Research COPS if you do not agree to take all of the terms and conditions stated on this page.\n\n## 1. Cookies\nWe employ the use of cookies. By accessing Research COPS, you agreed to use cookies in agreement with the Research COPS's Privacy Policy.\n\nMost interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website.\n\n## 2. License\nUnless otherwise stated, Research COPS and/or its licensors own the intellectual property rights for all material on Research COPS. All intellectual property rights are reserved. You may access this from Research COPS for your own personal use subjected to restrictions set in these terms and conditions.\n\nYou must not:\n* Republish material from Research COPS\n* Sell, rent or sub-license material from Research COPS\n* Reproduce, duplicate or copy material from Research COPS\n* Redistribute content from Research COPS`
+  },
+  cookies: {
+    title: "Cookies Policy",
+    content: `# Cookies Policy\n\nThis is the Cookies Policy for **Research COPS**, accessible from [https://researchcops.com](https://researchcops.com).\n\n## 1. What Are Cookies\nAs is common practice with almost all professional websites this site uses cookies, which are tiny files that are downloaded to your computer, to improve your experience. This page describes what information they gather, how we use them and why we need to store these cookies. We will also share how you can prevent these cookies from being stored however this may downgrade or 'break' certain elements of the sites functionality.\n\n## 2. How We Use Cookies\nWe use cookies for a variety of reasons detailed below. Unfortunately in most cases there are no industry standard options for disabling cookies without completely disabling the functionality and features they add to this site. It is recommended that you leave on all cookies if you are not sure whether you need them or not.`
+  }
+};
+
 // Initialize Database Connection Mode
 function initDatabaseMode() {
   const isConfigured = firebaseConfig && 
@@ -166,31 +182,20 @@ function initDatabaseMode() {
                        !firebaseConfig.apiKey.startsWith("YOUR_") && 
                        firebaseConfig.apiKey !== "";
 
-  const dbStatusBanner = document.getElementById("db-status");
-
   if (isConfigured && typeof firebase !== "undefined") {
     try {
       firebase.initializeApp(firebaseConfig);
       db = firebase.firestore();
       auth = firebase.auth();
       dbMode = "firebase";
-
-      // Configure banner
-      if (dbStatusBanner) {
-        dbStatusBanner.className = "db-status-banner connected";
-        dbStatusBanner.innerHTML = `
-          <span class="status-badge badge-emerald">Connected</span>
-          <p>Connected to Live Firebase Cloud Database.</p>
-        `;
-      }
       console.log("Admin Portal: Live Firebase DB Connected successfully.");
       checkAndSeedFirestore();
     } catch (e) {
       console.error("Firebase init failed. Reverting to LocalStorage:", e);
-      setupLocalFallback(dbStatusBanner);
+      setupLocalFallback();
     }
   } else {
-    setupLocalFallback(dbStatusBanner);
+    setupLocalFallback();
   }
 }
 
@@ -198,7 +203,7 @@ function initDatabaseMode() {
 function checkAndSeedFirestore() {
   if (dbMode !== "firebase" || !db) return;
 
-  // Idempotent seeding of default blogs
+  // Seeding default blogs
   db.collection("blogs").limit(1).get()
     .then(snapshot => {
       if (snapshot.empty) {
@@ -217,7 +222,7 @@ function checkAndSeedFirestore() {
       }
     });
 
-  // Idempotent seeding of default news
+  // Seeding default news
   db.collection("news").limit(1).get()
     .then(snapshot => {
       if (snapshot.empty) {
@@ -236,7 +241,7 @@ function checkAndSeedFirestore() {
       }
     });
 
-  // Idempotent seeding of default polls
+  // Seeding default polls
   db.collection("polls").limit(1).get()
     .then(snapshot => {
       if (snapshot.empty) {
@@ -256,15 +261,8 @@ function checkAndSeedFirestore() {
     });
 }
 
-function setupLocalFallback(bannerEl) {
+function setupLocalFallback() {
   dbMode = "local";
-  if (bannerEl) {
-    bannerEl.className = "db-status-banner";
-    bannerEl.innerHTML = `
-      <span class="status-badge badge-amber">LocalStorage Mode</span>
-      <p>Using LocalStorage Fallback database. Setup Firebase credentials in admin.js to sync live.</p>
-    `;
-  }
   console.log("Admin Portal: LocalStorage database initialized.");
 
   // Migration check: Clear old market research content to allow new workflow/HRMS/ERP content to seed
@@ -305,7 +303,7 @@ function setupAuth() {
   const userDisplay = document.getElementById("user-display");
   const loginForm = document.getElementById("admin-login-form");
   const loginError = document.getElementById("login-error");
-  const logoutBtn = document.getElementById("admin-logout-btn");
+  const logoutBtns = document.querySelectorAll("#admin-logout-btn, #admin-logout-btn-sidebar");
 
   if (dbMode === "firebase") {
     auth.onAuthStateChanged(user => {
@@ -313,7 +311,7 @@ function setupAuth() {
         activeUser = user;
         loginScreen.style.display = "none";
         controlCenter.style.display = "block";
-        if (userDisplay) userDisplay.textContent = `User: ${user.email}`;
+        if (userDisplay) userDisplay.textContent = user.email;
         loadDashboardData();
       } else {
         activeUser = null;
@@ -337,11 +335,11 @@ function setupAuth() {
       });
     }
 
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
+    logoutBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
         auth.signOut();
       });
-    }
+    });
   } else {
     // LocalStorage Auth Mock
     const checkSession = () => {
@@ -349,7 +347,7 @@ function setupAuth() {
       if (loggedIn) {
         loginScreen.style.display = "none";
         controlCenter.style.display = "block";
-        if (userDisplay) userDisplay.textContent = "Session: admin@researchcops.com";
+        if (userDisplay) userDisplay.textContent = "admin@researchcops.com";
         loadDashboardData();
       } else {
         loginScreen.style.display = "block";
@@ -376,12 +374,12 @@ function setupAuth() {
       });
     }
 
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
+    logoutBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
         sessionStorage.removeItem("rc_admin_logged_in");
         checkSession();
       });
-    }
+    });
   }
 }
 
@@ -404,6 +402,9 @@ function setupTabs() {
 
       if (target === "panel-leads") {
         renderLeadsList();
+      } else if (target === "panel-settings") {
+        loadFooterSettingsAdmin();
+        loadPolicySettingsAdmin();
       }
     });
   });
@@ -415,6 +416,8 @@ function loadDashboardData() {
   renderNewsList();
   renderPollFormAndStats();
   renderLeadsList();
+  loadFooterSettingsAdmin();
+  loadPolicySettingsAdmin();
 }
 
 // 6. BLOG OPERATIONS
@@ -615,7 +618,6 @@ function setupAdminPollUI(polls, selectEl, pollQuestion, pollA, pollB, pollC, po
       onAdminPollSelectionChange(polls, selectEl, pollQuestion, pollA, pollB, pollC, pollD);
     };
   } else {
-    // Sync list options but preserve selection
     populateAdminPollSelector(polls, selectEl);
   }
   
@@ -634,7 +636,6 @@ function onAdminPollSelectionChange(polls, selectEl, pollQuestion, pollA, pollB,
     if (pollD) pollD.value = "";
     if (submitBtn) submitBtn.textContent = "Create Poll";
     
-    // Show empty stats dashboard
     populatePollUI({
       question: "New Poll Questionnaire Draft",
       options: {
@@ -736,6 +737,7 @@ function setupFormSubmissions() {
         db.collection("blogs").add(newBlog)
           .then(() => {
             blogForm.reset();
+            document.getElementById("blog-preview-pane").innerHTML = '<p style="color: var(--text-muted); font-style: italic;">As you type in the editor, your post will render here in real time...</p>';
             renderBlogsList();
             alert("Blog published successfully!");
           })
@@ -748,6 +750,7 @@ function setupFormSubmissions() {
         blogs.push(newBlog);
         localStorage.setItem("rc_blogs", JSON.stringify(blogs));
         blogForm.reset();
+        document.getElementById("blog-preview-pane").innerHTML = '<p style="color: var(--text-muted); font-style: italic;">As you type in the editor, your post will render here in real time...</p>';
         renderBlogsList();
         alert("Blog published to LocalStorage database!");
       }
@@ -807,7 +810,6 @@ function setupFormSubmissions() {
       const optD = document.getElementById("poll-opt-d").value.trim();
 
       if (selectedId === "new") {
-        // Create new poll
         const newId = "poll-" + Date.now();
         const newPoll = {
           id: newId,
@@ -921,7 +923,6 @@ function setupFormSubmissions() {
           localPolls[idx].options.c.votes = 0;
           localPolls[idx].options.d.votes = 0;
           localStorage.setItem("rc_polls", JSON.stringify(localPolls));
-          // Clear local voted cookies for this poll ID
           localStorage.removeItem("rc_voted_" + selectedId);
         }
         renderPollFormAndStats();
@@ -937,7 +938,6 @@ function setupFormSubmissions() {
       if (selectedId === "new") return;
 
       if (dbMode === "firebase") {
-        // Count total polls
         db.collection("polls").get()
           .then(snapshot => {
             if (snapshot.size <= 1) {
@@ -986,6 +986,99 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
+// Simple Markdown Compiler
+function compileMarkdown(markdown) {
+  if (!markdown) return "";
+  let html = markdown;
+
+  // Escape HTML tags to prevent XSS in preview (allowing only safe tags we create)
+  html = html
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // Headings
+  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+  // Bold & Italics
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  // Bullet Lists
+  html = html.replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>');
+  html = html.replace(/<\/ul>\s*<ul>/g, ''); // Join lists
+
+  // Images: ![alt](url)
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+
+  // Links: [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+  // Paragraphs
+  const lines = html.split('\n');
+  const processedLines = lines.map(line => {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+    if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li>') || trimmed.startsWith('<img') || trimmed.startsWith('<p>')) return line;
+    return `<p>${line}</p>`;
+  });
+  
+  return processedLines.filter(l => l !== "").join('\n');
+}
+
+// Editor Markdown Toolbar Insertion Helper
+function insertMarkdown(textarea, format) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = textarea.value;
+  const selected = text.substring(start, end);
+  
+  let replacement = "";
+  let cursorOffset = 0;
+  
+  switch(format) {
+    case "bold":
+      replacement = `**${selected || "bold"}**`;
+      cursorOffset = selected ? 0 : 2;
+      break;
+    case "italic":
+      replacement = `*${selected || "italic"}*`;
+      cursorOffset = selected ? 0 : 1;
+      break;
+    case "h2":
+      replacement = `\n## ${selected || "Heading 2"}\n`;
+      cursorOffset = selected ? 0 : 1;
+      break;
+    case "h3":
+      replacement = `\n### ${selected || "Heading 3"}\n`;
+      cursorOffset = selected ? 0 : 1;
+      break;
+    case "list":
+      replacement = `\n* ${selected || "Item"}\n`;
+      cursorOffset = selected ? 0 : 1;
+      break;
+    case "link":
+      replacement = `[${selected || "Link Text"}](https://)`;
+      cursorOffset = selected ? 0 : 11;
+      break;
+    case "image":
+      replacement = `![${selected || "Image Caption"}](https://)`;
+      cursorOffset = selected ? 0 : 12;
+      break;
+  }
+  
+  textarea.value = text.substring(0, start) + replacement + text.substring(end);
+  textarea.focus();
+  
+  const newCursorPos = start + replacement.length - cursorOffset;
+  textarea.setSelectionRange(newCursorPos, newCursorPos);
+  
+  // Trigger input event to update live preview
+  textarea.dispatchEvent(new Event("input"));
+}
+
 // 10b. LEADS OPERATIONS
 function renderLeadsList() {
   const tableBody = document.getElementById("leads-table-body");
@@ -1001,7 +1094,6 @@ function renderLeadsList() {
           lead.id = doc.id;
           leads.push(lead);
         });
-        // Sort by timestamp desc, fallback to date
         leads.sort((a, b) => {
           const tA = a.timestamp || 0;
           const tB = b.timestamp || 0;
@@ -1047,7 +1139,7 @@ function injectLeadsIntoTable(tableBody, leads) {
   });
   
   // Attach delete listeners
-  document.querySelectorAll(".btn-delete-lead").forEach(btn => {
+  tableBody.querySelectorAll(".btn-delete-lead").forEach(btn => {
     btn.addEventListener("click", () => {
       const leadId = btn.getAttribute("data-id");
       deleteLead(leadId);
@@ -1098,10 +1190,276 @@ function clearAllLeads() {
   }
 }
 
-function setupLeadsHook() {
-  const btnClearLeads = document.getElementById("btn-clear-leads");
-  if (btnClearLeads) {
-    btnClearLeads.addEventListener("click", clearAllLeads);
+// 10c. CSV GENERATION AND DOWNLOAD ENGINE
+function downloadLeadsCSV() {
+  let leadsPromise;
+  if (dbMode === "firebase") {
+    leadsPromise = db.collection("leads").get().then(snapshot => {
+      const leads = [];
+      snapshot.forEach(doc => {
+        const lead = doc.data();
+        lead.id = doc.id;
+        leads.push(lead);
+      });
+      leads.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      return leads;
+    });
+  } else {
+    const leads = JSON.parse(localStorage.getItem('rc_leads') || '[]');
+    leads.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    leadsPromise = Promise.resolve(leads);
+  }
+  
+  leadsPromise.then(leads => {
+    if (leads.length === 0) {
+      alert("No leads available to export.");
+      return;
+    }
+    
+    const headers = ["Date", "Name", "Company", "Email", "Phone", "CPI ($)", "Budget ($)", "Message", "Source"];
+    
+    const escapeCSV = (val) => {
+      if (val === null || val === undefined) return '""';
+      let str = String(val);
+      str = str.replace(/"/g, '""');
+      return `"${str}"`;
+    };
+    
+    let csvContent = headers.map(escapeCSV).join(",") + "\r\n";
+    
+    leads.forEach(lead => {
+      const row = [
+        lead.date || "",
+        lead.name || "",
+        lead.company || "",
+        lead.email || "",
+        lead.phone || "",
+        lead.cpi || "",
+        lead.budget || "",
+        lead.message || "",
+        lead.source || "Form"
+      ];
+      csvContent += row.map(escapeCSV).join(",") + "\r\n";
+    });
+    
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `research_cops_leads_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }).catch(err => {
+    console.error("Error generating leads CSV:", err);
+    alert("Error downloading CSV: " + err.message);
+  });
+}
+
+function downloadPollCSV() {
+  const adminPollSelect = document.getElementById("admin-poll-active-select");
+  if (!adminPollSelect) return;
+  const selectedId = adminPollSelect.value;
+  if (selectedId === "new") {
+    alert("Please select a saved poll to download results.");
+    return;
+  }
+  
+  const poll = adminPollsList.find(p => p.id === selectedId);
+  if (!poll) {
+    alert("Poll not found.");
+    return;
+  }
+  
+  const aVotes = poll.options.a.votes || 0;
+  const bVotes = poll.options.b.votes || 0;
+  const cVotes = poll.options.c.votes || 0;
+  const dVotes = poll.options.d.votes || 0;
+  const total = aVotes + bVotes + cVotes + dVotes;
+  
+  const pct = (votes) => total > 0 ? ((votes / total) * 100).toFixed(1) : "0.0";
+  
+  const headers = ["Question", "Option Label", "Option Text", "Votes", "Percentage (%)"];
+  const rows = [
+    [poll.question, "Option A", poll.options.a.text, aVotes, pct(aVotes)],
+    [poll.question, "Option B", poll.options.b.text, bVotes, pct(bVotes)],
+    [poll.question, "Option C", poll.options.c.text, cVotes, pct(cVotes)],
+    [poll.question, "Option D", poll.options.d.text, dVotes, pct(dVotes)],
+    [poll.question, "Total", "All Choices", total, "100.0"]
+  ];
+  
+  const escapeCSV = (val) => {
+    if (val === null || val === undefined) return '""';
+    let str = String(val);
+    str = str.replace(/"/g, '""');
+    return `"${str}"`;
+  };
+  
+  let csvContent = headers.map(escapeCSV).join(",") + "\r\n";
+  rows.forEach(row => {
+    csvContent += row.map(escapeCSV).join(",") + "\r\n";
+  });
+  
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", `poll_results_${selectedId}_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// 10d. FOOTER AND POLICY CONFIGURATION
+function loadFooterSettingsAdmin() {
+  const footerDesc = document.getElementById("settings-footer-desc");
+  const footerPhone = document.getElementById("settings-footer-phone");
+  const footerEmailInfo = document.getElementById("settings-footer-email-info");
+  const footerEmailBidding = document.getElementById("settings-footer-email-bidding");
+  const footerAddress = document.getElementById("settings-footer-address");
+
+  if (!footerDesc) return;
+
+  const defaultFooter = {
+    description: "Precision data collection infrastructure for global market research. 2M+ verified panelists globally through our partner network and our panel Opinion Genie.",
+    phone: "+91-0120-605-1391",
+    emailInfo: "info-team@researchcops.com",
+    emailBidding: "Bidding-team@researchcops.com",
+    address: "T4-A11, NX One Avenue, Plot No - 17,\nTechzone 4, Greater Noida, UP 201306"
+  };
+
+  const populateFooterForm = (data) => {
+    footerDesc.value = data.description || defaultFooter.description;
+    footerPhone.value = data.phone || defaultFooter.phone;
+    footerEmailInfo.value = data.emailInfo || defaultFooter.emailInfo;
+    footerEmailBidding.value = data.emailBidding || defaultFooter.emailBidding;
+    footerAddress.value = data.address || defaultFooter.address;
+  };
+
+  if (dbMode === "firebase" && db) {
+    db.collection("settings").doc("footer").get()
+      .then(doc => {
+        if (doc.exists) {
+          populateFooterForm(doc.data());
+        } else {
+          populateFooterForm(defaultFooter);
+        }
+      })
+      .catch(err => {
+        console.error("Error loading admin footer settings:", err);
+        populateFooterForm(defaultFooter);
+      });
+  } else {
+    const localFooter = JSON.parse(localStorage.getItem("rc_footer_settings"));
+    if (localFooter) {
+      populateFooterForm(localFooter);
+    } else {
+      populateFooterForm(defaultFooter);
+    }
+  }
+}
+
+function saveFooterSettingsAdmin(e) {
+  e.preventDefault();
+  const description = document.getElementById("settings-footer-desc").value.trim();
+  const phone = document.getElementById("settings-footer-phone").value.trim();
+  const emailInfo = document.getElementById("settings-footer-email-info").value.trim();
+  const emailBidding = document.getElementById("settings-footer-email-bidding").value.trim();
+  const address = document.getElementById("settings-footer-address").value.trim();
+
+  const footerData = { description, phone, emailInfo, emailBidding, address };
+
+  if (dbMode === "firebase" && db) {
+    db.collection("settings").doc("footer").set(footerData)
+      .then(() => {
+        alert("Footer settings saved successfully to Cloud Database!");
+      })
+      .catch(err => {
+        alert("Error saving footer settings to Firebase: " + err.message);
+      });
+  } else {
+    localStorage.setItem("rc_footer_settings", JSON.stringify(footerData));
+    alert("Footer settings saved to LocalStorage database!");
+  }
+}
+
+function loadPolicySettingsAdmin() {
+  const policySelect = document.getElementById("settings-policy-select");
+  const policyTitleInput = document.getElementById("settings-policy-title");
+  const policyContentArea = document.getElementById("settings-policy-content");
+  const policyPreviewPane = document.getElementById("policy-preview-pane");
+
+  if (!policySelect || !policyTitleInput || !policyContentArea) return;
+
+  const activeId = policySelect.value;
+
+  const populatePolicyForm = (title, content) => {
+    policyTitleInput.value = title;
+    policyContentArea.value = content;
+    if (policyPreviewPane) {
+      policyPreviewPane.innerHTML = compileMarkdown(content);
+    }
+  };
+
+  if (dbMode === "firebase" && db) {
+    db.collection("policies").doc(activeId).get()
+      .then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          populatePolicyForm(data.title, data.content);
+        } else {
+          const fallback = DEFAULT_POLICIES[activeId] || { title: "", content: "" };
+          populatePolicyForm(fallback.title, fallback.content);
+        }
+      })
+      .catch(err => {
+        console.error("Error loading policy for edit:", err);
+        const fallback = DEFAULT_POLICIES[activeId] || { title: "", content: "" };
+        populatePolicyForm(fallback.title, fallback.content);
+      });
+  } else {
+    const localPolicies = JSON.parse(localStorage.getItem("rc_policies") || "{}");
+    if (localPolicies[activeId]) {
+      populatePolicyForm(localPolicies[activeId].title, localPolicies[activeId].content);
+    } else {
+      const fallback = DEFAULT_POLICIES[activeId] || { title: "", content: "" };
+      populatePolicyForm(fallback.title, fallback.content);
+    }
+  }
+}
+
+function savePolicySettingsAdmin(e) {
+  if (e) e.preventDefault();
+  const policySelect = document.getElementById("settings-policy-select");
+  const policyTitle = document.getElementById("settings-policy-title").value.trim();
+  const policyContent = document.getElementById("settings-policy-content").value.trim();
+
+  if (!policySelect) return;
+  const activeId = policySelect.value;
+
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const d = new Date();
+  const updatedDate = `Last Updated: ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+  const policyData = {
+    title: policyTitle,
+    content: policyContent,
+    updated: updatedDate
+  };
+
+  if (dbMode === "firebase" && db) {
+    db.collection("policies").doc(activeId).set(policyData)
+      .then(() => {
+        alert("Policy changes saved successfully to Cloud Database!");
+      })
+      .catch(err => {
+        alert("Error saving policy to Firebase: " + err.message);
+      });
+  } else {
+    const localPolicies = JSON.parse(localStorage.getItem("rc_policies") || "{}");
+    localPolicies[activeId] = policyData;
+    localStorage.setItem("rc_policies", JSON.stringify(localPolicies));
+    alert("Policy changes saved to LocalStorage database!");
   }
 }
 
@@ -1111,5 +1469,74 @@ document.addEventListener("DOMContentLoaded", () => {
   setupAuth();
   setupTabs();
   setupFormSubmissions();
-  setupLeadsHook();
+  
+  // Set up leads hook
+  const btnClearLeads = document.getElementById("btn-clear-leads");
+  if (btnClearLeads) {
+    btnClearLeads.addEventListener("click", clearAllLeads);
+  }
+  
+  const btnDownloadLeads = document.getElementById("btn-download-leads");
+  if (btnDownloadLeads) {
+    btnDownloadLeads.addEventListener("click", downloadLeadsCSV);
+  }
+
+  const btnDownloadPoll = document.getElementById("btn-download-poll");
+  if (btnDownloadPoll) {
+    btnDownloadPoll.addEventListener("click", downloadPollCSV);
+  }
+
+  // Setup markdown live previews
+  const blogContent = document.getElementById("blog-content");
+  const blogPreview = document.getElementById("blog-preview-pane");
+  if (blogContent && blogPreview) {
+    blogContent.addEventListener("input", () => {
+      blogPreview.innerHTML = compileMarkdown(blogContent.value);
+    });
+  }
+
+  const policyContent = document.getElementById("settings-policy-content");
+  const policyPreview = document.getElementById("policy-preview-pane");
+  if (policyContent && policyPreview) {
+    policyContent.addEventListener("input", () => {
+      policyPreview.innerHTML = compileMarkdown(policyContent.value);
+    });
+  }
+
+  // Setup editor toolbar insertions
+  document.querySelectorAll(".toolbar-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const format = btn.getAttribute("data-format");
+      const textarea = document.getElementById("blog-content");
+      if (textarea) {
+        insertMarkdown(textarea, format);
+      }
+    });
+  });
+
+  document.querySelectorAll(".policy-toolbar-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const format = btn.getAttribute("data-format");
+      const textarea = document.getElementById("settings-policy-content");
+      if (textarea) {
+        insertMarkdown(textarea, format);
+      }
+    });
+  });
+
+  // Setup policy settings panel select triggers & forms
+  const policySelect = document.getElementById("settings-policy-select");
+  if (policySelect) {
+    policySelect.addEventListener("change", loadPolicySettingsAdmin);
+  }
+
+  const footerSettingsForm = document.getElementById("footer-settings-form");
+  if (footerSettingsForm) {
+    footerSettingsForm.addEventListener("submit", saveFooterSettingsAdmin);
+  }
+
+  const policySettingsForm = document.getElementById("policy-editor-form");
+  if (policySettingsForm) {
+    policySettingsForm.addEventListener("submit", savePolicySettingsAdmin);
+  }
 });

@@ -315,7 +315,7 @@
             <span class="logo-tagline">Research Centric OPS</span>
           </div>
         </a>
-        <p class="footer-desc">
+        <p class="footer-desc" id="footer-desc">
           Precision data collection infrastructure for global market research. 2M+ verified panelists globally through our partner network and our panel Opinion Genie.
         </p>
         <div class="footer-social-wrapper">
@@ -351,21 +351,30 @@
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
-          <span class="contact-detail"><strong>Phone:</strong> <a href="tel:+91-0120-605-1391">+91-0120-605-1391</a></span>
+          <span class="contact-detail"><strong>Phone:</strong> <a id="footer-phone" href="tel:+91-0120-605-1391">+91-0120-605-1391</a></span>
           <span class="contact-detail"><strong>Emails:</strong><br>
-            <a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br>
-            <a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a>
+            <span id="footer-emails">
+              <a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br>
+              <a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a>
+            </span>
           </span>
           <span class="contact-detail"><strong>Office:</strong><br>
-            T4-A11, NX One Avenue, Plot No - 17,<br>Techzone 4, Greater Noida, UP 201306
+            <span id="footer-address">
+              T4-A11, NX One Avenue, Plot No - 17,<br>Techzone 4, Greater Noida, UP 201306
+            </span>
           </span>
         </div>
       </div>
     </div>
 
     <div class="copyright-bar">
-      <div class="container" style="max-width: 1200px;">
+      <div class="container" style="max-width: 1200px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
         <p>&copy; 2026 Research COPS. All rights reserved.</p>
+        <p style="margin: 0; font-size: 13px;">
+          <a href="policy.html?id=privacy" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Privacy Policy</a>
+          <a href="policy.html?id=terms" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Terms & Conditions</a>
+          <a href="policy.html?id=cookies" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Cookies Policy</a>
+        </p>
       </div>
     </div>
   </footer>

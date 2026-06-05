@@ -8,80 +8,201 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- Styling -->
   <link rel="stylesheet" href="styles.css">
   
   <style>
-    /* Admin Portal Specific Styles (Overriding and extending styles.css) */
+    /* Admin Portal Sidebar and Advanced UI Styles */
+    :root {
+      --sidebar-width: 280px;
+    }
+    
     .admin-body {
       background-color: #030808;
       color: var(--text-light);
       min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-family-sans);
       display: flex;
       flex-direction: column;
-      font-family: var(--font-family-sans);
-    }
-    
-    .admin-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-      width: 100%;
-      flex-grow: 1;
     }
     
     .login-wrapper {
       max-width: 450px;
       margin: 100px auto;
       width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
     
-    .admin-header {
+    /* Admin Layout Flex Grid */
+    .admin-layout {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 40px;
-      border-bottom: 1px solid var(--glass-border);
-      padding-bottom: 20px;
+      min-height: 100vh;
+      width: 100%;
     }
     
-    .admin-logo {
+    /* Left Sidebar Navigation */
+    .admin-sidebar {
+      width: var(--sidebar-width);
+      background: #050a0a;
+      border-right: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+    
+    .sidebar-brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      margin-bottom: 25px;
       text-decoration: none;
     }
     
-    .admin-nav {
+    .sidebar-profile {
       display: flex;
+      align-items: center;
       gap: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
       margin-bottom: 30px;
     }
     
-    .admin-tab-btn {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--glass-border);
+    .profile-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(4, 203, 194, 0.08);
+      color: var(--turquoise-accent);
+      border: 1px solid rgba(4, 203, 194, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: var(--font-family-display);
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    
+    .profile-email {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .profile-role {
+      font-size: 10px;
       color: var(--text-muted);
-      padding: 12px 24px;
+      margin-top: 1px;
+    }
+    
+    .admin-nav-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+    
+    .admin-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 12px 16px;
       border-radius: var(--radius-md);
       font-family: var(--font-family-display);
       font-weight: 600;
+      font-size: 13.5px;
       cursor: pointer;
+      transition: var(--transition-smooth);
+      text-align: left;
+      box-sizing: border-box;
+    }
+    
+    .admin-tab-btn svg {
+      flex-shrink: 0;
+      color: var(--text-muted);
       transition: var(--transition-smooth);
     }
     
     .admin-tab-btn:hover {
-      border-color: rgba(4, 203, 194, 0.3);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-light);
+      border-color: rgba(4, 203, 194, 0.08);
+    }
+    
+    .admin-tab-btn:hover svg {
       color: var(--text-light);
     }
     
     .admin-tab-btn.active {
-      background: rgba(4, 203, 194, 0.08);
-      border-color: var(--turquoise-accent);
+      background: rgba(4, 203, 194, 0.06);
+      border-color: rgba(4, 203, 194, 0.15);
       color: var(--turquoise-accent);
-      box-shadow: 0 0 15px rgba(4, 203, 194, 0.1);
+      box-shadow: 0 0 15px rgba(4, 203, 194, 0.05);
+    }
+    
+    .admin-tab-btn.active svg {
+      color: var(--turquoise-accent);
+    }
+    
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--glass-border);
+    }
+    
+    /* Right Main Canvas */
+    .admin-main {
+      flex-grow: 1;
+      margin-left: var(--sidebar-width);
+      padding: 40px;
+      min-height: 100vh;
+      background: #030808;
+      overflow-y: auto;
+      box-sizing: border-box;
+      width: calc(100% - var(--sidebar-width));
+    }
+    
+    .admin-main-header {
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .admin-main-header h2 {
+      margin: 0;
+      font-size: 24px;
+      font-family: var(--font-family-display);
+      color: var(--text-light);
     }
     
     .admin-panel {
@@ -108,6 +229,7 @@
     .admin-card {
       padding: 30px;
       border-radius: var(--radius-lg);
+      margin-bottom: 30px;
     }
     
     .form-group-admin {
@@ -132,7 +254,8 @@
       padding: 12px 16px;
       color: var(--text-light);
       outline: none;
-      font-size: 14.5px;
+      font-size: 14px;
+      box-sizing: border-box;
     }
     
     .form-group-admin input:focus,
@@ -183,23 +306,22 @@
       color: #030808;
     }
     
-    .db-status-banner {
-      background: rgba(245, 158, 11, 0.08);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      color: #f59e0b;
-      padding: 12px 20px;
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-light);
+      padding: 8px 16px;
       border-radius: var(--radius-md);
-      font-size: 13.5px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
     }
     
-    .db-status-banner.connected {
-      background: rgba(16, 185, 129, 0.08);
-      border-color: rgba(16, 185, 129, 0.25);
-      color: #10b981;
+    .btn-outline:hover {
+      border-color: var(--turquoise-accent);
+      color: var(--turquoise-accent);
+      background: rgba(4, 203, 194, 0.05);
     }
     
     .status-badge {
@@ -219,12 +341,12 @@
       background: rgba(16, 185, 129, 0.15);
       color: #10b981;
     }
-
+    
     .badge-teal {
       background: rgba(4, 203, 194, 0.15);
       color: #04cbc2;
     }
-
+    
     .badge-purple {
       background: rgba(139, 92, 246, 0.15);
       color: #a78bfa;
@@ -266,142 +388,308 @@
       border-radius: 4px;
       transition: width 0.5s ease-out;
     }
+    
+    /* Markdown Editor & Preview Specifics */
+    .blog-editor-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: start;
+    }
+    
+    @media (max-width: 1200px) {
+      .blog-editor-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: #0b1111;
+      border: 1px solid var(--glass-border);
+      border-bottom: none;
+      border-top-left-radius: var(--radius-md);
+      border-top-right-radius: var(--radius-md);
+      padding: 8px;
+    }
+    
+    .toolbar-btn, .policy-toolbar-btn {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+    }
+    
+    .toolbar-btn:hover, .policy-toolbar-btn:hover {
+      background: rgba(4, 203, 194, 0.1);
+      border-color: var(--turquoise-accent);
+      color: var(--turquoise-accent);
+    }
+    
+    .textarea-editor {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+    
+    .preview-pane {
+      background: #050a0a;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      min-height: 300px;
+      max-height: 480px;
+      overflow-y: auto;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    
+    .preview-pane h1 { font-size: 22px; color: var(--text-light); margin-top: 0; }
+    .preview-pane h2 { font-size: 18px; color: var(--text-light); }
+    .preview-pane h3 { font-size: 15px; color: var(--text-light); }
+    .preview-pane p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; }
+    .preview-pane img { max-width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); margin: 12px 0; display: block; }
+    .preview-pane ul { padding-left: 20px; margin-bottom: 12px; }
+    .preview-pane li { font-size: 13.5px; color: var(--text-muted); margin-bottom: 6px; }
+    
+    /* Responsive Styling for Navigation */
+    @media (max-width: 992px) {
+      :root {
+        --sidebar-width: 0px;
+      }
+      .admin-layout {
+        flex-direction: column;
+      }
+      .admin-sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .admin-main {
+        margin-left: 0;
+        width: 100%;
+        padding: 24px 16px;
+      }
+      .admin-nav-vertical {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        white-space: nowrap;
+        gap: 8px;
+      }
+      .admin-tab-btn {
+        width: auto;
+        display: inline-flex;
+      }
+      .sidebar-footer {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--glass-border);
+      }
+      .sidebar-profile {
+        margin-bottom: 15px;
+      }
+    }
   </style>
 </head>
 <body class="admin-body">
 
-  <div class="admin-container">
-    
-    <!-- 1. Unauthorized Login Screen -->
-    <div id="admin-login-screen" class="login-wrapper">
-      <div class="glass-card admin-card">
-        <div class="form-header">
-          <h2 class="text-gradient">Admin Login</h2>
-          <p>Provide credentials to manage dynamic content.</p>
-        </div>
-        
-        <form id="admin-login-form">
-          <div class="form-group-admin">
-            <label for="login-email">Email Address</label>
-            <input type="email" id="login-email" required placeholder="admin@researchcops.com">
-          </div>
-          <div class="form-group-admin">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" required placeholder="••••••••">
-          </div>
-          <button type="submit" class="btn btn-primary btn-block" style="padding: 14px;">Access Portal</button>
-          
-          <p id="login-error" class="error-msg" style="text-align: center; margin-top: 15px;"></p>
-        </form>
+  <!-- 1. Unauthorized Login Screen -->
+  <div id="admin-login-screen" class="login-wrapper">
+    <div class="glass-card admin-card">
+      <div class="form-header">
+        <h2 class="text-gradient">Admin Login</h2>
+        <p>Provide credentials to manage dynamic content.</p>
       </div>
-    </div>
-    
-    <!-- 2. Authorized Control Center -->
-    <div id="admin-control-center" style="display: none;">
       
-      <!-- Top Header -->
-      <header class="admin-header">
-        <a href="index.html" class="admin-logo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <form id="admin-login-form">
+        <div class="form-group-admin">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" required placeholder="admin@researchcops.com">
+        </div>
+        <div class="form-group-admin">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="padding: 14px;">Access Portal</button>
+        
+        <p id="login-error" class="error-msg" style="text-align: center; margin-top: 15px;"></p>
+      </form>
+    </div>
+  </div>
+  
+  <!-- 2. Authorized Control Center -->
+  <div id="admin-control-center" style="display: none;">
+    <div class="admin-layout">
+      
+      <!-- Left Sidebar Navigation -->
+      <aside class="admin-sidebar">
+        <!-- Logo -->
+        <a href="index.html" class="sidebar-brand">
+          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
             <path d="M12 2C9.5 2 7.5 1.2 6.2 1.2c-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#060f0e" />
             <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
             <path d="M12 2C9.5 2 7.5 1.2 6.2 1.2c-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5"/>
           </svg>
-          <span style="font-family: var(--font-family-display); font-size: 20px; font-weight: 700; color: var(--text-light);"><span style="color: var(--turquoise-accent);">Research</span>COPS Admin</span>
+          <div class="logo-text-group">
+            <span class="logo-text" style="font-size: 18px; font-weight: 700; color: #fff;"><span style="color: var(--turquoise-accent)">Research</span>COPS</span>
+            <span class="logo-tagline" style="font-size: 10px; color: var(--text-muted);">Admin Dashboard</span>
+          </div>
         </a>
         
-        <div style="display: flex; align-items: center; gap: 20px;">
-          <span id="user-display" style="font-size: 14px; color: var(--text-muted);">Admin Session</span>
-          <button id="admin-logout-btn" class="btn btn-secondary btn-sm">Log Out</button>
+        <!-- User Profile -->
+        <div class="sidebar-profile">
+          <div class="profile-avatar">A</div>
+          <div class="profile-details">
+            <span class="profile-email" id="user-display">admin@researchcops.com</span>
+            <span class="profile-role">Administrator</span>
+          </div>
         </div>
-      </header>
+        
+        <!-- Navigation Menu -->
+        <nav class="admin-nav-vertical">
+          <button class="admin-tab-btn active" data-target="panel-blogs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Blogs</span>
+          </button>
+          
+          <button class="admin-tab-btn" data-target="panel-news">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+            <span>News Alerts</span>
+          </button>
+          
+          <button class="admin-tab-btn" data-target="panel-polls">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span>Polls</span>
+          </button>
+          
+          <button class="admin-tab-btn" data-target="panel-leads">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            <span>Quote Leads</span>
+          </button>
+          
+          <button class="admin-tab-btn" data-target="panel-settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.5 1z"></path></svg>
+            <span>General Settings</span>
+          </button>
+        </nav>
+        
+        <!-- Log Out Footer -->
+        <div class="sidebar-footer">
+          <button id="admin-logout-btn" class="btn btn-secondary btn-block" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </aside>
       
-      <!-- Fallback / Connected Database Banner -->
-      <div id="db-status" class="db-status-banner">
-        <span class="status-badge badge-amber">Offline Mode</span>
-        <p>Using LocalStorage Fallback database. Setup Firebase credentials to sync live across deployments.</p>
-      </div>
-      
-      <!-- Tab Headers -->
-      <div class="admin-nav">
-        <button class="admin-tab-btn active" data-target="panel-blogs">📝 Manage Blogs</button>
-        <button class="admin-tab-btn" data-target="panel-news">⚡ Latest News</button>
-        <button class="admin-tab-btn" data-target="panel-polls">🗳 Poll Settings</button>
-        <button class="admin-tab-btn" data-target="panel-leads">💼 Quote Leads</button>
-      </div>
-      
-      <!-- Content Panels -->
-      <main class="admin-panels-container">
+      <!-- Right Main Content Area -->
+      <main class="admin-main">
         
         <!-- Panel 1: Blogs -->
         <div id="panel-blogs" class="admin-panel active">
-          <div class="admin-grid">
-            
-            <!-- Edit/Create form -->
-            <div class="glass-card admin-card">
-              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Add New Blog Post</h3>
-              <form id="blog-form">
-                <div class="form-group-admin">
-                  <label for="blog-title">Article Title *</label>
-                  <input type="text" id="blog-title" required placeholder="e.g. Automating Enterprise Database Sync Protocols">
-                </div>
-                <div class="form-row">
-                  <div class="form-group-admin col">
-                    <label for="blog-category">Category *</label>
-                    <select id="blog-category" required>
-                      <option value="Methodology">Methodology</option>
-                      <option value="Security">Security</option>
-                      <option value="Compliance">Compliance</option>
-                      <option value="Technology">Technology</option>
-                    </select>
+          <div class="admin-main-header">
+            <h2>📝 Manage Blogs</h2>
+          </div>
+          
+          <!-- Edit/Create form -->
+          <div class="glass-card admin-card">
+            <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Add New Blog Post</h3>
+            <form id="blog-form">
+              <div class="blog-editor-grid">
+                <!-- Inputs Side -->
+                <div class="blog-editor-form-col">
+                  <div class="form-group-admin">
+                    <label for="blog-title">Article Title *</label>
+                    <input type="text" id="blog-title" required placeholder="e.g. Automating Enterprise Database Sync Protocols">
                   </div>
-                  <div class="form-group-admin col">
-                    <label for="blog-readtime">Est. Read Time *</label>
-                    <input type="text" id="blog-readtime" required placeholder="e.g. 5 min read">
+                  <div class="form-row" style="display: flex; gap: 20px;">
+                    <div class="form-group-admin" style="flex: 1;">
+                      <label for="blog-category">Category *</label>
+                      <select id="blog-category" required>
+                        <option value="Methodology">Methodology</option>
+                        <option value="Security">Security</option>
+                        <option value="Compliance">Compliance</option>
+                        <option value="Technology">Technology</option>
+                      </select>
+                    </div>
+                    <div class="form-group-admin" style="flex: 1;">
+                      <label for="blog-readtime">Est. Read Time *</label>
+                      <input type="text" id="blog-readtime" required placeholder="e.g. 5 min read">
+                    </div>
+                  </div>
+                  <div class="form-group-admin">
+                    <label for="blog-image">Cover Image URL</label>
+                    <input type="url" id="blog-image" placeholder="e.g. https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600">
+                  </div>
+                  <div class="form-group-admin">
+                    <label for="blog-excerpt">Short Excerpt (List description) *</label>
+                    <textarea id="blog-excerpt" rows="2" required placeholder="Brief summary of the article contents..."></textarea>
+                  </div>
+                  <div class="form-group-admin" style="margin-bottom: 0;">
+                    <label for="blog-content">Full Markdown Content *</label>
+                    <div class="editor-toolbar">
+                      <button type="button" class="toolbar-btn" data-format="bold" title="Bold"><strong>B</strong></button>
+                      <button type="button" class="toolbar-btn" data-format="italic" title="Italic"><em>I</em></button>
+                      <button type="button" class="toolbar-btn" data-format="h2" title="Heading 2">H2</button>
+                      <button type="button" class="toolbar-btn" data-format="h3" title="Heading 3">H3</button>
+                      <button type="button" class="toolbar-btn" data-format="list" title="Bullet List">List</button>
+                      <button type="button" class="toolbar-btn" data-format="link" title="Insert Link">Link</button>
+                      <button type="button" class="toolbar-btn" data-format="image" title="Insert Image">Image</button>
+                    </div>
+                    <textarea id="blog-content" class="textarea-editor" rows="12" required placeholder="Write your full article here. You can use standard HTML or Markdown..."></textarea>
                   </div>
                 </div>
-                <div class="form-group-admin">
-                  <label for="blog-image">Cover Image URL</label>
-                  <input type="url" id="blog-image" placeholder="e.g. https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600">
+                
+                <!-- Preview Side -->
+                <div class="blog-editor-preview-col" style="display: flex; flex-direction: column; height: 100%;">
+                  <label style="display: block; margin-bottom: 8px; font-size: 13.5px; font-weight: 500; color: var(--text-light);">Live Post Preview</label>
+                  <div id="blog-preview-pane" class="preview-pane" style="flex-grow: 1;">
+                    <p style="color: var(--text-muted); font-style: italic;">As you type in the editor, your post will render here in real time...</p>
+                  </div>
                 </div>
-                <div class="form-group-admin">
-                  <label for="blog-excerpt">Short Excerpt (List description) *</label>
-                  <textarea id="blog-excerpt" rows="2" required placeholder="Brief summary of the article contents..."></textarea>
-                </div>
-                <div class="form-group-admin">
-                  <label for="blog-content">Full Markdown Content *</label>
-                  <textarea id="blog-content" rows="10" required placeholder="Write your full article here. You can use standard HTML or Markdown..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Publish Article</button>
-              </form>
-            </div>
-            
-            <!-- List of existing blogs -->
-            <div class="glass-card admin-card">
-              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Published Blogs</h3>
-              <div class="table-wrapper">
-                <table class="admin-table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Category</th>
-                      <th style="width: 80px; text-align: center;">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="blogs-table-body">
-                    <!-- Dynamic -->
-                  </tbody>
-                </table>
               </div>
+              <button type="submit" class="btn btn-primary" style="margin-top: 25px;">Publish Article</button>
+            </form>
+          </div>
+          
+          <!-- List of existing blogs -->
+          <div class="glass-card admin-card">
+            <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Published Blogs</h3>
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th style="width: 80px; text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="blogs-table-body">
+                  <!-- Dynamic -->
+                </tbody>
+              </table>
             </div>
-            
           </div>
         </div>
         
         <!-- Panel 2: News Alerts -->
         <div id="panel-news" class="admin-panel">
+          <div class="admin-main-header">
+            <h2>⚡ Latest News Alerts</h2>
+          </div>
+          
           <div class="admin-grid">
-            
             <!-- Add news alert form -->
             <div class="glass-card admin-card">
               <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Publish News Alert</h3>
@@ -449,14 +737,16 @@
                 </table>
               </div>
             </div>
-            
           </div>
         </div>
         
         <!-- Panel 3: Polls -->
         <div id="panel-polls" class="admin-panel">
+          <div class="admin-main-header">
+            <h2>🗳 Poll Configuration</h2>
+          </div>
+          
           <div class="admin-grid">
-            
             <!-- Create active poll -->
             <div class="glass-card admin-card">
               <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Configure Poll Settings</h3>
@@ -500,7 +790,12 @@
             
             <!-- Real-time Poll results -->
             <div class="glass-card admin-card">
-              <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 20px;">Live Results Analytics</h3>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <h3 style="margin: 0; font-size: 20px;">Results Analytics</h3>
+                <button type="button" id="btn-download-poll" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; display: flex; align-items: center; gap: 6px; border-color: var(--turquoise-accent); color: var(--turquoise-accent);">
+                  📥 Download CSV
+                </button>
+              </div>
               <p id="admin-poll-title" style="font-weight: 600; color: var(--turquoise-accent); margin-bottom: 20px;">Loading Active Poll...</p>
               
               <div id="admin-poll-stats" class="poll-stats-box">
@@ -548,16 +843,24 @@
               
               <p id="admin-poll-total" style="font-size: 13px; color: var(--text-muted); margin-top: 20px; text-align: right;">Total Votes: 0</p>
             </div>
-            
           </div>
         </div>
         
         <!-- Panel 4: Leads -->
         <div id="panel-leads" class="admin-panel">
+          <div class="admin-main-header">
+            <h2>💼 B2B Leads Management</h2>
+          </div>
+          
           <div class="glass-card admin-card" style="width: 100%; max-width: 100%;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-              <h3 style="margin: 0; font-size: 20px;">💼 Received Leads & Estimates</h3>
-              <button id="btn-clear-leads" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">Clear All Leads</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+              <h3 style="margin: 0; font-size: 20px;">Received Prospect Submissions</h3>
+              <div style="display: flex; gap: 10px;">
+                <button id="btn-download-leads" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--turquoise-accent); color: var(--turquoise-accent); display: flex; align-items: center; gap: 6px;">
+                  📥 Download CSV
+                </button>
+                <button id="btn-clear-leads" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">Clear All Leads</button>
+              </div>
             </div>
             
             <div class="table-wrapper">
@@ -581,10 +884,88 @@
           </div>
         </div>
         
+        <!-- Panel 5: General Settings -->
+        <div id="panel-settings" class="admin-panel">
+          <div class="admin-main-header">
+            <h2>⚙️ General Site Settings</h2>
+          </div>
+          
+          <div class="admin-grid">
+            <!-- Footer Contacts Card -->
+            <div class="glass-card admin-card">
+              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">Footer Configuration</h3>
+              <form id="footer-settings-form">
+                <div class="form-group-admin">
+                  <label for="settings-footer-desc">Footer Description *</label>
+                  <textarea id="settings-footer-desc" rows="3" required placeholder="Precision data collection infrastructure..."></textarea>
+                </div>
+                <div class="form-group-admin">
+                  <label for="settings-footer-phone">Contact Phone *</label>
+                  <input type="text" id="settings-footer-phone" required placeholder="+91-0120-605-1391">
+                </div>
+                <div class="form-group-admin">
+                  <label for="settings-footer-email-info">Info Email *</label>
+                  <input type="email" id="settings-footer-email-info" required placeholder="info-team@researchcops.com">
+                </div>
+                <div class="form-group-admin">
+                  <label for="settings-footer-email-bidding">Bidding Email *</label>
+                  <input type="email" id="settings-footer-email-bidding" required placeholder="Bidding-team@researchcops.com">
+                </div>
+                <div class="form-group-admin">
+                  <label for="settings-footer-address">Office Address *</label>
+                  <textarea id="settings-footer-address" rows="3" required placeholder="T4-A11, NX One Avenue..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Footer Settings</button>
+              </form>
+            </div>
+            
+            <!-- Policy Editor Card -->
+            <div class="glass-card admin-card">
+              <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 20px;">📜 Legal Policies Editor</h3>
+              
+              <div class="form-group-admin" style="margin-bottom: 20px;">
+                <label for="settings-policy-select">Select Policy to Edit *</label>
+                <select id="settings-policy-select" style="background: rgba(5, 10, 10, 0.8); padding: 10px 14px; font-size: 13.5px; border-radius: var(--radius-sm);">
+                  <option value="privacy">Privacy Policy</option>
+                  <option value="terms">Terms & Conditions</option>
+                  <option value="cookies">Cookies Policy</option>
+                </select>
+              </div>
+              
+              <form id="policy-editor-form">
+                <div class="form-group-admin">
+                  <label for="settings-policy-title">Policy Title *</label>
+                  <input type="text" id="settings-policy-title" required placeholder="Privacy Policy">
+                </div>
+                <div class="form-group-admin" style="margin-bottom: 0;">
+                  <label for="settings-policy-content">Markdown Content *</label>
+                  <div class="editor-toolbar">
+                    <button type="button" class="policy-toolbar-btn" data-format="bold" title="Bold"><strong>B</strong></button>
+                    <button type="button" class="policy-toolbar-btn" data-format="italic" title="Italic"><em>I</em></button>
+                    <button type="button" class="policy-toolbar-btn" data-format="h2" title="Heading 2">H2</button>
+                    <button type="button" class="policy-toolbar-btn" data-format="h3" title="Heading 3">H3</button>
+                    <button type="button" class="policy-toolbar-btn" data-format="list" title="Bullet List">List</button>
+                    <button type="button" class="policy-toolbar-btn" data-format="link" title="Insert Link">Link</button>
+                    <button type="button" class="policy-toolbar-btn" data-format="image" title="Insert Image">Image</button>
+                  </div>
+                  <textarea id="settings-policy-content" class="textarea-editor" rows="12" required placeholder="Write policy markdown content..."></textarea>
+                </div>
+                
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                  <label style="display: block; margin-bottom: 8px; font-size: 13.5px; font-weight: 500; color: var(--text-light);">Policy Live Preview</label>
+                  <div id="policy-preview-pane" class="preview-pane">
+                    <!-- Compiled HTML preview -->
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Policy Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
       </main>
-      
     </div>
-    
   </div>
 
   <!-- Firebase Scripts (Modular imports) -->

@@ -1516,4 +1516,56 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  loadFooterSettings();
+
+  function loadFooterSettings() {
+    const footerDesc = document.getElementById("footer-desc");
+    const footerPhone = document.getElementById("footer-phone");
+    const footerEmails = document.getElementById("footer-emails");
+    const footerAddress = document.getElementById("footer-address");
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    if (rcDbMode === "firebase" && rcDb) {
+      rcDb.collection("settings").doc("footer").get()
+        .then(doc => {
+          if (doc.exists) {
+            const data = doc.data();
+            updateFooterDOM(data);
+          }
+        })
+        .catch(err => console.error("Error loading dynamic footer settings:", err));
+    } else {
+      const localFooter = JSON.parse(localStorage.getItem("rc_footer_settings"));
+      if (localFooter) {
+        updateFooterDOM(localFooter);
+      }
+    }
+
+    function updateFooterDOM(data) {
+      if (footerDesc && data.description) footerDesc.textContent = data.description;
+      if (footerPhone && data.phone) {
+        footerPhone.textContent = data.phone;
+        footerPhone.href = `tel:${data.phone}`;
+      }
+      if (footerEmails && (data.emailInfo || data.emailBidding)) {
+        let emailsHtml = "";
+        if (data.emailInfo) emailsHtml += `<a href="mailto:${escapeHtml(data.emailInfo)}">${escapeHtml(data.emailInfo)}</a><br>`;
+        if (data.emailBidding) emailsHtml += `<a href="mailto:${escapeHtml(data.emailBidding)}">${escapeHtml(data.emailBidding)}</a>`;
+        footerEmails.innerHTML = emailsHtml;
+      }
+      if (footerAddress && data.address) {
+        footerAddress.innerHTML = escapeHtml(data.address).replace(/\n/g, "<br>");
+      }
+    }
+  }
 });
