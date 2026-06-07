@@ -1494,7 +1494,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Standard auto response
         setTimeout(() => {
           hideTypingIndicator();
-          addBotMessage("Thank you for your message! Our bidding and technical teams will review your request. For immediate quotes, please use our CPI Estimator on the homepage.");
+          addBotMessage("Thank you! Your details have been submitted successfully. To speed up your onboarding, select a convenient time below to schedule your alignment call directly:");
+          renderQuickChips([
+            { label: "Schedule Call Directly", icon: "calendar", chip: "trigger-calendly-link" },
+            { label: "Main Menu", icon: "back", chip: "go-main" }
+          ]);
         }, 1200);
       });
     }
@@ -1515,16 +1519,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (chipType === 'workflow') {
           addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
         } else if (chipType === 'quote') {
-          addBotMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like to schedule a call directly on our calendar, or submit a brief proposal request?");
-          renderQuickChips([
-            { label: "Schedule Call Directly", icon: "calendar", chip: "trigger-calendly-link" },
-            { label: "Request Proposal", icon: "quote", chip: "trigger-submit-flow" }
-          ]);
+          addBotMessage("We would love to build a custom solution blueprint and sandbox demo for you! Please type your **Full Name, Work Email, and project brief** below and send it. Once submitted, you'll be able to book a call directly on our calendar.");
+          renderQuickChips([]);
         } else if (chipType === 'trigger-calendly-link') {
           addBotMessage("Great choice! Booking a video call helps us align on parameters and demonstrate our system capabilities. Click the link below to select a time:");
           addBotMessage(`📅 <strong><a href="${rcCalendlyUrl}" target="_blank" style="color: var(--turquoise-accent); text-decoration: underline;">Schedule Call on Calendly</a></strong>`);
           renderQuickChips([
-            { label: "Request Proposal instead", icon: "quote", chip: "trigger-submit-flow" },
             { label: "Main Menu", icon: "back", chip: "go-main" }
           ]);
         } else if (chipType === 'trigger-submit-flow') {

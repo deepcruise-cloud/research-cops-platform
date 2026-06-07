@@ -557,7 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSubmit.textContent = 'Submitting Quote Request...';
 
     setTimeout(() => {
-      errorMsgContainer.textContent = '✔ Thank you! Quote request received successfully. Our team will contact you within 2 hours.';
       quoteForm.reset();
       
       // Reset form variables
@@ -585,10 +584,31 @@ document.addEventListener('DOMContentLoaded', () => {
       btnSubmit.disabled = false;
       btnSubmit.textContent = 'Submit Now!';
 
-      // Clear success notification banner
-      setTimeout(() => {
-        errorMsgContainer.textContent = '';
-      }, 5000);
+      // Seamlessly switch to Calendly scheduler post details submission
+      const formContainer = document.getElementById('contact-form-container');
+      const calendlyContainer = document.getElementById('contact-calendly-container');
+      if (formContainer && calendlyContainer) {
+        formContainer.style.transition = 'opacity 0.4s ease';
+        formContainer.style.opacity = '0';
+        setTimeout(() => {
+          formContainer.style.display = 'none';
+          
+          errorMsgContainer.style.display = 'block';
+          errorMsgContainer.innerHTML = '✔ <strong>RFP Brief received successfully!</strong> To speed up your onboarding, select a convenient time below to schedule your B2B brief alignment call directly:';
+          
+          calendlyContainer.style.display = 'block';
+          calendlyContainer.style.opacity = '0';
+          calendlyContainer.style.transition = 'opacity 0.4s ease';
+          setTimeout(() => {
+            calendlyContainer.style.opacity = '1';
+          }, 50);
+        }, 400);
+      } else {
+        errorMsgContainer.textContent = '✔ Thank you! Quote request received successfully. Our team will contact you within 2 hours.';
+        setTimeout(() => {
+          errorMsgContainer.textContent = '';
+        }, 5000);
+      }
 
     }, 1500);
   });
@@ -1317,10 +1337,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- GET QUOTE/DEMO DIRECT ---
         case 'go-quote':
           chatState.step = 'quote-confirm';
-          appendChatMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like to schedule a call directly on our calendar, or raise a general proposal request to **Info-team@researchcops.com**?");
+          appendChatMessage("We would love to build a custom solution blueprint and sandbox demo for you! Let's first gather your contact details and project brief so we have everything ready for our discussion.");
           renderQuickChips([
-            { label: "Schedule Call Directly", icon: "calendar", action: "trigger-calendly-link" },
-            { label: "Request Proposal", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Provide Details & Get Proposal", icon: "quote", action: "trigger-submit-flow" },
             { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
@@ -1512,8 +1531,9 @@ document.addEventListener('DOMContentLoaded', () => {
       chatState.wfIntegration = null;
       chatState.intScale = null;
 
-      // Offer new session options
+      // Offer Calendly scheduling post details submission
       renderQuickChips([
+        { label: "Schedule Call Directly", icon: "calendar", action: "trigger-calendly-link" },
         { label: "Start New Session", icon: "refresh", action: "go-main" },
         { label: "Back to Main Menu", icon: "back", action: "go-main" }
       ]);
