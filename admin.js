@@ -1327,7 +1327,8 @@ function loadFooterSettingsAdmin() {
     phone: "+91-0120-605-1391",
     emailInfo: "info-team@researchcops.com",
     emailBidding: "Bidding-team@researchcops.com",
-    address: "T4-A11, NX One Avenue, Plot No - 17,\nTechzone 4, Greater Noida, UP 201306"
+    address: "T4-A11, NX One Avenue, Plot No - 17,\nTechzone 4, Greater Noida, UP 201306",
+    calendly: "https://calendly.com/researchcops/30min"
   };
 
   const populateFooterForm = (data) => {
@@ -1336,6 +1337,10 @@ function loadFooterSettingsAdmin() {
     footerEmailInfo.value = data.emailInfo || defaultFooter.emailInfo;
     footerEmailBidding.value = data.emailBidding || defaultFooter.emailBidding;
     footerAddress.value = data.address || defaultFooter.address;
+    const footerCalendly = document.getElementById("settings-footer-calendly");
+    if (footerCalendly) {
+      footerCalendly.value = data.calendly || defaultFooter.calendly;
+    }
   };
 
   if (dbMode === "firebase" && db) {
@@ -1368,8 +1373,10 @@ function saveFooterSettingsAdmin(e) {
   const emailInfo = document.getElementById("settings-footer-email-info").value.trim();
   const emailBidding = document.getElementById("settings-footer-email-bidding").value.trim();
   const address = document.getElementById("settings-footer-address").value.trim();
+  const calendlyEl = document.getElementById("settings-footer-calendly");
+  const calendly = calendlyEl ? calendlyEl.value.trim() : "https://calendly.com/researchcops/30min";
 
-  const footerData = { description, phone, emailInfo, emailBidding, address };
+  const footerData = { description, phone, emailInfo, emailBidding, address, calendly };
 
   if (dbMode === "firebase" && db) {
     db.collection("settings").doc("footer").set(footerData)

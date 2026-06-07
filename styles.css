@@ -3793,6 +3793,54 @@ textarea:focus {
   }
 }
 
+/* ----------------------------------------------------
+   16. Contact Section Tab & Calendly Responsiveness (Phase 25)
+   ---------------------------------------------------- */
+.contact-tab-btn {
+  flex: 1;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  outline: none;
+}
+
+.contact-tab-btn.active {
+  background: rgba(4, 203, 194, 0.08);
+  border: 1px solid rgba(4, 203, 194, 0.15);
+  color: var(--turquoise-accent);
+}
+
+#contact-calendly-container {
+  width: 100%;
+  min-height: 650px;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+#calendly-iframe {
+  width: 100%;
+  height: 650px;
+  border: none;
+  background: transparent;
+}
+
+/* Mobile Responsive Optimization for Calendly iframe */
+@media (max-width: 480px) {
+  #contact-calendly-container {
+    min-height: 750px !important;
+  }
+  #calendly-iframe {
+    height: 750px !important;
+  }
+}
+
 
 
 

@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let rcDbMode = "local";
   let rcDb = null;
+  let rcCalendlyUrl = "https://calendly.com/researchcops/30min";
 
   // Seeding backup configurations
   const RC_DEFAULT_BLOGS = [
@@ -1089,6 +1090,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (footerAddress && data.address) {
         footerAddress.innerHTML = rcEscapeHtml(data.address).replace(/\n/g, "<br>");
+      }
+      if (data.calendly) {
+        rcCalendlyUrl = data.calendly;
       }
     }
   }

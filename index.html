@@ -1757,9 +1757,17 @@
           <div class="form-header">
             <h2>Request a Quote</h2>
             <p>Tell us about your study. We'll respond with a detailed feasibility proposal within 24 hours.</p>
+            
+            <!-- Contact Method Toggle Tabs -->
+            <div class="contact-method-tabs" style="display: flex; gap: 8px; justify-content: center; margin-top: 20px; background: rgba(0, 0, 0, 0.25); padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); max-width: 340px; margin-left: auto; margin-right: auto; position: relative; z-index: 10;">
+              <button type="button" class="contact-tab-btn active" id="contact-tab-form">Submit RFP Brief</button>
+              <button type="button" class="contact-tab-btn" id="contact-tab-call">Schedule Call</button>
+            </div>
           </div>
 
-          <form id="contact_form" name="contact_form" class="project-form">
+          <!-- RFP Form Container -->
+          <div id="contact-form-container">
+            <form id="contact_form" name="contact_form" class="project-form">
             <div class="form-row">
               <div class="form-group col">
                 <label for="name">Full Name *</label>
@@ -1845,6 +1853,12 @@
             <!-- Success / Error message placeholder -->
             <p class="form-success-msg" id="error_messages"></p>
           </form>
+          </div>
+
+          <!-- Calendly Inline Container -->
+          <div id="contact-calendly-container" style="display: none; width: 100%; min-height: 650px; overflow: hidden; padding-top: 10px;">
+            <iframe id="calendly-iframe" src="https://calendly.com/researchcops/30min" width="100%" height="650" frameborder="0" style="background: transparent;"></iframe>
+          </div>
         </div>
       </div>
     </section>

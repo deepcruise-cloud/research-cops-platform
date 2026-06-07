@@ -1141,6 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let rcDbMode = "local";
   let rcDb = null;
+  let rcCalendlyUrl = "https://calendly.com/researchcops/30min";
 
   const rcIsFirebaseConfigured = () => {
     return rcFirebaseConfig && 
@@ -1302,7 +1303,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cpi: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
       workflow: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
       erp: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
-      quote: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`
+      quote: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+      calendar: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+      back: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>`
     };
 
     const genieAvatarHtml = '<img src="support_genie_avatar.png" alt="Support Genie" class="genie-avatar-img">';
@@ -1348,6 +1351,33 @@ document.addEventListener('DOMContentLoaded', () => {
       chatLogs.scrollTop = chatLogs.scrollHeight;
     };
 
+    const renderQuickChips = (chipsList) => {
+      const existingChips = chatLogs.querySelectorAll('.chat-chips-container');
+      existingChips.forEach(c => c.remove());
+
+      if (chipsList.length === 0) return;
+
+      const chipsContainer = document.createElement('div');
+      chipsContainer.className = 'chat-chips-container';
+
+      chipsList.forEach(data => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-chip';
+        btn.setAttribute('data-chip', data.chip);
+        
+        const svgIcon = chatbotIcons[data.icon] || '';
+        btn.innerHTML = `${svgIcon}<span>${data.label}</span>`;
+        
+        btn.addEventListener('click', () => {
+          handleChipClick(btn);
+        });
+        chipsContainer.appendChild(btn);
+      });
+
+      chatLogs.appendChild(chipsContainer);
+      chatLogs.scrollTop = chatLogs.scrollHeight;
+    };
+
     const triggerChatOnboarding = () => {
       if (chatOnboarded) return;
       chatOnboarded = true;
@@ -1366,31 +1396,12 @@ document.addEventListener('DOMContentLoaded', () => {
           hideTypingIndicator();
           addBotMessage("Select a quick topic below or type your question:");
           
-          // Render chips dynamically
-          const chipsContainer = document.createElement('div');
-          chipsContainer.className = 'chat-chips-container';
-          const chipsData = [
+          renderQuickChips([
             { label: "CPI Estimate & Calculator", icon: "cpi", chip: "pricing" },
             { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
             { label: "Enterprise ERP & Integrations", icon: "erp", chip: "integrations" },
             { label: "Get Custom Quote & Demo", icon: "quote", chip: "quote" }
-          ];
-
-          chipsData.forEach(data => {
-            const btn = document.createElement('button');
-            btn.className = 'chat-chip';
-            btn.setAttribute('data-chip', data.chip);
-            
-            const svgIcon = chatbotIcons[data.icon] || '';
-            btn.innerHTML = `${svgIcon}<span>${data.label}</span>`;
-            
-            btn.addEventListener('click', () => {
-              handleChipClick(btn);
-            });
-            chipsContainer.appendChild(btn);
-          });
-          chatLogs.appendChild(chipsContainer);
-          chatLogs.scrollTop = chatLogs.scrollHeight;
+          ]);
         }, 1200);
       }, 1000);
     };
@@ -1503,6 +1514,33 @@ document.addEventListener('DOMContentLoaded', () => {
           addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page to redirect to our CPI calculator.");
         } else if (chipType === 'workflow') {
           addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
+        } else if (chipType === 'quote') {
+          addBotMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like to schedule a call directly on our calendar, or submit a brief proposal request?");
+          renderQuickChips([
+            { label: "Schedule Call Directly", icon: "calendar", chip: "trigger-calendly-link" },
+            { label: "Request Proposal", icon: "quote", chip: "trigger-submit-flow" }
+          ]);
+        } else if (chipType === 'trigger-calendly-link') {
+          addBotMessage("Great choice! Booking a video call helps us align on parameters and demonstrate our system capabilities. Click the link below to select a time:");
+          addBotMessage(`📅 <strong><a href="${rcCalendlyUrl}" target="_blank" style="color: var(--turquoise-accent); text-decoration: underline;">Schedule Call on Calendly</a></strong>`);
+          renderQuickChips([
+            { label: "Request Proposal instead", icon: "quote", chip: "trigger-submit-flow" },
+            { label: "Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'trigger-submit-flow') {
+          addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");
+          renderQuickChips([
+            { label: "Schedule Call instead", icon: "calendar", chip: "trigger-calendly-link" },
+            { label: "Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'go-main') {
+          addBotMessage("What general area would you like to inquire about?");
+          renderQuickChips([
+            { label: "CPI Estimate & Calculator", icon: "cpi", chip: "pricing" },
+            { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
+            { label: "Enterprise ERP & Integrations", icon: "erp", chip: "integrations" },
+            { label: "Get Custom Quote & Demo", icon: "quote", chip: "quote" }
+          ]);
         } else {
           addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");
         }
@@ -1565,6 +1603,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (footerAddress && data.address) {
         footerAddress.innerHTML = escapeHtml(data.address).replace(/\n/g, "<br>");
+      }
+      if (data.calendly) {
+        rcCalendlyUrl = data.calendly;
       }
     }
   }

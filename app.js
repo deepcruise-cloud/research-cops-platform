@@ -909,7 +909,8 @@ document.addEventListener('DOMContentLoaded', () => {
     coach: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2l-7 20-4-9-9-4 20-7z"></path><line x1="22" y1="2" x2="11" y2="13"></line></svg>`,
     api: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 15v5a2 2 0 0 0 4 0v-5a3 3 0 0 1 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2V10z"></path><line x1="12" y1="2" x2="12" y2="4"></line></svg>`,
     db: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>`,
-    skip: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`
+    skip: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`,
+    calendar: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
   };
 
   const genieAvatarHtml = '<img src="support_genie_avatar.png" alt="Support Genie" class="genie-avatar-img">';
@@ -1316,9 +1317,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- GET QUOTE/DEMO DIRECT ---
         case 'go-quote':
           chatState.step = 'quote-confirm';
-          appendChatMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like me to raise a general proposal request to **Info-team@researchcops.com**?");
+          appendChatMessage("We would love to build a custom solution blueprint and sandbox demo for you! Would you like to schedule a call directly on our calendar, or raise a general proposal request to **Info-team@researchcops.com**?");
           renderQuickChips([
+            { label: "Schedule Call Directly", icon: "calendar", action: "trigger-calendly-link" },
             { label: "Request Proposal", icon: "quote", action: "trigger-submit-flow" },
+            { label: "Back to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        case 'trigger-calendly-link':
+          appendChatMessage("Great choice! Booking a video call helps us align on parameters and demonstrate our system capabilities. Click the link below to select a time:");
+          appendChatMessage(`📅 <strong><a href="${rcCalendlyUrl}" target="_blank" style="color: var(--turquoise-accent); text-decoration: underline;">Schedule Call on Calendly</a></strong>`);
+          renderQuickChips([
+            { label: "Request Proposal instead", icon: "quote", action: "trigger-submit-flow" },
             { label: "Back to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
@@ -1600,6 +1611,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let rcDbMode = "local";
   let rcDb = null;
+  let rcCalendlyUrl = "https://calendly.com/researchcops/30min";
 
   // Initial mock database arrays for seeding
   const RC_DEFAULT_BLOGS = [
@@ -1826,6 +1838,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerPhone = document.getElementById("footer-phone");
     const footerEmails = document.getElementById("footer-emails");
     const footerAddress = document.getElementById("footer-address");
+    const calendlyIframe = document.getElementById("calendly-iframe");
 
     if (rcDbMode === "firebase" && rcDb) {
       rcDb.collection("settings").doc("footer").get()
@@ -1857,6 +1870,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (footerAddress && data.address) {
         footerAddress.innerHTML = rcEscapeHtml(data.address).replace(/\n/g, "<br>");
+      }
+      if (data.calendly) {
+        rcCalendlyUrl = data.calendly;
+        if (calendlyIframe) {
+          calendlyIframe.src = data.calendly;
+        }
       }
     }
   }
@@ -2342,6 +2361,46 @@ document.addEventListener('DOMContentLoaded', () => {
     heroSection.addEventListener('mouseleave', () => {
       heroVisual.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
       heroVisual.style.transition = 'transform 0.6s ease';
+    });
+  }
+
+  // ----------------------------------------------------
+  // Contact Tabs Toggle (RFP Form vs Calendly Call)
+  // ----------------------------------------------------
+  const tabForm = document.getElementById('contact-tab-form');
+  const tabCall = document.getElementById('contact-tab-call');
+  const formContainer = document.getElementById('contact-form-container');
+  const calendlyContainer = document.getElementById('contact-calendly-container');
+
+  if (tabForm && tabCall && formContainer && calendlyContainer) {
+    tabForm.addEventListener('click', () => {
+      tabForm.classList.add('active');
+      tabForm.style.background = 'rgba(4, 203, 194, 0.08)';
+      tabForm.style.borderColor = 'rgba(4, 203, 194, 0.15)';
+      tabForm.style.color = 'var(--turquoise-accent)';
+
+      tabCall.classList.remove('active');
+      tabCall.style.background = 'none';
+      tabCall.style.borderColor = 'transparent';
+      tabCall.style.color = 'var(--text-muted)';
+
+      formContainer.style.display = 'block';
+      calendlyContainer.style.display = 'none';
+    });
+
+    tabCall.addEventListener('click', () => {
+      tabCall.classList.add('active');
+      tabCall.style.background = 'rgba(4, 203, 194, 0.08)';
+      tabCall.style.borderColor = 'rgba(4, 203, 194, 0.15)';
+      tabCall.style.color = 'var(--turquoise-accent)';
+
+      tabForm.classList.remove('active');
+      tabForm.style.background = 'none';
+      tabForm.style.borderColor = 'transparent';
+      tabForm.style.color = 'var(--text-muted)';
+
+      formContainer.style.display = 'none';
+      calendlyContainer.style.display = 'block';
     });
   }
 
