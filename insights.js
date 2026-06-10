@@ -415,61 +415,116 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     Promise.all([
-      fetch("https://dev.to/api/articles?tag=news&per_page=15").then(res => res.json()),
-      fetch("https://dev.to/api/articles?tag=technology&per_page=15").then(res => res.json())
+      fetch("https://api.rss2json.com/v1/api.json?rss_url=https://techcrunch.com/feed/").then(res => res.json()),
+      fetch("https://api.rss2json.com/v1/api.json?rss_url=https://venturebeat.com/feed/").then(res => res.json())
     ])
-    .then(([dbArticles, autoArticles]) => {
+    .then(([tcData, vbData]) => {
       const seen = new Set();
       const combined = [];
       
       const processArticle = (item, defaultCat) => {
-        if (!item || seen.has(item.id)) return;
-        seen.add(item.id);
+        if (!item || seen.has(item.link)) return;
+        
+        // Quality Filter: Non-English characters detection (CJK, Cyrillic, Arabic, Devanagari, Hebrew)
+        const nonEnglishRegex = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff00-\uffef\u0400-\u04ff\u0600-\u06ff\u0900-\u097f]/;
+        const testTitle = item.title || "";
+        const testDesc = item.description || "";
+        if (nonEnglishRegex.test(testTitle) || nonEnglishRegex.test(testDesc)) {
+          return;
+        }
+
+        // Quality Filter: Content Blocklist (removes consumer gadgets, gaming, movies, web3/crypto fluff)
+        const blocklist = [
+          "gaming", "gameplay", "playstation", "xbox", "nintendo", "switch", "fortnite",
+          "cryptocurrency", "bitcoin", "ethereum", "solana", "nft", "web3", "coinbase", "binance", "stablecoin",
+          "deal of the day", "discount", "coupon", "movie", "tv show", "streaming", "pop culture",
+          "consumer electronics", "wearable", "smartwatch", "gadget review", "hands-on review"
+        ];
+        const combinedTextForCheck = (testTitle + " " + testDesc + " " + (item.categories || []).join(" ")).toLowerCase();
+        const matchesBlock = blocklist.some(term => combinedTextForCheck.includes(term));
+        if (matchesBlock) {
+          return;
+        }
+
+        seen.add(item.link);
         
         let category = defaultCat;
-        const tags = (item.tag_list || []).map(t => t.toLowerCase());
+        const categories = (item.categories || []).map(c => c.toLowerCase());
         
-        if (tags.some(t => t.includes("sports") || t.includes("sport") || t.includes("game") || t.includes("olympic"))) {
-          category = "Sports";
-        } else if (tags.some(t => t.includes("tech") || t.includes("technology") || t.includes("code") || t.includes("program") || t.includes("dev") || t.includes("ai") || t.includes("api") || t.includes("database"))) {
-          category = "Tech";
-        } else if (tags.some(t => t.includes("business") || t.includes("startup") || t.includes("career") || t.includes("management") || t.includes("marketing"))) {
-          category = "Business";
-        } else if (tags.some(t => t.includes("finance") || t.includes("money") || t.includes("crypto") || t.includes("bitcoin") || t.includes("stock") || t.includes("bank"))) {
-          category = "Finance";
-        } else if (tags.some(t => t.includes("global") || t.includes("world") || t.includes("news") || t.includes("earth") || t.includes("country"))) {
-          category = "Global";
+        if (categories.some(c => c.includes("security") || c.includes("cyber") || c.includes("privacy") || c.includes("hacker"))) {
+          category = "Security";
+        } else if (categories.some(c => c.includes("compliance") || c.includes("regulation") || c.includes("gov") || c.includes("legal"))) {
+          category = "Compliance";
+        } else if (categories.some(c => c.includes("automation") || c.includes("ai") || c.includes("robot") || c.includes("workflow") || c.includes("mcp"))) {
+          category = "Automation";
+        } else if (categories.some(c => c.includes("integration") || c.includes("api") || c.includes("database") || c.includes("sync") || c.includes("cloud"))) {
+          category = "Integration";
         } else {
-          category = "Other";
+          const fallbackCats = ["Integration", "Security", "Automation", "Compliance"];
+          category = defaultCat || fallbackCats[Math.floor(Math.random() * fallbackCats.length)];
         }
         
         let displayDate = "Live";
-        if (item.published_at) {
-          const d = new Date(item.published_at);
+        if (item.pubDate) {
+          const d = new Date(item.pubDate.replace(/-/g, "/"));
           const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
           displayDate = `${months[d.getMonth()]} ${d.getFullYear()}`;
         }
         
+        let imgUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600";
+        if (item.thumbnail) {
+          imgUrl = item.thumbnail;
+        } else if (item.enclosure && item.enclosure.link) {
+          imgUrl = item.enclosure.link;
+        } else {
+          const imgMatch = (item.description || "").match(/<img[^>]+src="([^">]+)"/);
+          if (imgMatch) imgUrl = imgMatch[1];
+        }
+
+        // Clean tracking pixels or invalid base64 images, replacing with premium category-specific Unsplash photos
+        const isTrackingPixel = imgUrl.includes("tracking") || imgUrl.includes("pixel") || imgUrl.includes("feedburner") || imgUrl.includes("1x1") || imgUrl.includes("adzerk");
+        if (isTrackingPixel || !imgUrl || imgUrl.startsWith("data:image")) {
+          const catImages = {
+            Automation: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600",
+            Security: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=600",
+            Compliance: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=600",
+            Integration: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=600"
+          };
+          imgUrl = catImages[category] || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600";
+        }
+
+        let cleanExcerpt = (item.description || "")
+          .replace(/<[^>]*>/g, '')
+          .replace(/&nbsp;/g, ' ')
+          .replace(/&amp;/g, '&')
+          .trim();
+        if (cleanExcerpt.length > 180) {
+          cleanExcerpt = cleanExcerpt.substring(0, 177) + "...";
+        }
+        
+        const articleId = btoa(item.link).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+
         combined.push({
-          id: item.id.toString(),
+          id: articleId,
           title: item.title,
           category: category,
-          readtime: `${item.reading_time_minutes || 3} min read`,
-          excerpt: item.description || "No description provided.",
-          content: "", 
+          readtime: "3 min read",
+          excerpt: cleanExcerpt || "Click to read the full summary proposal.",
+          content: cleanExcerpt, 
+          link: item.link,
           date: displayDate,
           featured: false,
-          timestamp: item.published_at ? new Date(item.published_at).getTime() : Date.now(),
+          timestamp: item.pubDate ? new Date(item.pubDate.replace(/-/g, "/")).getTime() : Date.now(),
           type: "live-article",
-          image: item.cover_image || item.social_image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600"
+          image: imgUrl
         });
       };
       
-      if (Array.isArray(dbArticles)) {
-        dbArticles.forEach(item => processArticle(item, "News"));
+      if (tcData && Array.isArray(tcData.items)) {
+        tcData.items.forEach(item => processArticle(item, "Automation"));
       }
-      if (Array.isArray(autoArticles)) {
-        autoArticles.forEach(item => processArticle(item, "Integration"));
+      if (vbData && Array.isArray(vbData.items)) {
+        vbData.items.forEach(item => processArticle(item, "Integration"));
       }
       
       combined.sort((a, b) => b.timestamp - a.timestamp);
@@ -497,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderActivePollWidget();
     })
     .catch(err => {
-      console.error("Error fetching live DEV.to feed:", err);
+      console.error("Error fetching live RSS feed:", err);
       if (feedList) {
         feedList.innerHTML = `
           <div class="glass-card" style="padding: 40px; text-align: center; color: var(--text-muted); border-radius: var(--radius-md);">
@@ -701,19 +756,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (article) {
         showArticleInReader(article);
       } else if (type === "live-article") {
-        // Fetch article detail directly from API even if not in current allFeedItems list (deep linked)
-        const placeholder = {
-          id: id,
-          type: "live-article",
-          title: "Loading Live Trend...",
-          category: "Technology",
-          date: "Live",
-          readtime: "Calculating...",
-          content: ""
-        };
-        showArticleInReader(placeholder);
+        try {
+          const originalUrl = atob(id.replace(/-/g, '+').replace(/_/g, '/'));
+          if (originalUrl.startsWith("http")) {
+            window.location.replace(originalUrl);
+          } else {
+            showFeedView();
+          }
+        } catch (e) {
+          showFeedView();
+        }
       } else {
-        // Fallback if not loaded/found
         showFeedView();
       }
     } else {
@@ -733,65 +786,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerBadgeClass = isNews ? "badge-teal" : "blog-cat";
     const headerCategory = isNews ? `News Alerts: ${article.category}` : 
                             isLive ? `Global: ${article.category}` : article.category;
-    
-    // Check if we need to fetch details for a live article
-    if (isLive && !article.content) {
-      readerArticle.innerHTML = `
-        <div style="margin-bottom: 20px;">
-          <span class="blog-cat" style="display:inline-block; margin-bottom: 15px;">Global: ${rcEscapeHtml(article.category)}</span>
-          <h1 style="font-family: var(--font-family-display); font-size: 32px; font-weight: 700; color: var(--text-light); line-height:1.3; margin-bottom: 15px;">
-            ${rcEscapeHtml(article.title)}
-          </h1>
-          <div style="display: flex; gap: 20px; font-size: 13.5px; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px;">
-            <span>📅 Date: <strong>${rcEscapeHtml(article.date)}</strong></span>
-            <span>⏱ Length: <strong>${rcEscapeHtml(article.readtime)}</strong></span>
-          </div>
-        </div>
-        
-        <div style="text-align: center; padding: 60px 0; color: var(--text-muted);">
-          <span class="live-pulse active" style="width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-bottom: 12px;"></span>
-          <p>Retrieving article details from DEV.to API...</p>
-        </div>
-      `;
-
-      fetch(`https://dev.to/api/articles/${article.id}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data && (data.body_markdown || data.description)) {
-            article.content = data.body_markdown || data.description;
-            if (data.title) article.title = data.title;
-            if (data.reading_time_minutes) article.readtime = `${data.reading_time_minutes} min read`;
-            
-            let displayDate = "Live";
-            if (data.published_at) {
-              const d = new Date(data.published_at);
-              const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              displayDate = `${months[d.getMonth()]} ${d.getFullYear()}`;
-            }
-            article.date = displayDate;
-            
-            // Re-render now that content is loaded
-            showArticleInReader(article);
-          } else {
-            throw new Error("No content received");
-          }
-        })
-        .catch(err => {
-          console.error("Error retrieving article details:", err);
-          readerArticle.innerHTML = `
-            <div style="margin-bottom: 20px;">
-              <span class="blog-cat" style="display:inline-block; margin-bottom: 15px; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #ef4444;">Connection Error</span>
-              <h1 style="font-family: var(--font-family-display); font-size: 32px; font-weight: 700; color: var(--text-light); line-height:1.3; margin-bottom: 15px;">
-                Failed to fetch article details
-              </h1>
-            </div>
-            <p style="color: var(--text-muted); line-height: 1.6;">We were unable to load the full markdown body from the DEV.to API. Please check your network connection and try again.</p>
-          `;
-        });
-      return;
-    }
 
     const displayBodyHtml = isNews ? `<p style="font-size:16px; line-height:1.7; color:#e2e8f0; white-space: pre-wrap;">${rcEscapeHtml(article.content)}</p>` : compileMarkdown(article.content);
+
+    const isTC = article.link && article.link.includes("techcrunch.com");
+    const isVB = article.link && article.link.includes("venturebeat.com");
+    const publisherName = isTC ? "TechCrunch" : (isVB ? "VentureBeat" : "Publisher's Website");
+
+    const ctaHtml = isLive ? `
+      <!-- Live Publication Redirect Card -->
+      <div style="margin-top: 40px; padding: 25px; background: rgba(4, 203, 194, 0.04); border: 1px solid rgba(4, 203, 194, 0.12); border-radius: var(--radius-md); text-align: center;">
+        <h4 style="font-family: var(--font-family-display); font-size: 18px; color: var(--text-light); margin-bottom: 10px;">Read the Full Publication</h4>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">This article summary was aggregated from <strong>${publisherName}</strong>. Click below to read the complete article on the publisher's official website.</p>
+        <a href="${article.link}" target="_blank" class="btn btn-primary" style="display: inline-block; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; color: #050a0a; background: var(--turquoise-accent); transition: var(--transition-smooth);">Open on ${publisherName} ↗</a>
+      </div>
+    ` : "";
 
     readerArticle.innerHTML = `
       <div style="margin-bottom: 20px;">
@@ -809,6 +818,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="reader-markdown-body" style="margin-top: 30px;">
         ${displayBodyHtml}
       </div>
+
+      ${ctaHtml}
 
       ${isLive ? `
       <!-- Live Disclaimer Note -->
