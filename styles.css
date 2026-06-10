@@ -3841,6 +3841,140 @@ textarea:focus {
   }
 }
 
+/* ═══════════════════════════════════════════ */
+/* Cookie Consent Banner Styling & Layout Sync */
+/* ═══════════════════════════════════════════ */
+.cookie-banner-card {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 400px;
+  max-width: calc(100vw - 60px);
+  z-index: 1001;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 20px rgba(4, 203, 194, 0.08);
+  border: 1px solid rgba(4, 203, 194, 0.16);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cookieBannerSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cookie-banner-card.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+@keyframes cookieBannerSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cookie-banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cookie-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cookie-banner-header h4 {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.cookie-icon {
+  flex-shrink: 0;
+  animation: cookieRotate 10s linear infinite;
+}
+
+@keyframes cookieRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cookie-banner-content p {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.cookie-policy-link {
+  color: var(--turquoise-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.cookie-policy-link:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(4, 203, 194, 0.4);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Layout synchronization shifting Support Genie up */
+body.cookie-banner-active .support-genie-fab {
+  /* Smooth transition via default styles */
+}
+
+/* Mobile responsive media queries */
+@media (max-width: 768px) {
+  .cookie-banner-card {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 20px;
+    animation: cookieBannerSlideUpMobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes cookieBannerSlideUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cookie-banner-card.fade-out {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  /* Shift Support Genie button up on mobile to avoid covering it behind full-width drawer */
+  body.cookie-banner-active .support-genie-fab {
+    bottom: 215px !important;
+  }
+}
+
 
 
 
