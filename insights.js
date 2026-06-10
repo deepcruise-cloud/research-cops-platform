@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let allFeedItems = [];
   let currentCategoryFilter = "all";
   let currentSearchQuery = "";
-  let liveFeedActive = false;
+  let liveFeedActive = true;
   let liveTrendingCategory = "Integration";
 
   // Elements
@@ -365,43 +365,65 @@ document.addEventListener('DOMContentLoaded', () => {
   const backBtn = document.getElementById("reader-back-btn");
   const backBtnFooter = document.getElementById("reader-back-btn-footer");
 
-  const liveFeedSwitch = document.getElementById("live-feed-switch");
-  const liveFeedPulse = document.getElementById("live-feed-pulse");
-  const liveFeedStatusText = document.getElementById("live-feed-status-text");
+  const tabLatestNews = document.getElementById("tab-latest-news");
+  const tabCuratedBlogs = document.getElementById("tab-curated-blogs");
 
-  // Toggle switch listener
-  if (liveFeedSwitch) {
-    liveFeedSwitch.addEventListener("change", (e) => {
-      liveFeedActive = e.target.checked;
+  const updateFeedTabs = () => {
+    if (!tabLatestNews || !tabCuratedBlogs) return;
+    if (liveFeedActive) {
+      tabLatestNews.classList.add("active");
+      tabLatestNews.style.color = "var(--turquoise-accent)";
+      tabLatestNews.style.borderBottom = "3px solid var(--turquoise-accent)";
       
-      // Reset filter tags visually
-      filterTags.forEach(b => b.classList.remove("active"));
-      const allTag = Array.from(filterTags).find(b => b.getAttribute("data-filter") === "all");
-      if (allTag) allTag.classList.add("active");
+      tabCuratedBlogs.classList.remove("active");
+      tabCuratedBlogs.style.color = "var(--text-muted)";
+      tabCuratedBlogs.style.borderBottom = "3px solid transparent";
+    } else {
+      tabCuratedBlogs.classList.add("active");
+      tabCuratedBlogs.style.color = "var(--turquoise-accent)";
+      tabCuratedBlogs.style.borderBottom = "3px solid var(--turquoise-accent)";
       
-      // Clear filters
-      if (searchInput) searchInput.value = "";
-      currentSearchQuery = "";
-      currentCategoryFilter = "all";
-      
-      if (liveFeedActive) {
-        if (liveFeedPulse) liveFeedPulse.classList.add("active");
-        if (liveFeedStatusText) liveFeedStatusText.textContent = "Live Feed Active (Connected)";
-        sessionStorage.removeItem("rc_trend_poll_autoswitch");
-      } else {
-        if (liveFeedPulse) liveFeedPulse.classList.remove("active");
-        if (liveFeedStatusText) liveFeedStatusText.textContent = "Curated Insights (Offline Mode)";
-        
-        // Reset active poll to poll-1 if currently on a trend poll
-        const activeSelect = document.getElementById("poll-active-select");
-        if (activeSelect && activeSelect.value.startsWith("poll-trend-")) {
-          activeSelect.value = "poll-1";
-        }
-        sessionStorage.removeItem("rc_trend_poll_autoswitch");
+      tabLatestNews.classList.remove("active");
+      tabLatestNews.style.color = "var(--text-muted)";
+      tabLatestNews.style.borderBottom = "3px solid transparent";
+    }
+  };
+
+  const handleTabSwitch = (isLive) => {
+    if (liveFeedActive === isLive) return;
+    liveFeedActive = isLive;
+    
+    updateFeedTabs();
+    
+    // Reset filters
+    filterTags.forEach(b => b.classList.remove("active"));
+    const allTag = Array.from(filterTags).find(b => b.getAttribute("data-filter") === "all");
+    if (allTag) allTag.classList.add("active");
+    
+    // Clear search inputs
+    if (searchInput) searchInput.value = "";
+    currentSearchQuery = "";
+    currentCategoryFilter = "all";
+    
+    if (liveFeedActive) {
+      sessionStorage.removeItem("rc_trend_poll_autoswitch");
+    } else {
+      // Reset active poll to poll-1 if currently on a trend poll
+      const activeSelect = document.getElementById("poll-active-select");
+      if (activeSelect && activeSelect.value.startsWith("poll-trend-")) {
+        activeSelect.value = "poll-1";
       }
-      
-      loadHubFeed();
-    });
+      sessionStorage.removeItem("rc_trend_poll_autoswitch");
+    }
+    
+    loadHubFeed();
+  };
+
+  if (tabLatestNews) {
+    tabLatestNews.addEventListener("click", () => handleTabSwitch(true));
+  }
+  if (tabCuratedBlogs) {
+    tabCuratedBlogs.addEventListener("click", () => handleTabSwitch(false));
   }
 
   function fetchLiveGlobalArticles() {
