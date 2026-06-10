@@ -811,10 +811,10 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
 
       ${isLive ? `
-      <!-- Live Transparency Note -->
-      <div style="margin-top: 40px; padding: 15px; background: rgba(4, 203, 194, 0.05); border: 1px solid rgba(4, 203, 194, 0.15); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
-        <span class="live-pulse active" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"></span>
-        <span>This article was fetched live via the public DEV.to API on global developer trends.</span>
+      <!-- Live Disclaimer Note -->
+      <div style="margin-top: 40px; padding: 15px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm); font-size: 12.5px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;">
+        <svg style="flex-shrink: 0; margin-top: 2px; color: var(--turquoise-accent);" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        <span><strong>Disclaimer:</strong> This article is aggregated from public third-party developer feeds for tech-trends analysis. Research COPS does not guarantee the accuracy, completeness, or reliability of this information, and accepts no liability for any business decisions or actions taken based on this content.</span>
       </div>
       ` : ""}
     `;
