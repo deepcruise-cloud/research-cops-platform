@@ -1021,7 +1021,7 @@ const SOLUTION_DATA = {
       { title: "HRMS & Onboarding Pipelines", text: "Automating candidate screening, onboarding checklists, email provisioning, and payroll database sync." },
       { title: "Financial Billing Audits", text: "Real-time billing matching, automated cash-flow ledger reconciliations, and secure invoice payouts." },
       { title: "Executive Analytics Dashboard", text: "Consolidating logistics, client health indexes, and warehouse operations database logs." },
-      { title: "Performance Coaching Logic", text: "Tracking employee metrics and automatically compiling/delivering coaching summaries." }
+      { title: "Fraud QA Gate Automation", text: "Validating respondent quality in real time, detecting speeders, bots, and straight-liners." }
     ],
     architecture: "Core workflow orchestrator running on secure microservice networks with OAuth2 integrations, custom schema mapping middleware, and 99.9% uptime SLA.",
     caption: "Central automation hub core engine matrix",
@@ -1521,7 +1521,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chipType === 'pricing') {
           addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page to redirect to our CPI calculator.");
         } else if (chipType === 'workflow') {
-          addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
+          addBotMessage("Our Enterprise Workflow Hub routes Panelist Sync, Billing, Feasibility Reports, and Fraud QA models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
         } else if (chipType === 'quote') {
           addBotMessage("We would love to build a custom solution blueprint and sandbox demo for you! Please type your **Full Name, Work Email, and project brief** below and send it. Once submitted, you'll be able to book a call directly on our calendar.");
           renderQuickChips([]);
