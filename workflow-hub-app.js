@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnClockBreak.addEventListener('click', () => {
       attendanceState = 'break';
       if (dashboardStatusLabel) {
-        dashboardStatusLabel.textContent = 'Idle Sync';
+        dashboardStatusLabel.textContent = 'On Break';
         dashboardStatusLabel.className = 'val text-amber';
       }
       btnClockBreak.disabled = true;
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnClockEndBreak.addEventListener('click', () => {
       attendanceState = 'present';
       if (dashboardStatusLabel) {
-        dashboardStatusLabel.textContent = 'Active Sync';
+        dashboardStatusLabel.textContent = 'Present';
         dashboardStatusLabel.className = 'val text-green';
       }
       btnClockBreak.disabled = false;
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnClockLogout.addEventListener('click', () => {
       attendanceState = 'loggedout';
       if (dashboardStatusLabel) {
-        dashboardStatusLabel.textContent = 'Offline';
+        dashboardStatusLabel.textContent = 'Logged Out';
         dashboardStatusLabel.className = 'val text-muted';
       }
       
@@ -272,8 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update team ratio status
       const ratioLabel = document.getElementById('team-ratio');
       const ratioLabelAtt = document.getElementById('team-ratio-att');
-      if (ratioLabel) ratioLabel.textContent = '4/9 Active Sync';
-      if (ratioLabelAtt) ratioLabelAtt.textContent = '4/9 Active Sync';
+      if (ratioLabel) ratioLabel.textContent = '4/9 Present';
+      if (ratioLabelAtt) ratioLabelAtt.textContent = '4/9 Present';
 
       // Gray out avatar in team list
       const teamItems = document.querySelectorAll('.team-scroll-list .team-member-item');
@@ -398,8 +398,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const psDedTotal = document.getElementById('ps-val-ded-total');
   const psAbsentNum = document.querySelector('.metric-block.block-absent .val-num');
 
-  function formatRewards(value) {
-    return '$ ' + value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  function formatRupee(value) {
+    return '₹ ' + value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
   function renderPayroll() {
@@ -421,22 +421,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lblToggleAmounts) lblToggleAmounts.textContent = 'Hide Amounts';
       
       // Update top stats (aggregated/simulated)
-      if (grossStat) grossStat.textContent = formatRewards(185600 + 123500 + 100000 + 115000);
-      if (netStat) netStat.textContent = formatRewards(148220 + 101500 + 82800 + 95050);
-      if (dedStat) dedStat.textContent = formatRewards(37380 + 22000 + 17200 + 19950);
+      if (grossStat) grossStat.textContent = formatRupee(185600 + 123500 + 100000 + 115000);
+      if (netStat) netStat.textContent = formatRupee(148220 + 101500 + 82800 + 95050);
+      if (dedStat) dedStat.textContent = formatRupee(37380 + 22000 + 17200 + 19950);
 
       // Update Split Payslip details
-      if (psBasic) psBasic.textContent = formatRewards(emp.basic);
-      if (psHra) psHra.textContent = formatRewards(emp.hra);
-      if (psSpecial) psSpecial.textContent = formatRewards(emp.special);
-      if (psTotalEarn) psTotalEarn.textContent = formatRewards(emp.totalEarn);
+      if (psBasic) psBasic.textContent = formatRupee(emp.basic);
+      if (psHra) psHra.textContent = formatRupee(emp.hra);
+      if (psSpecial) psSpecial.textContent = formatRupee(emp.special);
+      if (psTotalEarn) psTotalEarn.textContent = formatRupee(emp.totalEarn);
 
-      if (psTds) psTds.textContent = formatRewards(emp.tds);
-      if (psPf) psPf.textContent = formatRewards(emp.pf);
-      if (psPtax) psPtax.textContent = formatRewards(emp.ptax);
-      if (psAttDed) psAttDed.textContent = formatRewards(emp.att_ded);
-      if (psTotalDed) psTotalDed.textContent = formatRewards(emp.totalDed);
-      if (psDedTotal) psDedTotal.textContent = formatRewards(emp.totalDed);
+      if (psTds) psTds.textContent = formatRupee(emp.tds);
+      if (psPf) psPf.textContent = formatRupee(emp.pf);
+      if (psPtax) psPtax.textContent = formatRupee(emp.ptax);
+      if (psAttDed) psAttDed.textContent = formatRupee(emp.att_ded);
+      if (psTotalDed) psTotalDed.textContent = formatRupee(emp.totalDed);
+      if (psDedTotal) psDedTotal.textContent = formatRupee(emp.totalDed);
 
       // Update right-side register amounts
       const registerItems = document.querySelectorAll('.register-employee-item');
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Search by name matching key
         let targetKey = Object.keys(employeeSalaries).find(k => employeeSalaries[k].name === empName);
         if (targetKey) {
-          item.querySelector('.val-salary').textContent = formatRewards(employeeSalaries[targetKey].totalEarn);
+          item.querySelector('.val-salary').textContent = formatRupee(employeeSalaries[targetKey].totalEarn);
         }
       });
 
@@ -453,24 +453,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lblToggleAmounts) lblToggleAmounts.textContent = 'Show Amounts';
       
       // Mask everything
-      if (grossStat) grossStat.textContent = '$......';
-      if (netStat) netStat.textContent = '$......';
-      if (dedStat) dedStat.textContent = '$......';
+      if (grossStat) grossStat.textContent = '₹......';
+      if (netStat) netStat.textContent = '₹......';
+      if (dedStat) dedStat.textContent = '₹......';
 
-      if (psBasic) psBasic.textContent = '$......';
-      if (psHra) psHra.textContent = '$......';
-      if (psSpecial) psSpecial.textContent = '$......';
-      if (psTotalEarn) psTotalEarn.textContent = '$......';
+      if (psBasic) psBasic.textContent = '₹......';
+      if (psHra) psHra.textContent = '₹......';
+      if (psSpecial) psSpecial.textContent = '₹......';
+      if (psTotalEarn) psTotalEarn.textContent = '₹......';
 
-      if (psTds) psTds.textContent = '$......';
-      if (psPf) psPf.textContent = '$......';
-      if (psPtax) psPtax.textContent = '$......';
-      if (psAttDed) psAttDed.textContent = '$......';
-      if (psTotalDed) psTotalDed.textContent = '$......';
-      if (psDedTotal) psDedTotal.textContent = '$......';
+      if (psTds) psTds.textContent = '₹......';
+      if (psPf) psPf.textContent = '₹......';
+      if (psPtax) psPtax.textContent = '₹......';
+      if (psAttDed) psAttDed.textContent = '₹......';
+      if (psTotalDed) psTotalDed.textContent = '₹......';
+      if (psDedTotal) psDedTotal.textContent = '₹......';
 
       const registerSalaries = document.querySelectorAll('.reg-emp-amount-badge .val-salary');
-      registerSalaries.forEach(el => el.textContent = '$......');
+      registerSalaries.forEach(el => el.textContent = '₹......');
     }
     
     // Sync other interactive panels with payroll masking state
@@ -921,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
     refSubmitted.textContent = `${total} submitted`;
     refHired.textContent = `${hired} placed`;
     refProgress.textContent = `${progress} active`;
-    refBonus.innerHTML = `<span class="masked-amount">${!amountsVisible ? '$......' : '₹' + earned.toLocaleString()}</span>`;
+    refBonus.innerHTML = `<span class="masked-amount">${!amountsVisible ? '₹......' : '₹' + earned.toLocaleString()}</span>`;
   }
 
   window.renderReferrals = function() {
@@ -936,7 +936,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `<span class="text-green" style="font-size: 11px; font-weight: 600;">Paid</span>`
         : `<button class="btn btn-outline btn-xs btn-override-salary">View Details</button>`;
 
-      const bonusVal = !amountsVisible ? '$......' : '₹' + ref.bonus.toLocaleString();
+      const bonusVal = !amountsVisible ? '₹......' : '₹' + ref.bonus.toLocaleString();
 
       html += `<tr>
         <td><strong>${ref.name}</strong></td>
@@ -1045,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Incentive logic
     const incentiveValue = Math.round(payoutPct * 150);
     if (coachIncentiveAmount) {
-      coachIncentiveAmount.innerHTML = `<span class="masked-amount">${!amountsVisible ? '$......' : '₹' + incentiveValue.toLocaleString()}</span>`;
+      coachIncentiveAmount.innerHTML = `<span class="masked-amount">${!amountsVisible ? '₹......' : '₹' + incentiveValue.toLocaleString()}</span>`;
     }
   }
 
@@ -1095,8 +1095,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Permission database
   const userPermissions = {
     AW: { name: 'Alexander Wright', role: 'C-level / Administrator', core: true, talent: true, ops: true, finance: true },
-    CO: { name: 'Clara Oswald', role: 'Panel Operations Manager', core: true, talent: true, ops: false, finance: false },
-    DV: { name: 'David K. Vance', role: 'Lead Operations Engineer', core: true, talent: false, ops: true, finance: false },
+    CO: { name: 'Clara Oswald', role: 'HR Manager', core: true, talent: true, ops: false, finance: false },
+    DV: { name: 'David K. Vance', role: 'Lead Engineer', core: true, talent: false, ops: true, finance: false },
     MB: { name: 'Marcus Bennett', role: 'Employee / Analyst', core: true, talent: false, ops: false, finance: false }
   };
 
@@ -1584,7 +1584,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnClosePayslipModal = document.getElementById('btn-close-payslip-modal');
   const btnDownloadPayslipPdf = document.getElementById('btn-download-payslip-pdf');
 
-  function numberToRewardssWords(amount) {
+  function numberToRupeesWords(amount) {
     if (amount === 0) return 'Zero';
     
     const singleDigits = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
@@ -1627,7 +1627,7 @@ document.addEventListener('DOMContentLoaded', () => {
       result += formatTens(temp);
     }
     
-    return 'Rewardss ' + result.trim() + ' Only';
+    return 'Rupees ' + result.trim() + ' Only';
   }
 
   function updatePayslipModal() {
@@ -1662,8 +1662,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const empInfo = {
       AW: { id: '1', designation: 'C-level', dept: 'Management', doj: 'Apr 2026' },
       DV: { id: '2', designation: 'Lead Architect', dept: 'Engineering', doj: 'Jul 2024' },
-      MB: { id: '3', designation: 'Operations Specialist', dept: 'Operations', doj: 'Nov 2025' },
-      CO: { id: '4', designation: 'Panel Operations Manager', dept: 'Human Resources', doj: 'Sep 2024' }
+      MB: { id: '3', designation: 'Operations Associate', dept: 'Operations', doj: 'Nov 2025' },
+      CO: { id: '4', designation: 'HR Manager', dept: 'Human Resources', doj: 'Sep 2024' }
     };
     const info = empInfo[selectedEmpId] || { id: '99', designation: 'Employee', dept: 'Operations', doj: 'Jan 2026' };
 
@@ -1679,37 +1679,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalPaidDays) modalPaidDays.textContent = 22 - emp.absentDays;
 
     if (mBonus) {
-      mBonus.textContent = amountsVisible ? formatRewards(0) : '$......';
+      mBonus.textContent = amountsVisible ? formatRupee(0) : '₹......';
     }
 
     if (amountsVisible) {
-      if (mBasic) mBasic.textContent = formatRewards(emp.basic);
-      if (mHra) mHra.textContent = formatRewards(emp.hra);
-      if (mSpecial) mSpecial.textContent = formatRewards(emp.special);
-      if (mGross) mGross.textContent = formatRewards(emp.totalEarn);
+      if (mBasic) mBasic.textContent = formatRupee(emp.basic);
+      if (mHra) mHra.textContent = formatRupee(emp.hra);
+      if (mSpecial) mSpecial.textContent = formatRupee(emp.special);
+      if (mGross) mGross.textContent = formatRupee(emp.totalEarn);
 
-      if (mPf) mPf.textContent = formatRewards(emp.pf);
-      if (mPtax) mPtax.textContent = formatRewards(emp.ptax);
-      if (mTds) mTds.textContent = formatRewards(emp.tds);
-      if (mAttDed) mAttDed.textContent = formatRewards(emp.att_ded);
-      if (mTotalDed) mTotalDed.textContent = formatRewards(emp.totalDed);
+      if (mPf) mPf.textContent = formatRupee(emp.pf);
+      if (mPtax) mPtax.textContent = formatRupee(emp.ptax);
+      if (mTds) mTds.textContent = formatRupee(emp.tds);
+      if (mAttDed) mAttDed.textContent = formatRupee(emp.att_ded);
+      if (mTotalDed) mTotalDed.textContent = formatRupee(emp.totalDed);
 
       const netAmount = emp.totalEarn - emp.totalDed;
-      if (mNetPay) mNetPay.textContent = formatRewards(netAmount);
-      if (mNetWords) mNetWords.textContent = numberToRewardssWords(netAmount);
+      if (mNetPay) mNetPay.textContent = formatRupee(netAmount);
+      if (mNetWords) mNetWords.textContent = numberToRupeesWords(netAmount);
     } else {
-      if (mBasic) mBasic.textContent = '$......';
-      if (mHra) mHra.textContent = '$......';
-      if (mSpecial) mSpecial.textContent = '$......';
-      if (mGross) mGross.textContent = '$......';
+      if (mBasic) mBasic.textContent = '₹......';
+      if (mHra) mHra.textContent = '₹......';
+      if (mSpecial) mSpecial.textContent = '₹......';
+      if (mGross) mGross.textContent = '₹......';
 
-      if (mPf) mPf.textContent = '$......';
-      if (mPtax) mPtax.textContent = '$......';
-      if (mTds) mTds.textContent = '$......';
-      if (mAttDed) mAttDed.textContent = '$......';
-      if (mTotalDed) mTotalDed.textContent = '$......';
+      if (mPf) mPf.textContent = '₹......';
+      if (mPtax) mPtax.textContent = '₹......';
+      if (mTds) mTds.textContent = '₹......';
+      if (mAttDed) mAttDed.textContent = '₹......';
+      if (mTotalDed) mTotalDed.textContent = '₹......';
 
-      if (mNetPay) mNetPay.textContent = '$......';
+      if (mNetPay) mNetPay.textContent = '₹......';
       if (mNetWords) mNetWords.textContent = 'Masked';
     }
   }
@@ -2338,10 +2338,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const uploadDocBtns = document.querySelectorAll('.btn-upload-doc');
 
   const onboardingData = {
-    CO: { name: 'Clara Oswald', role: 'Panel Operations Manager', progress: 100, checks: { identity: true, criminal: true, address: true, medical: true }, aadhaar: '3241-5829-1023', pan: 'COSW1924L', aadhaarStatus: 'Verified', panStatus: 'Verified', docEdu: 'Verified', docExp: 'Verified' },
-    JC: { name: 'Jane Cooper', role: 'Operations Assistant', progress: 75, checks: { identity: true, criminal: true, address: true, medical: false }, aadhaar: '4582-1023-9481', pan: 'JCOP8234D', aadhaarStatus: 'Verified', panStatus: 'Verified', docEdu: 'Verified', docExp: 'Pending' },
-    ED: { name: 'Emily Davis', role: 'Systems Engineer', progress: 40, checks: { identity: true, criminal: false, address: false, medical: false }, aadhaar: '1029-4819-2038', pan: 'EDAV9183K', aadhaarStatus: 'Verified', panStatus: 'Pending', docEdu: 'Pending', docExp: 'Pending' },
-    RF: { name: 'Robert Fox', role: 'QA & Fraud Analyst', progress: 20, checks: { identity: false, criminal: false, address: false, medical: false }, aadhaar: '', pan: '', aadhaarStatus: 'Pending', panStatus: 'Pending', docEdu: 'Pending', docExp: 'Pending' }
+    CO: { name: 'Clara Oswald', role: 'HR Manager', progress: 100, checks: { identity: true, criminal: true, address: true, medical: true }, aadhaar: '3241-5829-1023', pan: 'COSW1924L', aadhaarStatus: 'Verified', panStatus: 'Verified', docEdu: 'Verified', docExp: 'Verified' },
+    JC: { name: 'Jane Cooper', role: 'HR Assistant', progress: 75, checks: { identity: true, criminal: true, address: true, medical: false }, aadhaar: '4582-1023-9481', pan: 'JCOP8234D', aadhaarStatus: 'Verified', panStatus: 'Verified', docEdu: 'Verified', docExp: 'Pending' },
+    ED: { name: 'Emily Davis', role: 'Software Engineer', progress: 40, checks: { identity: true, criminal: false, address: false, medical: false }, aadhaar: '1029-4819-2038', pan: 'EDAV9183K', aadhaarStatus: 'Verified', panStatus: 'Pending', docEdu: 'Pending', docExp: 'Pending' },
+    RF: { name: 'Robert Fox', role: 'QA Engineer', progress: 20, checks: { identity: false, criminal: false, address: false, medical: false }, aadhaar: '', pan: '', aadhaarStatus: 'Pending', panStatus: 'Pending', docEdu: 'Pending', docExp: 'Pending' }
   };
 
   let selectedOnboardId = 'JC'; // default select
@@ -2557,7 +2557,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="notice-desc">The Q2 2026 employee feedback and performance review cycle is now officially open. Please submit your self-evaluations and set your OKR objectives in the Scorecard tab by Friday, June 20.</p>
         <div class="notice-author">
           <div class="avatar">CO</div>
-          <span class="author-info">Posted by <strong>Clara Oswald</strong> &bull; Panel Operations Manager</span>
+          <span class="author-info">Posted by <strong>Clara Oswald</strong> &bull; HR Manager</span>
         </div>
       </div>
 
