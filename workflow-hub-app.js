@@ -76,19 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (closeSimulatorBtn) {
-    closeSimulatorBtn.addEventListener('click', () => toggleSimulatorMode(false));
+    closeSimulatorBtn.addEventListener('click', () => {
+      isSessionActive = false;
+      toggleSimulatorMode(false);
+    });
   }
   if (sidebarSignOutBtn) {
-    sidebarSignOutBtn.addEventListener('click', () => toggleSimulatorMode(false));
+    sidebarSignOutBtn.addEventListener('click', () => {
+      isSessionActive = false;
+      toggleSimulatorMode(false);
+    });
   }
 
-  // "Open Demo" shortcuts inside Landing Page modules cards
+  // "Open Demo" shortcuts inside Landing Page modules cards (Gate Protected)
   const simShortcuts = document.querySelectorAll('.btn-sim-shortcut');
   simShortcuts.forEach(btn => {
     btn.addEventListener('click', (e) => {
       const targetTab = e.currentTarget.getAttribute('data-target');
-      toggleSimulatorMode(true);
-      switchSimulatorTab(targetTab);
+      if (!isSessionActive) {
+        pendingTargetTab = targetTab;
+        const modal = document.getElementById('modal-login-gate');
+        if (modal) modal.classList.add('active');
+      } else {
+        toggleSimulatorMode(true);
+        switchSimulatorTab(targetTab);
+      }
     });
   });
 
@@ -373,6 +385,9 @@ document.addEventListener('DOMContentLoaded', () => {
       absentDays: 1
     }
   };
+
+  let isSessionActive = false;
+  let pendingTargetTab = null;
 
   let amountsVisible = false;
   const btnToggleAmounts = document.getElementById('btn-toggle-amounts');
@@ -1813,6 +1828,9 @@ document.addEventListener('DOMContentLoaded', () => {
       errorMsgEl.style.display = 'none';
       const selectedProfile = loginProfileSelect.value;
       
+      // Mark session active
+      isSessionActive = true;
+      
       // Select user in simulator Access Control select
       if (accessUserSelect) {
         accessUserSelect.value = selectedProfile;
@@ -1829,10 +1847,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnSimulateActiveUser) {
         btnSimulateActiveUser.click();
       }
+
+      // Route to pending target tab if any
+      if (pendingTargetTab) {
+        switchSimulatorTab(pendingTargetTab);
+        pendingTargetTab = null;
+      }
     });
   }
 
-    if (loginRequestForm) {
+      if (loginRequestForm) {
     loginRequestForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
@@ -1874,69 +1898,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (loginCalendlyContainer) {
         loginCalendlyContainer.style.display = 'block';
       }
-    });
-  }
-
-  repopulateAccessDropdown();
-
-  if (btnAccessUserManagerTab && btnAccessHierarchyTab) {
-    btnAccessUserManagerTab.addEventListener('click', () => {
-      btnAccessUserManagerTab.className = 'btn btn-primary btn-sm btn-subtab-access active';
-      btnAccessHierarchyTab.className = 'btn btn-outline btn-sm btn-subtab-access';
-      accessUserManagerPane.style.display = 'block';
-      accessHierarchyPane.style.display = 'none';
-    });
-
-    btnAccessHierarchyTab.addEventListener('click', () => {
-      btnAccessHierarchyTab.className = 'btn btn-primary btn-sm btn-subtab-access active';
-      btnAccessUserManagerTab.className = 'btn btn-outline btn-sm btn-subtab-access';
-      accessHierarchyPane.style.display = 'flex';
-      accessUserManagerPane.style.display = 'none';
-    });
-  }
-
-  if (btnTriggerAddUser) {
-    btnTriggerAddUser.addEventListener('click', () => {
-      modalAddUser.classList.add('active');
-    });
-  }
-  if (btnCloseUserModal) {
-    btnCloseUserModal.addEventListener('click', () => {
-      modalAddUser.classList.remove('active');
-    });
-  }
-
-  if (formAddUser) {
-    formAddUser.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('new-user-name').value;
-      const initials = document.getElementById('new-user-code').value.toUpperCase();
-      const role = document.getElementById('new-user-role').value;
-
-      accessUsers.push({
-        id: initials,
-        name,
-        role,
-        core: true,
-        talent: false,
-        ops: false,
-        finance: false
-      });
-
-      // Update permission DB
-      userPermissions[initials] = {
-        name,
-        role,
-        core: true,
-        talent: false,
-        ops: false,
-        finance: false
-      };
-
-      repopulateAccessDropdown();
-      formAddUser.reset();
-      modalAddUser.classList.remove('active');
-      alert(`User ${name} added to simulator roster list successfully!`);
     });
   }
 

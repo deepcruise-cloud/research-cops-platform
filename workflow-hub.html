@@ -4079,8 +4079,16 @@
             <label for="login-request-company" style="font-size: 11px;">Company</label>
             <input type="text" id="login-request-company" required placeholder="e.g. Apex Global" style="width: 100%;">
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Submit &amp; Open Sandbox</button>
+          <button type="submit" class="btn btn-primary btn-block">Submit &amp; Request Demo</button>
         </form>
+
+        <!-- Pane C: Calendly Scheduler -->
+        <div id="login-calendly-container" style="display: none; width: 100%; height: 580px; overflow: hidden; padding-top: 10px;">
+          <p class="form-lead-desc" style="margin-bottom: 12px; font-size: 12px; color: var(--turquoise-accent); line-height: 1.4; text-align: center;">
+            ✔ <strong>Demo Request Received!</strong> To schedule a pricing discovery call and instantly get your evaluation credentials, please select a convenient time below:
+          </p>
+          <iframe src="https://calendly.com/researchcops/30min" width="100%" height="520" frameborder="0" style="background: transparent; border: none;"></iframe>
+        </div>
       </div>
     </div>
   </div>
