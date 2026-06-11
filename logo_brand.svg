@@ -14,9 +14,11 @@
     <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
     <!-- Concentric target circles inside top half -->
     <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
-    <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="1.5 1.5" stroke-linecap="round" />
-    <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="2 2" stroke-linecap="round" />
-    <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="3 3" stroke-linecap="round" />
+    <g transform="rotate(-110, 12, 7.2)">
+      <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
+      <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
+      <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
+    </g>
   </g>
   
   <!-- Company Name Text -->
