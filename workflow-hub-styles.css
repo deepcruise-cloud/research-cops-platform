@@ -252,10 +252,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
   display: block;
+}
+.sim-sidebar .brand-logo {
+  width: 42px;
+  height: 42px;
 }
 
 @keyframes logoPulse {
