@@ -17,385 +17,792 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
+          <div style="width: 100%; height: 100%; display: flex; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); position: relative; color: #cbd5e1; user-select: none;">
+            <!-- Top ribbon -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 28px; background: rgba(10,20,20,0.95); border-bottom: 1px solid rgba(4,203,194,0.15); display: flex; align-items: center; justify-content: space-between; padding: 0 10px; box-sizing: border-box; z-index: 10;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="display: flex; gap: 4px;">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #ef4444;"></span>
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #f59e0b;"></span>
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981;"></span>
+                </span>
+                <span style="font-family: 'Space Grotesk', sans-serif; font-size: 8px; color: #94a3b8; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">DI CORE ENGINE / WORKSPACE</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 8px; color: #04cbc2; font-weight: 600; font-family: monospace;">
+                <span style="width: 5px; height: 5px; border-radius: 50%; background: #10b981; box-shadow: 0 0 5px #10b981; animation: core-pulse 2s infinite;"></span>
+                <span id="core-live-time">00:00:00 AM</span>
+              </div>
+            </div>
+
             <!-- Left Sidebar Menu -->
-            <div style="width: 125px; background: rgba(0,0,0,0.5); border-right: 1px solid rgba(4,203,194,0.15); display: flex; flex-direction: column; padding: 10px 6px; box-sizing: border-box; flex-shrink: 0; justify-content: space-between;">
+            <div style="width: 130px; background: rgba(3,6,6,0.92); border-right: 1px solid rgba(4,203,194,0.15); display: flex; flex-direction: column; padding: 36px 6px 10px 6px; box-sizing: border-box; flex-shrink: 0; justify-content: space-between; position: relative;">
               <div>
-                <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 12px; padding: 0 4px;">
-                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #04cbc2; box-shadow: 0 0 5px #04cbc2;"></span>
-                  <span style="color: #ffffff; font-size: 9px; font-weight: 700; letter-spacing: 0.5px;">DI ENGINE</span>
-                </div>
-                <!-- Vertical Menu Items -->
-                <div style="display: flex; flex-direction: column; gap: 3px;" id="di-menu-list">
-                  <button class="di-menu-btn" data-step="0" style="background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.35); color: #ffffff; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">1. Target Aud</button>
-                  <button class="di-menu-btn" data-step="1" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">2. Feasibility</button>
-                  <button class="di-menu-btn" data-step="2" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">3. Survey Design</button>
-                  <button class="di-menu-btn" data-step="3" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">4. Translate</button>
-                  <button class="di-menu-btn" data-step="4" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">5. Router Links</button>
-                  <button class="di-menu-btn" data-step="5" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">6. Live Field</button>
-                  <button class="di-menu-btn" data-step="6" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">7. Analytics</button>
+                <span style="font-size: 7px; color: #64748b; font-weight: bold; text-transform: uppercase; display: block; padding: 0 4px 4px 4px; border-bottom: 1px solid rgba(255,255,255,0.03); margin-bottom: 6px; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.5px;">Workspace Nav</span>
+                <div style="display: flex; flex-direction: column; gap: 4px;" id="di-menu-list">
+                  <button class="di-menu-btn" data-step="0" style="background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.3); color: #ffffff; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+                    Target Audience
+                  </button>
+                  <button class="di-menu-btn" data-step="1" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                    Check Feasibility
+                  </button>
+                  <button class="di-menu-btn" data-step="2" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    AI Survey Designer
+                  </button>
+                  <button class="di-menu-btn" data-step="3" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    Localization Sync
+                  </button>
+                  <button class="di-menu-btn" data-step="4" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    Link Distribution
+                  </button>
+                  <button class="di-menu-btn" data-step="5" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Supplier Bridge
+                  </button>
+                  <button class="di-menu-btn" data-step="6" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    Live fielding
+                  </button>
+                  <button class="di-menu-btn" data-step="7" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 4px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%; display: flex; align-items: center; gap: 4px;">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    Analytics & Reports
+                  </button>
                 </div>
               </div>
               <!-- Status bar -->
-              <div style="font-family: monospace; font-size: 7.5px; color: #64748b; padding: 0 4px;" id="di-engine-status">CYCLE: STG 1</div>
+              <div style="font-family: monospace; font-size: 7px; color: #64748b; padding: 0 4px; display: flex; justify-content: space-between; align-items: center;" id="di-engine-status">
+                <span>CONN: ONLINE</span>
+              </div>
             </div>
+
             <!-- Content Viewport -->
-            <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; overflow: hidden;" id="di-viewport">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 38px 12px 10px 12px; box-sizing: border-box; overflow: hidden; position: relative;" id="di-viewport">
               <!-- Content loaded via init() -->
             </div>
           </div>
+
+          <style>
+            @keyframes core-pulse {
+              0% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+              50% { opacity: 1; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
+              100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            }
+          </style>
         `,
         init: () => {
           const menuBtns = document.querySelectorAll('.di-menu-btn');
           const viewport = document.getElementById('di-viewport');
           const statusEl = document.getElementById('di-engine-status');
+          const liveTimeEl = document.getElementById('core-live-time');
           if (!menuBtns.length || !viewport || !statusEl) return;
+
+          // Start a live ticking clock inside core top ribbon
+          const timer = setInterval(() => {
+            if (liveTimeEl) {
+              const now = new Date();
+              liveTimeEl.textContent = now.toTimeString().split(' ')[0] + ' ' + (now.getHours() >= 12 ? 'PM' : 'AM');
+            }
+          }, 1000);
 
           const screens = [
             {
-              title: "1. TARGET AUDIENCE IDENTIFICATION",
+              title: "1. Target Audience Identification",
               html: `
                 <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
                   <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Target Criteria</div>
-                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; margin-bottom: 6px;">B2B Decision Makers</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;">
-                      <span style="font-size: 8px; background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.2); padding: 2px 6px; border-radius: 10px; color: #ffffff;">IT Leaders (VP+)</span>
-                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">SaaS Sectors</span>
-                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">US / UK / EU</span>
-                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">N = 500 Target</span>
-                    </div>
-                  </div>
-                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; box-sizing: border-box;">
-                    <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase; margin-bottom: 3px;">Audience Matching Engine</div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <div style="flex-grow: 1; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-                        <div id="scr1-bar" style="width: 0%; height: 100%; background: #04cbc2; transition: width 1s ease;"></div>
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">Profile Cohorts Segment</div>
+                    <div style="font-size: 10px; font-weight: bold; color: #ffffff; margin-bottom: 6px;">Select Cohort Criteria:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;" id="scr1-checks">
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 9px; color: #cbd5e1; cursor: pointer;">
+                          <input type="checkbox" id="scr1-chk-1" checked style="accent-color: #04cbc2; cursor: pointer; width: 11px; height: 11px;">
+                          <span>IT Decision Makers</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 9px; color: #cbd5e1; cursor: pointer;">
+                          <input type="checkbox" id="scr1-chk-2" style="accent-color: #04cbc2; cursor: pointer; width: 11px; height: 11px;">
+                          <span>Healthcare Specialists</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 9px; color: #cbd5e1; cursor: pointer;">
+                          <input type="checkbox" id="scr1-chk-3" checked style="accent-color: #04cbc2; cursor: pointer; width: 11px; height: 11px;">
+                          <span>DevOps & Cloud Buyers</span>
+                        </label>
                       </div>
-                      <span style="font-size: 9px; color: #04cbc2; font-family: monospace; font-weight: bold;" id="scr1-pct">0%</span>
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 9px; color: #cbd5e1; cursor: pointer;">
+                          <input type="checkbox" id="scr1-chk-4" style="accent-color: #04cbc2; cursor: pointer; width: 11px; height: 11px;">
+                          <span>Finance Executives</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 9px; color: #cbd5e1; cursor: pointer;">
+                          <input type="checkbox" id="scr1-chk-5" checked style="accent-color: #04cbc2; cursor: pointer; width: 11px; height: 11px;">
+                          <span>B2B Tech Consumers</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="background: rgba(4,203,194,0.03); border: 1px solid rgba(4,203,194,0.12); padding: 8px 10px; border-radius: 6px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                      <span style="font-size: 7.5px; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 2px;">Panel Pool Size</span>
+                      <strong style="color: #04cbc2; font-family: monospace; font-size: 11px;" id="scr1-pool">45,280</strong>
+                    </div>
+                    <div>
+                      <span style="font-size: 7.5px; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 2px;">Feasibility Score</span>
+                      <strong style="color: #10b981; font-family: monospace; font-size: 11px;" id="scr1-feas">HIGH (85%)</strong>
                     </div>
                   </div>
                 </div>
               `,
               init: () => {
-                const bar = document.getElementById('scr1-bar');
-                const pct = document.getElementById('scr1-pct');
-                if (bar && pct) {
-                  setTimeout(() => {
-                    bar.style.width = '100%';
-                    pct.textContent = '100%';
-                  }, 100);
-                }
+                const chk1 = document.getElementById('scr1-chk-1');
+                const chk2 = document.getElementById('scr1-chk-2');
+                const chk3 = document.getElementById('scr1-chk-3');
+                const chk4 = document.getElementById('scr1-chk-4');
+                const chk5 = document.getElementById('scr1-chk-5');
+                const pool = document.getElementById('scr1-pool');
+                const feas = document.getElementById('scr1-feas');
+                
+                const update = () => {
+                  let count = 0;
+                  let selected = 0;
+                  if (chk1 && chk1.checked) { count += 32000; selected++; }
+                  if (chk2 && chk2.checked) { count += 8500; selected++; }
+                  if (chk3 && chk3.checked) { count += 15400; selected++; }
+                  if (chk4 && chk4.checked) { count += 6200; selected++; }
+                  if (chk5 && chk5.checked) { count += 250000; selected++; }
+                  
+                  if (pool) pool.textContent = count.toLocaleString();
+                  if (feas) {
+                    if (selected === 0) {
+                      feas.textContent = "SELECT CRITERIA";
+                      feas.style.color = "#ef4444";
+                    } else if (selected <= 2) {
+                      feas.textContent = "VERY HIGH (95%)";
+                      feas.style.color = "#10b981";
+                    } else if (selected <= 4) {
+                      feas.textContent = "HIGH (82%)";
+                      feas.style.color = "#10b981";
+                    } else {
+                      feas.textContent = "MODERATE (64%)";
+                      feas.style.color = "#f59e0b";
+                    }
+                  }
+                };
+
+                [chk1, chk2, chk3, chk4, chk5].forEach(chk => {
+                  if (chk) chk.addEventListener('change', update);
+                });
+                update();
+                return () => {};
               }
             },
             {
-              title: "2. FEASIBILITY METER",
+              title: "2. Check Feasibility Engine",
               html: `
                 <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
                   <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Feasibility Score</div>
-                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; margin-bottom: 6px;">Launch Scoping Diagnostics</div>
-                  </div>
-                  <div style="display: flex; align-items: center; justify-content: space-around; margin: 6px 0;">
-                    <svg width="50" height="50" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
-                      <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4" />
-                      <circle id="scr2-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="100, 100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);" />
-                    </svg>
-                    <div style="display: flex; flex-direction: column;">
-                      <span style="font-size: 16px; font-weight: bold; color: #ffffff; font-family: monospace;" id="scr2-val">0%</span>
-                      <span style="font-size: 8px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Scoping OK</span>
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">Scoping Estimator</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                      <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 9px; color: #cbd5e1; margin-bottom: 2px;">
+                          <span>Sample Size (N)</span>
+                          <strong style="color: #04cbc2; font-family: monospace;" id="scr2-n-val">250</strong>
+                        </div>
+                        <input type="range" id="scr2-n-slider" min="50" max="2000" step="50" value="250" style="width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; outline: none; accent-color: #04cbc2; cursor: pointer;">
+                      </div>
+                      <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 9px; color: #cbd5e1; margin-bottom: 2px;">
+                          <span>Length of Interview (LOI)</span>
+                          <strong style="color: #04cbc2; font-family: monospace;" id="scr2-loi-val">15 min</strong>
+                        </div>
+                        <input type="range" id="scr2-loi-slider" min="5" max="45" step="1" value="15" style="width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; outline: none; accent-color: #04cbc2; cursor: pointer;">
+                      </div>
                     </div>
                   </div>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; box-sizing: border-box;">
-                    <div style="background: rgba(255,255,255,0.02); padding: 5px; border-radius: 4px; text-align: center;">
-                      <div style="font-size: 7.5px; color: #94a3b8;">Est. CPI</div>
-                      <div style="font-size: 11px; font-weight: bold; color: #04cbc2; margin-top: 1px;">$8.50</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; box-sizing: border-box; background: rgba(0,0,0,0.25); border: 1px solid rgba(4,203,194,0.12); padding: 8px; border-radius: 6px; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <svg width="30" height="30" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
+                        <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4px" />
+                        <circle id="scr2-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4px" stroke-dasharray="100, 100" stroke-dashoffset="15" style="transition: stroke-dashoffset 0.3s;" />
+                      </svg>
+                      <div>
+                        <div style="font-size: 13px; font-weight: bold; color: #ffffff; font-family: monospace;" id="scr2-feas-val">85%</div>
+                        <div style="font-size: 7px; color: #94a3b8; text-transform: uppercase;">Feasible</div>
+                      </div>
                     </div>
-                    <div style="background: rgba(255,255,255,0.02); padding: 5px; border-radius: 4px; text-align: center;">
-                      <div style="font-size: 7.5px; color: #94a3b8;">Est. Field Time</div>
-                      <div style="font-size: 11px; font-weight: bold; color: #04cbc2; margin-top: 1px;">3 Days</div>
+                    <div style="display: flex; flex-direction: column; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 10px;">
+                      <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase;">Estimated CPI</span>
+                      <strong style="font-size: 13px; color: #04cbc2; font-family: monospace; margin-top: 1px;" id="scr2-cpi-val">$7.50</strong>
                     </div>
                   </div>
                 </div>
               `,
               init: () => {
+                const nSlider = document.getElementById('scr2-n-slider');
+                const loiSlider = document.getElementById('scr2-loi-slider');
+                const nVal = document.getElementById('scr2-n-val');
+                const loiVal = document.getElementById('scr2-loi-val');
                 const gauge = document.getElementById('scr2-gauge');
-                const val = document.getElementById('scr2-val');
-                if (gauge && val) {
-                  setTimeout(() => {
-                    gauge.setAttribute('stroke-dashoffset', '12'); // 88%
-                    let count = 0;
-                    const interval = setInterval(() => {
-                      count += 2;
-                      if (count >= 88) {
-                        count = 88;
-                        clearInterval(interval);
-                      }
-                      val.textContent = count + '%';
-                    }, 20);
-                  }, 100);
-                }
+                const feasVal = document.getElementById('scr2-feas-val');
+                const cpiVal = document.getElementById('scr2-cpi-val');
+                
+                const update = () => {
+                  if (!nSlider || !loiSlider) return;
+                  const n = parseInt(nSlider.value, 10);
+                  const loi = parseInt(loiSlider.value, 10);
+                  
+                  if (nVal) nVal.textContent = n;
+                  if (loiVal) loiVal.textContent = loi + ' min';
+                  
+                  const cpi = 4.00 + (loi * 0.20) + (n * 0.001);
+                  if (cpiVal) cpiVal.textContent = '$' + cpi.toFixed(2);
+                  
+                  let feas = Math.round(100 - (n * 0.02) - (loi * 0.8));
+                  if (feas > 98) feas = 98;
+                  if (feas < 15) feas = 15;
+                  
+                  if (feasVal) feasVal.textContent = feas + '%';
+                  if (gauge) {
+                    gauge.setAttribute('stroke-dashoffset', 100 - feas);
+                    if (feas < 45) {
+                      gauge.setAttribute('stroke', '#ef4444');
+                    } else if (feas < 75) {
+                      gauge.setAttribute('stroke', '#f59e0b');
+                    } else {
+                      gauge.setAttribute('stroke', '#10b981');
+                    }
+                  }
+                };
+
+                [nSlider, loiSlider].forEach(slider => {
+                  if (slider) slider.addEventListener('input', update);
+                });
+                update();
+                return () => {};
               }
             },
             {
-              title: "3. AI PROMPT SURVEY BUILDER",
+              title: "3. AI Survey Designer",
               html: `
-                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
                   <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">AI Prompts Survey Design</div>
-                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(4,203,194,0.15); padding: 6px 10px; border-radius: 4px; font-family: monospace; font-size: 8.5px; color: #04cbc2; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="scr3-prompt">> </div>
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">AI Prompt Editor</div>
+                    <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+                      <textarea id="scr3-prompt" style="flex-grow: 1; height: 32px; background: rgba(0,0,0,0.45); border: 1px solid rgba(4,203,194,0.25); color: #ffffff; font-family: inherit; font-size: 8.5px; padding: 4px; border-radius: 4px; outline: none; resize: none; line-height: 1.25;">Generate cloud tech usage and purchase frequency survey question...</textarea>
+                      <button id="scr3-btn" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 9px; font-weight: bold; padding: 0 8px; border-radius: 4px; cursor: pointer; outline: none; white-space: nowrap;">Design</button>
+                    </div>
                   </div>
-                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; opacity: 0; transform: translateY(8px); transition: all 0.5s ease; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;" id="scr3-q">
-                    <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase; margin-bottom: 2px;">Generated Logic Block</div>
-                    <div style="font-size: 10.5px; color: #ffffff; font-weight: bold; line-height: 1.2; margin-bottom: 4px;">Q1: How do you rate reporting latency?</div>
-                    <div style="display: flex; flex-direction: column; gap: 3px;">
-                      <div style="font-size: 8px; background: rgba(255,255,255,0.03); padding: 3px 5px; border-radius: 3px; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.04);">Option: Extremely Latent to Real-Time</div>
+                  <!-- Dynamic preview card -->
+                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; box-sizing: border-box; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 90px;" id="scr3-panel">
+                    <div>
+                      <div style="font-size: 7.5px; color: #04cbc2; font-family: monospace; margin-bottom: 2px;" id="scr3-q-type">SINGLE CHOICE</div>
+                      <div style="font-size: 10px; font-weight: bold; color: #ffffff; line-height: 1.25; margin-bottom: 6px;" id="scr3-q-text">Which primary cloud provider does your firm use?</div>
+                      <div style="display: flex; flex-direction: column; gap: 4px;" id="scr3-choices">
+                        <!-- populated by init -->
+                      </div>
                     </div>
                   </div>
                 </div>
               `,
               init: () => {
-                const input = document.getElementById('scr3-prompt');
-                const qcard = document.getElementById('scr3-q');
-                if (input && qcard) {
-                  const query = "Generate B2B tech survey on BI latency...";
+                const promptArea = document.getElementById('scr3-prompt');
+                const btn = document.getElementById('scr3-btn');
+                const qType = document.getElementById('scr3-q-type');
+                const qText = document.getElementById('scr3-q-text');
+                const choices = document.getElementById('scr3-choices');
+                const panel = document.getElementById('scr3-panel');
+                if (!promptArea || !btn || !qText || !choices || !panel) return;
+
+                const prompts = [
+                  {
+                    prompt: "Generate cloud tech usage and purchase frequency survey question...",
+                    type: "SINGLE CHOICE",
+                    q: "Which primary cloud provider does your firm use?",
+                    opts: ["Amazon Web Services (AWS)", "Microsoft Azure", "Google Cloud Platform (GCP)"]
+                  },
+                  {
+                    prompt: "Generate healthcare diagnostic devices usage checklist...",
+                    type: "MULTIPLE CHOICE",
+                    q: "Which diagnostic instruments do you utilize weekly?",
+                    opts: ["MRI Scanner", "CT Spectrometer", "Ultrasound Sonograph"]
+                  },
+                  {
+                    prompt: "Generate net promoter score feedback survey...",
+                    type: "NPS MATRIX (10-POINT SCALE)",
+                    q: "How likely are you to recommend our products?",
+                    opts: ["Extremely Likely", "Neutral / Unsure", "Not Likely"]
+                  }
+                ];
+
+                let promptIdx = 0;
+
+                const updateView = (item) => {
+                  qType.textContent = item.type;
+                  qText.textContent = item.q;
+                  choices.innerHTML = '';
+                  
+                  const inputType = item.type.includes("MULTIPLE") ? "checkbox" : "radio";
+                  item.opts.forEach((opt, index) => {
+                    const lbl = document.createElement('label');
+                    lbl.style.display = 'flex';
+                    lbl.style.alignItems = 'center';
+                    lbl.style.gap = '5px';
+                    lbl.style.fontSize = '8.5px';
+                    lbl.style.color = '#cbd5e1';
+                    lbl.style.background = 'rgba(255,255,255,0.01)';
+                    lbl.style.border = '1px solid rgba(255,255,255,0.04)';
+                    lbl.style.padding = '4px 6px';
+                    lbl.style.borderRadius = '3px';
+                    lbl.style.cursor = 'pointer';
+                    
+                    const checkedAttribute = index === 0 ? 'checked' : '';
+                    lbl.innerHTML = `<input type="${inputType}" name="scr3-r" ${checkedAttribute} style="accent-color: #04cbc2; cursor: pointer;"><span>${opt}</span>`;
+                    choices.appendChild(lbl);
+                  });
+                };
+
+                btn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  promptIdx = (promptIdx + 1) % prompts.length;
+                  const item = prompts[promptIdx];
+                  
+                  btn.textContent = "Writing...";
+                  btn.disabled = true;
+                  panel.style.opacity = '0.2';
+                  panel.style.transform = 'translateY(4px)';
+                  panel.style.transition = 'all 0.2s';
+                  
+                  // Simulate typing
+                  promptArea.value = "";
                   let cIdx = 0;
+                  const chars = item.prompt;
                   const type = () => {
-                    if (cIdx <= query.length) {
-                      input.textContent = "> " + query.substring(0, cIdx) + "_";
-                      cIdx++;
-                      setTimeout(type, 25);
+                    if (cIdx <= chars.length) {
+                      promptArea.value = chars.substring(0, cIdx);
+                      cIdx += 2;
+                      setTimeout(type, 10);
                     } else {
-                      input.textContent = "> " + query;
-                      qcard.style.opacity = '1';
-                      qcard.style.transform = 'translateY(0)';
+                      btn.textContent = "Design";
+                      btn.disabled = false;
+                      updateView(item);
+                      panel.style.opacity = '1';
+                      panel.style.transform = 'translateY(0)';
                     }
                   };
-                  setTimeout(type, 100);
-                }
-              }
-            },
-            {
-              title: "4. MULTI-LANGUAGE TRANSLATOR",
-              html: `
-                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-                  <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Survey Localization</div>
-                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px 8px; border-radius: 4px; font-size: 8.5px; color: #94a3b8; line-height: 1.2; margin-bottom: 5px;">
-                      <strong>EN Source:</strong> "How do you rate reporting latency?"
-                    </div>
-                  </div>
-                  <div style="background: rgba(4,203,194,0.03); border: 1px solid rgba(4,203,194,0.15); padding: 8px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold;" id="scr4-label">DE (German)</div>
-                    <div style="font-size: 10px; color: #ffffff; font-style: italic; line-height: 1.3; margin: 3px 0;" id="scr4-text">"Wie bewerten Sie die Berichtslatenz?"</div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 8px; font-family: monospace; color: #10b981; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 3px; box-sizing: border-box;">
-                      <span>Routing Index match</span>
-                      <span style="color: #64748b;" id="scr4-status">Synced</span>
-                    </div>
-                  </div>
-                </div>
-              `,
-              init: () => {
-                const label = document.getElementById('scr4-label');
-                const text = document.getElementById('scr4-text');
-                const status = document.getElementById('scr4-status');
-                if (!label || !text || !status) return;
+                  type();
+                });
 
-                const translations = [
-                  { l: "DE (German)", t: '"Wie bewerten Sie die Berichtslatenz?"' },
-                  { l: "ES (Spanish)", t: '"¿Cómo califica la latencia de informes?"' },
-                  { l: "JA (Japanese)", t: '"レポート遅延をどのように評価しますか？"' }
-                ];
-                let idx = 0;
-                const cycle = () => {
-                  idx = (idx + 1) % translations.length;
-                  status.textContent = "Translating...";
-                  status.style.color = "#f59e0b";
-                  text.style.opacity = '0.3';
-                  setTimeout(() => {
-                    if (label && text && status) {
-                      label.textContent = translations[idx].l;
-                      text.textContent = translations[idx].t;
-                      text.style.opacity = '1';
-                      status.textContent = "✓ Synced";
-                      status.style.color = "#10b981";
-                    }
-                  }, 600);
-                };
-                const interval = setInterval(cycle, 2000);
-                return () => clearInterval(interval);
+                updateView(prompts[0]);
+                return () => {};
               }
             },
             {
-              title: "5. SURVEY DISPATCH LINKS",
+              title: "4. Localization Sync",
               html: `
-                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-                  <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Deploy Routing Channels</div>
-                    <div style="font-size: 10px; color: #94a3b8; line-height: 1.2; margin-bottom: 6px;">Secure link distribution mapped to panel router paths.</div>
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <!-- Language Tabs -->
+                  <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.3); padding: 4px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; box-sizing: border-box;">
+                    <button class="scr4-tab" data-lang="DE" style="flex-grow: 1; background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.3); color: #ffffff; font-family: inherit; font-size: 8px; font-weight: bold; padding: 3px 0; border-radius: 3px; cursor: pointer; outline: none;">DE (German)</button>
+                    <button class="scr4-tab" data-lang="ES" style="flex-grow: 1; background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 3px 0; border-radius: 3px; cursor: pointer; outline: none;">ES (Spanish)</button>
+                    <button class="scr4-tab" data-lang="JA" style="flex-grow: 1; background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 3px 0; border-radius: 3px; cursor: pointer; outline: none;">JA (Japanese)</button>
                   </div>
-                  <div style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
-                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 5px 6px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                      <span style="font-family: monospace; font-size: 7.5px; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;">Link: OpinionGenie Panel</span>
-                      <button id="scr5-c1" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 7.5px; padding: 2px 4px; border-radius: 3px; cursor: pointer; outline: none;">Copy</button>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 5px 6px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 4px;">
-                      <span style="font-family: monospace; font-size: 7.5px; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;">Link: External Suppliers</span>
-                      <button id="scr5-c2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 2px 4px; border-radius: 3px; cursor: pointer; outline: none;">Copy</button>
-                    </div>
-                  </div>
-                  <div style="font-family: monospace; font-size: 8px; color: #10b981; text-align: center; margin-top: 4px; flex-shrink: 0;">
-                    ✓ Dispatch links verified & secure
-                  </div>
-                </div>
-              `,
-              init: () => {
-                const c1 = document.getElementById('scr5-c1');
-                const c2 = document.getElementById('scr5-c2');
-                if (c1) {
-                  c1.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    c1.textContent = "Copied!";
-                    c1.style.background = "#10b981";
-                    c1.style.borderColor = "#10b981";
-                    setTimeout(() => {
-                      c1.textContent = "Copy";
-                      c1.style.background = "rgba(4,203,194,0.15)";
-                      c1.style.borderColor = "#04cbc2";
-                    }, 1200);
-                  });
-                }
-                if (c2) {
-                  c2.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    c2.textContent = "Copied!";
-                    c2.style.background = "#10b981";
-                    c2.style.borderColor = "#10b981";
-                    setTimeout(() => {
-                      c2.textContent = "Copy";
-                      c2.style.background = "rgba(255,255,255,0.03)";
-                      c2.style.borderColor = "rgba(255,255,255,0.08)";
-                    }, 1200);
-                  });
-                }
-              }
-            },
-            {
-              title: "6. REALTIME TELEMETRY FIELDING",
-              html: `
-                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-                  <div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                      <span style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase;">Quota Tracker</span>
-                      <span style="font-size: 7.5px; color: #10b981; font-family: monospace; display: flex; align-items: center; gap: 3px;"><span class="live-pulse" style="width: 4px; height: 4px; box-shadow: 0 0 4px #10b981;"></span>Active</span>
-                    </div>
+                  <!-- Translation Cards Split -->
+                  <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; margin: 6px 0; overflow: hidden; justify-content: center; box-sizing: border-box;">
                     <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px 8px; border-radius: 4px; box-sizing: border-box;">
-                      <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94a3b8; font-family: monospace; margin-bottom: 2px;">
-                        <span>Target US IT Leaders</span>
-                        <span id="scr6-completes">142/150</span>
-                      </div>
-                      <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-                        <div id="scr6-bar" style="width: 94%; height: 100%; background: #04cbc2; transition: width 0.5s ease;"></div>
-                      </div>
+                      <div style="font-size: 7px; color: #64748b; font-family: monospace; text-transform: uppercase;">Source String</div>
+                      <div style="font-size: 9.5px; color: #ffffff; line-height: 1.25; margin-top: 1px;">"Which primary cloud provider does your firm use?"</div>
+                    </div>
+                    <div style="background: rgba(4,203,194,0.02); border: 1px solid rgba(4,203,194,0.12); padding: 5px 8px; border-radius: 4px; box-sizing: border-box;" id="scr4-box">
+                      <div style="font-size: 7px; color: #04cbc2; font-family: monospace; text-transform: uppercase;" id="scr4-lbl">DE Translation</div>
+                      <textarea id="scr4-text" style="width: 100%; background: transparent; border: none; outline: none; color: #ffffff; font-family: inherit; font-size: 9.5px; line-height: 1.25; resize: none; height: 32px; padding: 0; margin-top: 1px;">"Welchen primären Cloud-Anbieter nutzt Ihr Unternehmen?"</textarea>
                     </div>
                   </div>
-                  <!-- Telemetry activity logs -->
-                  <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.05); padding: 5px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; gap: 3px; overflow: hidden; font-family: monospace; font-size: 7.5px; box-sizing: border-box; margin-top: 4px;" id="scr6-logs">
-                    <div style="color: #64748b;">> Telemetry socket established...</div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px; box-sizing: border-box; flex-shrink: 0;">
+                    <span style="font-size: 8px; color: #10b981; font-family: monospace; display: flex; align-items: center; gap: 3px;" id="scr4-sync">
+                      <span style="width: 4px; height: 4px; border-radius: 50%; background: #10b981; box-shadow: 0 0 4px #10b981;"></span>
+                      100% Logic Match verified
+                    </span>
+                    <button id="scr4-save" style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #ffffff; font-size: 7.5px; font-weight: bold; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none;">Save Sync</button>
                   </div>
                 </div>
               `,
               init: () => {
-                const logs = document.getElementById('scr6-logs');
-                const comp = document.getElementById('scr6-completes');
-                const bar = document.getElementById('scr6-bar');
-                if (!logs || !comp || !bar) return;
+                const tabs = document.querySelectorAll('.scr4-tab');
+                const lbl = document.getElementById('scr4-lbl');
+                const text = document.getElementById('scr4-text');
+                const sync = document.getElementById('scr4-sync');
+                const save = document.getElementById('scr4-save');
+                const box = document.getElementById('scr4-box');
+                if (!tabs.length || !lbl || !text || !sync || !save) return;
 
-                let count = 142;
-                const target = 150;
-                const templates = [
-                  { text: "[PASS] Session #2951: Fingerprint verified", col: "#10b981" },
-                  { text: "[PASS] Session #2952: Proxy VPN test pass", col: "#10b981" },
-                  { text: "[BLOCK] Session #2953: Speeder logic detected", col: "#ef4444" },
-                  { text: "[PASS] Session #2954: Demographics match ok", col: "#10b981" },
-                  { text: "[BLOCK] Session #2955: VPN proxy reject", col: "#f59e0b" }
-                ];
-                let idx = 0;
-                const runLog = () => {
-                  const item = templates[idx % templates.length];
-                  idx++;
-                  if (item.text.includes("[PASS]") && count < target) {
-                    count++;
-                    comp.textContent = count + "/" + target;
-                    bar.style.width = ((count / target) * 100) + "%";
-                  }
-                  const div = document.createElement('div');
-                  div.style.color = item.col;
-                  div.textContent = "> " + item.text;
-                  div.style.opacity = '0';
-                  div.style.transition = 'opacity 0.2s';
-                  logs.appendChild(div);
-                  setTimeout(() => div.style.opacity = '1', 50);
-                  if (logs.children.length > 5) {
-                    logs.removeChild(logs.children[1]);
+                const trans = {
+                  DE: {
+                    lbl: "DE Translation (German)",
+                    text: '"Welchen primären Cloud-Anbieter nutzt Ihr Unternehmen?"',
+                    match: "100% Logic Match verified"
+                  },
+                  ES: {
+                    lbl: "ES Translation (Spanish)",
+                    text: '"¿Qué proveedor de nube principal utiliza su empresa?"',
+                    match: "98.7% Logic Match verified"
+                  },
+                  JA: {
+                    lbl: "JA Translation (Japanese)",
+                    text: '"貴社はどのプライマリクラウドプロバイダーを使用していますか？"',
+                    match: "100% Logic Match verified"
                   }
                 };
-                const interval = setInterval(runLog, 1200);
+
+                tabs.forEach(tab => {
+                  tab.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const lang = tab.getAttribute('data-lang');
+                    tabs.forEach(t => {
+                      if (t === tab) {
+                        t.style.background = 'rgba(4,203,194,0.1)';
+                        t.style.borderColor = 'rgba(4,203,194,0.3)';
+                        t.style.color = '#ffffff';
+                      } else {
+                        t.style.background = 'transparent';
+                        t.style.borderColor = 'transparent';
+                        t.style.color = '#94a3b8';
+                      }
+                    });
+
+                    box.style.opacity = '0.3';
+                    setTimeout(() => {
+                      lbl.textContent = trans[lang].lbl;
+                      text.value = trans[lang].text;
+                      sync.innerHTML = `<span style="width: 4px; height: 4px; border-radius: 50%; background: #10b981; box-shadow: 0 0 4px #10b981;"></span> ${trans[lang].match}`;
+                      sync.style.color = '#10b981';
+                      box.style.opacity = '1';
+                    }, 150);
+                  });
+                });
+
+                text.addEventListener('input', () => {
+                  sync.innerHTML = `<span style="width: 4px; height: 4px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 4px #f59e0b;"></span> Unsaved edits in progress...`;
+                  sync.style.color = '#f59e0b';
+                });
+
+                save.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  save.textContent = "Syncing...";
+                  save.style.background = "rgba(4,203,194,0.15)";
+                  save.style.borderColor = "#04cbc2";
+                  setTimeout(() => {
+                    save.textContent = "Save Sync";
+                    save.style.background = "rgba(16,185,129,0.15)";
+                    save.style.borderColor = "#10b981";
+                    sync.innerHTML = `<span style="width: 4px; height: 4px; border-radius: 50%; background: #10b981; box-shadow: 0 0 4px #10b981;"></span> Verified & Synced to CDN`;
+                    sync.style.color = '#10b981';
+                  }, 800);
+                });
+
+                return () => {};
+              }
+            },
+            {
+              title: "5. Link Distribution",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div>
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">Link Router Gateway</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 6px;">
+                      <select id="scr5-channel" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(4,203,194,0.25); color: #ffffff; font-family: inherit; font-size: 8.5px; padding: 4px; border-radius: 3px; outline: none; cursor: pointer;">
+                        <option value="genie">OpinionGenie Panel</option>
+                        <option value="supp">External Suppliers</option>
+                        <option value="client">Client-Owned Panel</option>
+                      </select>
+                      <button id="scr5-deploy" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 8.5px; font-weight: bold; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none;">Generate Link</button>
+                    </div>
+                  </div>
+                  <!-- Created links list -->
+                  <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; gap: 4px; overflow-y: auto; max-height: 80px; box-sizing: border-box;" id="scr5-list">
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); padding: 4px 6px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.03);" class="scr5-row">
+                      <span style="font-family: monospace; font-size: 7.5px; color: #cbd5e1; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 130px;">r.opg.com/ad89f81a</span>
+                      <button class="scr5-copy" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 2px 4px; border-radius: 2px; cursor: pointer; outline: none;">Copy</button>
+                    </div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const deploy = document.getElementById('scr5-deploy');
+                const channel = document.getElementById('scr5-channel');
+                const list = document.getElementById('scr5-list');
+                if (!deploy || !channel || !list) return;
+
+                const makeCopyHandler = (btn, url) => {
+                  btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    btn.textContent = "Copied!";
+                    btn.style.background = "#10b981";
+                    btn.style.borderColor = "#10b981";
+                    btn.style.color = "#ffffff";
+                    
+                    const cap = document.getElementById('visual-caption');
+                    if (cap) {
+                      const old = cap.textContent;
+                      cap.textContent = "✓ Link copied: " + url;
+                      setTimeout(() => { cap.textContent = old; }, 2000);
+                    }
+
+                    setTimeout(() => {
+                      btn.textContent = "Copy";
+                      btn.style.background = "rgba(255,255,255,0.03)";
+                      btn.style.borderColor = "rgba(255,255,255,0.08)";
+                      btn.style.color = "#94a3b8";
+                    }, 1200);
+                  });
+                };
+
+                const initialBtn = list.querySelector('.scr5-copy');
+                if (initialBtn) makeCopyHandler(initialBtn, "r.opg.com/ad89f81a");
+
+                deploy.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  const val = channel.value;
+                  const prefix = val === 'genie' ? 'opg.com' : val === 'supp' ? 'ext.net' : 'client.org';
+                  const hash = Math.random().toString(16).substring(2, 10);
+                  const url = `r.${prefix}/${hash}`;
+
+                  const row = document.createElement('div');
+                  row.style.display = 'flex';
+                  row.style.justifyContent = 'space-between';
+                  row.style.alignItems = 'center';
+                  row.style.background = 'rgba(0,0,0,0.2)';
+                  row.style.padding = '4px 6px';
+                  row.style.borderRadius = '3px';
+                  row.style.border = '1px solid rgba(4,203,194,0.1)';
+                  row.style.animation = 'fadeInPanel 0.3s ease-out';
+                  row.className = 'scr5-row';
+
+                  row.innerHTML = `<span style="font-family: monospace; font-size: 7.5px; color: #cbd5e1; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-width: 130px;">${url}</span><button class="scr5-copy" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 2px 4px; border-radius: 2px; cursor: pointer; outline: none;">Copy</button>`;
+                  
+                  list.insertBefore(row, list.firstChild);
+                  if (list.children.length > 3) {
+                    list.removeChild(list.lastChild);
+                  }
+
+                  const newBtn = row.querySelector('.scr5-copy');
+                  makeCopyHandler(newBtn, url);
+                });
+
+                return () => {};
+              }
+            },
+            {
+              title: "6. Supplier Bridge",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div>
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">Sample Allocation Mix</div>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 9px; color: #cbd5e1; margin-bottom: 2px;">
+                          <span>OpinionGenie Panel (Internal)</span>
+                          <span style="color: #04cbc2; font-family: monospace; font-weight: bold;" id="scr6-opg-val">60%</span>
+                        </div>
+                        <input type="range" id="scr6-slider" min="0" max="100" step="5" value="60" style="width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; outline: none; accent-color: #04cbc2; cursor: pointer;">
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px 8px; border-radius: 4px;">
+                        <span style="font-size: 8px; color: #64748b;">External Suppliers Split:</span>
+                        <strong style="font-size: 10px; color: #ffffff; font-family: monospace;" id="scr6-ext-val">40%</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); padding: 6px; border-radius: 3px; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                      <div style="width: 5px; height: 5px; border-radius: 50%; background: #10b981; box-shadow: 0 0 4px #10b981;"></div>
+                      <span style="font-size: 8.5px; color: #10b981; font-weight: bold; font-family: monospace;">API Bridges Online</span>
+                    </div>
+                    <span style="font-size: 7.5px; color: #94a3b8;">Avg CPI: <span id="scr6-avg-cpi" style="color: #ffffff; font-weight: bold;">$6.20</span></span>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const slider = document.getElementById('scr6-slider');
+                const opgVal = document.getElementById('scr6-opg-val');
+                const extVal = document.getElementById('scr6-ext-val');
+                const avgCpi = document.getElementById('scr6-avg-cpi');
+                if (!slider || !opgVal || !extVal || !avgCpi) return;
+
+                const update = () => {
+                  const val = parseInt(slider.value, 10);
+                  opgVal.textContent = val + "%";
+                  extVal.textContent = (100 - val) + "%";
+
+                  const cpi = (val * 4.50 + (100 - val) * 8.50) / 100;
+                  avgCpi.textContent = "$" + cpi.toFixed(2);
+                };
+
+                slider.addEventListener('input', update);
+                update();
+                return () => {};
+              }
+            },
+            {
+              title: "7. Live Fielding Logs",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase;">Fielding Dashboard</div>
+                    <label style="display: flex; align-items: center; gap: 4px; font-size: 8px; color: #ef4444; font-weight: bold; cursor: pointer;">
+                      <input type="checkbox" id="scr7-shield-toggle" checked style="accent-color: #ef4444; cursor: pointer; transform: scale(0.85);">
+                      <span>VPN SHIELD ACTIVE</span>
+                    </label>
+                  </div>
+                  <!-- Quota stats bar -->
+                  <div style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.05); padding: 5px 8px; border-radius: 4px; margin: 4px 0; box-sizing: border-box; flex-shrink: 0;">
+                    <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94a3b8; font-family: monospace; margin-bottom: 2px;">
+                      <span>Quota Completes</span>
+                      <strong style="color: #ffffff;"><span id="scr7-comp-val">204</span> / 300</strong>
+                    </div>
+                    <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; border: 1px solid rgba(4,203,194,0.1);">
+                      <div id="scr7-progress" style="width: 68%; height: 100%; background: linear-gradient(90deg, var(--teal-brand, #04524e), #04cbc2); border-radius: 3px; transition: width 0.5s;"></div>
+                    </div>
+                  </div>
+                  <!-- Telco ping log explorer -->
+                  <div style="background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; gap: 3px; font-family: monospace; font-size: 8px; overflow-y: auto; max-height: 70px; box-sizing: border-box;" id="scr7-log">
+                    <div style="color: #64748b;">> Telemetry bridge listening...</div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const log = document.getElementById('scr7-log');
+                const shield = document.getElementById('scr7-shield-toggle');
+                const compVal = document.getElementById('scr7-comp-val');
+                const progress = document.getElementById('scr7-progress');
+                if (!log || !shield || !compVal || !progress) return;
+
+                let count = 204;
+
+                const addLog = () => {
+                  if (!log) return;
+                  const row = document.createElement('div');
+                  const now = new Date();
+                  const time = now.toTimeString().split(' ')[0];
+                  
+                  const isSecure = shield.checked;
+                  const randomUser = 'RESP_' + Math.floor(Math.random() * 89999 + 10000);
+                  const regions = ['US', 'UK', 'DE', 'IN', 'JP', 'CA'];
+                  const reg = regions[Math.floor(Math.random() * regions.length)];
+                  
+                  let txt = '';
+                  let color = '#cbd5e1';
+
+                  if (isSecure && Math.random() < 0.18) {
+                    txt = `[${time}] > ${randomUser} (${reg}) blocked: VPN Proxy detected`;
+                    color = '#ef4444';
+                  } else {
+                    count++;
+                    if (compVal) compVal.textContent = count;
+                    if (progress) {
+                      const pct = Math.min((count / 300) * 100, 100);
+                      progress.style.width = pct + "%";
+                    }
+                    txt = `[${time}] > ${randomUser} (${reg}) verified: Ingest complete.`;
+                    color = '#10b981';
+                  }
+
+                  row.style.color = color;
+                  row.textContent = txt;
+                  log.appendChild(row);
+                  log.scrollTop = log.scrollHeight;
+
+                  if (log.children.length > 8) {
+                    log.removeChild(log.firstChild);
+                  }
+                };
+
+                const interval = setInterval(addLog, 3000);
                 return () => clearInterval(interval);
               }
             },
             {
-              title: "7. REPORTING & BI ANALYTICS",
+              title: "8. Analytics & Reports",
               html: `
-                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-                  <div>
-                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Report Deliverables</div>
-                    <div style="font-size: 11px; color: #ffffff; font-weight: bold; line-height: 1.2; margin-bottom: 4px;">Dynamic Graphs & Data Compiles</div>
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-bottom: 2px;">
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase;">Reporting Terminal</div>
+                    <select id="scr8-chart-type" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(4,203,194,0.3); color: #04cbc2; font-family: inherit; font-size: 8px; padding: 2px; border-radius: 2px; outline: none; cursor: pointer;">
+                      <option value="line">Line: Completes Timeline</option>
+                      <option value="bar">Bar: Industry Sectors</option>
+                    </select>
                   </div>
-                  <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 6px; flex-grow: 1; overflow: hidden; margin-bottom: 4px; box-sizing: border-box;">
-                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
-                      <span style="font-size: 7px; color: #94a3b8; text-transform: uppercase;">Completes curve</span>
-                      <div style="height: 30px; width: 100%;">
-                        <svg width="100%" height="100%" viewBox="0 0 100 30" style="overflow: visible;">
-                          <path id="scr7-line" d="M0,25 Q20,10 40,20 T80,5 T100,15" fill="none" stroke="#04cbc2" stroke-width="2.5" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; display: flex; align-items: flex-end; justify-content: space-around;">
-                      <div id="scr7-b1" style="width: 7px; height: 30%; background: #04cbc2; border-radius: 1px; transition: height 1s ease;"></div>
-                      <div id="scr7-b2" style="width: 7px; height: 60%; background: #04cbc2; border-radius: 1px; transition: height 1s ease;"></div>
-                      <div id="scr7-b3" style="width: 7px; height: 85%; background: #10b981; border-radius: 1px; transition: height 1s ease;"></div>
-                    </div>
+                  <!-- SVG charts wrapper -->
+                  <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; flex-grow: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 75px; box-sizing: border-box; position: relative;">
+                    <!-- Line Chart -->
+                    <svg id="scr8-chart-line" width="100%" height="100%" viewBox="0 0 160 50" style="overflow: visible; display: block;">
+                      <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5">
+                        <line x1="20" y1="10" x2="150" y2="10" />
+                        <line x1="20" y1="25" x2="150" y2="25" />
+                        <line x1="20" y1="40" x2="150" y2="40" />
+                      </g>
+                      <!-- Chart path -->
+                      <path d="M 20 40 Q 50 15 80 30 T 140 10" fill="none" stroke="#04cbc2" stroke-width="1.5" />
+                      <!-- Points -->
+                      <circle cx="20" cy="40" r="2.5" fill="#ffffff" />
+                      <circle cx="50" cy="22" r="2.5" fill="#04cbc2" />
+                      <circle cx="80" cy="30" r="2.5" fill="#04cbc2" />
+                      <circle cx="110" cy="21" r="2.5" fill="#04cbc2" />
+                      <circle cx="140" cy="10" r="2.5" fill="#10b981" />
+                    </svg>
+                    <!-- Bar Chart -->
+                    <svg id="scr8-chart-bar" width="100%" height="100%" viewBox="0 0 160 50" style="overflow: visible; display: none;">
+                      <!-- Grid lines -->
+                      <g stroke="rgba(255,255,255,0.05)" stroke-width="0.5">
+                        <line x1="20" y1="10" x2="150" y2="10" />
+                        <line x1="20" y1="25" x2="150" y2="25" />
+                        <line x1="20" y1="40" x2="150" y2="40" />
+                      </g>
+                      <!-- Bars -->
+                      <rect x="25" y="15" width="15" height="25" fill="#04cbc2" rx="1" />
+                      <rect x="55" y="25" width="15" height="15" fill="#04cbc2" rx="1" />
+                      <rect x="85" y="8" width="15" height="32" fill="#10b981" rx="1" />
+                      <rect x="115" y="20" width="15" height="20" fill="#04cbc2" rx="1" />
+                    </svg>
                   </div>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
-                    <button style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 7.5px; padding: 4px 0; border-radius: 3px; font-family: inherit; font-weight: bold; cursor: pointer; outline: none; border-style: solid;">Export SPSS</button>
-                    <button style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 4px 0; border-radius: 3px; font-family: inherit; cursor: pointer; outline: none; border-style: solid;">Download PPTX</button>
+                  <!-- Compile Exporter -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px; box-sizing: border-box; flex-shrink: 0;">
+                    <span style="font-size: 8px; color: #10b981; font-family: monospace;">✓ Live DB reporting sync</span>
+                    <button id="scr8-export-btn" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 7.5px; font-weight: bold; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none;">Export PDF</button>
                   </div>
                 </div>
               `,
               init: () => {
-                const line = document.getElementById('scr7-line');
-                const b1 = document.getElementById('scr7-b1');
-                const b2 = document.getElementById('scr7-b2');
-                const b3 = document.getElementById('scr7-b3');
-                if (line) {
-                  line.style.strokeDasharray = "150";
-                  line.style.strokeDashoffset = "150";
-                  setTimeout(() => {
-                    line.style.transition = "stroke-dashoffset 1.5s ease-in-out";
-                    line.style.strokeDashoffset = "0";
-                  }, 100);
-                }
-                const update = () => {
-                  if (b1 && b2 && b3) {
-                    b1.style.height = (Math.floor(Math.random() * 30) + 20) + "%";
-                    b2.style.height = (Math.floor(Math.random() * 30) + 45) + "%";
-                    b3.style.height = (Math.floor(Math.random() * 20) + 75) + "%";
+                const chartType = document.getElementById('scr8-chart-type');
+                const chartLine = document.getElementById('scr8-chart-line');
+                const chartBar = document.getElementById('scr8-chart-bar');
+                const exportBtn = document.getElementById('scr8-export-btn');
+                if (!chartType || !chartLine || !chartBar || !exportBtn) return;
+
+                chartType.addEventListener('change', () => {
+                  if (chartType.value === 'line') {
+                    chartLine.style.display = 'block';
+                    chartBar.style.display = 'none';
+                  } else {
+                    chartLine.style.display = 'none';
+                    chartBar.style.display = 'block';
                   }
-                };
-                setTimeout(update, 100);
-                const interval = setInterval(update, 1800);
-                return () => clearInterval(interval);
+                });
+
+                exportBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  exportBtn.textContent = "Compiling...";
+                  exportBtn.disabled = true;
+                  setTimeout(() => {
+                    exportBtn.textContent = "✓ Exported";
+                    setTimeout(() => {
+                      exportBtn.textContent = "Export PDF";
+                      exportBtn.disabled = false;
+                    }, 1200);
+                  }, 800);
+                });
+
+                return () => {};
               }
             }
           ];
@@ -424,11 +831,11 @@ const SOLUTION_DATA = {
             });
 
             const stepData = screens[stepIdx];
-            statusEl.textContent = isPaused ? 'PAUSED' : 'AUTO STG: ' + (stepIdx + 1) + '/7';
+            statusEl.innerHTML = `<span>STAGE: ${stepIdx + 1}/${screens.length}</span><span style="color: ${isPaused ? '#f59e0b' : '#10b981'}; font-weight: bold;">[${isPaused ? 'PAUSED' : 'AUTO'}]</span>`;
 
             viewport.innerHTML = `
               <div style="flex-grow: 1; display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-                <div style="font-size: 10.5px; font-weight: bold; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; margin-bottom: 8px; flex-shrink: 0; letter-spacing: 0.5px; text-transform: uppercase;">
+                <div style="font-size: 10px; font-weight: bold; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; margin-bottom: 8px; flex-shrink: 0; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif;">
                   ${stepData.title}
                 </div>
                 <div style="flex-grow: 1; overflow: hidden;">
@@ -456,13 +863,14 @@ const SOLUTION_DATA = {
             cycleTimer = setInterval(() => {
               currentStep = (currentStep + 1) % screens.length;
               loadStep(currentStep);
-            }, 4500);
+            }, 6000);
           };
 
           loadStep(currentStep);
           startCycle();
 
           return () => {
+            clearInterval(timer);
             clearInterval(cycleTimer);
             if (activeSubCleanup) activeSubCleanup();
           };
@@ -471,7 +879,7 @@ const SOLUTION_DATA = {
     }
   },
   sampling: {
-    badge: "Audience & Reach",
+    badge: "DI Response Engine",
     title: "DI Response Engine",
     desc: "Access over 2 million pre-profiled B2B professionals, healthcare specialists, and consumer audiences across 31 countries. Sourced through our verified partner networks and our proprietary panel Opinion Genie to deliver high-fidelity target cohorts.",
     capabilities: [
@@ -481,125 +889,257 @@ const SOLUTION_DATA = {
       { title: "Healthcare & HCP Access", text: "Reach verified physicians, nurses, specialists, and patient cohorts." }
     ],
     architecture: "Integrates with Opinion Genie and external panel registries via secure, authenticated OAuth 2.0 endpoints. Employs real-time routing algorithms that calculate feasibility profiles on the fly.",
-    caption: "DI Response Engine Interface",
+    caption: "DI Response Engine Console Dashboard",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
-            <!-- Left side: Router Stats console -->
-            <div style="padding: 12px; border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; background: rgba(0,0,0,0.2); box-sizing: border-box;">
-              <div>
-                <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">OpinionGenie Router</div>
-                <div style="font-size: 13px; font-weight: bold; color: #ffffff; line-height: 1.2; margin: 4px 0;">Live Target Routing</div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 6px; border-radius: 4px; margin-top: 4px;">
-                  <div style="display: flex; justify-content: space-between; font-size: 7.5px; color: #94a3b8; font-family: monospace;">
-                    <span>Incidence Rate</span>
-                    <span style="color: #04cbc2;">34%</span>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; font-size: 7.5px; color: #94a3b8; font-family: monospace; margin-top: 2px;">
-                    <span>Dropout Ratio</span>
-                    <span style="color: #ef4444;">1.8%</span>
-                  </div>
-                </div>
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
+            <!-- Top ribbon -->
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 6px; margin-bottom: 8px; flex-shrink: 0; box-sizing: border-box;">
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; text-align: center;">
+                <span style="font-size: 7.5px; color: #94a3b8; display: block; text-transform: uppercase;">Active Panelists</span>
+                <strong style="font-size: 11px; color: #ffffff; font-family: monospace;" id="sam-panelists-count">2,481,902</strong>
               </div>
-              <!-- Completed counter progress ring -->
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <svg width="46" height="46" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="3.5" />
-                  <circle id="router-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#04cbc2" stroke-width="3.5" stroke-dasharray="100, 100" stroke-dashoffset="100" style="transition: stroke-dashoffset 0.1s linear;" />
-                </svg>
-                <div>
-                  <div style="font-size: 8px; color: #94a3b8;">Completes</div>
-                  <div style="font-size: 15px; font-weight: bold; color: #ffffff; font-family: monospace;" id="router-count">0</div>
-                </div>
+              <div style="background: rgba(4,203,194,0.02); border: 1px solid rgba(4,203,194,0.15); padding: 5px; border-radius: 4px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <div style="width: 5px; height: 5px; border-radius: 50%; background: #04cbc2; box-shadow: 0 0 4px #04cbc2;"></div>
+                <strong style="font-size: 9px; color: #ffffff; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif;">OpinionGenie Connected</strong>
               </div>
             </div>
-            <!-- Right side: Geographic Map Coordinates -->
-            <div style="position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; box-sizing: border-box;">
-              <svg width="100%" height="100%" viewBox="0 0 200 280" style="position: absolute; top: 0; left: 0;">
-                <style>
-                  .node-pt { fill: #04cbc2; }
-                  .node-pulsing { animation: mapNodePulse 2.5s infinite; }
-                  @keyframes mapNodePulse {
-                    0% { r: 5; opacity: 0.6; }
-                    50% { r: 12; opacity: 0.15; }
-                    100% { r: 5; opacity: 0.6; }
-                  }
-                </style>
-                <!-- Dotted map elements -->
-                <circle cx="30" cy="70" r="1.5" fill="rgba(255,255,255,0.06)" />
-                <circle cx="80" cy="50" r="1.5" fill="rgba(255,255,255,0.06)" />
-                <circle cx="140" cy="80" r="1.5" fill="rgba(255,255,255,0.06)" />
-                <circle cx="60" cy="160" r="1.5" fill="rgba(255,255,255,0.06)" />
-                <circle cx="120" cy="190" r="1.5" fill="rgba(255,255,255,0.06)" />
-                
-                <!-- Glowing Nodes -->
-                <circle cx="80" cy="50" r="10" fill="rgba(4,203,194,0.15)" class="node-pulsing" />
-                <circle cx="80" cy="50" r="3.5" class="node-pt" />
-                <circle cx="140" cy="80" r="10" fill="rgba(4,203,194,0.15)" class="node-pulsing" />
-                <circle cx="140" cy="80" r="3.5" class="node-pt" />
-                <circle cx="60" cy="160" r="10" fill="rgba(4,203,194,0.15)" class="node-pulsing" />
-                <circle cx="60" cy="160" r="3.5" class="node-pt" />
-                
-                <!-- Central Core Routing Node -->
-                <circle cx="100" cy="120" r="8" fill="#04cbc2" style="filter: drop-shadow(0 0 5px #04cbc2);" />
-                <line x1="80" y1="50" x2="100" y2="120" stroke="rgba(4,203,194,0.35)" stroke-dasharray="2 2" />
-                <line x1="140" y1="80" x2="100" y2="120" stroke="rgba(4,203,194,0.35)" stroke-dasharray="2 2" />
-                <line x1="60" y1="160" x2="100" y2="120" stroke="rgba(4,203,194,0.35)" stroke-dasharray="2 2" />
-              </svg>
-              <!-- Small scrolling pipeline logs inside map -->
-              <div style="position: absolute; bottom: 8px; width: 90%; background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.05); padding: 4px 6px; border-radius: 4px; font-family: monospace; font-size: 7.5px; color: #10b981; text-align: left; box-sizing: border-box; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" id="router-logs">> Routing initialized...</div>
+            <!-- Tabs Menu -->
+            <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.3); padding: 3px; border-radius: 4px; margin-bottom: 8px; flex-shrink: 0; box-sizing: border-box;">
+              <button class="sam-tab active" data-target="sam-pane-config" style="flex-grow: 1; background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.3); color: #ffffff; font-family: inherit; font-size: 8px; font-weight: bold; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s;">1. Router Config</button>
+              <button class="sam-tab" data-target="sam-pane-map" style="flex-grow: 1; background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s;">2. Routing Nodes</button>
+              <button class="sam-tab" data-target="sam-pane-dir" style="flex-grow: 1; background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s;">3. Panel Directory</button>
+            </div>
+            <!-- Panes Stack -->
+            <div style="flex-grow: 1; overflow: hidden; position: relative; box-sizing: border-box;" id="sam-panes">
+              <!-- Pane 1: Router Config -->
+              <div id="sam-pane-config" class="sam-panel-pane" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; box-sizing: border-box; margin-bottom: 6px;">
+                  <div>
+                    <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase; display: block; margin-bottom: 2px;">Target Region</span>
+                    <select id="sam-region" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 9px; padding: 4px; border-radius: 3px; outline: none; cursor: pointer;">
+                      <option value="na">North America</option>
+                      <option value="eu">Europe (EMEA)</option>
+                      <option value="apac">Asia Pacific (APAC)</option>
+                      <option value="latam">LATAM & MEA</option>
+                    </select>
+                  </div>
+                  <div>
+                    <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase; display: block; margin-bottom: 2px;">Audience Vertical</span>
+                    <select id="sam-vertical" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 9px; padding: 4px; border-radius: 3px; outline: none; cursor: pointer;">
+                      <option value="tech">B2B Technology</option>
+                      <option value="hc">Healthcare Specialist</option>
+                      <option value="cons">General Consumer</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Sliders and numbers -->
+                <div style="margin-bottom: 6px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 9px; color: #e2e8f0; margin-bottom: 2px;">
+                    <span>Target Completes</span>
+                    <strong style="color: #04cbc2; font-family: monospace;" id="sam-n-val">300</strong>
+                  </div>
+                  <input type="range" id="sam-n-slider" min="50" max="2000" step="50" value="300" style="width: 100%; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; outline: none; accent-color: #04cbc2; cursor: pointer;">
+                </div>
+                <!-- Dynamic routing stats -->
+                <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px 8px; border-radius: 4px; box-sizing: border-box; display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                  <div>
+                    <span style="font-size: 7px; color: #64748b; text-transform: uppercase; display: block;">Matching Pool</span>
+                    <span style="color: #04cbc2; font-weight: bold; font-family: monospace; font-size: 10px;" id="sam-pool-val">324,500</span>
+                  </div>
+                  <div>
+                    <span style="font-size: 7px; color: #64748b; text-transform: uppercase; display: block;">Est. Response Rate</span>
+                    <span style="color: #10b981; font-weight: bold; font-family: monospace; font-size: 10px;" id="sam-rr-val">42%</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Pane 2: Map Node Routing -->
+              <div id="sam-pane-map" class="sam-panel-pane" style="display: none; flex-direction: column; height: 100%; justify-content: space-between;">
+                <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; display: flex; justify-content: space-between;">
+                  <span>Active Routing Pipelines</span>
+                  <span style="color: #10b981; font-weight: bold;" id="sam-routing-nodes-count">✔ Nodes Synchronized</span>
+                </div>
+                <div style="flex-grow: 1; border: 1px solid rgba(255,255,255,0.03); background: rgba(0,0,0,0.35); border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 120px;">
+                  <!-- Styled world map background dots -->
+                  <svg width="100%" height="100%" viewBox="0 0 200 100" style="overflow: visible;">
+                    <g opacity="0.12" fill="#04cbc2">
+                      <circle cx="20" cy="30" r="1.2" /><circle cx="28" cy="28" r="1" /><circle cx="36" cy="25" r="1.5" />
+                      <circle cx="25" cy="40" r="1.2" /><circle cx="33" cy="42" r="1.3" /><circle cx="42" cy="48" r="1" />
+                      <circle cx="110" cy="20" r="1.3" /><circle cx="120" cy="18" r="1.5" /><circle cx="130" cy="22" r="1.2" />
+                      <circle cx="115" cy="30" r="1" /><circle cx="125" cy="35" r="1.2" /><circle cx="135" cy="38" r="1.4" />
+                      <circle cx="155" cy="45" r="1.5" /><circle cx="165" cy="50" r="1" /><circle cx="175" cy="55" r="1.3" />
+                      <circle cx="160" cy="65" r="1.2" /><circle cx="170" cy="70" r="1.4" /><circle cx="180" cy="75" r="1.5" />
+                    </g>
+                    <!-- Server Nodes -->
+                    <!-- OPG Hub -->
+                    <circle cx="100" cy="50" r="5" fill="#10b981" />
+                    <circle cx="100" cy="50" r="10" fill="none" stroke="#10b981" stroke-width="0.5" stroke-dasharray="2 2" />
+                    <text x="100" y="62" fill="#10b981" font-size="6" text-anchor="middle" font-family="monospace" font-weight="bold">OPG HUB</text>
+                    
+                    <!-- Region Nodes -->
+                    <g id="sam-map-nodes">
+                      <circle cx="30" cy="25" r="3.5" fill="#04cbc2" id="node-na" />
+                      <text x="30" y="18" fill="#e2e8f0" font-size="6" text-anchor="middle">NA</text>
+                      
+                      <circle cx="160" cy="30" r="3" fill="#64748b" id="node-eu" />
+                      <text x="160" y="23" fill="#e2e8f0" font-size="6" text-anchor="middle">EU</text>
+                      
+                      <circle cx="170" cy="75" r="3" fill="#64748b" id="node-apac" />
+                      <text x="170" y="83" fill="#e2e8f0" font-size="6" text-anchor="middle">APAC</text>
+                      
+                      <circle cx="50" cy="70" r="3" fill="#64748b" id="node-latam" />
+                      <text x="50" y="78" fill="#e2e8f0" font-size="6" text-anchor="middle">LATAM</text>
+                    </g>
+                    
+                    <!-- Path connections -->
+                    <path d="M30,25 Q65,20 100,50" fill="none" stroke="#04cbc2" stroke-width="1" stroke-dasharray="3 3" id="path-na" />
+                    <path d="M160,30 Q130,25 100,50" fill="none" stroke="#64748b" stroke-width="0.5" id="path-eu" />
+                    <path d="M170,75 Q135,70 100,50" fill="none" stroke="#64748b" stroke-width="0.5" id="path-apac" />
+                    <path d="M50,70 Q75,65 100,50" fill="none" stroke="#64748b" stroke-width="0.5" id="path-latam" />
+                  </svg>
+                </div>
+              </div>
+              <!-- Pane 3: Panel Directory -->
+              <div id="sam-pane-dir" class="sam-panel-pane" style="display: none; flex-direction: column; justify-content: space-between; height: 100%;">
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 4px; border-radius: 4px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; overflow-y: auto; box-sizing: border-box; max-height: 110px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 3px; font-size: 8px;">
+                    <span style="color: #ffffff; font-weight: bold;">🇺🇸 United States Panel</span>
+                    <span style="color: #04cbc2; font-family: monospace;">820,400 active</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 3px; font-size: 8px;">
+                    <span style="color: #ffffff; font-weight: bold;">🇬🇧 United Kingdom Panel</span>
+                    <span style="color: #04cbc2; font-family: monospace;">245,100 active</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 3px; font-size: 8px;">
+                    <span style="color: #ffffff; font-weight: bold;">🇯🇵 Japan Panel</span>
+                    <span style="color: #04cbc2; font-family: monospace;">185,900 active</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 3px; font-size: 8px;">
+                    <span style="color: #ffffff; font-weight: bold;">🇩🇪 Germany Panel</span>
+                    <span style="color: #04cbc2; font-family: monospace;">164,200 active</span>
+                  </div>
+                </div>
+                <div style="font-size: 7.5px; color: #10b981; font-family: monospace; text-align: center; margin-top: 4px;">
+                  ℹ Live Sync active with OpinionGenie database
+                </div>
+              </div>
             </div>
           </div>
         `,
         init: () => {
-          const countEl = document.getElementById('router-count');
-          const gauge = document.getElementById('router-gauge');
-          const logs = document.getElementById('router-logs');
-          if (!countEl || !gauge || !logs) return;
+          const tabs = document.querySelectorAll('.sam-tab');
+          const panes = document.querySelectorAll('.sam-panel-pane');
+          const regSelect = document.getElementById('sam-region');
+          const vertSelect = document.getElementById('sam-vertical');
+          const poolVal = document.getElementById('sam-pool-val');
+          const rrVal = document.getElementById('sam-rr-val');
+          const slider = document.getElementById('sam-n-slider');
+          const nVal = document.getElementById('sam-n-val');
 
-          let count = 0;
-          const target = 500;
-          const routeLogs = [
-            "> [ROUTE] IP Match: US target linked",
-            "> [ROUTE] OpinionGenie panel matched",
-            "> [VERIFY] Digital footprint checklist ok",
-            "> [ROUTE] APAC region target matched",
-            "> [VERIFY] VPN/Speeder check cleared"
-          ];
-          let logIdx = 0;
+          if (!tabs.length || !panes.length) return;
 
-          const timer = setInterval(() => {
-            count += Math.floor(Math.random() * 8) + 2;
-            if (count >= target) count = target;
-            countEl.textContent = count;
-            
-            const pct = (count / target) * 100;
-            gauge.setAttribute('stroke-dashoffset', 100 - pct);
+          tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const target = tab.getAttribute('data-target');
+              tabs.forEach(t => {
+                if (t === tab) {
+                  t.classList.add('active');
+                  t.style.background = 'rgba(4,203,194,0.1)';
+                  t.style.borderColor = 'rgba(4,203,194,0.3)';
+                  t.style.color = '#ffffff';
+                } else {
+                  t.classList.remove('active');
+                  t.style.background = 'transparent';
+                  t.style.borderColor = 'transparent';
+                  t.style.color = '#94a3b8';
+                }
+              });
 
-            if (Math.random() < 0.35) {
-              logs.textContent = routeLogs[logIdx % routeLogs.length];
-              logIdx++;
-            }
+              panes.forEach(p => {
+                if (p.id === target) {
+                  p.style.display = 'flex';
+                } else {
+                  p.style.display = 'none';
+                }
+              });
+            });
+          });
 
-            if (count === target) {
-              setTimeout(() => {
-                count = 0;
-                countEl.textContent = '0';
-                gauge.setAttribute('stroke-dashoffset', 100);
-              }, 1500);
-            }
-          }, 120);
+          const updateRouterConfig = () => {
+            if (!regSelect || !vertSelect || !poolVal || !rrVal || !slider || !nVal) return;
+            const r = regSelect.value;
+            const v = vertSelect.value;
+            const n = parseInt(slider.value, 10);
+            nVal.textContent = n;
 
-          return () => clearInterval(timer);
+            let pool = 120000;
+            let rr = 34;
+
+            if (r === 'na') { pool += 150000; rr += 5; }
+            else if (r === 'eu') { pool += 80000; rr += 2; }
+            else if (r === 'apac') { pool += 30000; rr -= 5; }
+            else { pool += 10000; rr -= 8; }
+
+            if (v === 'tech') { pool -= 50000; rr -= 4; }
+            else if (v === 'hc') { pool -= 90000; rr += 12; }
+            else { pool += 110000; rr += 2; }
+
+            pool = Math.round(pool * (1 + (n / 2000)));
+
+            poolVal.textContent = pool.toLocaleString();
+            rrVal.textContent = rr + "%";
+
+            const nodes = ['na', 'eu', 'apac', 'latam'];
+            nodes.forEach(nodeKey => {
+              const nodeEl = document.getElementById('node-' + nodeKey);
+              const pathEl = document.getElementById('path-' + nodeKey);
+              if (!nodeEl || !pathEl) return;
+              if (nodeKey === r) {
+                nodeEl.setAttribute('fill', '#04cbc2');
+                nodeEl.setAttribute('r', '4.5');
+                pathEl.setAttribute('stroke', '#04cbc2');
+                pathEl.setAttribute('stroke-width', '1.2');
+                pathEl.setAttribute('stroke-dasharray', '3 3');
+              } else {
+                nodeEl.setAttribute('fill', '#64748b');
+                nodeEl.setAttribute('r', '3');
+                pathEl.setAttribute('stroke', '#64748b');
+                pathEl.setAttribute('stroke-width', '0.5');
+                pathEl.removeAttribute('stroke-dasharray');
+              }
+            });
+          };
+
+          [regSelect, vertSelect].forEach(sel => {
+            if (sel) sel.addEventListener('change', updateRouterConfig);
+          });
+          if (slider) {
+            slider.addEventListener('input', updateRouterConfig);
+          }
+
+          const panelistCount = document.getElementById('sam-panelists-count');
+          const panelistInterval = setInterval(() => {
+            if (!panelistCount) return;
+            let cur = parseInt(panelistCount.textContent.replace(/,/g, ''), 10);
+            cur += Math.floor(Math.random() * 3) + 1;
+            panelistCount.textContent = cur.toLocaleString();
+          }, 4000);
+
+          updateRouterConfig();
+
+          return () => {
+            clearInterval(panelistInterval);
+          };
         }
       };
     }
   },
   development: {
-    badge: "Research Design",
+    badge: "DI - Survey Design Engine",
     title: "DI - Survey Design Engine",
-    desc: "Our design methodology tools allow research teams to build responsive question models, set up branching logic flows, configure skip constraints, and preview mobile layouts in real-time.",
+    desc: "Our design methodology tools allow research teams to B2B question models, set up branching logic flows, configure skip constraints, and preview mobile layouts in real-time.",
     capabilities: [
       { title: "Visual Question Builder", text: "Drag-and-drop elements to format single choice, matrix tables, grids, and numeric answers." },
       { title: "Branching Logic Flows", text: "Visual rule designer to map skip logic, routing paths, and conditional loops based on responses." },
@@ -607,116 +1147,216 @@ const SOLUTION_DATA = {
       { title: "Interactive Media Stimuli", text: "Securely host and track respondent engagement with video concepts, audio segments, and image carousels." }
     ],
     architecture: "Compiles JSON question schemas compatible with all major rendering engines (Decipher, Qualtrics, Confirmit) via automated mapping APIs.",
-    caption: "DI Survey Design Engine Workspace",
+    caption: "DI - Survey Design Engine Editor Workspace",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 1.1fr 1fr; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
-            <!-- Left side: Visual Builder cards stack -->
+          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+            <!-- Left side: Visual Builder editor card -->
             <div style="padding: 10px; border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
               <div>
-                <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 6px;">Design Panel</div>
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                  <div style="background: rgba(4,203,194,0.06); border: 1px solid rgba(4,203,194,0.2); padding: 6px 8px; border-radius: 4px; font-size: 10px; color: #ffffff;">
-                    <strong>Q1: Multiple Choice</strong>
-                    <div style="font-size: 8px; color: #04cbc2; margin-top: 1px;">Incidence profiling</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 8.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif;">Schema Designer</span>
+                  <button id="des-add-opt" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 8px; font-weight: bold; padding: 2px 5px; border-radius: 2px; cursor: pointer; outline: none;">+ Option</button>
+                </div>
+                <!-- Question Editor Card -->
+                <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 8px; border-radius: 4px; box-sizing: border-box;">
+                  <span style="font-size: 7px; color: #64748b; font-family: monospace; text-transform: uppercase;">Element Class</span>
+                  <select id="des-type" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 8.5px; padding: 3px; border-radius: 2px; margin: 2px 0 6px 0; outline: none; cursor: pointer;">
+                    <option value="single">Single Select Choice</option>
+                    <option value="multi">Multiple Choice Grid</option>
+                  </select>
+                  <span style="font-size: 7px; color: #64748b; font-family: monospace; text-transform: uppercase;">Question Text</span>
+                  <input type="text" id="des-input-txt" value="Which cloud infrastructure do you prefer?" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 9px; padding: 4px; border-radius: 2px; outline: none; margin-top: 2px; box-sizing: border-box;">
+                </div>
+                <!-- Options list editor -->
+                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 3px;" id="des-list-opts">
+                  <div style="display: flex; align-items: center; gap: 4px;" class="des-opt-row">
+                    <input type="text" value="Amazon Web Services" class="des-opt-input" style="flex-grow: 1; background: transparent; border: 1px dashed rgba(255,255,255,0.1); color: #94a3b8; font-family: inherit; font-size: 8px; padding: 2px 4px; outline: none;">
+                    <button class="des-opt-del" style="background: transparent; border: none; color: #ef4444; font-size: 9px; cursor: pointer; outline: none; padding: 0 2px;">×</button>
                   </div>
-                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 6px 8px; border-radius: 4px; font-size: 10px; color: #94a3b8;">
-                    <strong>Q2: Grid Matrix</strong>
-                    <div style="font-size: 8px; color: rgba(255,255,255,0.2); margin-top: 1px;">Features scoring</div>
-                  </div>
-                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 6px 8px; border-radius: 4px; font-size: 10px; color: #94a3b8;">
-                    <strong>Skip Logic #1</strong>
-                    <div style="font-size: 8px; color: #ef4444; margin-top: 1px;">If Q1 &lt; 3 ➔ Skip Q3</div>
+                  <div style="display: flex; align-items: center; gap: 4px;" class="des-opt-row">
+                    <input type="text" value="Microsoft Azure" class="des-opt-input" style="flex-grow: 1; background: transparent; border: 1px dashed rgba(255,255,255,0.1); color: #94a3b8; font-family: inherit; font-size: 8px; padding: 2px 4px; outline: none;">
+                    <button class="des-opt-del" style="background: transparent; border: none; color: #ef4444; font-size: 9px; cursor: pointer; outline: none; padding: 0 2px;">×</button>
                   </div>
                 </div>
               </div>
-              <div style="font-family: monospace; font-size: 8px; color: #64748b;">[SCHEMA: OK | 100% COMPILED]</div>
+              <div style="font-family: monospace; font-size: 7px; color: #64748b; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px; display: flex; justify-content: space-between;">
+                <span>SCHEMA STATUS: OK</span>
+                <span style="color: #04cbc2;">JSON EXPORT READY</span>
+              </div>
             </div>
             <!-- Right side: Device Previews -->
             <div style="display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-sizing: border-box; padding: 6px;">
               <!-- Simulated smartphone frame -->
-              <div style="width: 135px; height: 250px; border-radius: 16px; border: 4px solid #1e293b; background: #000000; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 20px rgba(0,0,0,0.6); position: relative; box-sizing: border-box;">
+              <div style="width: 125px; height: 230px; border-radius: 16px; border: 4px solid #1e293b; background: #000000; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 20px rgba(0,0,0,0.6); position: relative; box-sizing: border-box;">
                 <!-- Notch -->
-                <div style="width: 44px; height: 10px; background: #1e293b; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; align-self: center; flex-shrink: 0;"></div>
+                <div style="width: 40px; height: 10px; background: #1e293b; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; align-self: center; flex-shrink: 0;"></div>
                 <!-- Device Viewport Screen -->
-                <div id="dev-screen" style="flex-grow: 1; padding: 10px 8px; display: flex; flex-direction: column; justify-content: space-between; background: #050a0a; overflow: hidden; box-sizing: border-box; transition: background 0.3s;">
+                <div id="sim-screen" style="flex-grow: 1; padding: 8px 6px; display: flex; flex-direction: column; justify-content: space-between; background: #050a0a; overflow: hidden; box-sizing: border-box;">
                   <div>
-                    <div style="font-size: 7.5px; color: #04cbc2; text-transform: uppercase; font-family: monospace;">Question 1/25</div>
-                    <div style="font-size: 9.5px; color: #ffffff; font-weight: bold; margin-top: 4px; line-height: 1.2;" id="dev-q-txt">Do you make IT decisions?</div>
+                    <div style="font-size: 7px; color: #04cbc2; text-transform: uppercase; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                      <span>Live Preview</span>
+                      <span id="sim-live-time-clock">09:41 AM</span>
+                    </div>
+                    <div style="font-size: 9px; color: #ffffff; font-weight: bold; margin-top: 4px; line-height: 1.2;" id="sim-q-txt">Which cloud infrastructure do you prefer?</div>
                     <!-- Choices list -->
-                    <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px;" id="dev-opts">
-                      <button id="opt-btn-1" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: #94a3b8; padding: 5px; border-radius: 3px; font-size: 7.5px; text-align: left; cursor: pointer; outline: none; width: 100%;">Yes, primary decision maker</button>
-                      <button id="opt-btn-2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: #94a3b8; padding: 5px; border-radius: 3px; font-size: 7.5px; text-align: left; cursor: pointer; outline: none; width: 100%;">Yes, secondary influence</button>
-                      <button id="opt-btn-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: #94a3b8; padding: 5px; border-radius: 3px; font-size: 7.5px; text-align: left; cursor: pointer; outline: none; width: 100%;">No involvement</button>
+                    <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px;" id="sim-opts">
+                      <!-- Filled dynamically -->
                     </div>
                   </div>
-                  <button id="dev-submit" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; padding: 5px; border-radius: 3px; font-size: 8px; font-weight: bold; width: 100%; cursor: pointer; outline: none; border-style: solid;">Submit response</button>
+                  <button id="sim-submit" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; padding: 4px; border-radius: 3px; font-size: 7.5px; font-weight: bold; width: 100%; cursor: pointer; outline: none; border-style: solid; transition: all 0.2s;">Submit Response</button>
                 </div>
               </div>
-              <!-- Floating cursor animation -->
-              <div id="dev-cursor" style="position: absolute; width: 12px; height: 12px; background: rgba(4,203,194,0.8); border: 2px solid #ffffff; border-radius: 50%; top: 180px; left: 110px; pointer-events: none; transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: 0 0 6px rgba(4,203,194,0.8); z-index: 99;"></div>
             </div>
           </div>
         `,
         init: () => {
-          const cursor = document.getElementById('dev-cursor');
-          const opt1 = document.getElementById('opt-btn-1');
-          const submit = document.getElementById('dev-submit');
-          const screen = document.getElementById('dev-screen');
-          const qText = document.getElementById('dev-q-txt');
-          const opts = document.getElementById('dev-opts');
-          if (!cursor || !opt1 || !submit || !screen || !qText || !opts) return;
+          const typeSelect = document.getElementById('des-type');
+          const inputTxt = document.getElementById('des-input-txt');
+          const addOpt = document.getElementById('des-add-opt');
+          const listOpts = document.getElementById('des-list-opts');
+          const simText = document.getElementById('sim-q-txt');
+          const simOpts = document.getElementById('sim-opts');
+          const simSubmit = document.getElementById('sim-submit');
+          const phoneClockEl = document.getElementById('sim-live-time-clock');
 
-          let step = 0;
-          const runSurveyAnimation = () => {
-            if (step === 0) {
-              screen.style.background = '#050a0a';
-              qText.textContent = 'Do you make IT decisions?';
-              opts.style.display = 'flex';
-              submit.style.display = 'block';
-              submit.textContent = 'Submit response';
-              submit.style.background = 'rgba(4,203,194,0.15)';
-              submit.style.borderColor = '#04cbc2';
-              opt1.style.background = 'rgba(255,255,255,0.03)';
-              opt1.style.borderColor = 'rgba(255,255,255,0.06)';
-              opt1.style.color = '#94a3b8';
+          if (!typeSelect || !inputTxt || !addOpt || !listOpts || !simText || !simOpts || !simSubmit) return;
 
-              cursor.style.top = '130px';
-              cursor.style.left = '100px';
-              step = 1;
-            } else if (step === 1) {
-              opt1.style.background = 'rgba(4,203,194,0.1)';
-              opt1.style.borderColor = '#04cbc2';
-              opt1.style.color = '#ffffff';
-
-              cursor.style.top = '210px';
-              cursor.style.left = '90px';
-              step = 2;
-            } else if (step === 2) {
-              submit.style.background = '#10b981';
-              submit.style.borderColor = '#10b981';
-              submit.textContent = '✓ Syncing data...';
-              step = 3;
-            } else if (step === 3) {
-              opts.style.display = 'none';
-              submit.style.display = 'none';
-              qText.innerHTML = '<div style="text-align: center; padding: 25px 0;"><div style="font-size: 20px; color: #10b981;">✓</div><div style="font-size: 10px; font-weight: bold; margin-top: 8px; color: #ffffff;">Survey Complete</div><div style="font-size: 7.5px; color: #94a3b8; margin-top: 3px;">Completions Synced</div></div>';
-              cursor.style.top = '80px';
-              cursor.style.left = '140px';
-              step = 0;
+          // Simple live clock for the phone mockup preview
+          const phoneTimer = setInterval(() => {
+            if (phoneClockEl) {
+              const now = new Date();
+              let hours = now.getHours();
+              const ampm = hours >= 12 ? 'PM' : 'AM';
+              hours = hours % 12 || 12;
+              const mins = String(now.getMinutes()).padStart(2, '0');
+              phoneClockEl.textContent = `${hours}:${mins} ${ampm}`;
             }
+          }, 5000);
+
+          const updatePreview = () => {
+            simText.textContent = inputTxt.value;
+            simOpts.innerHTML = '';
+            
+            const isMulti = typeSelect.value === 'multi';
+            const optInputs = listOpts.querySelectorAll('.des-opt-input');
+            
+            optInputs.forEach((inp, idx) => {
+              const text = inp.value || "Option " + (idx + 1);
+              const label = document.createElement('label');
+              label.style.display = 'flex';
+              label.style.alignItems = 'center';
+              label.style.gap = '5px';
+              label.style.fontSize = '8px';
+              label.style.color = '#94a3b8';
+              label.style.background = 'rgba(255,255,255,0.02)';
+              label.style.border = '1px solid rgba(255,255,255,0.05)';
+              label.style.padding = '4px 6px';
+              label.style.borderRadius = '3px';
+              label.style.cursor = 'pointer';
+              label.style.transition = 'all 0.15s';
+
+              const inputType = isMulti ? 'checkbox' : 'radio';
+              label.innerHTML = `<input type="${inputType}" name="sim-r" style="accent-color: #04cbc2; cursor: pointer; margin: 0; width: 10px; height: 10px;"><span>${text}</span>`;
+              
+              const chkInput = label.querySelector('input');
+              chkInput.addEventListener('change', () => {
+                if (!isMulti) {
+                  const allLabels = simOpts.querySelectorAll('label');
+                  allLabels.forEach(l => {
+                    l.style.background = 'rgba(255,255,255,0.02)';
+                    l.style.borderColor = 'rgba(255,255,255,0.05)';
+                    l.style.color = '#94a3b8';
+                  });
+                }
+                if (chkInput.checked) {
+                  label.style.background = 'rgba(4,203,194,0.05)';
+                  label.style.borderColor = '#04cbc2';
+                  label.style.color = '#ffffff';
+                } else {
+                  label.style.background = 'rgba(255,255,255,0.02)';
+                  label.style.borderColor = 'rgba(255,255,255,0.05)';
+                  label.style.color = '#94a3b8';
+                }
+              });
+
+              simOpts.appendChild(label);
+            });
           };
 
-          runSurveyAnimation();
-          const interval = setInterval(runSurveyAnimation, 1800);
-          return () => clearInterval(interval);
+          const attachDel = (btn) => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const row = btn.closest('.des-opt-row');
+              const allRows = listOpts.querySelectorAll('.des-opt-row');
+              if (allRows.length > 1) {
+                row.remove();
+                updatePreview();
+              }
+            });
+          };
+
+          listOpts.querySelectorAll('.des-opt-del').forEach(attachDel);
+
+          addOpt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const allRows = listOpts.querySelectorAll('.des-opt-row');
+            if (allRows.length >= 4) return;
+
+            const row = document.createElement('div');
+            row.className = 'des-opt-row';
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '4px';
+
+            const defaultVal = allRows.length === 2 ? "Google Cloud Platform" : "Oracle Cloud";
+            row.innerHTML = `<input type="text" value="${defaultVal}" class="des-opt-input" style="flex-grow: 1; background: transparent; border: 1px dashed rgba(255,255,255,0.1); color: #94a3b8; font-family: inherit; font-size: 8px; padding: 2px 4px; outline: none;"><button class="des-opt-del" style="background: transparent; border: none; color: #ef4444; font-size: 9px; cursor: pointer; outline: none; padding: 0 2px;">×</button>`;
+
+            listOpts.appendChild(row);
+            const delBtn = row.querySelector('.des-opt-del');
+            attachDel(delBtn);
+
+            const inp = row.querySelector('.des-opt-input');
+            inp.addEventListener('input', updatePreview);
+
+            updatePreview();
+          });
+
+          inputTxt.addEventListener('input', updatePreview);
+          typeSelect.addEventListener('change', updatePreview);
+
+          simSubmit.addEventListener('click', (e) => {
+            e.stopPropagation();
+            simSubmit.textContent = "Syncing Logic Schema...";
+            simSubmit.style.background = "#10b981";
+            simSubmit.style.borderColor = "#10b981";
+
+            setTimeout(() => {
+              simSubmit.textContent = "✓ Data Sync OK";
+              setTimeout(() => {
+                simSubmit.textContent = "Submit Response";
+                simSubmit.style.background = "rgba(4,203,194,0.15)";
+                simSubmit.style.borderColor = "#04cbc2";
+              }, 1200);
+            }, 800);
+          });
+
+          listOpts.querySelectorAll('.des-opt-input').forEach(inp => {
+            inp.addEventListener('input', updatePreview);
+          });
+
+          updatePreview();
+
+          return () => {
+            clearInterval(phoneTimer);
+          };
         }
       };
     }
   },
   programming: {
-    badge: "Systems Engineering",
+    badge: "DI Survey Programming Engine",
     title: "DI Survey Programming Engine",
     desc: "Implement complex routing schemas, quotas management, custom JavaScript validation widgets, and secure external database callbacks in our cloud IDE environment.",
     capabilities: [
@@ -726,129 +1366,217 @@ const SOLUTION_DATA = {
       { title: "API Endpoints Sync", text: "Automated callbacks that post encrypted complete data packets to specified secure APIs endpoints." }
     ],
     architecture: "Compiles logical rulesets into executable serverless functions running on our edge node mesh to ensure zero-latency routing.",
-    caption: "DI Survey Programming Engine IDE",
+    caption: "DI Survey Programming Engine Cloud IDE Workspace",
     getVisual: () => {
       return {
         html: `
-          <div style="display: grid; grid-template-columns: 100px 1.2fr 1fr; width: 100%; height: 100%; font-family: monospace; font-size: 10px; background: #070f0e; border-radius: 6px; overflow: hidden; position: relative; box-sizing: border-box;">
+          <div style="display: grid; grid-template-columns: 85px 1.25fr 1fr; width: 100%; height: 100%; font-family: monospace; font-size: 9px; background: #050a0a; border-radius: 8px; overflow: hidden; position: relative; box-sizing: border-box; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
             <!-- Left sidebar: File explorer list -->
-            <div style="border-right: 1px solid rgba(255,255,255,0.05); padding: 10px 6px; background: rgba(0,0,0,0.3); box-sizing: border-box; overflow: hidden;">
-              <div style="font-size: 8px; color: #64748b; font-weight: bold; text-transform: uppercase; margin-bottom: 6px;">PROJECT</div>
-              <div style="display: flex; flex-direction: column; gap: 4px; color: #94a3b8; font-size: 8.5px;">
-                <span style="color: #04cbc2;">● rules.js</span>
-                <span>  quotas.config</span>
-                <span>  redirects.js</span>
-                <span>  sync_hook.py</span>
+            <div style="border-right: 1px solid rgba(255,255,255,0.05); padding: 8px 4px; background: rgba(0,0,0,0.45); box-sizing: border-box; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="font-size: 7.5px; color: #64748b; font-weight: bold; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; font-family: 'Space Grotesk', sans-serif;">Workspace</div>
+                <div style="display: flex; flex-direction: column; gap: 4px; color: #94a3b8; font-size: 8px;" id="ide-files">
+                  <span class="ide-file active" data-file="rules" style="color: #04cbc2; cursor: pointer; font-weight: bold;">● rules.js</span>
+                  <span class="ide-file" data-file="quotas" style="cursor: pointer; padding-left: 6px;">quotas.json</span>
+                  <span class="ide-file" data-file="redirects" style="cursor: pointer; padding-left: 6px;">redirects.js</span>
+                </div>
               </div>
+              <button id="ide-run" style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #ffffff; font-family: inherit; font-size: 8px; font-weight: bold; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; width: 100%;">Run Build</button>
             </div>
             <!-- Center Editor -->
             <div style="border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; overflow: hidden; box-sizing: border-box;">
-              <div style="background: rgba(0,0,0,0.4); padding: 6px 8px; color: #94a3b8; font-size: 8.5px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; box-sizing: border-box; flex-shrink: 0;">
-                <span>rules.js</span>
-                <span style="color: #04cbc2; font-weight: bold;">EDIT</span>
+              <div style="background: rgba(0,0,0,0.5); padding: 5px 8px; color: #94a3b8; font-size: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; box-sizing: border-box; flex-shrink: 0; align-items: center;">
+                <span id="ide-editor-tab">rules.js</span>
+                <select id="ide-preset" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(4,203,194,0.3); color: #04cbc2; font-family: inherit; font-size: 7.5px; padding: 1px; outline: none; cursor: pointer; border-radius: 2px;">
+                  <option value="validate">VPN Check Module</option>
+                  <option value="quota">Quota Gate Logic</option>
+                  <option value="skip">Branch Skip logic</option>
+                </select>
               </div>
-              <pre id="prog-code" style="margin: 0; padding: 10px; color: #04cbc2; line-height: 1.3; overflow: hidden; white-space: pre-wrap; word-break: break-all; flex-grow: 1; box-sizing: border-box;"></pre>
+              <div style="position: relative; flex-grow: 1; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; display: flex;">
+                <!-- Line numbers side column -->
+                <div style="width: 18px; border-right: 1px solid rgba(255,255,255,0.03); background: rgba(0,0,0,0.2); display: flex; flex-direction: column; align-items: center; padding: 8px 0; color: #64748b; font-size: 8.5px; line-height: 1.3; font-family: inherit; user-select: none;" id="ide-line-numbers">
+                  <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
+                </div>
+                <!-- Editor input/display area wrapper -->
+                <div style="position: relative; flex-grow: 1; height: 100%; overflow: hidden;">
+                  <!-- Highlight display layer -->
+                  <pre id="ide-highlight" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 8px; white-space: pre; font-family: inherit; font-size: 8.5px; line-height: 1.3; overflow: auto; pointer-events: none; box-sizing: border-box; color: #94a3b8; z-index: 1;"></pre>
+                  <!-- Transparent input layer -->
+                  <textarea id="ide-code" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 8px; width: 100%; height: 100%; background: transparent; border: none; outline: none; resize: none; color: transparent; caret-color: #04cbc2; font-family: inherit; font-size: 8.5px; line-height: 1.3; overflow: auto; z-index: 2; box-sizing: border-box; white-space: pre;" spellcheck="false">// Validate IP proxy
+const sync = new SchemaRouter();
+sync.on('request', (res) => {
+  if (res.isProxy()) {
+    return res.reject('PROXY_VPN');
+  }
+  res.postToS3();
+});</textarea>
+                </div>
+              </div>
             </div>
             <!-- Right terminal console -->
             <div style="display: flex; flex-direction: column; overflow: hidden; background: rgba(0,0,0,0.5); box-sizing: border-box;">
-              <div style="background: rgba(0,0,0,0.4); padding: 6px 8px; color: #94a3b8; font-size: 8.5px; border-bottom: 1px solid rgba(255,255,255,0.05); box-sizing: border-box; flex-shrink: 0;">live_console</div>
-              <div id="prog-logs" style="margin: 0; padding: 8px; color: #94a3b8; line-height: 1.4; overflow: hidden; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; box-sizing: border-box;"></div>
-            </div>
-            <!-- Dynamic Floating compiler validation indicator badge -->
-            <div id="prog-badge" style="position: absolute; bottom: 12px; right: 12px; width: 110px; background: rgba(10,25,25,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(4,203,194,0.3); border-radius: 4px; padding: 6px 8px; display: flex; align-items: center; gap: 6px; transform: translateY(40px); opacity: 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2); box-sizing: border-box; z-index: 99;">
-              <div style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; flex-shrink: 0;"></div>
-              <div style="display: flex; flex-direction: column;">
-                <span style="font-size: 8px; color: #10b981; font-weight: bold; line-height: 1.1;">COMPILE OK</span>
-                <span style="font-size: 7.5px; color: #94a3b8; font-family: monospace;">Edge Deploy OK</span>
+              <div style="background: rgba(0,0,0,0.5); padding: 5px 8px; color: #94a3b8; font-size: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); box-sizing: border-box; flex-shrink: 0;">Output Console</div>
+              <div id="ide-console" style="margin: 0; padding: 6px; color: #94a3b8; line-height: 1.35; overflow-y: auto; display: flex; flex-direction: column; gap: 3px; flex-grow: 1; font-size: 8px; box-sizing: border-box;">
+                <div style="color: #64748b;">> Ready to compile.</div>
               </div>
             </div>
           </div>
         `,
         init: () => {
-          const editor = document.getElementById('prog-code');
-          const consoleLogs = document.getElementById('prog-logs');
-          const badge = document.getElementById('prog-badge');
-          if (!editor || !consoleLogs || !badge) return;
+          const files = document.querySelectorAll('.ide-file');
+          const editorTab = document.getElementById('ide-editor-tab');
+          const codeArea = document.getElementById('ide-code');
+          const highlightPre = document.getElementById('ide-highlight');
+          const runBtn = document.getElementById('ide-run');
+          const presetSelect = document.getElementById('ide-preset');
+          const terminal = document.getElementById('ide-console');
+          const lineNumbersContainer = document.getElementById('ide-line-numbers');
 
-          const lines = [
-            "// Validate IP proxy",
-            "const sync = new SchemaRouter();",
-            "sync.on('request', (res) => {",
-            "  if (res.isProxy()) {",
-            "    return res.reject('PROXY_VPN');",
-            "  }",
-            "  res.postToS3();",
-            "});"
-          ];
+          if (!files.length || !editorTab || !codeArea || !highlightPre || !runBtn || !presetSelect || !terminal) return;
 
-          const logs = [
-            { t: "[OK] Init rules schema", c: "#10b981" },
-            { t: "[API] Link server online", c: "#04cbc2" },
-            { t: "[PASS] Complete ID #2918", c: "#10b981" },
-            { t: "[PASS] Complete ID #2919", c: "#10b981" },
-            { t: "[WARN] VPN proxy block #2920", c: "#f59e0b" },
-            { t: "[API] Sync completed packets", c: "#04cbc2" }
-          ];
+          const fileDb = {
+            rules: {
+              name: "rules.js",
+              validate: "// Validate IP proxy\nconst sync = new SchemaRouter();\nsync.on('request', (res) => {\n  if (res.isProxy()) {\n    return res.reject('PROXY_VPN');\n  }\n  res.postToS3();\n});",
+              quota: "// Quota limit rule gate\nconst gate = new QuotaGate();\ngate.check('US_IT_LEADERS', (active) => {\n  if (active.completes >= 300) {\n    return gate.redirect('OVER_QUOTA');\n  }\n  gate.allow();\n});",
+              skip: "// Skip survey path\nconst router = new SkipRouter();\nrouter.branch('Q1', (answer) => {\n  if (answer === 'No') {\n    router.skipTo('TERMINATE');\n  }\n});"
+            },
+            quotas: {
+              name: "quotas.json",
+              text: "{\n  \"US_IT_LEADERS\": {\n    \"limit\": 300,\n    \"current\": 204\n  },\n  \"EU_HCP_SURGEONS\": {\n    \"limit\": 100,\n    \"current\": 42\n  }\n}"
+            },
+            redirects: {
+              name: "redirects.js",
+              text: "// Redirect configurations\nmodule.exports = {\n  complete: \"https://r.opg.com/done\",\n  terminate: \"https://r.opg.com/out\",\n  quotaFull: \"https://r.opg.com/full\"\n};"
+            }
+          };
 
-          let lIdx = 0;
-          let charIdx = 0;
-          let logIdx = 0;
+          let activeFile = 'rules';
 
-          const type = () => {
-            if (!editor) return;
-            if (lIdx < lines.length) {
-              const text = lines[lIdx];
-              if (charIdx <= text.length) {
-                editor.textContent = lines.slice(0, lIdx).join('\n') + '\n' + text.substring(0, charIdx) + '_';
-                charIdx++;
-                setTimeout(type, 15);
-              } else {
-                lIdx++;
-                charIdx = 0;
-                setTimeout(type, 80);
+          const highlight = (text) => {
+            return text
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/\b(const|let|var|function|return|if|else|new|import|export|class|extends)\b/g, '<span style="color: #c084fc; font-weight: bold;">$1</span>')
+              .replace(/\b(true|false|null|undefined)\b/g, '<span style="color: #fb923c;">$1</span>')
+              .replace(/('.*?'|".*?"|`.*?`)/g, '<span style="color: #34d399;">$1</span>')
+              .replace(/(\/\/.*)/g, '<span style="color: #64748b; font-style: italic;">$1</span>')
+              .replace(/\b(\d+)\b/g, '<span style="color: #fb923c;">$1</span>')
+              .replace(/\b(SchemaRouter|QuotaGate|SkipRouter|on|reject|allow|branch|skipTo|check|postToS3|isProxy)\b/g, '<span style="color: #22d3ee;">$1</span>');
+          };
+
+          const updateHighlight = () => {
+            highlightPre.innerHTML = highlight(codeArea.value);
+            
+            // Rebuild line numbers based on the code lines count
+            const lineCount = codeArea.value.split('\n').length || 1;
+            if (lineNumbersContainer) {
+              lineNumbersContainer.innerHTML = '';
+              for (let i = 1; i <= lineCount; i++) {
+                const num = document.createElement('div');
+                num.textContent = i;
+                lineNumbersContainer.appendChild(num);
               }
-            } else {
-              editor.textContent = lines.join('\n');
-              setTimeout(printLog, 300);
             }
           };
 
-          const printLog = () => {
-            if (!consoleLogs || !badge) return;
-            if (logIdx < logs.length) {
-              const item = logs[logIdx];
-              const logEl = document.createElement('div');
-              logEl.style.color = item.c;
-              logEl.textContent = item.t;
-              consoleLogs.appendChild(logEl);
-              logIdx++;
-              setTimeout(printLog, 400);
-            } else {
-              badge.style.opacity = '1';
-              badge.style.transform = 'translateY(0)';
-              setTimeout(() => {
-                badge.style.opacity = '0';
-                badge.style.transform = 'translateY(40px)';
-                setTimeout(() => {
-                  editor.textContent = '';
-                  consoleLogs.innerHTML = '';
-                  lIdx = 0;
-                  charIdx = 0;
-                  logIdx = 0;
-                  type();
-                }, 500);
-              }, 3000);
+          // Sync scroll position
+          codeArea.addEventListener('scroll', () => {
+            highlightPre.scrollTop = codeArea.scrollTop;
+            highlightPre.scrollLeft = codeArea.scrollLeft;
+            if (lineNumbersContainer) {
+              lineNumbersContainer.scrollTop = codeArea.scrollTop;
             }
-          };
+          });
 
-          type();
+          codeArea.addEventListener('input', updateHighlight);
+
+          files.forEach(f => {
+            f.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const key = f.getAttribute('data-file');
+              activeFile = key;
+              files.forEach(x => {
+                if (x === f) {
+                  x.style.color = '#04cbc2';
+                  x.style.fontWeight = 'bold';
+                  x.textContent = "● " + fileDb[key].name;
+                } else {
+                  x.style.color = '#94a3b8';
+                  x.style.fontWeight = 'normal';
+                  x.textContent = "  " + fileDb[x.getAttribute('data-file')].name;
+                }
+              });
+
+              editorTab.textContent = fileDb[key].name;
+              if (key === 'rules') {
+                codeArea.value = fileDb.rules[presetSelect.value];
+                presetSelect.style.display = 'block';
+              } else {
+                codeArea.value = fileDb[key].text;
+                presetSelect.style.display = 'none';
+              }
+              updateHighlight();
+            });
+          });
+
+          presetSelect.addEventListener('change', () => {
+            if (activeFile === 'rules') {
+              codeArea.value = fileDb.rules[presetSelect.value];
+              updateHighlight();
+            }
+          });
+
+          runBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            runBtn.disabled = true;
+            runBtn.textContent = "Building...";
+            runBtn.style.background = "rgba(4,203,194,0.15)";
+            runBtn.style.borderColor = "#04cbc2";
+
+            terminal.innerHTML = `<div style="color: #64748b;">> Starting logic compiler...</div>`;
+
+            const logs = [
+              { t: "> [COMPILE] Reading rules.js...", c: "#94a3b8" },
+              { t: "> [COMPILE] Importing quotas.json...", c: "#94a3b8" },
+              { t: "> [COMPILE] Parsing skip-logic AST...", c: "#94a3b8" },
+              { t: "> [VALIDATE] Quota ranges checks... OK", c: "#10b981" },
+              { t: "> [VALIDATE] Syntax check: 0 errors", c: "#10b981" },
+              { t: "> [DEPLOY] Syncing serverless edge cache...", c: "#04cbc2" },
+              { t: "> [SUCCESS] Logic deployed globally.", c: "#10b981" }
+            ];
+
+            let logIdx = 0;
+            const printLog = () => {
+              if (logIdx < logs.length) {
+                const row = document.createElement('div');
+                row.style.color = logs[logIdx].c;
+                row.textContent = logs[logIdx].t;
+                terminal.appendChild(row);
+                terminal.scrollTop = terminal.scrollHeight;
+                logIdx++;
+                setTimeout(printLog, 250);
+              } else {
+                runBtn.disabled = false;
+                runBtn.textContent = "Run Build";
+                runBtn.style.background = "rgba(16,185,129,0.15)";
+                runBtn.style.borderColor = "#10b981";
+              }
+            };
+
+            setTimeout(printLog, 200);
+          });
+
+          updateHighlight();
           return () => {};
         }
       };
     }
   },
   translations: {
-    badge: "Global Localization",
+    badge: "DI Translation Engine",
     title: "DI Translation Engine",
     desc: "Translate, review, and synchronize survey templates across 25+ languages. Our localization platform preserves semantic intent, formatting variables, and routing logic integrity.",
     capabilities: [
@@ -858,90 +1586,178 @@ const SOLUTION_DATA = {
       { title: "Logic Schema Sync", text: "Translates text values while mapping matching rules indices to verify routing loops function identically." }
     ],
     architecture: "Interfaces with global Translation Management Systems (TMS) via authenticated REST APIs to sync strings and format schemas.",
-    caption: "DI Translation Engine Portal",
+    caption: "DI Translation Engine Portal Sheets Editor",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
-            <!-- Language Toolbar EN ➔ target -->
-            <div style="background: rgba(0,0,0,0.4); padding: 8px; display: flex; justify-content: space-around; border-bottom: 1px solid rgba(4,203,194,0.15); flex-shrink: 0; box-sizing: border-box;">
-              <span class="lang-tab" data-lang="0" style="background: rgba(4,203,194,0.1); border: 1px solid #04cbc2; color: #ffffff; padding: 3px 8px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer; transition: all 0.2s;">EN ➔ DE</span>
-              <span class="lang-tab" data-lang="1" style="background: transparent; border: 1px solid transparent; color: #94a3b8; padding: 3px 8px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer; transition: all 0.2s;">EN ➔ ES</span>
-              <span class="lang-tab" data-lang="2" style="background: transparent; border: 1px solid transparent; color: #94a3b8; padding: 3px 8px; border-radius: 3px; font-family: monospace; font-size: 9px; cursor: pointer; transition: all 0.2s;">EN ➔ JA</span>
-            </div>
-            <!-- Split translation workspace -->
-            <div style="display: grid; grid-template-rows: 1fr 1.1fr; gap: 6px; padding: 10px; flex-grow: 1; overflow: hidden; box-sizing: border-box;">
-              <!-- Source English String -->
-              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 8px; border-radius: 4px; box-sizing: border-box;">
-                <div style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase; font-family: monospace;">Source text string</div>
-                <div style="font-size: 11px; color: #ffffff; margin-top: 4px; line-height: 1.3;">"What cloud infrastructure does your company run on?"</div>
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+            <!-- Language Selector header toolbar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px; flex-shrink: 0; box-sizing: border-box;">
+              <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.3); padding: 2px; border-radius: 4px;">
+                <button class="tra-tab active" data-lang="DE" style="background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.3); color: #ffffff; font-family: inherit; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none; transition: all 0.2s;">EN ➔ DE</button>
+                <button class="tra-tab" data-lang="ES" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none; transition: all 0.2s;">EN ➔ ES</button>
+                <button class="tra-tab" data-lang="JA" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8px; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none; transition: all 0.2s;">EN ➔ JA</button>
               </div>
-              <!-- Target Translation String -->
-              <div id="trans-card-sec" style="background: rgba(4,203,194,0.03); border: 1px solid rgba(4,203,194,0.15); padding: 8px; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+              <button id="tra-auto" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 2px; cursor: pointer; outline: none; display: flex; align-items: center; gap: 2px;">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Auto-Fill
+              </button>
+            </div>
+            <!-- Translator sheet content -->
+            <div style="flex-grow: 1; display: grid; grid-template-rows: 1fr 1.2fr; gap: 6px; margin: 8px 0; overflow: hidden; box-sizing: border-box;">
+              <!-- English Source questions list -->
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px 8px; border-radius: 4px; box-sizing: border-box;">
+                <div style="font-size: 7.5px; color: #64748b; font-family: monospace; text-transform: uppercase;">Source String</div>
+                <div style="font-size: 9.5px; color: #ffffff; font-weight: bold; line-height: 1.25; margin-top: 2px;" id="tra-src-txt">"What cloud infrastructure does your company run on primarily?"</div>
+              </div>
+              <!-- Target Translation textarea sheet card -->
+              <div style="background: rgba(4,203,194,0.02); border: 1px solid rgba(4,203,194,0.15); padding: 6px 8px; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;" id="tra-card">
                 <div>
-                  <div id="trans-title" style="font-size: 7.5px; color: #04cbc2; font-weight: bold; text-transform: uppercase; font-family: monospace;">DE (German)</div>
-                  <div id="trans-text-sec" style="font-size: 10.5px; color: #ffffff; margin-top: 4px; line-height: 1.3;">"Auf welcher Cloud-Infrastruktur läuft Ihr Unternehmen hauptsächlich?"</div>
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 7.5px; color: #04cbc2; font-family: monospace; text-transform: uppercase;" id="tra-lbl">DE (GERMAN)</span>
+                    <span style="font-size: 7.5px; color: #10b981; font-family: monospace; font-weight: bold;" id="tra-accuracy">Confidence: 99.2%</span>
+                  </div>
+                  <textarea id="tra-input" style="width: 100%; background: transparent; border: none; outline: none; color: #ffffff; font-family: inherit; font-size: 9.5px; line-height: 1.25; resize: none; height: 36px; padding: 0; margin-top: 3px;" spellcheck="false">"Auf welcher Cloud-Infrastruktur läuft Ihr Unternehmen hauptsächlich?"</textarea>
                 </div>
-                <!-- Validation accuracy indicators -->
-                <div style="display: flex; justify-content: space-between; font-size: 7.5px; font-family: monospace; color: #10b981; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 4px; box-sizing: border-box;">
-                  <span>Accuracy: [99.1% Confidence]</span>
-                  <span id="trans-sync">Synced</span>
+                <!-- live validation status code -->
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 3px; font-family: monospace; font-size: 7.5px; color: #10b981; flex-shrink: 0;" id="tra-status">
+                  <span>Logic check: OK</span>
+                  <span>Synced to Cloud CDN</span>
                 </div>
               </div>
             </div>
+            <!-- Sync Action footer button -->
+            <button id="tra-sync-btn" style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #ffffff; font-size: 9px; font-weight: bold; padding: 5px 0; border-radius: 3px; cursor: pointer; outline: none; width: 100%;">Approve & Push Translation</button>
           </div>
         `,
         init: () => {
-          const tabs = document.querySelectorAll('.lang-tab');
-          const label = document.getElementById('trans-title');
-          const text = document.getElementById('trans-text-sec');
-          const sync = document.getElementById('trans-sync');
-          if (!tabs.length || !label || !text || !sync) return;
+          const tabs = document.querySelectorAll('.tra-tab');
+          const autoBtn = document.getElementById('tra-auto');
+          const input = document.getElementById('tra-input');
+          const lbl = document.getElementById('tra-lbl');
+          const acc = document.getElementById('tra-accuracy');
+          const status = document.getElementById('tra-status');
+          const syncBtn = document.getElementById('tra-sync-btn');
+          const card = document.getElementById('tra-card');
 
-          const dataList = [
-            { l: "DE (German)", t: '"Auf welcher Cloud-Infrastruktur läuft Ihr Unternehmen hauptsächlich?"', c: "99.1% Confidence" },
-            { l: "ES (Spanish)", t: '"¿En qué infraestructura de nube se ejecuta su empresa principalmente?"', c: "98.7% Confidence" },
-            { l: "JA (Japanese)", t: '"貴社は主にどのクラウドインフラを使用していますか？"', c: "99.5% Confidence" }
-          ];
+          if (!tabs.length || !autoBtn || !input || !lbl || !acc || !status || !syncBtn) return;
 
-          let idx = 0;
-          const cycle = () => {
-            idx = (idx + 1) % dataList.length;
-            tabs.forEach((tab, i) => {
-              if (i === idx) {
-                tab.style.background = 'rgba(4,203,194,0.1)';
-                tab.style.borderColor = '#04cbc2';
-                tab.style.color = '#ffffff';
-              } else {
-                tab.style.background = 'transparent';
-                tab.style.borderColor = 'transparent';
-                tab.style.color = '#94a3b8';
-              }
-            });
-
-            sync.textContent = "Syncing...";
-            sync.style.color = "#f59e0b";
-            text.style.opacity = '0.3';
-
-            setTimeout(() => {
-              if (label && text && sync) {
-                label.textContent = dataList[idx].l;
-                text.textContent = dataList[idx].t;
-                text.style.opacity = '1';
-                sync.textContent = "Synced";
-                sync.style.color = "#10b981";
-              }
-            }, 600);
+          const translations = {
+            DE: {
+              lbl: "DE (GERMAN)",
+              text: '"Auf welcher Cloud-Infrastruktur läuft Ihr Unternehmen hauptsächlich?"',
+              acc: "Confidence: 99.2%",
+              match: "Logic check: OK",
+              statusText: "Synced to Cloud CDN"
+            },
+            ES: {
+              lbl: "ES (SPANISH)",
+              text: '"¿En qué infraestructura de nube se ejecuta su empresa principalmente?"',
+              acc: "Confidence: 98.6%",
+              match: "Logic check: OK",
+              statusText: "Synced to Cloud CDN"
+            },
+            JA: {
+              lbl: "JA (JAPANESE)",
+              text: '"貴社は主にどのクラウドインフラを使用していますか？"',
+              acc: "Confidence: 99.5%",
+              match: "Logic check: OK",
+              statusText: "Synced to Cloud CDN"
+            }
           };
 
-          const timer = setInterval(cycle, 3200);
-          return () => clearInterval(timer);
+          let currentLang = 'DE';
+
+          tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const lang = tab.getAttribute('data-lang');
+              currentLang = lang;
+              
+              tabs.forEach(t => {
+                if (t === tab) {
+                  t.style.background = 'rgba(4,203,194,0.1)';
+                  t.style.borderColor = 'rgba(4,203,194,0.3)';
+                  t.style.color = '#ffffff';
+                  t.classList.add('active');
+                } else {
+                  t.style.background = 'transparent';
+                  t.style.borderColor = 'transparent';
+                  t.style.color = '#94a3b8';
+                  t.classList.remove('active');
+                }
+              });
+
+              card.style.opacity = '0.3';
+              setTimeout(() => {
+                lbl.textContent = translations[lang].lbl;
+                input.value = translations[lang].text;
+                acc.textContent = translations[lang].acc;
+                status.innerHTML = `<span>${translations[lang].match}</span><span>${translations[lang].statusText}</span>`;
+                status.style.color = '#10b981';
+                card.style.opacity = '1';
+              }, 150);
+            });
+          });
+
+          autoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            input.value = "";
+            let chars = translations[currentLang].text;
+            let cIdx = 0;
+            autoBtn.disabled = true;
+            autoBtn.textContent = "Translating...";
+            
+            const type = () => {
+              if (cIdx <= chars.length) {
+                input.value = chars.substring(0, cIdx);
+                cIdx++;
+                setTimeout(type, 12);
+              } else {
+                autoBtn.disabled = false;
+                autoBtn.textContent = "Auto-Fill";
+                status.innerHTML = `<span>Logic check: OK</span><span>Local edited</span>`;
+                status.style.color = '#f59e0b';
+              }
+            };
+            type();
+          });
+
+          input.addEventListener('input', () => {
+            status.innerHTML = `<span>Logic validation pending</span><span>Local edited</span>`;
+            status.style.color = '#f59e0b';
+          });
+
+          syncBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            syncBtn.textContent = "Deploying to CDN...";
+            syncBtn.disabled = true;
+            syncBtn.style.background = "rgba(4,203,194,0.15)";
+            syncBtn.style.borderColor = "#04cbc2";
+
+            setTimeout(() => {
+              syncBtn.textContent = "Approve & Push Translation";
+              syncBtn.disabled = false;
+              syncBtn.style.background = "rgba(16,185,129,0.15)";
+              syncBtn.style.borderColor = "#10b981";
+              status.innerHTML = `<span>Logic check: OK</span><span>Synced to Cloud CDN</span>`;
+              status.style.color = '#10b981';
+
+              const cap = document.getElementById('visual-caption');
+              if (cap) {
+                cap.textContent = "✓ Sync Success: Translations deployed globally.";
+                setTimeout(() => { cap.textContent = "DI Translation Engine Portal Sheets Editor"; }, 2000);
+              }
+            }, 1000);
+          });
+
+          return () => {};
         }
       };
     }
   },
   processing: {
-    badge: "Data Cleanliness",
+    badge: "Data Processing & Delivery",
     title: "DI Data Processing Engine",
     desc: "Run automated data cleansing pipelines to filter out fraudulent entries. The ETL engine audits speeds, device fingerprints, VPN proxy headers, and duplicate entries to compile clean datasets.",
     capabilities: [
@@ -951,113 +1767,169 @@ const SOLUTION_DATA = {
       { title: "Multi-Format Export", text: "One-click data compiles exported cleanly into SPSS (.sav), raw CSV text, and Microsoft Excel sheets." }
     ],
     architecture: "Applies cleaning algorithms at the data ingestion gateway, forwarding audited logs to secure S3 storage blocks.",
-    caption: "DI Data Processing Engine Dashboard",
+    caption: "DI Data Processing Engine ETL Pipeline Manager",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
-            <!-- Top section Ingress Pipeline path -->
-            <div style="background: rgba(0,0,0,0.3); padding: 8px 10px; height: 75px; border-bottom: 1px solid rgba(4,203,194,0.15); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-around; flex-shrink: 0; box-sizing: border-box;">
-              <svg width="100%" height="100%" viewBox="0 0 250 60" style="position: absolute; top: 0; left: 0;">
-                <!-- Line paths -->
-                <line x1="30" y1="30" x2="220" y2="30" stroke="rgba(255,255,255,0.04)" stroke-width="4" stroke-linecap="round" />
-                <line id="etl-line" x1="30" y1="30" x2="220" y2="30" stroke="#04cbc2" stroke-width="4" stroke-linecap="round" stroke-dasharray="10, 80" stroke-dashoffset="0" />
-                <!-- Circles representing validator gateways -->
-                <circle cx="30" cy="30" r="10" fill="#04524e" stroke="#04cbc2" stroke-width="1.5" />
-                <circle cx="95" cy="30" r="10" fill="#04524e" stroke="#04cbc2" stroke-width="1.5" />
-                <circle cx="160" cy="30" r="10" fill="#04524e" stroke="#04cbc2" stroke-width="1.5" />
-                <circle cx="225" cy="30" r="10" fill="#04524e" stroke="#04cbc2" stroke-width="1.5" />
-              </svg>
-              <!-- Label overlay -->
-              <div style="z-index: 2; text-align: center; font-size: 7px; color: #ffffff; font-weight: bold; width: 45px; line-height: 1.1;">INGEST<br><span style="color: #04cbc2; font-family: monospace;">[INPUT]</span></div>
-              <div style="z-index: 2; text-align: center; font-size: 7px; color: #ffffff; font-weight: bold; width: 45px; line-height: 1.1;">VPN SHIELD<br><span style="color: #04cbc2; font-family: monospace;">[SECURE]</span></div>
-              <div style="z-index: 2; text-align: center; font-size: 7px; color: #ffffff; font-weight: bold; width: 45px; line-height: 1.1;">SPEEDER<br><span style="color: #04cbc2; font-family: monospace;">[AUDIT]</span></div>
-              <div style="z-index: 2; text-align: center; font-size: 7px; color: #ffffff; font-weight: bold; width: 45px; line-height: 1.1;">SYNC S3<br><span style="color: #10b981; font-family: monospace;">[DELIVER]</span></div>
-            </div>
-            <!-- Bottom section: Live table grid -->
-            <div style="flex-grow: 1; padding: 10px; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box;">
-              <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94a3b8; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; flex-shrink: 0;">
-                <span>Ingested Sessions Stream</span>
-                <span style="color: #10b981;" id="etl-count">Cleansed: 2,481</span>
+          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 100px 1.25fr; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
+            <!-- Left Pane: Pipeline switches -->
+            <div style="border-right: 1px solid rgba(255,255,255,0.05); padding-right: 8px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+              <div>
+                <div style="font-size: 8px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif;">ETL Filters</div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <label style="display: flex; flex-direction: column; font-size: 8.5px; color: #cbd5e1; cursor: pointer; gap: 2px;">
+                    <span>VPN Block</span>
+                    <input type="checkbox" id="etl-chk-vpn" checked style="accent-color: #04cbc2; cursor: pointer; align-self: flex-start; transform: scale(0.9);">
+                  </label>
+                  <label style="display: flex; flex-direction: column; font-size: 8.5px; color: #cbd5e1; cursor: pointer; gap: 2px;">
+                    <span>Speeder check</span>
+                    <input type="checkbox" id="etl-chk-speed" checked style="accent-color: #04cbc2; cursor: pointer; align-self: flex-start; transform: scale(0.9);">
+                  </label>
+                  <label style="display: flex; flex-direction: column; font-size: 8.5px; color: #cbd5e1; cursor: pointer; gap: 2px;">
+                    <span>Straightline</span>
+                    <input type="checkbox" id="etl-chk-line" style="accent-color: #04cbc2; cursor: pointer; align-self: flex-start; transform: scale(0.9);">
+                  </label>
+                </div>
               </div>
-              <div id="etl-grid" style="display: flex; flex-direction: column; gap: 3px; overflow: hidden; flex-grow: 1; font-family: monospace; font-size: 8.5px; box-sizing: border-box;">
-                <!-- Table Row items appended dynamically -->
+              <!-- stats -->
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 4px; border-radius: 2px; text-align: center; font-size: 7.5px;">
+                <span style="color: #94a3b8;">Confidence</span>
+                <strong style="display: block; color: #10b981; font-family: monospace;" id="etl-confidence">94.8%</strong>
+              </div>
+            </div>
+            <!-- Right Pane: Table data cleaner -->
+            <div style="padding-left: 8px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; box-sizing: border-box;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 8px; color: #94a3b8; font-weight: bold; margin-bottom: 4px;">
+                  <span>QUARANTINE QUEUE</span>
+                  <span style="color: #ef4444;" id="etl-q-count">1 Flagged</span>
+                </div>
+                <!-- Interactive stream -->
+                <div style="display: flex; flex-direction: column; gap: 4px;" id="etl-stream">
+                  <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.20); padding: 4px 6px; border-radius: 3px; align-items: center; justify-content: space-between; box-sizing: border-box;" class="etl-row">
+                    <div>
+                      <div style="font-family: monospace; font-size: 8px; color: #ffffff;">RESP #48291</div>
+                      <div style="font-size: 7.5px; color: #f59e0b;">Speeder: LOI 45s</div>
+                    </div>
+                    <button class="etl-review" style="background: rgba(245,158,11,0.15); border: 1px solid #f59e0b; color: #ffffff; font-size: 7.5px; font-weight: bold; padding: 2px 4px; border-radius: 2px; cursor: pointer; outline: none; justify-self: end; border-style: solid;">Review</button>
+                  </div>
+                </div>
+              </div>
+              <!-- Ingress stats count and exporter -->
+              <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 6px; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 4px; box-sizing: border-box; flex-shrink: 0;">
+                <div>
+                  <span style="font-size: 7px; color: #94a3b8; text-transform: uppercase; display: block;">Clean Ingested</span>
+                  <strong style="font-size: 11px; color: #ffffff; font-family: monospace;" id="etl-clean-count">1,280</strong>
+                </div>
+                <button id="etl-export" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 8.5px; font-weight: bold; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; border-style: solid; transition: all 0.2s;">Compile SPSS</button>
+              </div>
+            </div>
+            <!-- Side drawer review overlay -->
+            <div id="etl-drawer" style="position: absolute; top: 0; right: 0; bottom: 0; width: 140px; background: rgba(5,15,15,0.96); border-left: 1px solid rgba(4,203,194,0.25); backdrop-filter: blur(10px); display: none; flex-direction: column; justify-content: space-between; padding: 8px; box-sizing: border-box; z-index: 99; animation: slide-in-right 0.25s ease-out;">
+              <div>
+                <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; font-family: 'Space Grotesk', sans-serif;">Audit Session</div>
+                <div style="font-size: 8px; color: #cbd5e1; display: flex; flex-direction: column; gap: 4px; line-height: 1.2;">
+                  <span>• Target: US Cloud Segment</span>
+                  <span>• Completes: 45s (LOI 15m)</span>
+                  <span>• Straightline: 94%</span>
+                  <span style="color: #ef4444; font-weight: bold;">• Classification: BOT</span>
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px;">
+                <button id="etl-act-discard" style="background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ffffff; font-size: 8px; font-weight: bold; padding: 3px 0; border-radius: 2px; cursor: pointer; outline: none; border-style: solid;">Purge</button>
+                <button id="etl-act-approve" style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #ffffff; font-size: 8px; font-weight: bold; padding: 3px 0; border-radius: 2px; cursor: pointer; outline: none; border-style: solid;">Admit</button>
               </div>
             </div>
           </div>
         `,
         init: () => {
-          const grid = document.getElementById('etl-grid');
-          const countEl = document.getElementById('etl-count');
-          const line = document.getElementById('etl-line');
-          if (!grid || !countEl || !line) return;
+          const chkVpn = document.getElementById('etl-chk-vpn');
+          const chkSpeed = document.getElementById('etl-chk-speed');
+          const chkLine = document.getElementById('etl-chk-line');
+          const confidence = document.getElementById('etl-confidence');
+          const qCount = document.getElementById('etl-q-count');
+          const cleanCount = document.getElementById('etl-clean-count');
+          const exportBtn = document.getElementById('etl-export');
+          const stream = document.getElementById('etl-stream');
+          const reviewBtn = stream.querySelector('.etl-review');
+          const drawer = document.getElementById('etl-drawer');
+          const actDiscard = document.getElementById('etl-act-discard');
+          const actApprove = document.getElementById('etl-act-approve');
 
-          let count = 2481;
-          let offset = 0;
-          const flowTimer = setInterval(() => {
-            offset -= 2;
-            if (line) line.style.strokeDashoffset = offset;
-          }, 30);
+          if (!chkVpn || !chkSpeed || !chkLine || !confidence || !qCount || !cleanCount || !exportBtn || !stream || !reviewBtn || !drawer || !actDiscard || !actApprove) return;
 
-          const ids = ['#28941', '#28942', '#28943', '#28944', '#28945', '#28946', '#28947', '#28948'];
-          const audits = [
-            { status: '[PASS]', col: '#10b981', loi: '312s' },
-            { status: '[PASS]', col: '#10b981', loi: '405s' },
-            { status: '[FAIL: Speeder]', col: '#ef4444', loi: '35s' },
-            { status: '[PASS]', col: '#10b981', loi: '280s' },
-            { status: '[FAIL: Proxy]', col: '#f59e0b', loi: '298s' }
-          ];
-
-          let rowIdx = 0;
-          const addRow = () => {
-            if (!grid || !countEl) return;
-            rowIdx++;
-            const id = ids[rowIdx % ids.length];
-            const item = audits[Math.floor(Math.random() * audits.length)];
-
-            if (item.status === '[PASS]') {
-              count++;
-              countEl.textContent = 'Cleansed: ' + count.toLocaleString();
+          const updateConfidence = () => {
+            let score = 50.0;
+            if (chkVpn.checked) score += 25.4;
+            if (chkSpeed.checked) score += 19.4;
+            if (chkLine.checked) score += 13.8;
+            
+            confidence.textContent = score.toFixed(1) + "%";
+            if (score < 70) {
+              confidence.style.color = '#ef4444';
+            } else if (score < 90) {
+              confidence.style.color = '#f59e0b';
+            } else {
+              confidence.style.color = '#10b981';
             }
+          };
 
-            const row = document.createElement('div');
-            row.style.display = 'flex';
-            row.style.justifyContent = 'space-between';
-            row.style.background = 'rgba(255,255,255,0.02)';
-            row.style.border = '1px solid ' + (item.col === '#10b981' ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.08)');
-            row.style.padding = '5px 8px';
-            row.style.borderRadius = '3px';
-            row.style.opacity = '0';
-            row.style.transform = 'translateY(-6px)';
-            row.style.transition = 'all 0.3s ease';
+          [chkVpn, chkSpeed, chkLine].forEach(chk => {
+            chk.addEventListener('change', updateConfidence);
+          });
 
-            row.innerHTML = `<span style="color: #ffffff;">${id}</span><span style="color: #94a3b8;">LOI: ${item.loi}</span><span style="color: ${item.col}; font-weight: bold;">${item.status}</span>`;
+          reviewBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            drawer.style.display = 'flex';
+          });
 
-            grid.insertBefore(row, grid.firstChild);
+          let cleanSum = 1280;
+          const resolve = (admit) => {
+            drawer.style.display = 'none';
+            const row = stream.querySelector('.etl-row');
+            if (row) row.remove();
+            
+            qCount.textContent = "0 Flagged";
+            qCount.style.color = '#10b981';
+            stream.innerHTML = `<div style="font-size: 8px; color: #10b981; font-style: italic; text-align: center; padding: 12px 0;">✓ Quarantine cleared. All pipelines clean.</div>`;
+
+            if (admit) {
+              cleanSum++;
+              cleanCount.textContent = cleanSum.toLocaleString();
+            }
+          };
+
+          actDiscard.addEventListener('click', (e) => {
+            e.stopPropagation();
+            resolve(false);
+          });
+          actApprove.addEventListener('click', (e) => {
+            e.stopPropagation();
+            resolve(true);
+          });
+
+          exportBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const oldText = exportBtn.textContent;
+            exportBtn.textContent = "Exporting...";
+            exportBtn.disabled = true;
 
             setTimeout(() => {
-              row.style.opacity = '1';
-              row.style.transform = 'translateY(0)';
-            }, 30);
+              exportBtn.textContent = "✓ Saved (.sav)";
+              setTimeout(() => {
+                exportBtn.textContent = oldText;
+                exportBtn.disabled = false;
+              }, 1200);
+            }, 900);
+          });
 
-            if (grid.children.length > 3) {
-              grid.removeChild(grid.lastChild);
-            }
-          };
-
-          for (let i = 0; i < 3; i++) { addRow(); }
-          const appendTimer = setInterval(addRow, 2400);
-
-          return () => {
-            clearInterval(flowTimer);
-            clearInterval(appendTimer);
-          };
+          return () => {};
         }
       };
     }
   },
   consulting: {
-    badge: "Business Intelligence",
+    badge: "DI Analytics Engine",
     title: "DI Analytics Engine",
     desc: "Transform raw survey completions into executive summaries, interactive dashboards, and boardroom-ready strategic recommendations compiled by our analysts.",
     capabilities: [
@@ -1067,109 +1939,164 @@ const SOLUTION_DATA = {
       { title: "Editable Presentations", text: "Direct templates export into fully-formatted, editable PowerPoint slides decks and PDF structures." }
     ],
     architecture: "Queries normalized database layers to generate BI visualization streams using secure GraphQL schemas.",
-    caption: "DI Analytics Engine BI Cockpit",
+    caption: "DI Analytics Engine BI Cockpit Dashboard",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; padding: 10px; box-sizing: border-box; justify-content: space-between; border-radius: 6px;">
-            <!-- Realtime Telemetry KPI Tiles -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex-shrink: 0; box-sizing: border-box;">
-              <!-- KPI 1 -->
-              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; display: flex; align-items: center; gap: 8px; box-sizing: border-box;">
-                <svg width="24" height="24" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
-                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4" />
-                  <circle id="bi-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#04cbc2" stroke-width="4" stroke-dasharray="100, 100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);" />
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; padding: 10px; box-sizing: border-box; justify-content: space-between; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+            <!-- Dropdowns controls -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex-shrink: 0; box-sizing: border-box; margin-bottom: 6px;">
+              <div>
+                <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase; display: block; margin-bottom: 2px;">Demographic Cohort</span>
+                <select id="bi-cohort" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 8.5px; padding: 3px; border-radius: 3px; outline: none; cursor: pointer;">
+                  <option value="all">All Industries</option>
+                  <option value="tech">Tech & SaaS Only</option>
+                  <option value="fin">Finance Sector</option>
+                </select>
+              </div>
+              <div>
+                <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase; display: block; margin-bottom: 2px;">Geographic Filter</span>
+                <select id="bi-geo" style="width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 8.5px; padding: 3px; border-radius: 3px; outline: none; cursor: pointer;">
+                  <option value="all">All Countries</option>
+                  <option value="us">United States (US)</option>
+                  <option value="eu">Europe (EU)</option>
+                </select>
+              </div>
+            </div>
+            <!-- KPI blocks row -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 4px; flex-shrink: 0; box-sizing: border-box; margin-bottom: 6px;">
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 4px; border-radius: 3px; display: flex; align-items: center; gap: 4px; box-sizing: border-box;">
+                <svg width="18" height="18" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
+                  <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4px" />
+                  <circle id="bi-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#04cbc2" stroke-width="4px" stroke-dasharray="100, 100" stroke-dashoffset="24" style="transition: stroke-dashoffset 0.5s;" />
                 </svg>
                 <div style="display: flex; flex-direction: column;">
-                  <span style="font-size: 11px; font-weight: bold; color: #ffffff; font-family: monospace;" id="bi-gauge-val">0%</span>
-                  <span style="font-size: 7px; color: #94a3b8; text-transform: uppercase;">Confidence</span>
+                  <span style="font-size: 9.5px; font-weight: bold; color: #ffffff; font-family: monospace; line-height: 1.1;" id="bi-gauge-val">76%</span>
+                  <span style="font-size: 6px; color: #94a3b8; text-transform: uppercase;">Confidence</span>
                 </div>
               </div>
-              <!-- KPI 2 -->
-              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
-                <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase;">Incidence Rate</span>
-                <span style="font-size: 13px; font-weight: bold; color: #10b981; font-family: monospace; margin-top: 1px;">38.4%</span>
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 4px; border-radius: 3px; text-align: center; box-sizing: border-box;">
+                <span style="font-size: 6px; color: #94a3b8; text-transform: uppercase; display: block;">Incidence</span>
+                <strong style="font-size: 10.5px; color: #ffffff; font-family: monospace; display: block; margin-top: 1px;" id="bi-inc-val">38.4%</strong>
+              </div>
+              <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 4px; border-radius: 3px; text-align: center; box-sizing: border-box;">
+                <span style="font-size: 6px; color: #94a3b8; text-transform: uppercase; display: block;">Completes</span>
+                <strong style="font-size: 10.5px; color: #10b981; font-family: monospace; display: block; margin-top: 1px;" id="bi-completes-val">384</strong>
               </div>
             </div>
-            <!-- Central Chart area-fill curves -->
-            <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 8px; border-radius: 4px; flex-grow: 1; margin: 6px 0; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
-              <span style="font-size: 7.5px; color: #94a3b8; text-transform: uppercase;">Response rate curve</span>
-              <div style="height: 50px; width: 100%; margin-top: 4px;">
-                <svg width="100%" height="100%" viewBox="0 0 160 50" style="overflow: visible;">
-                  <defs>
-                    <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.3" />
-                      <stop offset="100%" stop-color="#04cbc2" stop-opacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path id="bi-curve-fill" d="M0,45 Q30,20 60,35 T120,10 T160,30 L160,50 L0,50 Z" fill="url(#chart-glow)" style="opacity: 0; transition: opacity 1s ease;" />
-                  <path id="bi-curve" d="M0,45 Q30,20 60,35 T120,10 T160,30" fill="none" stroke="#04cbc2" stroke-width="2.5" stroke-linecap="round" />
+            <!-- Dynamic SVG Bars Chart area -->
+            <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 6px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden; margin-bottom: 6px;">
+              <span style="font-size: 7px; color: #64748b; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif;" id="bi-chart-title">Response Distribution</span>
+              <div style="height: 38px; width: 100%; margin-top: 2px;">
+                <svg width="100%" height="100%" viewBox="0 0 160 40" style="overflow: visible;">
+                  <g>
+                    <rect id="bi-bar-1" x="25" y="10" width="14" height="30" fill="#04cbc2" rx="1" style="transition: height 0.5s, y 0.5s;" />
+                    <rect id="bi-bar-2" x="60" y="15" width="14" height="25" fill="#04cbc2" rx="1" style="transition: height 0.5s, y 0.5s;" />
+                    <rect id="bi-bar-3" x="95" y="5" width="14" height="35" fill="#10b981" rx="1" style="transition: height 0.5s, y 0.5s;" />
+                    <rect id="bi-bar-4" x="130" y="20" width="14" height="20" fill="#04cbc2" rx="1" style="transition: height 0.5s, y 0.5s;" />
+                  </g>
                 </svg>
               </div>
             </div>
-            <!-- Export bar footer -->
-            <div style="background: rgba(0,0,0,0.3); padding: 6px; border-radius: 4px; font-family: monospace; font-size: 8px; color: #94a3b8; text-align: center; flex-shrink: 0; box-sizing: border-box; border: 1px solid rgba(255,255,255,0.04);">
-              Database: <span style="color: #10b981;">CLEANED & SYNCD</span>
-            </div>
+            <!-- Slide Deck Compiler CTA -->
+            <button id="bi-deck" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 8.5px; font-weight: bold; padding: 4px 0; border-radius: 3px; cursor: pointer; outline: none; flex-shrink: 0; width: 100%; border-style: solid; transition: all 0.2s;">Compile PowerPoint Slide Deck</button>
           </div>
         `,
         init: () => {
+          const cohort = document.getElementById('bi-cohort');
+          const geo = document.getElementById('bi-geo');
           const gauge = document.getElementById('bi-gauge');
           const gaugeVal = document.getElementById('bi-gauge-val');
-          const curve = document.getElementById('bi-curve');
-          const fill = document.getElementById('bi-curve-fill');
-          if (!gauge || !gaugeVal || !curve || !fill) return;
+          const incVal = document.getElementById('bi-inc-val');
+          const compVal = document.getElementById('bi-completes-val');
+          const chartTitle = document.getElementById('bi-chart-title');
+          const bar1 = document.getElementById('bi-bar-1');
+          const bar2 = document.getElementById('bi-bar-2');
+          const bar3 = document.getElementById('bi-bar-3');
+          const bar4 = document.getElementById('bi-bar-4');
+          const deckBtn = document.getElementById('bi-deck');
 
-          // Animate line chart path drawing
-          const length = 250;
-          curve.style.strokeDasharray = length;
-          curve.style.strokeDashoffset = length;
-          fill.style.opacity = '0';
+          if (!cohort || !geo || !gauge || !gaugeVal || !incVal || !compVal || !chartTitle || !bar1 || !bar2 || !bar3 || !bar4 || !deckBtn) return;
 
-          const drawGraph = () => {
-            if (!curve || !fill) return;
-            curve.style.strokeDashoffset = length;
-            fill.style.opacity = '0';
-            setTimeout(() => {
-              if (curve) {
-                curve.style.transition = 'stroke-dashoffset 1.8s ease-in-out';
-                curve.style.strokeDashoffset = '0';
-              }
-            }, 100);
-            setTimeout(() => {
-              if (fill) {
-                fill.style.transition = 'opacity 0.8s ease';
-                fill.style.opacity = '1';
-              }
-            }, 1600);
+          const updateBI = () => {
+            const c = cohort.value;
+            const g = geo.value;
+
+            let baseComp = 384;
+            let baseInc = 38.4;
+            let confidence = 76;
+            
+            let h1 = 30, h2 = 25, h3 = 35, h4 = 20;
+
+            if (c === 'tech') {
+              baseComp = 182;
+              baseInc = 22.1;
+              confidence = 94;
+              h1 = 15; h2 = 38; h3 = 22; h4 = 10;
+              chartTitle.textContent = "Tech sector responses distribution";
+            } else if (c === 'fin') {
+              baseComp = 98;
+              baseInc = 15.6;
+              confidence = 88;
+              h1 = 35; h2 = 12; h3 = 18; h4 = 28;
+              chartTitle.textContent = "Finance sector responses distribution";
+            } else {
+              chartTitle.textContent = "Global responses distribution";
+            }
+
+            if (g === 'us') {
+              baseComp = Math.round(baseComp * 0.6);
+              baseInc += 4.5;
+            } else if (g === 'eu') {
+              baseComp = Math.round(baseComp * 0.3);
+              baseInc -= 3.1;
+            }
+
+            compVal.textContent = baseComp;
+            incVal.textContent = baseInc.toFixed(1) + "%";
+            gaugeVal.textContent = confidence + "%";
+            gauge.setAttribute('stroke-dashoffset', 100 - confidence);
+
+            const drawBar = (bar, height) => {
+              bar.setAttribute('height', height);
+              bar.setAttribute('y', 40 - height);
+            };
+            drawBar(bar1, h1);
+            drawBar(bar2, h2);
+            drawBar(bar3, h3);
+            drawBar(bar4, h4);
           };
 
-          drawGraph();
-          const lineTimer = setInterval(drawGraph, 8000);
+          [cohort, geo].forEach(sel => {
+            sel.addEventListener('change', updateBI);
+          });
 
-          // Animate circular gauge
-          gauge.setAttribute('stroke-dashoffset', '100');
-          setTimeout(() => {
-            gauge.setAttribute('stroke-dashoffset', '26'); // 74%
-            let val = 0;
-            const textTimer = setInterval(() => {
-              val += 2;
-              if (val >= 74) {
-                val = 74;
-                clearInterval(textTimer);
-              }
-              if (gaugeVal) gaugeVal.textContent = val + '%';
-            }, 30);
-          }, 300);
+          deckBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            deckBtn.textContent = "Generating Decks...";
+            deckBtn.disabled = true;
+            deckBtn.style.background = "rgba(4,203,194,0.15)";
+            deckBtn.style.borderColor = "#04cbc2";
 
-          return () => {
-            clearInterval(lineTimer);
-          };
+            setTimeout(() => {
+              deckBtn.textContent = "✓ Downloaded PPTX";
+              setTimeout(() => {
+                deckBtn.textContent = "Compile PowerPoint Slide Deck";
+                deckBtn.disabled = false;
+                deckBtn.style.background = "rgba(4,203,194,0.15)";
+                deckBtn.style.borderColor = "#04cbc2";
+              }, 1500);
+            }, 1200);
+          });
+
+          updateBI();
+          return () => {};
         }
       };
     }
   }
 };
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
