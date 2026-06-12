@@ -4,7 +4,7 @@
 const SOLUTION_DATA = {
     management: {
     badge: "DI Research Engine",
-    title: "Full-Cycle Project Management",
+    title: "DI Research Core Engine",
     desc: "Our project management suite provides end-to-end campaign tracking, automated scoping, live field operations checklists, and data delivery timelines in a unified collaborative dashboard.",
     capabilities: [
       { title: "Full Campaign Scoping", text: "Automated feasibility checks that cross-reference target specifications with panel quotas instantly." },
@@ -472,7 +472,7 @@ const SOLUTION_DATA = {
   },
 sampling: {
     badge: "Audience & Reach",
-    title: "Global Online Sampling",
+    title: "DI Response Engine",
     desc: "Access over 2 million pre-profiled B2B professionals, healthcare specialists, and consumer audiences across 31 countries. Sourced through our verified partner networks and our proprietary panel Opinion Genie to deliver high-fidelity target cohorts.",
     capabilities: [
       { title: "Double Opt-In Panels", text: "Respondents pass through multi-tier verification before entering the active sample pool." },
@@ -576,7 +576,7 @@ sampling: {
   },
   development: {
     badge: "Research Design",
-    title: "Survey Design & Methodology",
+    title: "DI - Survey Design Engine",
     desc: "Our design methodology tools allow research teams to build responsive question models, set up branching logic flows, configure skip constraints, and preview mobile layouts in real-time.",
     capabilities: [
       { title: "Visual Question Builder", text: "Drag-and-drop elements to format single choice, matrix tables, grids, and numeric answers." },
@@ -702,7 +702,7 @@ sampling: {
   },
   programming: {
     badge: "Systems Engineering",
-    title: "Advanced Survey Programming",
+    title: "DI Survey Programming Engine",
     desc: "Implement complex routing schemas, quotas management, custom JavaScript validation widgets, and secure external database callbacks in our cloud IDE environment.",
     capabilities: [
       { title: "Custom Logic Engines", text: "Deploy advanced script rule branching, loops, and show/hide constraints based on logic arrays." },
@@ -832,7 +832,7 @@ sampling: {
   },
   translations: {
     badge: "Global Localization",
-    title: "Multi-Language Localization",
+    title: "DI Translation Engine",
     desc: "Translate, review, and synchronize survey templates across 25+ languages. Our localization platform preserves semantic intent, formatting variables, and routing logic integrity.",
     capabilities: [
       { title: "Split-Pane Editor", text: "Dedicated translation sheets showing English source strings side-by-side with target language inputs." },
@@ -1095,7 +1095,7 @@ sampling: {
   },
   consulting: {
     badge: "Business Intelligence",
-    title: "Strategic Insights & Reporting",
+    title: "DI Analytics Engine",
     desc: "Transform raw survey completions into executive summaries, interactive dashboards, and boardroom-ready strategic recommendations compiled by our analysts.",
     capabilities: [
       { title: "Interactive Dashboards", text: "Create custom client portal filters to cross-tabulate demographics, regions, and dates on the fly." },
