@@ -2,8 +2,8 @@
 // Renders dynamic technical summaries and custom interactive SVG simulations for all 9 solutions.
 
 const SOLUTION_DATA = {
-  management: {
-    badge: "Project Delivery",
+    management: {
+    badge: "DI Research Engine",
     title: "Full-Cycle Project Management",
     desc: "Our project management suite provides end-to-end campaign tracking, automated scoping, live field operations checklists, and data delivery timelines in a unified collaborative dashboard.",
     capabilities: [
@@ -13,174 +13,464 @@ const SOLUTION_DATA = {
       { title: "Structured Data Delivery", text: "Instant data compilation and export into SPSS (.sav), CSV, and Excel tables format." }
     ],
     architecture: "Deploys HTML5 tracker widgets and connects to core operations databases via secure WebSocket APIs to synchronize fielding schedules.",
-    caption: "Active Project Delivery Dashboard",
+    caption: "DI Research Engine SaaS Tool Mockup",
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box;">
-            <!-- Header -->
-            <div style="background: rgba(0,0,0,0.4); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(4,203,194,0.15);">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="width: 10px; height: 10px; border-radius: 50%; background: #04cbc2; box-shadow: 0 0 6px #04cbc2;"></span>
-                <span style="color: #ffffff; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">PROJECT TRACKER</span>
+          <div style="width: 100%; height: 100%; display: flex; background: #070f0e; font-family: 'Space Grotesk', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 6px;">
+            <!-- Left Sidebar Menu -->
+            <div style="width: 125px; background: rgba(0,0,0,0.5); border-right: 1px solid rgba(4,203,194,0.15); display: flex; flex-direction: column; padding: 10px 6px; box-sizing: border-box; flex-shrink: 0; justify-content: space-between;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 12px; padding: 0 4px;">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #04cbc2; box-shadow: 0 0 5px #04cbc2;"></span>
+                  <span style="color: #ffffff; font-size: 9px; font-weight: 700; letter-spacing: 0.5px;">DI ENGINE</span>
+                </div>
+                <!-- Vertical Menu Items -->
+                <div style="display: flex; flex-direction: column; gap: 3px;" id="di-menu-list">
+                  <button class="di-menu-btn" data-step="0" style="background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.35); color: #ffffff; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">1. Target Aud</button>
+                  <button class="di-menu-btn" data-step="1" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">2. Feasibility</button>
+                  <button class="di-menu-btn" data-step="2" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">3. Survey Design</button>
+                  <button class="di-menu-btn" data-step="3" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">4. Translate</button>
+                  <button class="di-menu-btn" data-step="4" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">5. Router Links</button>
+                  <button class="di-menu-btn" data-step="5" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">6. Live Field</button>
+                  <button class="di-menu-btn" data-step="6" style="background: transparent; border: 1px solid transparent; color: #94a3b8; font-family: inherit; font-size: 8.5px; text-align: left; padding: 5px 6px; border-radius: 3px; cursor: pointer; outline: none; transition: all 0.2s; width: 100%;">7. Analytics</button>
+                </div>
               </div>
-              <span style="font-size: 11px; color: #94a3b8; background: rgba(4,203,194,0.1); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(4,203,194,0.2);" id="pm-stage-badge">Scoping</span>
+              <!-- Status bar -->
+              <div style="font-family: monospace; font-size: 7.5px; color: #64748b; padding: 0 4px;" id="di-engine-status">CYCLE: STG 1</div>
             </div>
-            <!-- Kanban Columns -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px; flex-grow: 1; overflow: hidden;">
-              <!-- Col 1 -->
-              <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">1. Scoping</div>
-                <div id="pm-card-1" style="background: rgba(4,203,194,0.06); border: 1px solid rgba(4,203,194,0.2); padding: 8px; border-radius: 4px; transition: all 0.3s; box-shadow: 0 4px 12px rgba(4,203,194,0.15);">
-                  <div style="font-size: 11px; color: #ffffff; font-weight: 500; margin-bottom: 4px;">Campaign #842B</div>
-                  <div style="font-size: 9px; color: #04cbc2; display: flex; align-items: center; gap: 4px; font-family: monospace;" id="pm-card-1-status">Active...</div>
-                </div>
-              </div>
-              <!-- Col 2 -->
-              <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">2. In Field</div>
-                <div id="pm-card-2" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; opacity: 0.4; transition: all 0.3s;">
-                  <div style="font-size: 11px; color: #ffffff; font-weight: 500; margin-bottom: 4px;">Campaign #842B</div>
-                  <div style="font-size: 9px; color: #94a3b8; font-family: monospace;" id="pm-card-2-status">Router Dispatch</div>
-                </div>
-              </div>
-              <!-- Col 3 -->
-              <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">3. Audit</div>
-                <div id="pm-card-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; opacity: 0.4; transition: all 0.3s;">
-                  <div style="font-size: 11px; color: #ffffff; font-weight: 500; margin-bottom: 4px;">Campaign #842B</div>
-                  <div style="font-size: 9px; color: #94a3b8; font-family: monospace;" id="pm-card-3-status">Speeder Check</div>
-                </div>
-              </div>
-              <!-- Col 4 -->
-              <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
-                <div style="font-size: 10px; color: #94a3b8; font-weight: 600; text-transform: uppercase;">4. Delivered</div>
-                <div id="pm-card-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; opacity: 0.4; transition: all 0.3s;">
-                  <div style="font-size: 11px; color: #ffffff; font-weight: 500; margin-bottom: 4px;">Campaign #842B</div>
-                  <div style="font-size: 9px; color: #94a3b8; font-family: monospace;" id="pm-card-4-status">SPSS Output</div>
-                </div>
-              </div>
-            </div>
-            <!-- Console Log -->
-            <div style="background: rgba(0,0,0,0.5); padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.05); height: 80px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;">
-              <div id="pm-console" style="font-family: monospace; font-size: 11px; color: #04cbc2; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">> Initializing project scheduler...</div>
-              <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-                <div style="flex-grow: 1; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
-                  <div id="pm-progress-bar" style="width: 25%; height: 100%; background: #04cbc2; border-radius: 2px; transition: width 0.5s ease;"></div>
-                </div>
-                <span style="font-size: 10px; color: #94a3b8; font-family: monospace;" id="pm-progress-pct">25%</span>
-              </div>
+            <!-- Content Viewport -->
+            <div style="flex-grow: 1; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; overflow: hidden;" id="di-viewport">
+              <!-- Content loaded via init() -->
             </div>
           </div>
         `,
         init: () => {
-          let stage = 0;
-          const consoleOutput = document.getElementById('pm-console');
-          const stageBadge = document.getElementById('pm-stage-badge');
-          const progressBar = document.getElementById('pm-progress-bar');
-          const progressPct = document.getElementById('pm-progress-pct');
-          const c1 = document.getElementById('pm-card-1');
-          const c2 = document.getElementById('pm-card-2');
-          const c3 = document.getElementById('pm-card-3');
-          const c4 = document.getElementById('pm-card-4');
-          const s1 = document.getElementById('pm-card-1-status');
-          const s2 = document.getElementById('pm-card-2-status');
-          const s3 = document.getElementById('pm-card-3-status');
-          const s4 = document.getElementById('pm-card-4-status');
+          const menuBtns = document.querySelectorAll('.di-menu-btn');
+          const viewport = document.getElementById('di-viewport');
+          const statusEl = document.getElementById('di-engine-status');
+          if (!menuBtns.length || !viewport || !statusEl) return;
 
-          const runTimeline = () => {
-            // Reset card styles
-            [c1, c2, c3, c4].forEach((c, idx) => {
-              c.style.background = 'rgba(255,255,255,0.02)';
-              c.style.borderColor = 'rgba(255,255,255,0.05)';
-              c.style.opacity = '0.4';
-              c.style.boxShadow = 'none';
+          const screens = [
+            {
+              title: "1. TARGET AUDIENCE IDENTIFICATION",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Target Criteria</div>
+                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; margin-bottom: 6px;">B2B Decision Makers</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;">
+                      <span style="font-size: 8px; background: rgba(4,203,194,0.1); border: 1px solid rgba(4,203,194,0.2); padding: 2px 6px; border-radius: 10px; color: #ffffff;">IT Leaders (VP+)</span>
+                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">SaaS Sectors</span>
+                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">US / UK / EU</span>
+                      <span style="font-size: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 10px; color: #94a3b8;">N = 500 Target</span>
+                    </div>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; box-sizing: border-box;">
+                    <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase; margin-bottom: 3px;">Audience Matching Engine</div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="flex-grow: 1; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
+                        <div id="scr1-bar" style="width: 0%; height: 100%; background: #04cbc2; transition: width 1s ease;"></div>
+                      </div>
+                      <span style="font-size: 9px; color: #04cbc2; font-family: monospace; font-weight: bold;" id="scr1-pct">0%</span>
+                    </div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const bar = document.getElementById('scr1-bar');
+                const pct = document.getElementById('scr1-pct');
+                if (bar && pct) {
+                  setTimeout(() => {
+                    bar.style.width = '100%';
+                    pct.textContent = '100%';
+                  }, 100);
+                }
+              }
+            },
+            {
+              title: "2. FEASIBILITY METER",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden; padding-bottom: 2px;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Feasibility Score</div>
+                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; margin-bottom: 6px;">Launch Scoping Diagnostics</div>
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: space-around; margin: 6px 0;">
+                    <svg width="50" height="50" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
+                      <circle cx="18" cy="18" r="15.915" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="4" />
+                      <circle id="scr2-gauge" cx="18" cy="18" r="15.915" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="100, 100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);" />
+                    </svg>
+                    <div style="display: flex; flex-direction: column;">
+                      <span style="font-size: 16px; font-weight: bold; color: #ffffff; font-family: monospace;" id="scr2-val">0%</span>
+                      <span style="font-size: 8px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">Scoping OK</span>
+                    </div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; box-sizing: border-box;">
+                    <div style="background: rgba(255,255,255,0.02); padding: 5px; border-radius: 4px; text-align: center;">
+                      <div style="font-size: 7.5px; color: #94a3b8;">Est. CPI</div>
+                      <div style="font-size: 11px; font-weight: bold; color: #04cbc2; margin-top: 1px;">$8.50</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.02); padding: 5px; border-radius: 4px; text-align: center;">
+                      <div style="font-size: 7.5px; color: #94a3b8;">Est. Field Time</div>
+                      <div style="font-size: 11px; font-weight: bold; color: #04cbc2; margin-top: 1px;">3 Days</div>
+                    </div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const gauge = document.getElementById('scr2-gauge');
+                const val = document.getElementById('scr2-val');
+                if (gauge && val) {
+                  setTimeout(() => {
+                    gauge.setAttribute('stroke-dashoffset', '12'); // 88%
+                    let count = 0;
+                    const interval = setInterval(() => {
+                      count += 2;
+                      if (count >= 88) {
+                        count = 88;
+                        clearInterval(interval);
+                      }
+                      val.textContent = count + '%';
+                    }, 20);
+                  }, 100);
+                }
+              }
+            },
+            {
+              title: "3. AI PROMPT SURVEY BUILDER",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">AI Prompts Survey Design</div>
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(4,203,194,0.15); padding: 6px 10px; border-radius: 4px; font-family: monospace; font-size: 8.5px; color: #04cbc2; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" id="scr3-prompt">> </div>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 8px; border-radius: 4px; opacity: 0; transform: translateY(8px); transition: all 0.5s ease; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box;" id="scr3-q">
+                    <div style="font-size: 8px; color: #94a3b8; text-transform: uppercase; margin-bottom: 2px;">Generated Logic Block</div>
+                    <div style="font-size: 10.5px; color: #ffffff; font-weight: bold; line-height: 1.2; margin-bottom: 4px;">Q1: How do you rate reporting latency?</div>
+                    <div style="display: flex; flex-direction: column; gap: 3px;">
+                      <div style="font-size: 8px; background: rgba(255,255,255,0.03); padding: 3px 5px; border-radius: 3px; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.04);">Option: Extremely Latent to Real-Time</div>
+                    </div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const input = document.getElementById('scr3-prompt');
+                const qcard = document.getElementById('scr3-q');
+                if (input && qcard) {
+                  const query = "Generate B2B tech survey on BI latency...";
+                  let cIdx = 0;
+                  const type = () => {
+                    if (cIdx <= query.length) {
+                      input.textContent = "> " + query.substring(0, cIdx) + "_";
+                      cIdx++;
+                      setTimeout(type, 25);
+                    } else {
+                      input.textContent = "> " + query;
+                      qcard.style.opacity = '1';
+                      qcard.style.transform = 'translateY(0)';
+                    }
+                  };
+                  setTimeout(type, 100);
+                }
+              }
+            },
+            {
+              title: "4. MULTI-LANGUAGE TRANSLATOR",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Survey Localization</div>
+                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px 8px; border-radius: 4px; font-size: 8.5px; color: #94a3b8; line-height: 1.2; margin-bottom: 5px;">
+                      <strong>EN Source:</strong> "How do you rate reporting latency?"
+                    </div>
+                  </div>
+                  <div style="background: rgba(4,203,194,0.03); border: 1px solid rgba(4,203,194,0.15); padding: 8px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box;">
+                    <div style="font-size: 8.5px; color: #04cbc2; font-weight: bold;" id="scr4-label">DE (German)</div>
+                    <div style="font-size: 10px; color: #ffffff; font-style: italic; line-height: 1.3; margin: 3px 0;" id="scr4-text">"Wie bewerten Sie die Berichtslatenz?"</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 8px; font-family: monospace; color: #10b981; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 3px; box-sizing: border-box;">
+                      <span>Routing Index match</span>
+                      <span style="color: #64748b;" id="scr4-status">Synced</span>
+                    </div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const label = document.getElementById('scr4-label');
+                const text = document.getElementById('scr4-text');
+                const status = document.getElementById('scr4-status');
+                if (!label || !text || !status) return;
+
+                const translations = [
+                  { l: "DE (German)", t: '"Wie bewerten Sie die Berichtslatenz?"' },
+                  { l: "ES (Spanish)", t: '"¿Cómo califica la latencia de informes?"' },
+                  { l: "JA (Japanese)", t: '"レポート遅延をどのように評価しますか？"' }
+                ];
+                let idx = 0;
+                const cycle = () => {
+                  idx = (idx + 1) % translations.length;
+                  status.textContent = "Translating...";
+                  status.style.color = "#f59e0b";
+                  text.style.opacity = '0.3';
+                  setTimeout(() => {
+                    if (label && text && status) {
+                      label.textContent = translations[idx].l;
+                      text.textContent = translations[idx].t;
+                      text.style.opacity = '1';
+                      status.textContent = "✓ Synced";
+                      status.style.color = "#10b981";
+                    }
+                  }, 600);
+                };
+                const interval = setInterval(cycle, 2000);
+                return () => clearInterval(interval);
+              }
+            },
+            {
+              title: "5. SURVEY DISPATCH LINKS",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Deploy Routing Channels</div>
+                    <div style="font-size: 10px; color: #94a3b8; line-height: 1.2; margin-bottom: 6px;">Secure link distribution mapped to panel router paths.</div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 4px; box-sizing: border-box;">
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 5px 6px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                      <span style="font-family: monospace; font-size: 7.5px; color: #ffffff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;">Link: OpinionGenie Panel</span>
+                      <button id="scr5-c1" style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 7.5px; padding: 2px 4px; border-radius: 3px; cursor: pointer; outline: none;">Copy</button>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); padding: 5px 6px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 4px;">
+                      <span style="font-family: monospace; font-size: 7.5px; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1;">Link: External Suppliers</span>
+                      <button id="scr5-c2" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 2px 4px; border-radius: 3px; cursor: pointer; outline: none;">Copy</button>
+                    </div>
+                  </div>
+                  <div style="font-family: monospace; font-size: 8px; color: #10b981; text-align: center; margin-top: 4px; flex-shrink: 0;">
+                    ✓ Dispatch links verified & secure
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const c1 = document.getElementById('scr5-c1');
+                const c2 = document.getElementById('scr5-c2');
+                if (c1) {
+                  c1.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    c1.textContent = "Copied!";
+                    c1.style.background = "#10b981";
+                    c1.style.borderColor = "#10b981";
+                    setTimeout(() => {
+                      c1.textContent = "Copy";
+                      c1.style.background = "rgba(4,203,194,0.15)";
+                      c1.style.borderColor = "#04cbc2";
+                    }, 1200);
+                  });
+                }
+                if (c2) {
+                  c2.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    c2.textContent = "Copied!";
+                    c2.style.background = "#10b981";
+                    c2.style.borderColor = "#10b981";
+                    setTimeout(() => {
+                      c2.textContent = "Copy";
+                      c2.style.background = "rgba(255,255,255,0.03)";
+                      c2.style.borderColor = "rgba(255,255,255,0.08)";
+                    }, 1200);
+                  });
+                }
+              }
+            },
+            {
+              title: "6. REALTIME TELEMETRY FIELDING",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                      <span style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase;">Quota Tracker</span>
+                      <span style="font-size: 7.5px; color: #10b981; font-family: monospace; display: flex; align-items: center; gap: 3px;"><span class="live-pulse" style="width: 4px; height: 4px; box-shadow: 0 0 4px #10b981;"></span>Active</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px 8px; border-radius: 4px; box-sizing: border-box;">
+                      <div style="display: flex; justify-content: space-between; font-size: 8px; color: #94a3b8; font-family: monospace; margin-bottom: 2px;">
+                        <span>Target US IT Leaders</span>
+                        <span id="scr6-completes">142/150</span>
+                      </div>
+                      <div style="height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden;">
+                        <div id="scr6-bar" style="width: 94%; height: 100%; background: #04cbc2; transition: width 0.5s ease;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Telemetry activity logs -->
+                  <div style="background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.05); padding: 5px; border-radius: 4px; flex-grow: 1; display: flex; flex-direction: column; gap: 3px; overflow: hidden; font-family: monospace; font-size: 7.5px; box-sizing: border-box; margin-top: 4px;" id="scr6-logs">
+                    <div style="color: #64748b;">> Telemetry socket established...</div>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const logs = document.getElementById('scr6-logs');
+                const comp = document.getElementById('scr6-completes');
+                const bar = document.getElementById('scr6-bar');
+                if (!logs || !comp || !bar) return;
+
+                let count = 142;
+                const target = 150;
+                const templates = [
+                  { text: "[PASS] Session #2951: Fingerprint verified", col: "#10b981" },
+                  { text: "[PASS] Session #2952: Proxy VPN test pass", col: "#10b981" },
+                  { text: "[BLOCK] Session #2953: Speeder logic detected", col: "#ef4444" },
+                  { text: "[PASS] Session #2954: Demographics match ok", col: "#10b981" },
+                  { text: "[BLOCK] Session #2955: VPN proxy reject", col: "#f59e0b" }
+                ];
+                let idx = 0;
+                const runLog = () => {
+                  const item = templates[idx % templates.length];
+                  idx++;
+                  if (item.text.includes("[PASS]") && count < target) {
+                    count++;
+                    comp.textContent = count + "/" + target;
+                    bar.style.width = ((count / target) * 100) + "%";
+                  }
+                  const div = document.createElement('div');
+                  div.style.color = item.col;
+                  div.textContent = "> " + item.text;
+                  div.style.opacity = '0';
+                  div.style.transition = 'opacity 0.2s';
+                  logs.appendChild(div);
+                  setTimeout(() => div.style.opacity = '1', 50);
+                  if (logs.children.length > 5) {
+                    logs.removeChild(logs.children[1]);
+                  }
+                };
+                const interval = setInterval(runLog, 1200);
+                return () => clearInterval(interval);
+              }
+            },
+            {
+              title: "7. REPORTING & BI ANALYTICS",
+              html: `
+                <div style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                  <div>
+                    <div style="font-size: 9px; color: #04cbc2; font-weight: bold; text-transform: uppercase; margin-bottom: 2px;">Report Deliverables</div>
+                    <div style="font-size: 11px; color: #ffffff; font-weight: bold; line-height: 1.2; margin-bottom: 4px;">Dynamic Graphs & Data Compiles</div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 6px; flex-grow: 1; overflow: hidden; margin-bottom: 4px; box-sizing: border-box;">
+                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;">
+                      <span style="font-size: 7px; color: #94a3b8; text-transform: uppercase;">Completes curve</span>
+                      <div style="height: 30px; width: 100%;">
+                        <svg width="100%" height="100%" viewBox="0 0 100 30" style="overflow: visible;">
+                          <path id="scr7-line" d="M0,25 Q20,10 40,20 T80,5 T100,15" fill="none" stroke="#04cbc2" stroke-width="2.5" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; display: flex; align-items: flex-end; justify-content: space-around;">
+                      <div id="scr7-b1" style="width: 7px; height: 30%; background: #04cbc2; border-radius: 1px; transition: height 1s ease;"></div>
+                      <div id="scr7-b2" style="width: 7px; height: 60%; background: #04cbc2; border-radius: 1px; transition: height 1s ease;"></div>
+                      <div id="scr7-b3" style="width: 7px; height: 85%; background: #10b981; border-radius: 1px; transition: height 1s ease;"></div>
+                    </div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                    <button style="background: rgba(4,203,194,0.15); border: 1px solid #04cbc2; color: #ffffff; font-size: 7.5px; padding: 4px 0; border-radius: 3px; font-family: inherit; font-weight: bold; cursor: pointer; outline: none; border-style: solid;">Export SPSS</button>
+                    <button style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 7.5px; padding: 4px 0; border-radius: 3px; font-family: inherit; cursor: pointer; outline: none; border-style: solid;">Download PPTX</button>
+                  </div>
+                </div>
+              `,
+              init: () => {
+                const line = document.getElementById('scr7-line');
+                const b1 = document.getElementById('scr7-b1');
+                const b2 = document.getElementById('scr7-b2');
+                const b3 = document.getElementById('scr7-b3');
+                if (line) {
+                  line.style.strokeDasharray = "150";
+                  line.style.strokeDashoffset = "150";
+                  setTimeout(() => {
+                    line.style.transition = "stroke-dashoffset 1.5s ease-in-out";
+                    line.style.strokeDashoffset = "0";
+                  }, 100);
+                }
+                const update = () => {
+                  if (b1 && b2 && b3) {
+                    b1.style.height = (Math.floor(Math.random() * 30) + 20) + "%";
+                    b2.style.height = (Math.floor(Math.random() * 30) + 45) + "%";
+                    b3.style.height = (Math.floor(Math.random() * 20) + 75) + "%";
+                  }
+                };
+                setTimeout(update, 100);
+                const interval = setInterval(update, 1800);
+                return () => clearInterval(interval);
+              }
+            }
+          ];
+
+          let currentStep = 0;
+          let activeSubCleanup = null;
+          let cycleTimer = null;
+          let isPaused = false;
+
+          const loadStep = (stepIdx) => {
+            if (activeSubCleanup) {
+              activeSubCleanup();
+              activeSubCleanup = null;
+            }
+
+            menuBtns.forEach((btn, idx) => {
+              if (idx === stepIdx) {
+                btn.style.background = 'rgba(4,203,194,0.1)';
+                btn.style.borderColor = 'rgba(4,203,194,0.35)';
+                btn.style.color = '#ffffff';
+              } else {
+                btn.style.background = 'transparent';
+                btn.style.borderColor = 'transparent';
+                btn.style.color = '#94a3b8';
+              }
             });
-            [s1, s2, s3, s4].forEach((s, idx) => {
-              s.style.color = '#94a3b8';
-              s.textContent = idx === 0 ? 'Feasibility Check' : idx === 1 ? 'Router Dispatch' : idx === 2 ? 'Speeder Check' : 'SPSS Output';
-            });
 
-            if (stage === 0) {
-              c1.style.background = 'rgba(4,203,194,0.08)';
-              c1.style.borderColor = '#04cbc2';
-              c1.style.opacity = '1';
-              c1.style.boxShadow = '0 4px 12px rgba(4,203,194,0.15)';
-              s1.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#04cbc2; border-radius:50%; box-shadow:0 0 6px #04cbc2; margin-right:4px;"></span>Active...';
-              s1.style.color = '#04cbc2';
-              stageBadge.textContent = 'Scoping';
-              progressBar.style.width = '25%';
-              progressPct.textContent = '25%';
-              consoleOutput.textContent = '> [SYSTEM] Feasibility engine analyzing target parameters...';
-              stage = 1;
-            } else if (stage === 1) {
-              c1.style.opacity = '0.8';
-              s1.textContent = '✓ Scoped';
-              s1.style.color = '#10b981';
-              
-              c2.style.background = 'rgba(4,203,194,0.08)';
-              c2.style.borderColor = '#04cbc2';
-              c2.style.opacity = '1';
-              c2.style.boxShadow = '0 4px 12px rgba(4,203,194,0.15)';
-              s2.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#04cbc2; border-radius:50%; box-shadow:0 0 6px #04cbc2; margin-right:4px;"></span>In Field';
-              s2.style.color = '#04cbc2';
-              stageBadge.textContent = 'In Field';
-              progressBar.style.width = '50%';
-              progressPct.textContent = '50%';
-              consoleOutput.textContent = '> [FIELD] Distributing survey router. Real-time quota filling...';
-              stage = 2;
-            } else if (stage === 2) {
-              c1.style.opacity = '0.8';
-              s1.textContent = '✓ Scoped';
-              s1.style.color = '#10b981';
-              c2.style.opacity = '0.8';
-              s2.textContent = '✓ Collected';
-              s2.style.color = '#10b981';
+            const stepData = screens[stepIdx];
+            statusEl.textContent = isPaused ? 'PAUSED' : 'AUTO STG: ' + (stepIdx + 1) + '/7';
 
-              c3.style.background = 'rgba(4,203,194,0.08)';
-              c3.style.borderColor = '#04cbc2';
-              c3.style.opacity = '1';
-              c3.style.boxShadow = '0 4px 12px rgba(4,203,194,0.15)';
-              s3.innerHTML = '<span style="display:inline-block; width:6px; height:6px; background:#04cbc2; border-radius:50%; box-shadow:0 0 6px #04cbc2; margin-right:4px;"></span>Auditing...';
-              s3.style.color = '#04cbc2';
-              stageBadge.textContent = 'Audit';
-              progressBar.style.width = '75%';
-              progressPct.textContent = '75%';
-              consoleOutput.textContent = '> [QUALITY] Running speeder & deduplication script algorithms...';
-              stage = 3;
-            } else if (stage === 3) {
-              c1.style.opacity = '0.8';
-              s1.textContent = '✓ Scoped';
-              s1.style.color = '#10b981';
-              c2.style.opacity = '0.8';
-              s2.textContent = '✓ Collected';
-              s2.style.color = '#10b981';
-              c3.style.opacity = '0.8';
-              s3.textContent = '✓ Cleansed';
-              s3.style.color = '#10b981';
+            viewport.innerHTML = `
+              <div style="flex-grow: 1; display: flex; flex-direction: column; height: 100%; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
+                <div style="font-size: 10.5px; font-weight: bold; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; margin-bottom: 8px; flex-shrink: 0; letter-spacing: 0.5px; text-transform: uppercase;">
+                  ${stepData.title}
+                </div>
+                <div style="flex-grow: 1; overflow: hidden;">
+                  ${stepData.html}
+                </div>
+              </div>
+            `;
 
-              c4.style.background = 'rgba(16,185,129,0.08)';
-              c4.style.borderColor = '#10b981';
-              c4.style.opacity = '1';
-              c4.style.boxShadow = '0 4px 12px rgba(16,185,129,0.15)';
-              s4.textContent = '✓ Delivered';
-              s4.style.color = '#10b981';
-              stageBadge.textContent = 'Delivered';
-              progressBar.style.width = '100%';
-              progressPct.textContent = '100%';
-              consoleOutput.textContent = '> [DELIVERED] Final database compiled. Format label: SPSS .sav';
-              stage = 0;
+            if (stepData.init) {
+              activeSubCleanup = stepData.init();
             }
           };
 
-          runTimeline();
-          const timer = setInterval(runTimeline, 4000);
-          return () => clearInterval(timer);
+          menuBtns.forEach((btn, idx) => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              isPaused = true;
+              clearInterval(cycleTimer);
+              currentStep = idx;
+              loadStep(currentStep);
+            });
+          });
+
+          const startCycle = () => {
+            cycleTimer = setInterval(() => {
+              currentStep = (currentStep + 1) % screens.length;
+              loadStep(currentStep);
+            }, 4500);
+          };
+
+          loadStep(currentStep);
+          startCycle();
+
+          return () => {
+            clearInterval(cycleTimer);
+            if (activeSubCleanup) activeSubCleanup();
+          };
         }
       };
     }
   },
-  sampling: {
+sampling: {
     badge: "Audience & Reach",
     title: "Global Online Sampling",
     desc: "Access over 2 million pre-profiled B2B professionals, healthcare specialists, and consumer audiences across 31 countries. Sourced through our verified partner networks and our proprietary panel Opinion Genie to deliver high-fidelity target cohorts.",
