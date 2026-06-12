@@ -33,79 +33,110 @@
     <!-- Landing Navigation Header -->
     <header class="landing-header glass-card">
       <div class="brand-group">
-        <svg class="brand-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+        <svg class="brand-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
   <defs>
-    <!-- Glow Filter -->
-    <filter id="logo-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="1.5" result="blur" />
+    <!-- Shadow Blur -->
+    <filter id="shadow-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" />
+    </filter>
+
+    <!-- Logo Glow -->
+    <filter id="logo-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     
     <!-- Gradients -->
-    <linearGradient id="glow-core-grad" x1="16" y1="9" x2="16" y2="23" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="30%" stop-color="#04cbc2" />
-      <stop offset="100%" stop-color="#04524e" />
-    </linearGradient>
-    
-    <linearGradient id="face-top-grad" x1="16" y1="4" x2="16" y2="16" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3" />
+    <linearGradient id="glass-face-grad" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
       <stop offset="100%" stop-color="#04cbc2" stop-opacity="0.05" />
     </linearGradient>
     
-    <linearGradient id="face-left-grad" x1="5.6" y1="10" x2="16" y2="28" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04524e" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#050a0a" stop-opacity="0.7" />
-    </linearGradient>
-
-    <linearGradient id="face-right-grad" x1="26.4" y1="10" x2="16" y2="28" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.25" />
-      <stop offset="100%" stop-color="#0a1414" stop-opacity="0.6" />
+    <linearGradient id="glass-wall-grad" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04524e" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#060f0e" stop-opacity="0.9" />
     </linearGradient>
     
-    <linearGradient id="orbit-grad" x1="5" y1="16" x2="27" y2="16" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04524e" stop-opacity="0.2" />
+    <linearGradient id="wire-grad" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#04cbc2" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.2" />
+    </linearGradient>
+
+    <radialGradient id="core-grad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#04cbc2" />
+      <stop offset="75%" stop-color="#04524e" />
+      <stop offset="100%" stop-color="#021c1a" />
+    </radialGradient>
+    
+    <linearGradient id="iris-grad" x1="32" y1="20" x2="32" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#04cbc2" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <linearGradient id="orbit-grad-1" x1="14" y1="30" x2="50" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.2" />
       <stop offset="50%" stop-color="#04cbc2" stop-opacity="1" />
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
     </linearGradient>
     
-    <linearGradient id="wire-grad" x1="16" y1="3" x2="16" y2="29" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+    <linearGradient id="orbit-grad-2" x1="14" y1="30" x2="50" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2" />
+      <stop offset="50%" stop-color="#10b981" stop-opacity="1" />
+      <stop offset="100%" stop-color="#04cbc2" stop-opacity="0.8" />
+    </linearGradient>
+
+    <linearGradient id="beam-grad" x1="32" y1="10" x2="32" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0" />
+      <stop offset="25%" stop-color="#04cbc2" stop-opacity="0.45" />
+      <stop offset="50%" stop-color="#04cbc2" stop-opacity="0.85" />
+      <stop offset="75%" stop-color="#04cbc2" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#04cbc2" stop-opacity="0" />
     </linearGradient>
   </defs>
 
-  <!-- 3D Outer Glass Prism Faces -->
-  <path d="M 16,4 L 26.4,10 L 16,16 L 5.6,10 Z" fill="url(#face-top-grad)" />
-  <path d="M 5.6,10 L 16,16 L 16,28 L 5.6,22 Z" fill="url(#face-left-grad)" />
-  <path d="M 16,16 L 26.4,10 L 26.4,22 L 16,28 Z" fill="url(#face-right-grad)" />
+  <!-- Soft Ground Shadow (Floor) -->
+  <ellipse cx="32" cy="55" rx="18" ry="5.5" fill="#000000" opacity="0.45" filter="url(#shadow-blur)" />
 
-  <!-- Outer Glass Frame Wireframe Lines -->
-  <!-- Back / Side edges -->
-  <path d="M 16,4 L 26.4,10 L 26.4,22 L 16,28 L 5.6,22 L 5.6,10 Z" stroke="url(#wire-grad)" stroke-width="1" stroke-linejoin="round" opacity="0.4" />
-  <!-- Front Y-axis inner seams meeting at center -->
-  <path d="M 16,4 L 16,16 M 16,16 L 5.6,10 M 16,16 L 26.4,10 M 16,16 L 16,28" stroke="#04cbc2" stroke-width="0.8" opacity="0.3" />
+  <!-- Vertical Energy Beam (Back & Middle) -->
+  <path d="M 30,10 L 34,10 L 34,54 L 30,54 Z" fill="url(#beam-grad)" opacity="0.7" />
 
-  <!-- Orbital Ring (automation loop) -->
-  <ellipse cx="16" cy="16" rx="12" ry="5.5" fill="none" stroke="url(#orbit-grad)" stroke-width="1.2" transform="rotate(-28 16 16)" />
-  
-  <!-- Outer glass border glow -->
-  <path d="M 16,4 L 26.4,10 L 26.4,22 L 16,28 L 5.6,22 L 5.6,10 Z" stroke="#04cbc2" stroke-width="1.2" stroke-linejoin="round" opacity="0.85" />
+  <!-- Bottom Ring (Back half of inner wall and outer outline) -->
+  <!-- We draw the entire bottom ring first as it sits below the core -->
+  <!-- Top Face of Bottom Ring -->
+  <path d="M 12,46 A 20,10 0 1,1 52,46 A 20,10 0 1,1 12,46 Z M 20,46 A 12,6 0 1,0 44,46 A 12,6 0 1,0 20,46 Z" fill="url(#glass-face-grad)" stroke="url(#wire-grad)" stroke-width="0.8" fill-rule="evenodd" />
+  <!-- Outer Front Wall of Bottom Ring -->
+  <path d="M 12,46 A 20,10 0 0,1 52,46 L 52,51 A 20,10 0 0,0 12,51 Z" fill="url(#glass-wall-grad)" stroke="url(#wire-grad)" stroke-width="0.8" />
+  <!-- Inner Back Wall of Bottom Ring Hole -->
+  <path d="M 20,46 A 12,6 0 0,0 44,46 L 44,51 A 12,6 0 0,1 20,51 Z" fill="url(#glass-wall-grad)" stroke="url(#wire-grad)" stroke-width="0.8" />
 
-  <!-- Inner Glowing Core Octahedron (3D Crystal) -->
-  <!-- Top Half -->
-  <path d="M 16,9 L 11,16 L 16,16 Z" fill="#04524e" opacity="0.85" />
-  <path d="M 16,9 L 21,16 L 16,16 Z" fill="url(#glow-core-grad)" />
-  <!-- Bottom Half -->
-  <path d="M 16,23 L 11,16 L 16,16 Z" fill="#033835" opacity="0.9" />
-  <path d="M 16,23 L 21,16 L 16,16 Z" fill="#04cbc2" opacity="0.75" />
-  
-  <!-- Core Inner Seams -->
-  <path d="M 16,9 L 16,23 M 11,16 L 21,16" stroke="#ffffff" stroke-width="0.6" opacity="0.5" />
-  
-  <!-- Floating Particle Nodes -->
-  <circle cx="9" cy="11.5" r="1" fill="#ffffff" filter="url(#logo-glow)" />
-  <circle cx="23" cy="20.5" r="1" fill="#04cbc2" filter="url(#logo-glow)" />
+  <!-- Orbiting Automation Loop 1 (slanted) -->
+  <ellipse cx="32" cy="32" rx="18" ry="6" fill="none" stroke="url(#orbit-grad-1)" stroke-width="1.2" transform="rotate(-30 32 32)" />
+
+  <!-- Central Core DeepSight Eye Sphere -->
+  <circle cx="32" cy="32" r="9" fill="url(#core-grad)" filter="url(#logo-glow)" />
+  <!-- Iris lens shape -->
+  <path d="M 32,24.5 C 34.5,24.5 36.5,28 36.5,32 C 36.5,36 34.5,39.5 32,39.5 C 29.5,39.5 27.5,36 27.5,32 C 27.5,28 29.5,24.5 32,24.5 Z" fill="url(#iris-grad)" opacity="0.85" />
+  <!-- Pupil -->
+  <circle cx="32" cy="32" r="2.2" fill="#ffffff" filter="url(#logo-glow)" />
+
+  <!-- Orbiting Automation Loop 2 (counter-slanted) -->
+  <ellipse cx="32" cy="32" rx="18" ry="6" fill="none" stroke="url(#orbit-grad-2)" stroke-width="1.2" transform="rotate(30 32 32)" />
+
+  <!-- Top Ring (Center at y = 18) -->
+  <!-- Top Face of Top Ring -->
+  <path d="M 12,18 A 20,10 0 1,1 52,18 A 20,10 0 1,1 12,18 Z M 20,18 A 12,6 0 1,0 44,18 A 12,6 0 1,0 20,18 Z" fill="url(#glass-face-grad)" stroke="url(#wire-grad)" stroke-width="0.8" fill-rule="evenodd" />
+  <!-- Outer Front Wall of Top Ring -->
+  <path d="M 12,18 A 20,10 0 0,1 52,18 L 52,23 A 20,10 0 0,0 12,23 Z" fill="url(#glass-wall-grad)" stroke="url(#wire-grad)" stroke-width="0.8" />
+  <!-- Inner Back Wall of Top Ring Hole -->
+  <path d="M 20,18 A 12,6 0 0,0 44,18 L 44,23 A 12,6 0 0,1 20,23 Z" fill="url(#glass-wall-grad)" stroke="url(#wire-grad)" stroke-width="0.8" />
+
+  <!-- Floating Spark Nodes / Particles -->
+  <circle cx="16" cy="22" r="0.8" fill="#ffffff" filter="url(#logo-glow)" />
+  <circle cx="48" cy="42" r="0.8" fill="#04cbc2" filter="url(#logo-glow)" />
+  <circle cx="20" cy="40" r="0.6" fill="#10b981" filter="url(#logo-glow)" />
 </svg>
         <div class="brand-text" style="display: flex; flex-direction: column; justify-content: center; line-height: 1.15;">
           <span class="logo-main" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff;">Deep<span style="color: var(--turquoise-accent);">Sight</span></span>
@@ -537,79 +568,110 @@
       <!-- Collapsible Sidebar Navigation -->
       <aside class="sim-sidebar">
         <div class="sidebar-header-brand">
-          <svg class="brand-logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <svg class="brand-logo" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
   <defs>
-    <!-- Glow Filter -->
-    <filter id="sidebar-logo-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="1.5" result="blur" />
+    <!-- Shadow Blur -->
+    <filter id="sidebar-shadow-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" />
+    </filter>
+
+    <!-- Logo Glow -->
+    <filter id="sidebar-logo-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     
     <!-- Gradients -->
-    <linearGradient id="sidebar-glow-core-grad" x1="16" y1="9" x2="16" y2="23" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="30%" stop-color="#04cbc2" />
-      <stop offset="100%" stop-color="#04524e" />
-    </linearGradient>
-    
-    <linearGradient id="sidebar-face-top-grad" x1="16" y1="4" x2="16" y2="16" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3" />
+    <linearGradient id="sidebar-glass-face-grad" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
       <stop offset="100%" stop-color="#04cbc2" stop-opacity="0.05" />
     </linearGradient>
     
-    <linearGradient id="sidebar-face-left-grad" x1="5.6" y1="10" x2="16" y2="28" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04524e" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#050a0a" stop-opacity="0.7" />
-    </linearGradient>
-
-    <linearGradient id="sidebar-face-right-grad" x1="26.4" y1="10" x2="16" y2="28" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.25" />
-      <stop offset="100%" stop-color="#0a1414" stop-opacity="0.6" />
+    <linearGradient id="sidebar-glass-wall-grad" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04524e" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#060f0e" stop-opacity="0.9" />
     </linearGradient>
     
-    <linearGradient id="sidebar-orbit-grad" x1="5" y1="16" x2="27" y2="16" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04524e" stop-opacity="0.2" />
+    <linearGradient id="sidebar-wire-grad" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#04cbc2" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.2" />
+    </linearGradient>
+
+    <radialGradient id="sidebar-core-grad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#04cbc2" />
+      <stop offset="75%" stop-color="#04524e" />
+      <stop offset="100%" stop-color="#021c1a" />
+    </radialGradient>
+    
+    <linearGradient id="sidebar-iris-grad" x1="32" y1="20" x2="32" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#04cbc2" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <linearGradient id="sidebar-orbit-grad-1" x1="14" y1="30" x2="50" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.2" />
       <stop offset="50%" stop-color="#04cbc2" stop-opacity="1" />
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8" />
     </linearGradient>
     
-    <linearGradient id="sidebar-wire-grad" x1="16" y1="3" x2="16" y2="29" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2" />
+    <linearGradient id="sidebar-orbit-grad-2" x1="14" y1="30" x2="50" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2" />
+      <stop offset="50%" stop-color="#10b981" stop-opacity="1" />
+      <stop offset="100%" stop-color="#04cbc2" stop-opacity="0.8" />
+    </linearGradient>
+
+    <linearGradient id="sidebar-beam-grad" x1="32" y1="10" x2="32" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#04cbc2" stop-opacity="0" />
+      <stop offset="25%" stop-color="#04cbc2" stop-opacity="0.45" />
+      <stop offset="50%" stop-color="#04cbc2" stop-opacity="0.85" />
+      <stop offset="75%" stop-color="#04cbc2" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#04cbc2" stop-opacity="0" />
     </linearGradient>
   </defs>
 
-  <!-- 3D Outer Glass Prism Faces -->
-  <path d="M 16,4 L 26.4,10 L 16,16 L 5.6,10 Z" fill="url(#sidebar-face-top-grad)" />
-  <path d="M 5.6,10 L 16,16 L 16,28 L 5.6,22 Z" fill="url(#sidebar-face-left-grad)" />
-  <path d="M 16,16 L 26.4,10 L 26.4,22 L 16,28 Z" fill="url(#sidebar-face-right-grad)" />
+  <!-- Soft Ground Shadow (Floor) -->
+  <ellipse cx="32" cy="55" rx="18" ry="5.5" fill="#000000" opacity="0.45" filter="url(#sidebar-shadow-blur)" />
 
-  <!-- Outer Glass Frame Wireframe Lines -->
-  <!-- Back / Side edges -->
-  <path d="M 16,4 L 26.4,10 L 26.4,22 L 16,28 L 5.6,22 L 5.6,10 Z" stroke="url(#sidebar-wire-grad)" stroke-width="1" stroke-linejoin="round" opacity="0.4" />
-  <!-- Front Y-axis inner seams meeting at center -->
-  <path d="M 16,4 L 16,16 M 16,16 L 5.6,10 M 16,16 L 26.4,10 M 16,16 L 16,28" stroke="#04cbc2" stroke-width="0.8" opacity="0.3" />
+  <!-- Vertical Energy Beam (Back & Middle) -->
+  <path d="M 30,10 L 34,10 L 34,54 L 30,54 Z" fill="url(#sidebar-beam-grad)" opacity="0.7" />
 
-  <!-- Orbital Ring (automation loop) -->
-  <ellipse cx="16" cy="16" rx="12" ry="5.5" fill="none" stroke="url(#sidebar-orbit-grad)" stroke-width="1.2" transform="rotate(-28 16 16)" />
-  
-  <!-- Outer glass border glow -->
-  <path d="M 16,4 L 26.4,10 L 26.4,22 L 16,28 L 5.6,22 L 5.6,10 Z" stroke="#04cbc2" stroke-width="1.2" stroke-linejoin="round" opacity="0.85" />
+  <!-- Bottom Ring (Back half of inner wall and outer outline) -->
+  <!-- We draw the entire bottom ring first as it sits below the core -->
+  <!-- Top Face of Bottom Ring -->
+  <path d="M 12,46 A 20,10 0 1,1 52,46 A 20,10 0 1,1 12,46 Z M 20,46 A 12,6 0 1,0 44,46 A 12,6 0 1,0 20,46 Z" fill="url(#sidebar-glass-face-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" fill-rule="evenodd" />
+  <!-- Outer Front Wall of Bottom Ring -->
+  <path d="M 12,46 A 20,10 0 0,1 52,46 L 52,51 A 20,10 0 0,0 12,51 Z" fill="url(#sidebar-glass-wall-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" />
+  <!-- Inner Back Wall of Bottom Ring Hole -->
+  <path d="M 20,46 A 12,6 0 0,0 44,46 L 44,51 A 12,6 0 0,1 20,51 Z" fill="url(#sidebar-glass-wall-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" />
 
-  <!-- Inner Glowing Core Octahedron (3D Crystal) -->
-  <!-- Top Half -->
-  <path d="M 16,9 L 11,16 L 16,16 Z" fill="#04524e" opacity="0.85" />
-  <path d="M 16,9 L 21,16 L 16,16 Z" fill="url(#sidebar-glow-core-grad)" />
-  <!-- Bottom Half -->
-  <path d="M 16,23 L 11,16 L 16,16 Z" fill="#033835" opacity="0.9" />
-  <path d="M 16,23 L 21,16 L 16,16 Z" fill="#04cbc2" opacity="0.75" />
-  
-  <!-- Core Inner Seams -->
-  <path d="M 16,9 L 16,23 M 11,16 L 21,16" stroke="#ffffff" stroke-width="0.6" opacity="0.5" />
-  
-  <!-- Floating Particle Nodes -->
-  <circle cx="9" cy="11.5" r="1" fill="#ffffff" filter="url(#sidebar-logo-glow)" />
-  <circle cx="23" cy="20.5" r="1" fill="#04cbc2" filter="url(#sidebar-logo-glow)" />
+  <!-- Orbiting Automation Loop 1 (slanted) -->
+  <ellipse cx="32" cy="32" rx="18" ry="6" fill="none" stroke="url(#sidebar-orbit-grad-1)" stroke-width="1.2" transform="rotate(-30 32 32)" />
+
+  <!-- Central Core DeepSight Eye Sphere -->
+  <circle cx="32" cy="32" r="9" fill="url(#sidebar-core-grad)" filter="url(#sidebar-logo-glow)" />
+  <!-- Iris lens shape -->
+  <path d="M 32,24.5 C 34.5,24.5 36.5,28 36.5,32 C 36.5,36 34.5,39.5 32,39.5 C 29.5,39.5 27.5,36 27.5,32 C 27.5,28 29.5,24.5 32,24.5 Z" fill="url(#sidebar-iris-grad)" opacity="0.85" />
+  <!-- Pupil -->
+  <circle cx="32" cy="32" r="2.2" fill="#ffffff" filter="url(#sidebar-logo-glow)" />
+
+  <!-- Orbiting Automation Loop 2 (counter-slanted) -->
+  <ellipse cx="32" cy="32" rx="18" ry="6" fill="none" stroke="url(#sidebar-orbit-grad-2)" stroke-width="1.2" transform="rotate(30 32 32)" />
+
+  <!-- Top Ring (Center at y = 18) -->
+  <!-- Top Face of Top Ring -->
+  <path d="M 12,18 A 20,10 0 1,1 52,18 A 20,10 0 1,1 12,18 Z M 20,18 A 12,6 0 1,0 44,18 A 12,6 0 1,0 20,18 Z" fill="url(#sidebar-glass-face-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" fill-rule="evenodd" />
+  <!-- Outer Front Wall of Top Ring -->
+  <path d="M 12,18 A 20,10 0 0,1 52,18 L 52,23 A 20,10 0 0,0 12,23 Z" fill="url(#sidebar-glass-wall-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" />
+  <!-- Inner Back Wall of Top Ring Hole -->
+  <path d="M 20,18 A 12,6 0 0,0 44,18 L 44,23 A 12,6 0 0,1 20,23 Z" fill="url(#sidebar-glass-wall-grad)" stroke="url(#sidebar-wire-grad)" stroke-width="0.8" />
+
+  <!-- Floating Spark Nodes / Particles -->
+  <circle cx="16" cy="22" r="0.8" fill="#ffffff" filter="url(#sidebar-logo-glow)" />
+  <circle cx="48" cy="42" r="0.8" fill="#04cbc2" filter="url(#sidebar-logo-glow)" />
+  <circle cx="20" cy="40" r="0.6" fill="#10b981" filter="url(#sidebar-logo-glow)" />
 </svg>
           <div class="brand-text" style="display: flex; flex-direction: column; justify-content: center; line-height: 1.15;">
             <span class="logo-main" style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: #ffffff;">Deep<span style="color: var(--turquoise-accent);">Sight</span></span>
