@@ -252,9 +252,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-logo {
-  width: 28px;
-  height: 28px;
-  animation: logoPulse 4s infinite alternate;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: block;
 }
 
 @keyframes logoPulse {
