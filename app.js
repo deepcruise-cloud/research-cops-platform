@@ -507,15 +507,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    // Phone validation
-    const cleanPhone = phone.replace(/\D/g, '');
-    if (phone === "") {
-      showFieldError('error_phone', 'Please Enter your Phone number');
-      return false;
-    }
-    if (cleanPhone.length < 10 || cleanPhone.length > 15) {
-      showFieldError('error_phone', 'Phone number must contain between 10 and 15 digits');
-      return false;
+    // Phone validation (optional)
+    if (phone !== "") {
+      const cleanPhone = phone.replace(/\D/g, '');
+      if (cleanPhone.length < 10 || cleanPhone.length > 15) {
+        showFieldError('error_phone', 'Phone number must contain between 10 and 15 digits');
+        return false;
+      }
     }
 
     // Message validation
@@ -686,30 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
  
-  // ----------------------------------------------------
-  // 7. Workflow Automation Hub Tabs Switching
-  // ----------------------------------------------------
-  const automationTabs = document.querySelectorAll('.automation-tab');
-  const automationPanels = document.querySelectorAll('.automation-panel');
- 
-  automationTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetFlowId = tab.getAttribute('data-flow');
-      
-      // Update active tab class
-      automationTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
- 
-      // Update active panel class
-      automationPanels.forEach(panel => {
-        if (panel.id === targetFlowId) {
-          panel.classList.add('active');
-        } else {
-          panel.classList.remove('active');
-        }
-      });
-    });
-  });
+
  
   // ----------------------------------------------------
   // 8. Contact for Cost and Demo CTA handlers
@@ -930,7 +905,8 @@ document.addEventListener('DOMContentLoaded', () => {
     api: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 15v5a2 2 0 0 0 4 0v-5a3 3 0 0 1 3-3h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2V10z"></path><line x1="12" y1="2" x2="12" y2="4"></line></svg>`,
     db: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>`,
     skip: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`,
-    calendar: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+    calendar: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+    support: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
   };
 
   const genieAvatarHtml = '<img src="support_genie_avatar.png" alt="Support Genie" class="genie-avatar-img">';
@@ -1108,10 +1084,75 @@ document.addEventListener('DOMContentLoaded', () => {
           
           appendChatMessage("Sure, let's head back. What general area would you like to inquire about?");
           renderQuickChips([
-            { label: "CPI Estimate & Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Survey Sampling & Panels", icon: "globe", action: "cpi-start" },
+            { label: "Research Project Support", icon: "support", action: "research-support" },
+            { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+            { label: "Enterprise Automation Add-On", icon: "workflow", action: "enterprise-automation-menu" }
+          ]);
+          break;
+
+        // --- NEW RESEARCH SUPPORT STATES ---
+        case 'research-support':
+          chatState.step = 'research-support';
+          appendChatMessage("You’ve reached Research Project Support. I can help with survey design, sampling methodology, translations, and data security & fraud prevention best practices. What do you need help with today?");
+          renderQuickChips([
+            { label: "Survey / Questionnaire Design", icon: "support", action: "rs-design" },
+            { label: "Feasibility & Targeting Advice", icon: "cpi", action: "rs-feasibility" },
+            { label: "Translations & Localisation", icon: "globe", action: "rs-translations" },
+            { label: "Data Security & Fraud Prevention", icon: "erp", action: "rs-security" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        case 'rs-design':
+          appendChatMessage("Our research consultants help you optimize your questionnaires for engagement, length of interview (LOI), and device responsiveness to ensure maximum completion rates and clean data.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+            { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Back to Support Menu", icon: "back", action: "research-support" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        case 'rs-feasibility':
+          appendChatMessage("We leverage detailed profiling metadata across 2M+ respondents to calculate feasibility, target low-incidence populations, and model accurate pricing.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+            { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Back to Support Menu", icon: "back", action: "research-support" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        case 'rs-translations':
+          appendChatMessage("We offer native professional translation and localization services for multi-country studies to ensure linguistic accuracy and cultural relevance.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+            { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Back to Support Menu", icon: "back", action: "research-support" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        case 'rs-security':
+          appendChatMessage("Our platform features real-time fraud mitigation including device fingerprinting, VPN checks, honeypots, and speeder controls to guarantee data integrity.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+            { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+            { label: "Back to Support Menu", icon: "back", action: "research-support" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
+          ]);
+          break;
+
+        // --- NEW ENTERPRISE AUTOMATION STATE ---
+        case 'enterprise-automation-menu':
+          chatState.step = 'enterprise-automation';
+          appendChatMessage("We offer custom integration and automation add-ons for enterprise research teams to streamline survey pipelines, sync research databases, and automate supporting workflows. Which area would you like to explore?");
+          renderQuickChips([
             { label: "Workflow Automation Hub", icon: "workflow", action: "wf-start" },
-            { label: "ERP Systems Sync Audit", icon: "erp", action: "int-start" },
-            { label: "Get Custom Quote & Demo", icon: "quote", action: "go-quote" }
+            { label: "ERP & Database Integrations", icon: "erp", action: "int-start" },
+            { label: "Return to Main Menu", icon: "back", action: "go-main" }
           ]);
           break;
  
@@ -1548,15 +1589,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       hideTypingIndicator();
       
-      const queryCleaned = userQuery.toLowerCase().trim();
-      let matchedAction = null;
- 
-      if (queryCleaned.includes('cpi') || queryCleaned.includes('price') || queryCleaned.includes('cost') || queryCleaned.includes('budget') || queryCleaned.includes('pricing') || queryCleaned.includes('calculator') || queryCleaned.includes('sample')) {
+      if (queryCleaned.includes('survey design') || queryCleaned.includes('questionnaire') || queryCleaned.includes('loi') || queryCleaned.includes('incidence') || queryCleaned.includes('translation') || queryCleaned.includes('hcp') || queryCleaned.includes('fraud') || queryCleaned.includes('methodology')) {
+        matchedAction = 'research-support';
+      } else if (queryCleaned.includes('cpi') || queryCleaned.includes('price') || queryCleaned.includes('cost') || queryCleaned.includes('budget') || queryCleaned.includes('pricing') || queryCleaned.includes('calculator') || queryCleaned.includes('sample')) {
         matchedAction = 'cpi-start';
-      } else if (queryCleaned.includes('automation') || queryCleaned.includes('workflow') || queryCleaned.includes('hrms') || queryCleaned.includes('payroll') || queryCleaned.includes('onboarding') || queryCleaned.includes('coach') || queryCleaned.includes('recruitment') || queryCleaned.includes('hiring')) {
-        matchedAction = 'wf-start';
-      } else if (queryCleaned.includes('integration') || queryCleaned.includes('api') || queryCleaned.includes('erp') || queryCleaned.includes('middleware') || queryCleaned.includes('database') || queryCleaned.includes('sync')) {
-        matchedAction = 'int-start';
+      } else if (queryCleaned.includes('automation') || queryCleaned.includes('workflow') || queryCleaned.includes('hrms') || queryCleaned.includes('payroll') || queryCleaned.includes('onboarding') || queryCleaned.includes('coach') || queryCleaned.includes('recruitment') || queryCleaned.includes('hiring') || queryCleaned.includes('integration') || queryCleaned.includes('api') || queryCleaned.includes('erp') || queryCleaned.includes('middleware') || queryCleaned.includes('database') || queryCleaned.includes('sync')) {
+        matchedAction = 'enterprise-automation-menu';
       } else if (queryCleaned.includes('quote') || queryCleaned.includes('demo') || queryCleaned.includes('contact') || queryCleaned.includes('proposal') || queryCleaned.includes('consulting')) {
         matchedAction = 'go-quote';
       }
@@ -1564,12 +1602,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (matchedAction) {
         handleStateTransition(matchedAction);
       } else {
-        appendChatMessage("I want to make sure you get the exact answer! You can select one of the core categories below or type a query about **pricing**, **workflow automation (HRMS)**, or **database ERP integrations**.");
+        appendChatMessage("I want to make sure you get the exact answer! You can select one of the core categories below or type a query about **pricing**, **workflow automation**, or **research support**.");
         renderQuickChips([
-          { label: "CPI Estimate & Calculator", icon: "cpi", action: "cpi-start" },
-          { label: "Workflow Automation Hub", icon: "workflow", action: "wf-start" },
-          { label: "ERP Systems Sync Audit", icon: "erp", action: "int-start" },
-          { label: "Get Custom Quote & Demo", icon: "quote", action: "go-quote" }
+          { label: "CPI & Feasibility Calculator", icon: "cpi", action: "cpi-start" },
+          { label: "Survey Sampling & Panels", icon: "globe", action: "cpi-start" },
+          { label: "Research Project Support", icon: "support", action: "research-support" },
+          { label: "Request a Custom Quote", icon: "quote", action: "go-quote" },
+          { label: "Enterprise Automation Add-On", icon: "workflow", action: "enterprise-automation-menu" }
         ]);
       }
     }, 1000);
@@ -1586,9 +1625,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let targetAction = 'go-main';
       if (chipKey === 'pricing') targetAction = 'cpi-start';
-      if (chipKey === 'workflow') targetAction = 'wf-start';
-      if (chipKey === 'integrations') targetAction = 'int-start';
+      if (chipKey === 'sampling') targetAction = 'cpi-start';
+      if (chipKey === 'research-support') targetAction = 'research-support';
       if (chipKey === 'quote') targetAction = 'go-quote';
+      if (chipKey === 'automation-addon') targetAction = 'enterprise-automation-menu';
  
       handleStateTransition(targetAction);
     });
@@ -1637,11 +1677,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const RC_DEFAULT_BLOGS = [
     {
       id: "blog-1",
-      title: "Agentic AI Orchestration: The Central Control Plane of 2026 Enterprise Workflows",
-      category: "Tech",
+      title: "Targeting Hard-to-Reach B2B Decision Makers: A Practical Guide to Feasibility and CPI Modeling",
+      category: "Global",
       readtime: "6 min read",
-      excerpt: "How autonomous agents with human-in-the-loop controls are replacing rigid rule-based scripts to coordinate complex B2B operations.",
-      content: "In 2026, enterprise workflow automation has moved far beyond simple task execution. Organizations are shifting from automating isolated tasks to implementing unified control planes that orchestrate end-to-end processes across hybrid cloud environments and legacy databases. The rise of Agentic AI is the defining trend of 2026. Task-specific AI agents, now integrated into 40% of enterprise software, are reasoning and making operational decisions within guardrails while preserving critical human-in-the-loop (HITL) checkpoints for compliance.",
+      excerpt: "Focusing on panel profiling, selective screener design, and historical response mapping to optimize B2B survey completions.",
+      content: "B2B sample recruitment presents unique challenges. Professional respondents have low response rates and high cost-per-interview (CPI) requirements. To succeed, researchers must leverage rich profile databases and calculate accurate feasibility indices before launching field operations. We examine the math behind incidence rates, length of interview (LOI) impact, and how deep profiling on professional attributes like job titles, company revenue, and technology stacks can yield robust, representative B2B samples.",
       date: "May 2026",
       featured: false,
       timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
@@ -1649,11 +1689,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "blog-2",
-      title: "Rethinking Database Sync: High-Performance GraphQL Middleware & Schema Mapping",
+      title: "Defending Against Survey Fraud: Device Fingerprints, Speeders, and Behavioral Signals in Online Sampling",
       category: "Tech",
       readtime: "5 min read",
-      excerpt: "Techniques for connecting siloed legacy databases with modern SaaS endpoints using selective querying and schema-less integration.",
-      content: "Connecting legacy systems with modern SaaS tools represents a major challenge for growing enterprises. Traditionally, developers had to build rigid, custom DB-links and SQL extraction scripts that were expensive to maintain. In 2026, GraphQL gateways have emerged as the standard middleware layer for database sync. This architecture allows developers to run selective column queries and manage schemas dynamically, reducing API payload sizes by 65% and preventing integration discrepancies.",
+      excerpt: "A technical deep-dive into identifying and filtering VPN proxies, speeders, and bot patterns to protect survey data integrity.",
+      content: "Data quality in online panels is constantly threatened by professional respondents, bot scripts, and click farms. Protecting survey integrity requires a multi-layered verification system. In this article, we outline best practices for real-time quality control, including device fingerprinting, IP address checks, honey-pot questions, speeder filters, and behavioral analysis. Deploying these defenses at the gatekeeper level secures data authenticity for critical enterprise research projects.",
       date: "April 2026",
       featured: false,
       timestamp: Date.now() - 60 * 24 * 60 * 60 * 1000,
@@ -1661,11 +1701,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "blog-3",
-      title: "Governed Intelligence: Cryptographic Policy Checks and Audit Trails in HRMS Automation",
+      title: "Designing Mobile-First Surveys Without Compromising Data Quality",
       category: "Business",
       readtime: "8 min read",
-      excerpt: "Establishing strict role-based access logs and zero-knowledge encryption protocols across automated employee onboarding flows.",
-      content: "With AI agents and workflow scripts gaining increased authority over enterprise database systems, establishing proper governance has become a business risk priority. Credible automated HRMS platforms must embed audit trails and identity policy controls directly into their orchestration layer. This includes adopting zero-knowledge storage configurations and TLS 1.3 encryption protocols for employee profiles, protecting payroll allocations, document routing, and security rosters from data exposure.",
+      excerpt: "Applying cognitive load balancing, optimized layouts, and device-responsive renderings to reduce drop-out rates in global panels.",
+      content: "In modern market research, mobile compatibility is no longer optional. With over 70% of panel respondents accessing surveys on smartphones, designing surveys for smaller screens is essential to prevent drop-out rates and bias. This guide explores the principles of mobile-first questionnaire design, including cognitive load balancing, optimized question formatting, and responsive UI components. By reducing survey fatigue and ensuring layout consistency across devices, researchers can maintain high data quality and representativeness in global panels.",
       date: "March 2026",
       featured: false,
       timestamp: Date.now() - 90 * 24 * 60 * 60 * 1000,
@@ -1673,11 +1713,11 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "blog-featured",
-      title: "Self-Optimizing Middleware: AI-Assisted Index Tuning in Legacy ERP Syncs",
+      title: "Designing Mobile-First Surveys Without Compromising Data Quality",
       category: "Tech",
       readtime: "6 min read",
-      excerpt: "How self-optimizing pipelines audit database queries, detect database latency spikes, and optimize queries automatically.",
-      content: "Manual database query indexing is slow and fails to scale with dynamic SaaS environments. Modern enterprise middleware incorporates self-optimizing pipelines that monitor queries in real-time. By applying AI-assisted index tuning, the system automatically detects slow query execution times across custom ERP syncs, modifying indexing strategies and improving database retrieval rates by up to 3.5x without human developer intervention.",
+      excerpt: "Applying cognitive load balancing, optimized layouts, and device-responsive renderings to reduce drop-out rates in global panels.",
+      content: "In modern market research, mobile compatibility is no longer optional. With over 70% of panel respondents accessing surveys on smartphones, designing surveys for smaller screens is essential to prevent drop-out rates and bias. This guide explores the principles of mobile-first questionnaire design, including cognitive load balancing, optimized question formatting, and responsive UI components. By reducing survey fatigue and ensuring layout consistency across devices, researchers can maintain high data quality and representativeness in global panels.",
       date: "June 2026",
       featured: true,
       timestamp: Date.now(),
@@ -1688,57 +1728,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const RC_DEFAULT_NEWS = [
     {
       id: "news-1",
-      title: "Automated Ledger Reconciliation Engine v2.1 Released",
-      category: "Finance",
-      details: "Deployment of cross-register ledger matching engine reduces reconciliation cycles from days to under 15 minutes.",
+      title: "Opinion Genie Panel Reach Expands to 2.5M Respondents",
+      category: "Global",
+      details: "Our proprietary panel network, Opinion Genie, has expanded its profiled panelist reach to 2.5 million verified active respondents across APAC, Europe, and North America.",
       date: "June 2026",
       timestamp: Date.now(),
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600"
     },
     {
       id: "news-2",
-      title: "Custom ERP Sync Connector Upgraded to REST OAuth 2.0",
-      category: "Tech",
-      details: "Integration of automated token refresh sequences and role-based data views for secure database mapping.",
+      title: "Research Centric Ops Launches Verified HCP Healthcare Panel",
+      category: "Global",
+      details: "Introducing our verified Healthcare Professional (HCP) panel, covering physicians, nurses, and medical executives with verified credentials across 12 countries.",
       date: "May 2026",
       timestamp: Date.now() - 15 * 24 * 60 * 60 * 1000,
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600"
     },
     {
       id: "news-3",
-      title: "HRMS Onboarding Workflows Speed Up",
-      category: "Business",
-      details: "Optimized automated script mappings reduce new hire document routing times by 80% globally.",
+      title: "Real-Time Fraud Prevention Update Released for Survey APIs",
+      category: "Tech",
+      details: "We have upgraded our integration APIs to include device-level behavior detection to filter suspicious responses before they reach survey links.",
       date: "April 2026",
       timestamp: Date.now() - 45 * 24 * 60 * 60 * 1000,
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600"
     },
     {
       id: "news-4",
-      title: "Distributed Ledger Reconciliation Hub Implemented",
-      category: "Finance",
-      details: "A new distributed validation protocol achieves high-performance ledger sync with sub-millisecond latencies across global clusters.",
+      title: "New B2B Panel Segments Added for SaaS and IT Buyers",
+      category: "Business",
+      details: "We have added deeper profiling subsegments targeting IT decision makers, SaaS purchasers, and enterprise buyers to help target software research projects.",
       date: "June 2026",
       timestamp: Date.now() - 2 * 24 * 60 * 60 * 1000,
       image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=600"
-    },
-    {
-      id: "news-5",
-      title: "AI-Assisted Database Query Index Tuning System Live",
-      category: "Tech",
-      details: "AI-assisted index optimization automatically detects slow queries in ERP database middlewares, improving retrieval rates by 3.5x.",
-      date: "May 2026",
-      timestamp: Date.now() - 20 * 24 * 60 * 60 * 1000,
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600"
-    },
-    {
-      id: "news-6",
-      title: "Zero-Knowledge Encryption Enforced for HRMS Personnel Records",
-      category: "Global",
-      details: "Upgrade enforces zero-knowledge architecture and TLS 1.3 data transfer protocols for all integrated employee profiles.",
-      date: "April 2026",
-      timestamp: Date.now() - 50 * 24 * 60 * 60 * 1000,
-      image: "https://images.unsplash.com/photo-1601597111158-2fceff270190?q=80&w=600"
     }
   ];
 

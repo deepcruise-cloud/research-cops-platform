@@ -482,7 +482,34 @@ header {
 
 .hero-actions {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
+}
+
+.explore-platform-link {
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  color: var(--turquoise-accent);
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  margin-top: 4px;
+}
+
+.explore-platform-link span {
+  transition: transform 0.2s ease;
+}
+
+.explore-platform-link:hover {
+  color: var(--text-light);
+}
+
+.explore-platform-link:hover span {
+  transform: translateX(4px);
 }
 
 /* Dynamic Interactive Telemetry Panel styling */
@@ -950,309 +977,136 @@ header {
 }
 
 /* ═══════════════════════════════════════════ */
-/* Workflow Automation Hub & Comparison Styles */
+/* Enterprise Workflow Automation Teaser Styles */
 /* ═══════════════════════════════════════════ */
-.workflow-hub-section {
+.workflow-teaser-section {
   padding: 100px 0;
   position: relative;
 }
 
-.automation-showcase {
+.teaser-glass-card {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
-  padding: 40px;
-  margin-top: 20px;
-}
-
-.automation-tabs {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.automation-tab {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(4, 203, 194, 0.05);
-  border-radius: var(--radius-md);
-  padding: 16px 20px;
-  text-align: left;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  display: flex;
+  padding: 50px;
   align-items: center;
-  gap: 16px;
-}
-
-.automation-tab .tab-icon {
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 8px;
-}
-
-.automation-tab .tab-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.automation-tab h4 {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 2px;
-  font-weight: 600;
-}
-
-.automation-tab span {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.automation-tab:hover {
-  background: rgba(4, 203, 194, 0.04);
-  border-color: rgba(4, 203, 194, 0.15);
-}
-
-.automation-tab.active {
-  background: rgba(4, 203, 194, 0.08);
-  border-color: rgba(4, 203, 194, 0.35);
-  box-shadow: 0 0 20px rgba(4, 203, 194, 0.08);
-}
-
-.automation-tab.active .tab-icon {
-  background: rgba(4, 203, 194, 0.15);
-  color: var(--turquoise-accent);
-}
-
-.automation-panels {
   position: relative;
-  min-height: 320px;
+  overflow: hidden;
 }
 
-.automation-panel {
-  display: none;
-}
-
-.automation-panel.active {
-  display: block;
-  animation: tabFadeIn 0.4s ease-out;
-}
-
-@keyframes tabFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.panel-header h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: var(--text-light);
-}
-
-.panel-header p {
-  font-size: 14.5px;
-  color: var(--text-body);
-  margin-bottom: 28px;
-  line-height: 1.6;
-}
-
-.panel-features-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-.pan-feat {
+.teaser-content {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 }
 
-.pf-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--turquoise-accent);
-  margin-top: 8px;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px var(--turquoise-accent);
+.teaser-badge {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--turquoise-accent);
+  background: rgba(4, 203, 194, 0.08);
+  padding: 6px 12px;
+  border-radius: 30px;
+  border: 1px solid rgba(4, 203, 194, 0.15);
 }
 
-.pan-feat h4 {
+.teaser-content h2 {
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.teaser-content p {
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.explore-teaser-link {
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  color: var(--turquoise-accent);
+  text-decoration: none;
   font-size: 14.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-fast);
+  margin-top: 10px;
+}
+
+.explore-teaser-link span {
+  transition: transform 0.2s ease;
+}
+
+.explore-teaser-link:hover {
   color: var(--text-light);
-  margin-bottom: 4px;
+}
+
+.explore-teaser-link:hover span {
+  transform: translateX(4px);
+}
+
+.teaser-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.mini-schematic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.ms-node {
+  background: rgba(10, 20, 20, 0.8);
+  border: 1px solid rgba(4, 203, 194, 0.15);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  color: var(--text-light);
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+}
+
+.ms-node.core {
+  border-color: var(--turquoise-accent);
+  background: rgba(4, 203, 194, 0.06);
+  box-shadow: 0 0 15px rgba(4, 203, 194, 0.1);
   font-weight: 600;
 }
 
-.pan-feat p {
-  font-size: 13.5px;
-  color: var(--text-body);
-  line-height: 1.5;
-}
-
-/* System Pipeline Schematic styling */
-.pipeline-schematic {
+.ms-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 24px;
-  background: rgba(4, 203, 194, 0.02);
-  border: 1px dashed rgba(4, 203, 194, 0.15);
-  border-radius: var(--radius-md);
-  margin-top: 24px;
-  flex-wrap: wrap;
+  transform: rotate(90deg);
 }
 
-.schematic-node {
-  padding: 10px 18px;
-  background: rgba(10, 20, 20, 0.85);
-  border: 1px solid rgba(4, 203, 194, 0.15);
-  border-radius: var(--radius-md);
-  font-family: var(--font-family-display);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-light);
-}
-
-.schematic-node.core-node {
-  background: rgba(4, 203, 194, 0.08);
-  border-color: var(--turquoise-accent);
-  box-shadow: 0 0 15px rgba(4, 203, 194, 0.15);
-  font-weight: 600;
-}
-
-.schematic-arrow {
-  display: flex;
-  align-items: center;
-}
-
-.schematic-arrow svg {
-  vertical-align: middle;
-}
-
-/* Comparison matrix styling */
-.comparison-sub-header {
-  text-align: center;
-  margin-top: 80px;
-  margin-bottom: 36px;
-}
-
-.comparison-sub-header h3 {
-  font-size: 26px;
-  margin-bottom: 12px;
-}
-
-.comparison-sub-header p {
-  color: var(--text-muted);
-  font-size: 15px;
-}
-
-.comparison-wrapper {
-  overflow-x: auto;
-  padding: 0;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--glass-border);
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 13.5px;
-  min-width: 800px;
-}
-
-.comparison-table th,
-.comparison-table td {
-  padding: 18px 20px;
-  border-bottom: 1px solid rgba(4, 203, 194, 0.06);
-}
-
-.comparison-table th {
-  font-family: var(--font-family-display);
-  font-weight: 600;
-  color: var(--text-light);
-  background: rgba(10, 20, 20, 0.5);
-  font-size: 14px;
-}
-
-.comparison-table td.highlight,
-.comparison-table th.highlight {
-  background: rgba(4, 203, 194, 0.02);
-  border-left: 1px solid rgba(4, 203, 194, 0.08);
-  border-right: 1px solid rgba(4, 203, 194, 0.08);
-}
-
-.comparison-table tr:last-child td {
-  border-bottom: none;
-}
-
-.comparison-table td strong {
-  color: var(--text-light);
-}
-
-.feat-name {
-  font-weight: 600;
-  color: var(--text-light);
-  background: rgba(255, 255, 255, 0.01);
-}
-
-.cops-val {
-  color: var(--text-body);
-}
-
-.comparison-table .btn {
-  margin: 4px 0;
-}
-
-/* Solutions dropdown divider */
-.dropdown-divider {
-  height: 1px;
-  background: rgba(4, 203, 194, 0.1);
-  margin: 8px 0;
-}
-
-/* Responsiveness for Automation Hub */
-@media (max-width: 992px) {
-  .automation-showcase {
+/* Responsiveness */
+@media (max-width: 768px) {
+  .teaser-glass-card {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 24px;
+    padding: 30px;
   }
-
-  .automation-tabs {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    gap: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(4, 203, 194, 0.2) transparent;
-  }
-
-  .automation-tabs::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  .automation-tabs::-webkit-scrollbar-thumb {
-    background: rgba(4, 203, 194, 0.2);
-    border-radius: 2px;
-  }
-
-  .automation-tab {
-    flex-shrink: 0;
-    padding: 12px 16px;
+  .teaser-visual {
+    width: 100%;
   }
 }
 
@@ -2330,7 +2184,7 @@ textarea:focus {
   }
   
   .hero-actions {
-    justify-content: center;
+    align-items: center;
   }
   
   .about-grid {

@@ -1,4 +1,4 @@
-// Research COPS - Admin Portal Controller
+// Research Centric Ops - Admin Portal Controller
 // Integrates Firebase Authentication and Firestore with a robust LocalStorage fallback
 // Manages Blogs, News, Polls, Leads, and General Site Settings (Footer & Policies)
 

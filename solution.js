@@ -1,10 +1,10 @@
-// Research COPS - Solutions Detail Page Controller
+// Research Centric Ops - Solutions Detail Page Controller
 // Renders dynamic technical summaries and custom interactive SVG simulations for all 9 solutions.
 
 const SOLUTION_DATA = {
   management: {
-    badge: "DI Research Core Engine",
-    title: "DI Research Core Engine",
+    badge: "Deepsight Insights (DI) Research Core Engine",
+    title: "Deepsight Insights (DI) Research Core Engine",
     desc: "Our project management suite provides end-to-end campaign tracking, automated scoping, live field operations checklists, and data delivery timelines in a unified collaborative dashboard.",
     capabilities: [
       { title: "Full Campaign Scoping", text: "Automated feasibility checks that cross-reference target specifications with panel quotas instantly." },
@@ -1955,7 +1955,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Head Title for SEO best practices
-    document.title = `Research COPS | ${data.title}`;
+    document.title = `Research Centric Ops | ${data.title}`;
 
     // Update structural text elements
     document.getElementById('solution-badge').textContent = data.badge;
@@ -2061,7 +2061,9 @@ document.addEventListener('DOMContentLoaded', () => {
       erp: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
       quote: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
       calendar: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
-      back: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>`
+      back: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>`,
+      support: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+      globe: `<svg class="chip-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`
     };
 
     const genieAvatarHtml = '<img src="support_genie_avatar.png" alt="Support Genie" class="genie-avatar-img">';
@@ -2153,10 +2155,11 @@ document.addEventListener('DOMContentLoaded', () => {
           addBotMessage("Select a quick topic below or type your question:");
           
           renderQuickChips([
-            { label: "CPI Estimate & Calculator", icon: "cpi", chip: "pricing" },
-            { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
-            { label: "Enterprise ERP & Integrations", icon: "erp", chip: "integrations" },
-            { label: "Get Custom Quote & Demo", icon: "quote", chip: "quote" }
+            { label: "CPI & Feasibility Calculator", icon: "cpi", chip: "pricing" },
+            { label: "Survey Sampling & Panels", icon: "globe", chip: "sampling" },
+            { label: "Research Project Support", icon: "support", chip: "research-support" },
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Enterprise Automation Add-On", icon: "workflow", chip: "automation-addon" }
           ]);
         }, 1200);
       }, 1000);
@@ -2266,14 +2269,74 @@ document.addEventListener('DOMContentLoaded', () => {
       addUsrMessage(text);
       
       showTypingIndicator();
-
+ 
       setTimeout(() => {
         hideTypingIndicator();
         const chipType = chip.getAttribute('data-chip');
         if (chipType === 'pricing') {
-          addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page to redirect to our CPI calculator.");
+          addBotMessage("To estimate pricing in real-time, click 'Launch Audience Estimator' at the bottom of the page or navigate to our homepage CPI calculator.");
+          renderQuickChips([
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'sampling') {
+          addBotMessage("We deliver high-fidelity survey responses from 2M+ respondents globally across B2B, Healthcare, and Consumer panels.");
+          renderQuickChips([
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'research-support') {
+          addBotMessage("You’ve reached Research Project Support. I can help with survey design, sampling methodology, translations, and data security & fraud prevention best practices. What do you need help with today?");
+          renderQuickChips([
+            { label: "Survey / Questionnaire Design", icon: "support", chip: "rs-design" },
+            { label: "Feasibility & Targeting Advice", icon: "cpi", chip: "rs-feasibility" },
+            { label: "Translations & Localisation", icon: "globe", chip: "rs-translations" },
+            { label: "Data Security & Fraud Prevention", icon: "erp", chip: "rs-security" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'rs-design') {
+          addBotMessage("Our research consultants help you optimize your questionnaires for engagement, length of interview (LOI), and device responsiveness to ensure maximum completion rates and clean data.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Back to Support Menu", icon: "back", chip: "research-support" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'rs-feasibility') {
+          addBotMessage("We leverage detailed profiling metadata across 2M+ respondents to calculate feasibility, target low-incidence populations, and model accurate pricing.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Back to Support Menu", icon: "back", chip: "research-support" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'rs-translations') {
+          addBotMessage("We offer native professional translation and localization services for multi-country studies to ensure linguistic accuracy and cultural relevance.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Back to Support Menu", icon: "back", chip: "research-support" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'rs-security') {
+          addBotMessage("Our platform features real-time fraud mitigation including device fingerprinting, VPN checks, honeypots, and speeder controls to guarantee data integrity.");
+          renderQuickChips([
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Back to Support Menu", icon: "back", chip: "research-support" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'automation-addon') {
+          addBotMessage("We offer custom integration and automation add-ons for enterprise research teams to streamline survey pipelines, sync research databases, and automate supporting workflows. Which area would you like to explore?");
+          renderQuickChips([
+            { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
+            { label: "ERP & Database Integrations", icon: "erp", chip: "integrations" },
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
         } else if (chipType === 'workflow') {
           addBotMessage("Our Enterprise Workflow Hub routes HR, Billing, BI Reports, and performance coaching models. Select 'Enterprise Workflow Hub' from our solutions menu to see the architecture.");
+          renderQuickChips([
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
+        } else if (chipType === 'integrations') {
+          addBotMessage("We connect custom pipelines directly to central ERP databases (zero downtime parallel sync). Contact our bidding team to request a schema audit.");
+          renderQuickChips([
+            { label: "Return to Main Menu", icon: "back", chip: "go-main" }
+          ]);
         } else if (chipType === 'quote') {
           addBotMessage("We would love to build a custom solution blueprint and sandbox demo for you! Please type your **Full Name, Work Email, and project brief** below and send it. Once submitted, you'll be able to book a call directly on our calendar.");
           renderQuickChips([]);
@@ -2283,19 +2346,14 @@ document.addEventListener('DOMContentLoaded', () => {
           renderQuickChips([
             { label: "Main Menu", icon: "back", chip: "go-main" }
           ]);
-        } else if (chipType === 'trigger-submit-flow') {
-          addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");
-          renderQuickChips([
-            { label: "Schedule Call instead", icon: "calendar", chip: "trigger-calendly-link" },
-            { label: "Main Menu", icon: "back", chip: "go-main" }
-          ]);
         } else if (chipType === 'go-main') {
           addBotMessage("What general area would you like to inquire about?");
           renderQuickChips([
-            { label: "CPI Estimate & Calculator", icon: "cpi", chip: "pricing" },
-            { label: "Workflow Automation Hub", icon: "workflow", chip: "workflow" },
-            { label: "Enterprise ERP & Integrations", icon: "erp", chip: "integrations" },
-            { label: "Get Custom Quote & Demo", icon: "quote", chip: "quote" }
+            { label: "CPI & Feasibility Calculator", icon: "cpi", chip: "pricing" },
+            { label: "Survey Sampling & Panels", icon: "globe", chip: "sampling" },
+            { label: "Research Project Support", icon: "support", chip: "research-support" },
+            { label: "Request a Custom Quote", icon: "quote", chip: "quote" },
+            { label: "Enterprise Automation Add-On", icon: "workflow", chip: "automation-addon" }
           ]);
         } else {
           addBotMessage("Please submit your details via our Contact form on the homepage and our sales team will email a custom platform integration review.");

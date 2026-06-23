@@ -1,5 +1,5 @@
 /**
- * ResearchCOPS - Enterprise Workflow Automation Core
+ * Research Centric Ops - Enterprise Workflow Automation Core
  * Interactive Dashboard & Simulator Logic (app.js)
  */
 
@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Legacy ERP Cost formula: (Seats * $250 / seat / year) + maintenance
     const legacyTotalCost = (seats * 250) + legacyAnnualMaintenance;
 
-    // ResearchCOPS flat cost
+    // Research Centric Ops flat cost
     const deepsightTotalCost = DEEPSIGHT_FLAT_ANNUAL_COST;
 
     const savings = Math.max(0, legacyTotalCost - deepsightTotalCost);
@@ -1404,7 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (doc.type === 'Appointment Letter') {
       return `
         <div class="letter-template" style="border: 1px solid var(--glass-border); padding: 16px; border-radius: 4px; background: rgba(0,0,0,0.2); font-size: 12px; line-height: 1.5; color: var(--text-normal); max-height: 250px; overflow-y: auto;">
-          <p><strong>Research COPS</strong><br>New Delhi, India</p>
+          <p><strong>Research Centric Ops</strong><br>New Delhi, India</p>
           <p>Date: ${new Date(doc.date).toLocaleDateString('en-IN')}</p>
           <p><strong>Subject: Appointment Letter for ${doc.employee}</strong></p>
           <p>Dear ${doc.employee},</p>
@@ -1429,7 +1429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (doc.type === 'Appraisal') {
       return `
         <div class="letter-template" style="border: 1px solid var(--glass-border); padding: 16px; border-radius: 4px; background: rgba(16, 185, 129, 0.02); font-size: 12px; line-height: 1.5; color: var(--text-normal); max-height: 250px; overflow-y: auto;">
-          <p><strong>Research COPS &mdash; Performance Appraisal</strong></p>
+          <p><strong>Research Centric Ops &mdash; Performance Appraisal</strong></p>
           <p>Date: ${new Date(doc.date).toLocaleDateString('en-IN')}</p>
           <p>Dear ${doc.employee},</p>
           <p>Based on your performance review, the Board is pleased to revise your salary and compensation framework. Revise notes: <em>${doc.notes}</em>.</p>
@@ -1440,11 +1440,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return `
       <div class="letter-template" style="border: 1px solid var(--glass-border); padding: 16px; border-radius: 4px; background: rgba(0,0,0,0.2); font-size: 12px; line-height: 1.5; color: var(--text-normal); max-height: 250px; overflow-y: auto;">
-        <p><strong>Research COPS &mdash; Corporate Document</strong></p>
+        <p><strong>Research Centric Ops &mdash; Corporate Document</strong></p>
         <p>Document ID: ${doc.id}<br>Type: ${doc.type}</p>
         <p>Employee: ${doc.employee}</p>
         <p><strong>Notes:</strong><br>${doc.notes}</p>
-        <p>This document constitutes an official record in the ResearchCOPS HRMS directory database system.</p>
+        <p>This document constitutes an official record in the Research Centric Ops HRMS directory database system.</p>
       </div>
     `;
   }
@@ -2105,7 +2105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let projects = [
     { code: 'PROJ-101', name: 'Database Audit', client: 'Vertex Global', billable: 150000, expense: 80000, status: 'Active' },
     { code: 'PROJ-102', name: 'CRM Integration', client: 'Apex Holdings', billable: 220000, expense: 120000, status: 'Active' },
-    { code: 'PROJ-103', name: 'HRMS Onboarding Deck', client: 'ResearchCOPS', billable: 50000, expense: 15000, status: 'Completed' }
+    { code: 'PROJ-103', name: 'HRMS Onboarding Deck', client: 'Research Centric Ops', billable: 50000, expense: 15000, status: 'Completed' }
   ];
 
   function renderProjectsTable() {
@@ -2552,5 +2552,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initializeNoticeBoardData();
+
+  // ----------------------------------------------------
+  // Workflow Automation Hub Tabs Switching
+  // ----------------------------------------------------
+  const automationTabs = document.querySelectorAll('.automation-tab');
+  const automationPanels = document.querySelectorAll('.automation-panel');
+ 
+  automationTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetFlowId = tab.getAttribute('data-flow');
+      
+      // Update active tab class
+      automationTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+ 
+      // Update active panel class
+      automationPanels.forEach(panel => {
+        if (panel.id === targetFlowId) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    });
+  });
 
 });
