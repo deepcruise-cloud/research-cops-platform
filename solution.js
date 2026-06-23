@@ -1995,7 +1995,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Initial trigger based on URL Query parameters
   const params = new URLSearchParams(window.location.search);
   let initialId = params.get('id') || 'sampling';
-  if (initialId === 'workflow-hub') {
+  if (initialId === 'workflow-hub' || initialId === 'automation') {
     window.location.href = 'workflow-hub.html';
     return;
   }
