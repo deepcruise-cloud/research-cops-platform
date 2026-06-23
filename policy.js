@@ -19,10 +19,75 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Mobile Navigation Toggle
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const navDropdown = document.querySelector('.nav-dropdown');
+
   if (mobileToggle && navMenu) {
+    // 1. Create/Retrieve Backdrop Overlay
+    let overlay = document.querySelector('.nav-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    // 2. Clone CTA button into drawer for mobile access
+    let mobileCta = navMenu.querySelector('.mobile-cta');
+    if (!mobileCta) {
+      const desktopCta = document.querySelector('.nav-actions .btn');
+      const href = desktopCta ? desktopCta.getAttribute('href') : 'index.html#contact';
+      
+      mobileCta = document.createElement('a');
+      mobileCta.href = href;
+      mobileCta.className = 'btn btn-primary btn-block mobile-cta';
+      mobileCta.style.marginTop = '16px';
+      mobileCta.textContent = 'Get a Quote';
+      navMenu.appendChild(mobileCta);
+      
+      mobileCta.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    }
+
+    const closeMobileMenu = () => {
+      mobileToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.classList.remove('nav-active');
+      if (navDropdown) {
+        navDropdown.classList.remove('active');
+      }
+    };
+
+    // Toggle menu events
     mobileToggle.addEventListener('click', () => {
-      mobileToggle.classList.toggle('active');
+      const isActive = mobileToggle.classList.toggle('active');
       navMenu.classList.toggle('active');
+      overlay.classList.toggle('active', isActive);
+      document.body.classList.toggle('nav-active', isActive);
+      
+      if (!isActive && navDropdown) {
+        navDropdown.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking the overlay
+    overlay.addEventListener('click', closeMobileMenu);
+
+    // Close menu when clicking normal links inside
+    const navLinks = navMenu.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  }
+
+  // Handle solutions submenu toggle
+  if (dropdownToggle && navDropdown) {
+    dropdownToggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        navDropdown.classList.toggle('active');
+      }
     });
   }
 
