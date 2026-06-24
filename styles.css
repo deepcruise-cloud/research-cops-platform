@@ -2307,7 +2307,11 @@ textarea:focus {
   }
 
   .nav-dropdown:hover .dropdown-menu {
+    position: static !important;
     transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
@@ -2317,24 +2321,30 @@ textarea:focus {
   }
 
   .dropdown-menu {
-    position: static;
-    transform: none;
-    width: 100%;
-    background: rgba(4, 203, 194, 0.03);
-    border-left: 2px solid var(--turquoise-accent);
-    margin-left: 8px;
-    border-radius: 0;
-    backdrop-filter: none;
-    box-shadow: none;
-    opacity: 1;
-    visibility: visible;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    background: rgba(4, 203, 194, 0.03) !important;
+    border-left: 2px solid var(--turquoise-accent) !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    margin-left: 8px !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     display: none;
-    margin-top: 8px;
-    padding: 4px 0;
+    margin-top: 8px !important;
+    padding: 4px 0 !important;
   }
 
   .nav-dropdown.active .dropdown-menu {
-    display: block;
+    display: block !important;
   }
 
   .dropdown-menu a {
@@ -2376,6 +2386,10 @@ textarea:focus {
 
   body.nav-active {
     overflow: hidden;
+  }
+
+  body.nav-active header {
+    z-index: 1060 !important;
   }
   
   .header-floating {
