@@ -36,6 +36,11 @@
   --bg-input: #ffffff;
   --bg-input-readonly: #f1f5f9;
   --btn-text-contrast: #ffffff;
+  --bg-header-visual: rgba(4, 82, 78, 0.05);
+  --bg-body-visual: rgba(255, 255, 255, 0.4);
+  --bg-segment-tabs: rgba(4, 82, 78, 0.06);
+  --bg-metric-box: rgba(255, 255, 255, 0.75);
+  --bg-calc-output: rgba(4, 82, 78, 0.03);
 }
 
 .dark {
@@ -61,6 +66,11 @@
   --bg-input: #0b1111;
   --bg-input-readonly: #050808;
   --btn-text-contrast: #050a0a;
+  --bg-header-visual: rgba(4, 8, 8, 0.7);
+  --bg-body-visual: rgba(0, 0, 0, 0.25);
+  --bg-segment-tabs: rgba(0, 0, 0, 0.3);
+  --bg-metric-box: rgba(0, 0, 0, 0.15);
+  --bg-calc-output: rgba(0, 0, 0, 0.18);
 }
 
 /* Theme Toggle Button Styles */
@@ -723,7 +733,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--bg-card);
 }
 
 .faq-answer p {
@@ -880,7 +890,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-card);
 }
 
 .profile-avatar {
@@ -1135,7 +1145,7 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 
 .meter-col {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-card);
   padding: 12px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
@@ -1338,7 +1348,7 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 
 .pipeline-column {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-card);
   border-radius: var(--radius-md);
   padding: 12px;
   display: flex;
@@ -2151,7 +2161,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   align-items: center;
   padding: 16px 24px;
   border-bottom: 1px solid var(--glass-border);
-  background: rgba(0,0,0,0.1);
+  background: var(--bg-card);
 }
 .leave-tabs-buttons {
   display: flex;
@@ -2295,7 +2305,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: rgba(0,0,0,0.1);
+  background: var(--bg-card);
   display: flex;
   flex-direction: column;
 }
@@ -2351,7 +2361,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   gap: 12px;
 }
 .payroll-slip-metrics-footer .metric-block {
-  background: rgba(0,0,0,0.15);
+  background: var(--bg-card);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   padding: 10px;
@@ -2414,7 +2424,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: 12px 14px;
-  background: rgba(0,0,0,0.1);
+  background: var(--bg-card);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -2523,7 +2533,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   justify-content: center;
   padding: 14px 10px;
   border-radius: var(--radius-md);
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--bg-card);
   border: 1px solid var(--glass-border);
   text-align: center;
   transition: all 0.3s ease;
@@ -2770,7 +2780,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   cursor: pointer;
   padding: 8px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--bg-card);
   border: 1px solid var(--glass-border);
   transition: all 0.2s ease;
 }
@@ -2793,7 +2803,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   font-size: 13px;
   padding: 8px 12px;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--bg-card);
   border: 1px solid var(--glass-border);
   transition: all 0.2s ease;
 }
@@ -2872,7 +2882,7 @@ input[type=range]::-webkit-slider-thumb:hover {
   width: 6px;
 }
 .payslip-modal-body::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2);
+  background: var(--bg-card);
 }
 .payslip-modal-body::-webkit-scrollbar-thumb {
   background: rgba(4, 203, 194, 0.3);
