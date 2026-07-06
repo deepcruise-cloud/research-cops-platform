@@ -19,6 +19,9 @@
   --radius-lg: 16px;
   --radius-md: 8px;
   --shadow-glow: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
+  --bg-input: #ffffff;
+  --bg-input-readonly: #f1f5f9;
+  --btn-text-contrast: #ffffff;
 }
 
 .dark {
@@ -36,6 +39,9 @@
   --glass-bg: rgba(7, 15, 15, 0.8);
   --glass-border: rgba(4, 203, 194, 0.08);
   --shadow-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --bg-input: #0b1111;
+  --bg-input-readonly: #050808;
+  --btn-text-contrast: #050a0a;
 }
 
 /* Theme Toggle Button Styles */
@@ -330,7 +336,7 @@ header {
 }
 
 .header-floating {
-  background: rgba(5, 10, 10, 0.85);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--glass-border);
   padding: 12px 0;
@@ -473,7 +479,7 @@ header {
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: rgba(10, 20, 20, 0.98);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(16px);
   border-radius: var(--radius-md);
@@ -1153,7 +1159,7 @@ header {
 }
 
 .ms-node {
-  background: rgba(10, 20, 20, 0.8);
+  background: var(--bg-card);
   border: 1px solid rgba(4, 203, 194, 0.15);
   padding: 10px 16px;
   border-radius: var(--radius-sm);
@@ -1276,7 +1282,7 @@ label {
 
 select {
   width: 100%;
-  background: #0b1111;
+  background: var(--bg-input);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: 14px 18px;
@@ -1312,7 +1318,7 @@ select:focus {
 
 .ms-select-box {
   width: 100%;
-  background: #0b1111;
+  background: var(--bg-input);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: 14px 18px;
@@ -1337,7 +1343,7 @@ select:focus {
   top: 100%;
   left: 0;
   width: 100%;
-  background: rgba(10, 20, 20, 0.95);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
@@ -2048,7 +2054,7 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 .calc-sync-fields input {
-  background: #050808 !important;
+  background: var(--bg-input-readonly) !important;
   color: var(--turquoise-accent) !important;
   font-weight: 700;
   border-color: rgba(4, 203, 194, 0.1) !important;
@@ -2060,7 +2066,7 @@ input[type="email"],
 select,
 textarea {
   width: 100%;
-  background: #0b1111;
+  background: var(--bg-input);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: 14px 18px;
@@ -2089,7 +2095,7 @@ textarea:focus {
 }
 
 .calc-sync-fields select {
-  background: #0b1111 !important;
+  background: var(--bg-input) !important;
   color: var(--text-light) !important;
   font-weight: 500;
   border-color: var(--glass-border) !important;
@@ -2346,7 +2352,7 @@ textarea:focus {
     width: 75%;
     max-width: 320px;
     height: 100vh;
-    background: rgba(5, 10, 10, 0.98);
+    background: var(--glass-bg);
     backdrop-filter: blur(24px);
     border-left: 1px solid var(--glass-border);
     padding: 100px 32px 40px;
@@ -3098,7 +3104,7 @@ textarea:focus {
   bottom: 65px;
   right: 0;
   width: 290px;
-  background: rgba(10, 20, 20, 0.95);
+  background: var(--glass-bg);
   border: 1px solid rgba(4, 203, 194, 0.22);
   border-radius: 12px;
   padding: 14px 16px;
@@ -3160,7 +3166,7 @@ textarea:focus {
   right: 22px;
   width: 10px;
   height: 10px;
-  background: rgba(10, 20, 20, 0.95);
+  background: var(--glass-bg);
   border-right: 1px solid rgba(4, 203, 194, 0.22);
   border-bottom: 1px solid rgba(4, 203, 194, 0.22);
   transform: rotate(45deg);
@@ -3189,7 +3195,7 @@ textarea:focus {
 
 .chatbox-header {
   padding: 16px 20px;
-  background: rgba(10, 20, 20, 0.95);
+  background: var(--glass-bg);
   border-bottom: 1px solid rgba(4, 203, 194, 0.12);
   display: flex;
   align-items: center;
@@ -3426,7 +3432,7 @@ textarea:focus {
   background: var(--turquoise-accent);
   border: none;
   border-radius: var(--radius-md);
-  color: #050a0a;
+  color: var(--btn-text-contrast);
   font-weight: 600;
   font-size: 11.5px;
   cursor: pointer;
@@ -3442,7 +3448,7 @@ textarea:focus {
 /* Input Form Footer */
 .chatbox-footer {
   padding: 12px 16px;
-  background: rgba(10, 20, 20, 0.95);
+  background: var(--glass-bg);
   border-top: 1px solid rgba(4, 203, 194, 0.12);
   display: flex;
   gap: 10px;
