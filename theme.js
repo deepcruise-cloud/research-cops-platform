@@ -3,17 +3,17 @@
   // File: theme.js
   
   function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // default is dark mode
+    document.documentElement.classList.toggle('light', savedTheme === 'light');
   }
   
   initTheme();
 
   function updateToggleLabels() {
-    const isDark = document.documentElement.classList.contains('dark');
+    const isLight = document.documentElement.classList.contains('light');
     const labels = document.querySelectorAll('.theme-toggle-label');
     labels.forEach(lbl => {
-      lbl.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+      lbl.textContent = isLight ? 'Light Mode' : 'Dark Mode';
     });
   }
 
@@ -27,8 +27,8 @@
     toggleBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        const isLight = document.documentElement.classList.toggle('light');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
         updateToggleLabels();
         
         // Broadcast custom event so dynamic charts/SVG nodes can adjust if necessary

@@ -1,10 +1,40 @@
 /* Brand Identity Custom Variables */
 :root {
+  --bg-dark: #061413;                /* Very deep dark teal-slate */
+  --bg-card: rgba(12, 38, 36, 0.6);   /* Premium dark teal translucent card background */
+  --teal-brand: #04524e;
+  --teal-brand-rgb: 4, 82, 78;
+  --turquoise-accent: #04cbc2;        /* Bright neon turquoise accent in dark mode */
+  --turquoise-accent-rgb: 4, 203, 194;
+  --turquoise-glow: rgba(4, 203, 194, 0.15);
+  --emerald-success: #10b981;
+  --text-light: #e2f1f0;             /* Soft off-white with teal tint */
+  --text-body: #a3c2c0;              /* Premium muted teal-grey text */
+  --text-muted: #709996;             /* Deep teal-grey text */
+  --glass-bg: rgba(6, 20, 19, 0.85);
+  --glass-border: rgba(4, 203, 194, 0.12);
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-display: 'Space Grotesk', sans-serif;
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-lg: 16px;
+  --radius-md: 8px;
+  --shadow-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --bg-input: #0c2625;
+  --bg-input-readonly: #091e1d;
+  --btn-text-contrast: #050a0a;       /* Black text on neon accent button */
+  --bg-header-visual: rgba(12, 38, 36, 0.4);
+  --bg-body-visual: rgba(6, 20, 19, 0.6);
+  --bg-segment-tabs: rgba(6, 20, 19, 0.8);
+  --bg-metric-box: rgba(12, 38, 36, 0.5);
+  --bg-calc-output: rgba(6, 20, 19, 0.4);
+}
+
+.light {
   --bg-dark: #ffffff;
   --bg-card: rgba(4, 82, 78, 0.04);
   --teal-brand: #04524e;
   --teal-brand-rgb: 4, 82, 78;
-  --turquoise-accent: #038a83;
+  --turquoise-accent: #038a83;        /* Dark teal accent for readability in light mode */
   --turquoise-accent-rgb: 3, 138, 131;
   --turquoise-glow: rgba(3, 138, 131, 0.15);
   --emerald-success: #16a34a;
@@ -13,45 +43,15 @@
   --text-muted: #64748b;
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(4, 82, 78, 0.12);
-  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-display: 'Space Grotesk', sans-serif;
-  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  --radius-lg: 16px;
-  --radius-md: 8px;
   --shadow-glow: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
   --bg-input: #ffffff;
   --bg-input-readonly: #f1f5f9;
-  --btn-text-contrast: #ffffff;
+  --btn-text-contrast: #ffffff;       /* White text on dark teal accent button */
   --bg-header-visual: rgba(4, 82, 78, 0.05);
   --bg-body-visual: rgba(255, 255, 255, 0.4);
   --bg-segment-tabs: rgba(4, 82, 78, 0.06);
   --bg-metric-box: rgba(4, 82, 78, 0.04);
   --bg-calc-output: rgba(4, 82, 78, 0.03);
-}
-
-.dark {
-  --bg-dark: #050a0a;
-  --bg-card: rgba(10, 20, 20, 0.6);
-  --teal-brand: #04524e;
-  --teal-brand-rgb: 4, 82, 78;
-  --turquoise-accent: #04cbc2;
-  --turquoise-accent-rgb: 4, 203, 194;
-  --turquoise-glow: rgba(4, 203, 194, 0.3);
-  --emerald-success: #10b981;
-  --text-light: #f8fafc;
-  --text-body: #cbd5e1;
-  --text-muted: #94a3b8;
-  --glass-bg: rgba(7, 15, 15, 0.8);
-  --glass-border: rgba(4, 203, 194, 0.08);
-  --shadow-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
-  --bg-input: #0b1111;
-  --bg-input-readonly: #050808;
-  --btn-text-contrast: #050a0a;
-  --bg-header-visual: rgba(4, 8, 8, 0.7);
-  --bg-body-visual: rgba(0, 0, 0, 0.25);
-  --bg-segment-tabs: rgba(0, 0, 0, 0.3);
-  --bg-metric-box: rgba(0, 0, 0, 0.15);
-  --bg-calc-output: rgba(0, 0, 0, 0.18);
 }
 
 /* Theme Toggle Button Styles */
@@ -94,25 +94,20 @@
   transform: rotate(20deg);
 }
 
-/* Hide / Show Sun and Moon depending on the .dark class */
 .theme-toggle-btn .theme-toggle-sun {
-  display: none;
+  display: block;
 }
 
 .theme-toggle-btn .theme-toggle-moon {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.dark .theme-toggle-btn .theme-toggle-sun {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.dark .theme-toggle-btn .theme-toggle-moon {
   display: none;
+}
+
+.light .theme-toggle-btn .theme-toggle-sun {
+  display: none;
+}
+
+.light .theme-toggle-btn .theme-toggle-moon {
+  display: block;
 }
 
 /* Global Transitions for smooth theme swap */
