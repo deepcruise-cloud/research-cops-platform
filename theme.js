@@ -9,8 +9,18 @@
   
   initTheme();
 
+  function updateToggleLabels() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const labels = document.querySelectorAll('.theme-toggle-label');
+    labels.forEach(lbl => {
+      lbl.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+    });
+  }
+
   // Handle setting up event listener once DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
+    updateToggleLabels();
+    
     // Find all theme toggles on the page
     const toggleBtns = document.querySelectorAll('#theme-toggle');
     
@@ -19,6 +29,7 @@
         e.preventDefault();
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateToggleLabels();
         
         // Broadcast custom event so dynamic charts/SVG nodes can adjust if necessary
         window.dispatchEvent(new Event('themechange'));

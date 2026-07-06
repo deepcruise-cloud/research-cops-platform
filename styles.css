@@ -1,7 +1,7 @@
 /* Brand Identity Custom Variables */
 :root {
   --bg-dark: #ffffff;
-  --bg-card: rgba(248, 250, 252, 0.7);
+  --bg-card: rgba(4, 82, 78, 0.04);
   --teal-brand: #04524e;
   --teal-brand-rgb: 4, 82, 78;
   --turquoise-accent: #038a83;
@@ -12,7 +12,7 @@
   --text-body: #334155;
   --text-muted: #64748b;
   --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(4, 82, 78, 0.08);
+  --glass-border: rgba(4, 82, 78, 0.12);
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-display: 'Space Grotesk', sans-serif;
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -25,7 +25,7 @@
   --bg-header-visual: rgba(4, 82, 78, 0.05);
   --bg-body-visual: rgba(255, 255, 255, 0.4);
   --bg-segment-tabs: rgba(4, 82, 78, 0.06);
-  --bg-metric-box: rgba(255, 255, 255, 0.75);
+  --bg-metric-box: rgba(4, 82, 78, 0.04);
   --bg-calc-output: rgba(4, 82, 78, 0.03);
 }
 
@@ -62,13 +62,19 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
+  gap: 8px;
+  padding: 6px 14px;
   height: 36px;
-  border-radius: 50%;
-  padding: 8px;
+  border-radius: 99px;
   margin-right: 12px;
   transition: var(--transition-smooth);
+}
+
+.theme-toggle-label {
+  font-family: var(--font-family-display);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .theme-toggle-btn:hover {
@@ -78,6 +84,9 @@
 }
 
 .theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
@@ -4001,3 +4010,11 @@ body.cookie-banner-active .support-genie-fab {
 
 
 
+
+
+/* Hide mobile-cta on desktop viewports */
+@media (min-width: 769px) {
+  .mobile-cta {
+    display: none !important;
+  }
+}
