@@ -258,7 +258,52 @@ document.addEventListener('DOMContentLoaded', () => {
     return maxAddon + (count - 1) * 0.50;
   }
 
+  let lastAudience = '';
+  function handleAudienceCorrelation() {
+    const audience = audienceSelect.value;
+    
+    if (audience === 'consumer') {
+      employeeSizeSelect.value = 'all';
+      document.querySelectorAll('#ms-industry input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('#ms-department input[type="checkbox"]').forEach(cb => cb.checked = false);
+      document.querySelectorAll('#ms-role input[type="checkbox"]').forEach(cb => cb.checked = false);
+      
+      employeeSizeSelect.disabled = true;
+      employeeSizeSelect.parentElement.classList.add('disabled-group');
+      
+      document.getElementById('ms-industry').classList.add('disabled-multiselect');
+      document.getElementById('ms-department').classList.add('disabled-multiselect');
+      document.getElementById('ms-role').classList.add('disabled-multiselect');
+    } else {
+      employeeSizeSelect.disabled = false;
+      employeeSizeSelect.parentElement.classList.remove('disabled-group');
+      document.getElementById('ms-industry').classList.remove('disabled-multiselect');
+      document.getElementById('ms-department').classList.remove('disabled-multiselect');
+      document.getElementById('ms-role').classList.remove('disabled-multiselect');
+      
+      if (audience !== lastAudience) {
+        if (audience === 'healthcare') {
+          document.querySelectorAll('#ms-industry input[type="checkbox"]').forEach(cb => {
+            cb.checked = (cb.value === 'hcpharma');
+          });
+          document.querySelectorAll('#ms-department input[type="checkbox"]').forEach(cb => {
+            cb.checked = (cb.value === 'medical');
+          });
+          document.querySelectorAll('#ms-role input[type="checkbox"]').forEach(cb => {
+            cb.checked = (cb.value === 'doctor');
+          });
+        } else if (audience === 'csuite') {
+          document.querySelectorAll('#ms-role input[type="checkbox"]').forEach(cb => {
+            cb.checked = (cb.value === 'csuite');
+          });
+        }
+      }
+    }
+    lastAudience = audience;
+  }
+
   function calculateEstimate() {
+    handleAudienceCorrelation();
     const audience = audienceSelect.value;
     const country = countrySelect.value;
     const sampleSize = parseInt(sampleSizeSlider.value);
@@ -300,14 +345,12 @@ document.addEventListener('DOMContentLoaded', () => {
       loiMultiplier = 1.0 - (15 - loi) * 0.02;
     }
 
-    // Volume Discount factor
+    // Volume Discount factor (premium for small samples, does not decrease for large samples)
     let volumeDiscount = 1.0;
     if (sampleSize < 250) {
       volumeDiscount = 1.15;
-    } else if (sampleSize >= 1000 && sampleSize < 2500) {
-      volumeDiscount = 0.90;
-    } else if (sampleSize >= 2500) {
-      volumeDiscount = 0.80;
+    } else {
+      volumeDiscount = 1.0;
     }
 
     // Formula: CPI = (baseCPI + industryAddon + departmentAddon + roleAddon + sizeAddon) * countryMultiplier * loiMultiplier * volumeDiscount

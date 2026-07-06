@@ -31,6 +31,7 @@
   --bg-segment-tabs: rgba(6, 20, 19, 0.8);
   --bg-metric-box: rgba(12, 38, 36, 0.5);
   --bg-calc-output: rgba(6, 20, 19, 0.4);
+  --bg-footer: #040e0d;
 }
 
 .light {
@@ -56,6 +57,7 @@
   --bg-segment-tabs: rgba(4, 82, 78, 0.06);
   --bg-metric-box: rgba(4, 82, 78, 0.04);
   --bg-calc-output: rgba(4, 82, 78, 0.03);
+  --bg-footer: #f8fafc;
 }
 
 /* Theme Toggle Button Styles */
@@ -756,7 +758,7 @@ input[type=range]::-webkit-slider-thumb:hover {
 
 /* Collapsible Sidebar styles */
 .sim-sidebar {
-  background: #030606;
+  background: var(--bg-dark);
   border-right: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
@@ -1296,7 +1298,7 @@ input[type=range]::-webkit-slider-thumb:hover {
 .payslip-preview {
   padding: 30px;
   font-family: var(--font-family-mono);
-  background: #030606 !important;
+  background: var(--bg-dark) !important;
 }
 
 .payslip-header h4 {

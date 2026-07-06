@@ -27,6 +27,7 @@
   --bg-segment-tabs: rgba(6, 20, 19, 0.8);
   --bg-metric-box: rgba(12, 38, 36, 0.5);
   --bg-calc-output: rgba(6, 20, 19, 0.4);
+  --bg-footer: #040e0d;
 }
 
 .light {
@@ -52,6 +53,7 @@
   --bg-segment-tabs: rgba(4, 82, 78, 0.06);
   --bg-metric-box: rgba(4, 82, 78, 0.04);
   --bg-calc-output: rgba(4, 82, 78, 0.03);
+  --bg-footer: #f8fafc;
 }
 
 /* Theme Toggle Button Styles */
@@ -2130,7 +2132,7 @@ textarea:focus {
 
 /* Footer Section layout */
 .main-footer {
-  background: #020404;
+  background: var(--bg-footer);
   border-top: 1px solid var(--glass-border);
   padding: 80px 0 0;
   font-size: 14px;
@@ -3097,7 +3099,7 @@ textarea:focus {
   height: 9px;
   border-radius: 50%;
   background-color: var(--emerald-success);
-  border: 1.5px solid #050a0a;
+  border: 1.5px solid var(--bg-dark);
   box-shadow: 0 0 6px var(--emerald-success);
   z-index: 2;
 }
@@ -4012,4 +4014,20 @@ body.cookie-banner-active .support-genie-fab {
   .mobile-cta {
     display: none !important;
   }
+}
+
+.disabled-group {
+  opacity: 0.45;
+  pointer-events: none !important;
+  cursor: not-allowed;
+}
+
+.disabled-multiselect {
+  opacity: 0.45;
+  pointer-events: none !important;
+  cursor: not-allowed;
+}
+
+.disabled-multiselect .ms-select-box {
+  background: var(--bg-input-readonly) !important;
 }

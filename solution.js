@@ -17,7 +17,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); position: relative; color: #cbd5e1; user-select: none;">
+          <div style="width: 100%; height: 100%; display: flex; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); position: relative; color: #cbd5e1; user-select: none;">
             <!-- Top ribbon -->
             <div style="position: absolute; top: 0; left: 0; right: 0; height: 28px; background: rgba(10,20,20,0.95); border-bottom: 1px solid rgba(4,203,194,0.15); display: flex; align-items: center; justify-content: space-between; padding: 0 10px; box-sizing: border-box; z-index: 10;">
               <div style="display: flex; align-items: center; gap: 6px;">
@@ -893,7 +893,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
             <!-- Top ribbon -->
             <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 6px; margin-bottom: 8px; flex-shrink: 0; box-sizing: border-box;">
               <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 5px; border-radius: 4px; text-align: center;">
@@ -1151,7 +1151,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
             <!-- Left side: Visual Builder editor card -->
             <div style="padding: 10px; border-right: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
               <div>
@@ -1193,7 +1193,7 @@ const SOLUTION_DATA = {
                 <!-- Notch -->
                 <div style="width: 40px; height: 10px; background: #1e293b; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; align-self: center; flex-shrink: 0;"></div>
                 <!-- Device Viewport Screen -->
-                <div id="sim-screen" style="flex-grow: 1; padding: 8px 6px; display: flex; flex-direction: column; justify-content: space-between; background: #050a0a; overflow: hidden; box-sizing: border-box;">
+                <div id="sim-screen" style="flex-grow: 1; padding: 8px 6px; display: flex; flex-direction: column; justify-content: space-between; background: #061413; overflow: hidden; box-sizing: border-box;">
                   <div>
                     <div style="font-size: 7px; color: #04cbc2; text-transform: uppercase; font-family: monospace; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
                       <span>Live Preview</span>
@@ -1370,7 +1370,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
             <!-- Language Selector header toolbar -->
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px; flex-shrink: 0; box-sizing: border-box;">
               <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.3); padding: 2px; border-radius: 4px;">
@@ -1551,7 +1551,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 100px 1.25fr; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
+          <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 100px 1.25fr; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; box-sizing: border-box; border-radius: 8px; padding: 10px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; position: relative; user-select: none;">
             <!-- Left Pane: Pipeline switches -->
             <div style="border-right: 1px solid rgba(255,255,255,0.05); padding-right: 8px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; overflow: hidden;">
               <div>
@@ -1723,7 +1723,7 @@ const SOLUTION_DATA = {
     getVisual: () => {
       return {
         html: `
-          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #050a0a; font-family: 'Inter', sans-serif; overflow: hidden; padding: 10px; box-sizing: border-box; justify-content: space-between; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background: #061413; font-family: 'Inter', sans-serif; overflow: hidden; padding: 10px; box-sizing: border-box; justify-content: space-between; border-radius: 8px; border: 1px solid rgba(4,203,194,0.15); color: #cbd5e1; user-select: none;">
             <!-- Dropdowns controls -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; flex-shrink: 0; box-sizing: border-box; margin-bottom: 6px;">
               <div>
