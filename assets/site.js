@@ -235,3 +235,24 @@ if ($('cform')) $('cform').addEventListener('submit', e => {
   };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(run));
 })();
+
+// Footer step line: lights one step at a time and slides "One Platform" under it, only while the footer is on screen
+(() => {
+  const line = document.querySelector('footer .fsteps');
+  if (!line) return;
+  const steps = [...line.querySelectorAll('span')], label = line.querySelector('.fop');
+  let cur = 0, timer = null;
+  const show = i => {
+    steps.forEach((s, k) => s.classList.toggle('on', k === i));
+    const row = line.getBoundingClientRect(), r = steps[i].getBoundingClientRect(), w = label.offsetWidth;
+    const x = (r.left + r.right) / 2 - row.left - w / 2;
+    label.style.transform = `translate(${Math.max(0, Math.min(row.width - w, x))}px, ${r.bottom - row.top + 6 - (line.offsetHeight - label.offsetHeight)}px)`;
+  };
+  show(0);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  new IntersectionObserver(([e]) => {
+    clearInterval(timer);
+    if (e.isIntersecting) timer = setInterval(() => show(cur = (cur + 1) % steps.length), 2400);
+  }).observe(line);
+  addEventListener('resize', () => show(cur));
+})();

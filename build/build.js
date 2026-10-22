@@ -114,7 +114,8 @@ const footer = () => `<footer class="rc-chrome">
     <div class="fgrid">
       <div>
         <a href="/" class="flogo" aria-label="Research COPS home">${logoMark(48)}<span><span class="logo-word"><span>Research</span> COPS</span><span class="logo-sub">RESEARCH CENTRIC OPS</span></span></a>
-        <p class="fdesc">Best Operating System for<br>Your Research Projects.</p>
+        <p class="fdesc ftag"><span class="best">Best</span> Operating System for<br>Your <em class="s">Research Projects</em>.</p>
+        <p class="fsteps" aria-label="Price, Build, Translate, Field, Report and Analyze. One Platform."><span aria-hidden="true">Price</span><i aria-hidden="true">→</i><span aria-hidden="true">Build</span><i aria-hidden="true">→</i><span aria-hidden="true">Translate</span><i aria-hidden="true">→</i><span aria-hidden="true">Field</span><i aria-hidden="true">→</i><span aria-hidden="true">Report &amp; Analyze</span><b class="fop" aria-hidden="true">One Platform</b></p>
       </div>
       <div><h5>Platform</h5><ul><li><a href="/platform/">Overview</a></li>${PLATFORM_SEQ.map(p => `<li><a href="${p.url}">${p.name}</a></li>`).join('')}<li><a href="/pricing/">Plans</a></li></ul></div>
       <div><h5>Services</h5><ul>${services.slice(0, 6).map(s => `<li><a href="${solUrl(s.slug)}">${s.name}</a></li>`).join('')}<li><a href="${solUrl(automation.slug)}">Workflow automation</a></li></ul></div>

@@ -193,3 +193,23 @@ header.rc-chrome .logo-sub .ls,header.rc-chrome .logo-sub .ls-cap,header.rc-chro
 .mobile-menu .mm-d[open] summary::after{transform:rotate(-135deg)}
 .mobile-menu .mm-d a{display:block;padding:11px 0 11px 14px;font-size:15px}
 .mobile-menu .mm-d a:last-child{border-bottom:0;margin-bottom:8px}
+
+/* Footer tagline in the hero's style: accent "Best" with underline, serif "Research Projects" */
+footer.rc-chrome .ftag{font:600 22px/1.3 var(--display,'Space Grotesk'),sans-serif;letter-spacing:-.02em;color:#fff;max-width:340px}
+footer.rc-chrome .ftag .best{position:relative;color:var(--accent);white-space:nowrap}
+footer.rc-chrome .ftag .best::after{content:"";position:absolute;left:0;right:0;bottom:-.04em;height:.09em;border-radius:2px;background:linear-gradient(90deg,var(--accent),#7ff3ec)}
+footer.rc-chrome .ftag em.s{font-size:1.12em;color:var(--accent)}
+/* Footer alignment: column headings line up with the middle of the logo; room for the back-to-top arrow at the very bottom */
+@media (min-width:961px){footer.rc-chrome .fgrid>div:not(:first-child){padding-top:16px}}
+footer.rc-chrome .ftag{margin-top:4px}
+@media (max-width:768px){footer.rc-chrome{padding-bottom:72px}}
+/* Footer step line: a quiet version of the hero sequence, one step lit at a time */
+footer.rc-chrome .fsteps{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:4px 7px;margin:18px 0 0;padding-bottom:24px;max-width:360px;font:500 12.5px/1.4 var(--display,'Space Grotesk'),sans-serif;color:rgba(4,203,194,.55)}
+footer.rc-chrome .fsteps span{position:relative;transition:color .4s}
+footer.rc-chrome .fsteps span.on{color:#fff}
+footer.rc-chrome .fsteps span.on::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;border-radius:2px;background:var(--accent)}
+footer.rc-chrome .fsteps i{font-style:normal;color:rgba(4,203,194,.4)}
+footer.rc-chrome .fsteps .fop{position:absolute;left:0;bottom:0;font:600 12px/1 var(--display,'Space Grotesk'),sans-serif;color:#fff;letter-spacing:.02em;white-space:nowrap;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+footer.rc-chrome .fsteps{font-size:11.5px;gap:4px 5px;letter-spacing:-.005em;flex-wrap:nowrap;white-space:nowrap}
+footer.rc-chrome .fsteps .fop{font-size:11.5px}
+@media (max-width:360px){footer.rc-chrome .fsteps{font-size:10.4px;gap:3px 4px}footer.rc-chrome .fsteps .fop{font-size:10.4px}}
