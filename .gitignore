@@ -1,0 +1,4 @@
+node_modules/
+.claude/
+# Regenerable bundles of docs/screenshots
+docs/screenshots-*.zip

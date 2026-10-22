@@ -1,0 +1,86 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Michroma&amp;display=swap');
+      .brand-text-cops {
+        font-family: 'Michroma', 'Space Grotesk', sans-serif;
+        font-weight: 400;
+        fill: #ffffff;
+        stroke: #ffffff;
+        stroke-width: 0.05em;
+        paint-order: stroke fill;
+        word-spacing: 0.18em;
+      }
+      .brand-text-cops-light {
+        fill: #052624;
+        stroke: #052624;
+      }
+      .brand-accent-cops {
+        fill: #04cbc2;
+        stroke: #04cbc2;
+      }
+      .brand-accent-cops-light {
+        fill: #038a83;
+        stroke: #038a83;
+      }
+      .tagline-cops {
+        font-family: 'Michroma', 'Inter', sans-serif;
+        font-weight: 400;
+        fill: #a3c2c0;
+        stroke: #a3c2c0;
+        stroke-width: 0.045em;
+        paint-order: stroke fill;
+        letter-spacing: 0.14em;
+      }
+      .tagline-cops-light {
+        fill: #04524e;
+        stroke: #04524e;
+      }
+      
+      .brand-text-di {
+        font-family: 'Space Grotesk', 'Inter', sans-serif;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+      .brand-text-di-light {
+        fill: #0f172a;
+      }
+      .brand-accent-di {
+        fill: #3b82f6;
+      }
+      .brand-accent-di-light {
+        fill: #2563eb;
+      }
+      .tagline-di {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        fill: #cbd5e1;
+        letter-spacing: 0.2em;
+      }
+      .tagline-di-light {
+        fill: #475569;
+      }
+    </style>
+  </defs>
+
+    
+    <g transform="translate(272, 120) scale(10.66)">
+      <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#04524e" />
+      <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
+      <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
+      <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
+      <g transform="rotate(-110, 12, 7.2)">
+        <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
+        <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
+        <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
+      </g>
+    </g>
+    <text x="400" y="490" text-anchor="middle" class="brand-text-cops" fill="#ffffff" font-size="52" letter-spacing="0.5">
+      <tspan class="brand-accent-cops">RESEARCH</tspan> COPS
+    </text>
+    <text x="400" y="550" text-anchor="middle" class="tagline-cops" font-size="22" font-weight="700">
+      RESEARCH CENTRIC OPS
+    </text>
+  </svg>

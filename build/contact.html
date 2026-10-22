@@ -1,0 +1,38 @@
+<section id="contact" class="dark">
+  <div class="wrap contact">
+    <div class="reveal">
+      <span class="eyebrow">Get a quote or a demo</span>
+      <h2>Brief us. We'll <em class="s" style="color:var(--accent)">price</em> it.</h2>
+      <p style="font-size:18px">Share a few details and a research lead will reply within one business day with feasibility, timing and a fixed quote, or a time for a live platform demo.</p>
+      <div class="cinfo">
+        <div><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>General & partnerships</small><a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a></div></div>
+        <div><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v12H8l-4 4z"/></svg></span><div><small>Bids & RFQs</small><a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a></div></div>
+        <div><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a href="tel:+9101206051391">+91 0120 605 1391</a></div></div>
+        <div><span class="ci"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><div><small>Prefer to talk?</small><a href="https://calendly.com/researchcops/30min" data-calendly target="_blank" rel="noopener">Book a 30-minute call</a></div></div>
+      </div>
+    </div>
+    <form class="cform reveal" id="cform" novalidate>
+      <div class="full"><label>I am a…</label>
+        <div class="seg">
+          <input type="radio" name="type" id="t1" value="Research agency" checked><label for="t1">Research agency</label>
+          <input type="radio" name="type" id="t2" value="Brand / insight team"><label for="t2">Brand / insight team</label>
+          <input type="radio" name="type" id="t3" value="Startup"><label for="t3">Startup</label>
+          <input type="radio" name="type" id="t4" value="Advertising / media"><label for="t4">Advertising / media</label>
+          <input type="radio" name="type" id="t5" value="Panel / sample company"><label for="t5">Panel / sample company</label>
+        </div></div>
+      <div><label for="fName">Full name</label><input id="fName" name="name" required autocomplete="name"></div>
+      <div><label for="fEmail">Work email</label><input id="fEmail" name="email" type="email" required autocomplete="email"></div>
+      <div><label for="fCo">Company</label><input id="fCo" name="company" autocomplete="organization"></div>
+      <div><label for="fPhone">Phone <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input id="fPhone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="full"><label for="fNeed">I need</label>
+        <select id="fNeed" name="need"><option>Sample only</option><option>Sample + programming</option><option>Full-service study</option><option>Platform demo</option><option>Platform plans</option><option>Workflow automation</option><option>Panel book</option><option>API access</option></select></div>
+      <div class="full"><label for="fMsg">Project details</label><textarea id="fMsg" name="message" placeholder="Audience, markets, sample size, LOI, timeline…"></textarea></div>
+      <div class="full" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <span class="form-note">We reply within one business day. By sending, you agree to our <a href="/policy.html?id=privacy" style="text-decoration:underline">privacy policy</a>.</span>
+        <button class="btn btn-dark" type="submit">Send request <svg class="arrow" width="16" height="16"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="form-err full" id="formErr">We couldn't send that just now. Please email <a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a> or try again.</div>
+      <div class="form-ok full" id="formOk"><b style="display:block;font-size:17px;margin-bottom:6px">Thanks, your request is in.</b>A research lead will reply within one business day. Want to talk sooner? <a href="https://calendly.com/researchcops/30min" data-calendly target="_blank" rel="noopener" style="text-decoration:underline;font-weight:600">Book a 30-minute call</a>.</div>
+    </form>
+  </div>
+</section>

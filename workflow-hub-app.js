@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (simHeaderTitle) {
           const categoryName = parentGroup.querySelector('.nav-cat-header span').textContent;
           simHeaderTitle.textContent = btn.textContent;
-          document.querySelector('.top-sub-breadcrumb').textContent = `DeepSight Insights / ${categoryName}`;
+          document.querySelector('.top-sub-breadcrumb').textContent = `Research COPS / ${categoryName}`;
         }
       } else {
         btn.classList.remove('active');
