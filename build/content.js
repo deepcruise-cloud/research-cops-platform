@@ -281,7 +281,7 @@ const audiences = [
     ],
     studies: ['Programming + hosting', 'Translations', 'Sample-only B2B', 'HCP & specialist studies', 'Multi-country trackers', 'Banner tables & open-end checks'],
     services: ['online-sampling', 'survey-programming', 'data-processing', 'translations'],
-    platform: ['Win more, deliver cheaper', 'License Research Centric OPS and answer bids the same day. Keep the delivery margin that used to go to vendor fees and re-keying, and stop losing a project when the person running it is away.'],
+    platform: ['Win more, deliver more, save more', 'License Research Centric OPS and answer bids the same day. Keep the delivery margin that used to go to vendor fees and re-keying, and stop losing a project when the person running it is away.'],
     quote: ['The team was always responsive, and the quality of their research and the recommendations were excellent.', 'Research Consultant, Australian research firm'],
     faqs: [
       ['Do you work under NDA and white label?', 'Yes, as standard. We sign your NDA, never contact your end client, and can brand all outputs as yours.'],
