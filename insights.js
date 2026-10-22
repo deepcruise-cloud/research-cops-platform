@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let rcDbMode = "local";
   let rcDb = null;
-  let rcCalendlyUrl = "https://calendly.com/researchcops/30min";
+  let rcCalendlyUrl = "https://calendly.com/deepak-monga-researchcops/30min";
 
   // Seeding backup configurations
   const RC_DEFAULT_BLOGS = [
@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let allFeedItems = [];
   let currentCategoryFilter = "all";
   let currentSearchQuery = "";
-  let liveFeedActive = true;
+  let liveFeedActive = false;
   let liveTrendingCategory = "Integration";
 
   // Elements

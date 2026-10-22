@@ -98,8 +98,8 @@ const modules = [
     slug: 'data-reporting', icon: 'chart', name: 'Data Processing & Reporting', step: 'Clean & Report',
     short: 'Cleaning, weighting, crosstabs, open-end quality checks and exports.',
     h1: 'Clean data. <em class="s">Clear</em> answers.',
-    lead: 'Clean with built-in and custom rules, weight with RIM or cell weighting, run banner tables, and quality-check open ends into a theme framework, all on the response set you collected. Every methodology has its own built-in report.',
-    today: 'Export to a stats package, verbatims out to a coding house.',
+    lead: 'Clean with built-in and custom rules, weight with RIM or cell weighting, run banner tables, flag poor open ends and organise the rest into a theme framework, all on the response set you collected. Every methodology has its own built-in report.',
+    today: 'Export to a stats package, verbatims sent to an outside open-end vendor.',
     here: 'Cleaned, weighted and checked in place, so the deck and the data always agree.',
     mock: 'data',
     features: [
@@ -143,7 +143,7 @@ const plans = [
   { name: 'Alpha', tag: 'Build surveys and read results.', items: ['Survey Builder', 'Research Center', 'On-screen and CSV results', 'Core product methodologies', '200 AI credits / month', '1 seat'] },
   { name: 'Beta', tag: 'Add feasibility, sample and the UX toolkit.', popular: true, items: ['Everything in Alpha, plus:', 'Feasibility & Costing', 'Sample Collection', 'Question library', 'Excel banner book', 'UX methodologies', '500 AI credits / month · 3 seats'] },
   { name: 'Gamma', tag: 'Translation, processing and team work.', items: ['Everything in Beta, plus:', 'Translation', 'Data Processing', 'Templates & themes', 'PowerPoint and SPSS export', 'Team users', '1,500 AI credits / month · 10 seats'] },
-  { name: 'Sigma', tag: 'Advanced pricing and the AI assistant.', items: ['Everything in Gamma, plus:', 'Advanced pricing methods (BPTO, Dynamic, Bundle)', 'AI Survey Assistant', 'PDF and Word reports (coming soon)', '4,000 AI credits / month', 'Unlimited seats'] },
+  { name: 'Sigma', tag: 'Advanced pricing and the AI assistant.', items: ['Everything in Gamma, plus:', 'Advanced pricing methods (BPTO, Dynamic, Bundle)', 'AI Survey Assistant', '4,000 AI credits / month', 'Unlimited seats'] },
   { name: 'Custom', tag: 'The modules and methods you need.', items: ['Pick the modules you need', 'Methodologies to suit your work', 'Seats and AI credits to match', 'Scoped with our team'] },
 ];
 

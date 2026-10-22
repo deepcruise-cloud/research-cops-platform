@@ -25,11 +25,11 @@ const ICONS = {
 // Order follows the research sequence: design → build → translate → sample → quality → data → reporting
 const services = [
   {
-    slug: 'questionnaire-design', icon: 'design', name: 'Questionnaire design',
+    slug: 'questionnaire-design', stepsTitle: 'From objective to <em>sign-off</em>.', icon: 'design', name: 'Questionnaire design',
     short: 'Surveys that measure the right thing and get finished.',
     h1: 'Better questions, <em class="s">better</em> answers.',
-    lead: 'Research leads turn your business objective into a survey that respondents finish and that produces data you can act on. Our clients see up to 40% fewer drop-offs.',
-    stats: [['40%', 'Fewer drop-offs, at best'], ['24 hrs', 'Typical first-draft turnaround'], ['25+', 'Languages ready for translation']],
+    lead: 'Research leads turn your business objective into a survey that respondents finish and that produces data you can act on.',
+    stats: [['24 hrs', 'Typical first-draft turnaround'], ['2', 'Review rounds included'], ['Mobile-first', 'Designed for phone respondents']],
     featuresTitle: 'Designed around the decision you need to make',
     features: [
       ['target', 'Objective mapping', 'We start from the decision your team must make and tie every question to it.'],
@@ -55,11 +55,11 @@ const services = [
     related: ['survey-programming', 'online-sampling', 'insights-reporting'],
   },
   {
-    slug: 'survey-programming', icon: 'code', name: 'Survey programming & hosting',
+    slug: 'survey-programming', stepsTitle: 'From document to <em>live link</em>.', icon: 'code', name: 'Survey programming & hosting',
     short: 'Mobile-first scripting with complex logic, tested before launch.',
     h1: 'Scripted right the <em class="s">first</em> time.',
     lead: 'Mobile-first survey programming with complex logic, piping, quotas and randomisation. Every script is tested by a second programmer before it goes live, and hosted on secure infrastructure.',
-    stats: [['48 hrs', 'Typical programming turnaround'], ['2-step', 'Independent QA on every script'], ['24/7', 'Hosting & monitoring']],
+    stats: [['48 hrs', 'Typical programming turnaround'], ['2-step', 'Independent QA on every script'], ['Live', 'Quota & quality monitoring']],
     featuresTitle: 'Complex surveys, without the bugs',
     features: [
       ['code', 'Advanced logic', 'Skip and display logic, piping, loops, hidden variables and least-fill quotas.'],
@@ -85,7 +85,7 @@ const services = [
     related: ['questionnaire-design', 'translations', 'data-processing'],
   },
   {
-    slug: 'translations', icon: 'translate', name: 'Translations',
+    slug: 'translations', stepsTitle: 'From source to <em>every</em> market.', icon: 'translate', name: 'Translations',
     short: 'Translation and cultural adaptation in 25+ languages.',
     h1: 'Same question, same <em class="s">meaning</em>, in every market.',
     lead: 'Native-speaker translation and cultural adaptation of surveys, stimuli and open-ended responses in 25+ languages, so multi-country data is truly comparable.',
@@ -115,18 +115,18 @@ const services = [
     related: ['survey-programming', 'online-sampling', 'data-processing'],
   },
   {
-    slug: 'online-sampling', icon: 'sampling', name: 'Online sampling',
+    slug: 'online-sampling', stepsTitle: 'From brief to <em>clean</em> completes.', icon: 'sampling', name: 'Online sampling',
     short: 'Verified B2B, healthcare & consumer respondents in 44 countries.',
     h1: 'Reach the <em class="s">exact</em> respondents your study needs.',
     lead: 'Verified B2B decision-makers, healthcare professionals and consumers from our Opinion Genie panel and vetted partners. Profiled in advance, screened for fraud, and delivered on time.',
-    stats: [['Opinion Genie', 'Our own panel, plus API-integrated partners'], ['44', 'Market profiles'], ['Same day', 'Typical feasibility turnaround']],
+    stats: [['Opinion Genie', 'Our own panel, plus API-integrated partners'], ['44', 'Countries we field in'], ['Same day', 'Typical feasibility turnaround']],
     featuresTitle: 'Sample that holds up when the client asks questions',
     features: [
       ['target', 'Deep B2B profiling', 'Target by job role, seniority, department, industry, company size and purchase authority, without a long screener.'],
       ['users', 'Healthcare professionals', 'Physicians, specialists, nurses and pharmacists, verified against professional credentials.'],
       ['globe', 'Multi-country fieldwork', 'Run one study across North America, Europe, APAC, LATAM and MEA, with local quotas managed for you.'],
       ['shield', 'Fraud & quality checks', 'Geo-IP, proxy/VPN, fingerprinting, human-verification and a quality score on every complete.'],
-      ['layers', 'Mid-field flexibility', 'Add quotas, markets or sample size mid-field. Studies range from 50 to 50,000+ completes.'],
+      ['layers', 'Mid-field flexibility', 'Add quotas, markets or sample size mid-field. Studies start from 50 completes.'],
       ['bolt', 'Fast feasibility', 'Feasibility, incidence and CPI by country, usually back to you the same business day.'],
     ],
     steps: [
@@ -146,7 +146,7 @@ const services = [
     related: ['survey-programming', 'questionnaire-design', 'data-processing'],
   },
   {
-    slug: 'data-processing', icon: 'data', name: 'Data processing',
+    slug: 'data-processing', stepsTitle: 'From raw file to <em>checked</em> tables.', icon: 'data', name: 'Data processing',
     short: 'Cleaning, weighting, open-end checks and banner tables.',
     h1: 'Clean data, ready for <em class="s">analysis</em>.',
     lead: 'Data cleaning, weighting, open-end quality checks and banner tables, delivered in SPSS, Excel or CSV, in the format your analysts already use.',
@@ -168,7 +168,7 @@ const services = [
     ],
     deliverables: ['Clean raw data file', 'Removal log', 'Open-end framework', 'Banner tables', 'Data map'],
     faqs: [
-      ['Can you process data from a survey you did not field?', 'Yes. Send the raw data and questionnaire and we can clean, code and tabulate it.'],
+      ['Can you process data from a survey you did not field?', 'Yes. Send the raw data and questionnaire and we can clean it, run open-end quality checks and tabulate it.'],
       ['Which significance tests do you run?', 'Column proportions and means tests at 90/95/99%, with effective base adjustment when the data is weighted.'],
       ['Can you build dashboards?', 'Yes, as part of our insights and reporting service.'],
     ],
@@ -176,7 +176,7 @@ const services = [
     related: ['insights-reporting', 'survey-programming', 'online-sampling'],
   },
   {
-    slug: 'insights-reporting', icon: 'chart', name: 'Insights & report writing',
+    slug: 'insights-reporting', stepsTitle: 'From tables to a <em>story</em>.', icon: 'chart', name: 'Insights & report writing',
     short: 'Executive summaries, dashboards and recommendation decks.',
     h1: 'From data to a <em class="s">decision</em>.',
     lead: 'Charts, executive summaries and recommendation decks that marketing and leadership teams can act on. You get a clear story and next steps, not a pile of tables.',
@@ -206,11 +206,11 @@ const services = [
     related: ['data-processing', 'questionnaire-design', 'end-to-end-project-management'],
   },
   {
-    slug: 'end-to-end-project-management', icon: 'pm', name: 'End-to-end project management',
+    slug: 'end-to-end-project-management', stepsTitle: 'Four gates. <em>Zero</em> surprises.', icon: 'pm', name: 'End-to-end project management',
     short: 'One team from RFP to final deliverable.',
     h1: 'One team, from brief to <em class="s">boardroom</em>.',
     lead: 'A dedicated project manager runs your whole study: feasibility, design, programming, translation, sampling, quality checks, data and reporting, with one point of contact and live status updates throughout.',
-    stats: [['1', 'Point of contact'], ['24/7', 'Support across time zones'], ['98%', 'Client satisfaction']],
+    stats: [['1', 'Point of contact'], ['4', 'Sign-off gates per project'], ['Daily', 'Field status updates']],
     featuresTitle: 'Your research, fully managed',
     features: [
       ['users', 'Dedicated PM', 'A named project manager who knows your study and is available in your time zone.'],
@@ -239,7 +239,7 @@ const services = [
 
 // Enterprise add-on (shown under Solutions, but kept separate from the core research services)
 const automation = {
-  slug: 'workflow-automation', icon: 'flow', name: 'Enterprise workflow automation',
+  slug: 'workflow-automation', stepsTitle: 'From audit to <em>go-live</em>.', icon: 'flow', name: 'Enterprise workflow automation',
   short: 'Connect research pipelines with your CRM, HRMS, ERP and finance systems.',
   h1: 'Automate the work <em class="s">around</em> your research.',
   lead: 'An optional add-on for enterprise and agency clients. We connect your research pipelines, CRM, HRMS, ERP and finance systems, so quotes, projects, invoices and reports move without manual re-keying.',
@@ -270,7 +270,7 @@ const automation = {
 
 const audiences = [
   {
-    slug: 'research-agencies', name: 'Market research agencies', short: 'White-label fieldwork that bids fast and delivers clean.',
+    slug: 'research-agencies', stepsTitle: 'From bid to delivery in <em>three</em> steps.', steps: [['Same day','Bid','Send the screener and quotas. We return feasibility and CPI by market, with incidence stated.'],['Typically 2–7 days in field','Field under your brand','We program or host, field and replace poor completes, with daily status updates.'],['On close','Deliver','Clean data and tables in your template, ready to brand as yours.']], name: 'Market research agencies', short: 'White-label fieldwork that bids fast and delivers clean.',
     h1: 'Your white-label <em class="s">fieldwork</em> team.',
     lead: 'Fast, transparent bids and clean data delivered under your brand. Research agencies use us for sample-only projects, hard-to-reach B2B audiences and full survey operations when their own team is at capacity.',
     stats: [['Same day', 'Typical feasibility turnaround'], ['NDA', 'White-label as standard'], ['0', 'Contact with your end client']],
@@ -290,10 +290,10 @@ const audiences = [
     ],
   },
   {
-    slug: 'brands-insight-teams', name: 'Brands & insight teams', short: 'Run research in-house, or have us run it for you.',
+    slug: 'brands-insight-teams', stepsTitle: 'From question to decision in <em>three</em> steps.', steps: [['Within 24 hours','Scope','We turn your business question into a study design, with options at different budgets.'],['Typically 2–7 days in field','Field','Questionnaire, sample and quality checks, with live status while you are in field.'],['5–7 days after close','Decide','A one-page answer and a full report, read out to your team.']], name: 'Brands & insight teams', short: 'Run research in-house, or have us run it for you.',
     h1: 'Evidence for your next <em class="s">big</em> decision, on your terms.',
     lead: 'Run studies in-house on Research Centric OPS, or have our team design, field and report them for you. Either way, leadership gets a short, clear answer: who to target, what to say and how to price.',
-    stats: [['70', 'Audience types to target'], ['5–7 days', 'Brief to report, typically'], ['1 page', 'Executive summary, always']],
+    stats: [['44', 'Countries we field in'], ['2–3 weeks', 'Brief to report, typically'], ['1 page', 'Executive summary, always']],
     pains: [
       ['Decisions made on hunches', 'Positioning and campaigns are chosen by the loudest opinion in the room.', '<b>Our fix:</b> fast, affordable studies that put real buyer data behind the decision.'],
       ['Data without direction', 'Dashboards full of numbers, but no clear answer to "so what should we do?"', '<b>Our fix:</b> reports that lead with recommendations, written by researchers who know marketing.'],
@@ -310,10 +310,10 @@ const audiences = [
     ],
   },
   {
-    slug: 'startups', name: 'Startups', short: 'Validate demand and pricing before you spend the runway.',
+    slug: 'startups', stepsTitle: 'From idea to evidence in <em>three</em> steps.', steps: [['Within 24 hours','Define your buyer','We sharpen the questions and the exact audience you need to hear from.'],['Typically 2–4 days in field','Talk to real buyers','Independent respondents who match your ICP, screened for fraud.'],['On close','Show the data','Clean results and charts you can put in front of investors.']], name: 'Startups', short: 'Validate demand and pricing before you spend the runway.',
     h1: 'Validate the idea before you spend the <em class="s">runway</em>.',
     lead: 'Studies from 50 respondents, priced for early-stage budgets. Talk to your real target buyers in days, and get data you can put in front of investors.',
-    stats: [['50', 'Minimum completes'], ['48–72 hrs', 'Typical consumer field time'], ['Pay per complete', 'No retainers']],
+    stats: [['50', 'Minimum completes'], ['2–4 days', 'Typical consumer field time'], ['Pay per complete', 'No retainers']],
     pains: [
       ['Feedback from friendly faces', 'Friends, investors and early fans tell you what you want to hear.', '<b>Our fix:</b> independent respondents who match your exact ICP.'],
       ['Guesswork pricing', 'Prices are set to match a competitor or pulled from thin air.', '<b>Our fix:</b> willingness-to-pay studies that show the price your market will accept.'],
@@ -321,7 +321,7 @@ const audiences = [
     ],
     studies: ['Problem & demand validation', 'Concept testing', 'Pricing & willingness to pay', 'Market sizing inputs', 'Competitor perception', 'Feature prioritisation (MaxDiff)'],
     services: ['questionnaire-design', 'online-sampling', 'insights-reporting'],
-    quote: ['Get to a confident go or no-go before you write the first line of code.', 'How founders use Research COPS'],
+    promise: 'Get to a confident go or no-go before you write the first line of code.',
     faqs: [
       ['Is research worth it at pre-seed?', 'A focused 100–300 person study often costs less than one month of an engineer\'s time, and it can save you from building the wrong product.'],
       ['Can you help us write the survey?', 'Yes. Founders often bring a rough list of questions, and we turn it into a clean, unbiased survey.'],
@@ -329,10 +329,10 @@ const audiences = [
     ],
   },
   {
-    slug: 'advertising-media', name: 'Advertising & media', short: 'Pre-test creative and prove campaign impact.',
+    slug: 'advertising-media', stepsTitle: 'From creative to proof in <em>three</em> steps.', steps: [['Within 24 hours','Design the test','A monadic pre-test or an exposed-versus-control lift design, matched to the campaign.'],['Typically 2–4 days in field','Field','Ads embedded in the survey, shown to the right audience, with quality-checked completes.'],['On close','Report','Recall, appeal and lift, in your client template or as a white-label report.']], name: 'Advertising & media', short: 'Pre-test creative and prove campaign impact.',
     h1: 'Prove what your creative <em class="s">actually</em> did.',
     lead: 'Pre-test ads with the right audience, measure brand lift after a campaign, and give clients independent numbers that hold up in a quarterly review.',
-    stats: [['48–72 hrs', 'Typical pre-test turnaround'], ['Exposed vs control', 'Lift study design'], ['44', 'Markets for global campaigns']],
+    stats: [['2–4 days', 'Typical pre-test field time'], ['Exposed vs control', 'Lift study design'], ['44', 'Markets for global campaigns']],
     pains: [
       ['Creative chosen by committee', 'The winning concept is the one the client liked, not the one the audience responded to.', '<b>Our fix:</b> fast monadic pre-tests that show recall, appeal and message take-out.'],
       ['Media metrics aren\'t enough', 'Impressions and clicks don\'t prove the brand moved.', '<b>Our fix:</b> brand-lift studies that compare exposed and control audiences.'],
@@ -340,7 +340,7 @@ const audiences = [
     ],
     studies: ['Creative & ad pre-testing', 'Brand lift', 'Campaign tracking', 'Audience profiling', 'Media consumption studies', 'Post-campaign ROI'],
     services: ['online-sampling', 'survey-programming', 'insights-reporting', 'translations'],
-    quote: ['We were impressed with the depth of audience insight and the professionalism of the team.', 'Project Manager, sampling company'],
+    promise: 'Independent numbers your client can take into a quarterly review.',
     faqs: [
       ['Can respondents view video and display ads in the survey?', 'Yes. We embed video, audio, display and social mock-ups, and track view completion.'],
       ['How do you build a control group?', 'We match control respondents to the exposed group on demographics and media habits, then compare brand metrics.'],
@@ -348,10 +348,10 @@ const audiences = [
     ],
   },
   {
-    slug: 'panel-sample-companies', name: 'Panel & sample companies', short: 'Plug your panel into live project demand.',
+    slug: 'panel-sample-companies', stepsTitle: 'From connection to reconciled completes in <em>three</em> steps.', steps: [['Set-up','Connect','Integrate through your API, or with tokenised redirects and postbacks.'],['Live','Receive target groups','Projects create, launch, pause and resume target groups with CPI and completes goals.'],['Month end','Reconcile','Completes reviewed against your counts and exportable as CSV.']], name: 'Panel & sample companies', short: 'Plug your panel into live project demand.',
     h1: 'Plug your panel into <em class="s">live</em> demand.',
     lead: 'Connect as an API-integrated partner or a redirect-based supplier. Projects in Research Centric OPS can create, launch, pause and resume target groups through your API, set CPI and completes goals, and sync profiling and quotas.',
-    stats: [['API', 'Server-to-server integration'], ['Redirects', 'Tokenised links & postbacks'], ['44', 'Market profiles of demand']],
+    stats: [['2', 'Ways to connect: API or redirects'], ['Live', 'Quota & profiling sync'], ['44', 'Countries of project demand']],
     pains: [
       ['Projects set up by hand', 'Every new project means emails, links and a quota sheet typed into your system.', '<b>Our fix:</b> target groups created, launched, paused and resumed through your API.'],
       ['Status that drifts', 'Completes, terminates and quotas fall out of step between systems.', '<b>Our fix:</b> profiling and quota sync through the API, or tokenised redirects with postbacks.'],

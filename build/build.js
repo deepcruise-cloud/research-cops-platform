@@ -67,10 +67,10 @@ const cur = (url, current) => (url === current ? ' aria-current="page"' : '');
 function header(current) {
   const inPlat = current.startsWith('/platform/'), inSol = current.startsWith('/solutions/'), inAud = current.startsWith('/who-we-serve/');
   const item = (u, name, short) => `<a href="${u}"${cur(u, current)}><b>${name}</b><small>${short}</small></a>`;
-  const platLinks = item('/platform/', 'Platform overview', 'Every step of a study, on one platform.') + PLATFORM_SEQ.map(p => item(p.url, p.name, p.short)).join('') + item('/platform/methodologies/', `${methodologyTotal} methodologies`, 'Pricing, product and UX/CX designs, each with a built-in report.');
+  const platLinks = item('/platform/', 'Platform overview', 'Every step of a study, on one platform.') + PLATFORM_SEQ.map(p => item(p.url, p.name, p.short)).join('') + item('/platform/methodologies/', `${methodologyTotal} methodologies`, 'Pricing, product and UX/CX designs, each with a built-in report.') + `<a class="addon" href="/contact/?need=Platform%20demo"><b>Book a platform demo</b><small>A 30-minute walkthrough on one of your own briefs.</small></a>`;
   const solLinks = services.map(s => item(solUrl(s.slug), s.name, s.short)).join('') + `<a class="addon" href="${solUrl(automation.slug)}"${cur(solUrl(automation.slug), current)}><b>${automation.name}<span class="badge">Add-on</span></b><small>${automation.short}</small></a>`;
   const audLinks = audiences.map(a => item(audUrl(a.slug), a.name, a.short)).join('');
-  const mm = (label, items) => `<div class="mm-group">${label}</div>` + items.map(([u, t]) => `<a href="${u}">${t}</a>`).join('');
+  const mm = (label, items) => `<details class="mm-d"><summary>${label}</summary>${items.map(([u, t]) => `<a href="${u}">${t}</a>`).join('')}</details>`;
   return `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -93,7 +93,6 @@ function header(current) {
     </nav>
     <div class="nav-cta">
       <a href="${DIY_URL}" class="nav-signin" rel="noopener">Sign in</a>
-      <a href="/contact/?need=Platform%20demo" class="btn btn-ghost btn-line-nav">Book a demo</a>
       <a href="/contact/" class="btn btn-primary">Get a quote</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -102,10 +101,11 @@ function header(current) {
   </div>
 </header>
 <div class="mobile-menu rc-chrome" id="mobileMenu">
-  ${mm('Platform', [['/platform/', 'Platform overview'], ...PLATFORM_SEQ.map(p => [p.url, p.name]), ['/platform/methodologies/', 'Methodologies'], [DIY_URL, 'Sign in to the platform']])}
+  <div class="mm-actions"><a href="/contact/" class="btn btn-primary">Get a quote</a><a href="${DIY_URL}" class="btn btn-ghost" rel="noopener">Sign in</a></div>
+  ${mm('Platform', [['/platform/', 'Platform overview'], ...PLATFORM_SEQ.map(p => [p.url, p.name]), ['/platform/methodologies/', 'Methodologies'], ['/contact/?need=Platform%20demo', 'Book a platform demo']])}
   ${mm('Services', [...allSolutions.map(s => [solUrl(s.slug), s.name]), ['/solutions/', 'All services']])}
   ${mm('Who we serve', audiences.map(a => [audUrl(a.slug), a.name]))}
-  ${mm('Company', [['/pricing/', 'Pricing & plans'], ['/#estimator', 'CPI estimator'], ['/insights.html', 'Insights'], ['/about/', 'About'], ['/contact/?need=Platform%20demo', 'Book a demo'], ['/contact/', 'Contact & quote']])}
+  ${mm('Company', [['/pricing/', 'Pricing & plans'], ['/#estimator', 'CPI estimator'], ['/insights.html', 'Insights'], ['/about/', 'About'], ['/contact/', 'Contact']])}
 </div>`;
 }
 
@@ -138,7 +138,30 @@ const footer = () => `<footer class="rc-chrome">
   </div>
 </footer>`;
 
+// Search-result descriptions, kept to 160 characters or fewer
+const DESC = {
+  "/": "One platform and one team for every research step: feasibility, survey building, translation, sample in 44 markets, quality checks and data processing.",
+  "/platform/feasibility-costing/": "Pick markets, audience, sample size, LOI and incidence. Get a recommended CPI, feasibility range and field time for each market in seconds.",
+  "/platform/survey-builder/": "33 question types, logic, piping, quotas and randomisation, with automatic preflight checks and an LOI estimate before you launch.",
+  "/platform/translation/": "A translation version per language, with built-in machine translation, an optional AI provider and localised respondent screens, including RTL.",
+  "/platform/sample-collection/": "Field through Opinion Genie and API-integrated partners. Allocate quotas by supplier, soft-launch, and track completes and incidence live.",
+  "/platform/data-reporting/": "Clean, weight, run banner tables and organise open ends into a theme framework, with a built-in report for every methodology.",
+  "/platform/methodologies/": "24 methodologies with built-in reports, including Van Westendorp, Gabor-Granger, CBC conjoint, MaxDiff, TURF, Kano and concept tests.",
+  "/platform/security/": "Geo-IP, proxy/VPN, fingerprinting, human verification and quality scores on every survey link, plus 2FA, SSO, role-based access and an audit log.",
+  "/solutions/": "Questionnaire design, programming, translations, online sampling, data processing, reporting and project management from one research team.",
+  "/solutions/questionnaire-design/": "Research leads turn your business objective into a survey respondents finish, with screeners, logic notes, an LOI estimate and a tab plan.",
+  "/solutions/survey-programming/": "Mobile-first survey programming with complex logic, piping and quotas. Every script is tested by a second programmer before launch.",
+  "/solutions/online-sampling/": "Verified B2B, healthcare and consumer respondents from Opinion Genie and vetted partners, profiled in advance and screened for fraud.",
+  "/solutions/end-to-end-project-management/": "One project manager runs your whole study, from feasibility and design to fieldwork, data and reporting, with live status updates.",
+  "/solutions/workflow-automation/": "An optional add-on that connects your research pipelines with CRM, HRMS, ERP and finance systems, so work moves without re-keying.",
+  "/who-we-serve/research-agencies/": "Fast, transparent bids and clean data under your brand: sample-only projects, hard-to-reach B2B audiences and survey ops on demand.",
+  "/who-we-serve/brands-insight-teams/": "Run studies in-house on Research Centric OPS or have our team run them. Leadership gets a short, clear answer on who to target and how to price.",
+  "/who-we-serve/panel-sample-companies/": "Connect your panel by API or redirects. Projects create, launch, pause and resume target groups, set CPI and completes goals, and sync quotas.",
+  "/about/": "Research COPS is a market research operations company in Greater Noida, India, and the team behind the Research Centric OPS platform."
+};
+
 function head({ url, title, description, extraHead = '' }) {
+  description = DESC[url] || description;
   const full = url === '/' ? title : `${title} · Research COPS`;
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -217,10 +240,10 @@ const band = (h = 'Bring a live brief. Leave with a <em class="s">price</em>.', 
 
 const crumbs = items => `<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>${items.map(([u, t]) => `<span>/</span>${u ? `<a href="${u}">${t}</a>` : `<b style="font-weight:500;color:var(--on-dark-body)">${t}</b>`}`).join('')}</nav>`;
 
-const pageHero = ({ trail, eyebrow, h1, lead, stats, ctas = 'quote', slim = false, need = '' }) => {
+const pageHero = ({ trail, eyebrow, h1, lead, stats, ctas = 'quote', slim = false, need = '', primary = 'Get a quote', alt = ['/#estimator', 'Estimate your CPI'] }) => {
   const q = need ? `?need=${encodeURIComponent(need)}` : '';
   const ctaHtml = ctas === 'quote'
-    ? `<div class="hero-ctas"><a href="/contact/${q}" class="btn btn-primary">Get a quote ${arrow}</a><a href="/#estimator" class="btn btn-ghost">Estimate your CPI</a></div>`
+    ? `<div class="hero-ctas"><a href="/contact/${q}" class="btn btn-primary">${primary} ${arrow}</a><a href="${alt[0]}" class="btn btn-ghost">${alt[1]}</a></div>`
     : ctas === 'demo'
       ? `<div class="hero-ctas"><a href="/contact/?need=Platform%20demo" class="btn btn-primary">Book a demo ${arrow}</a><a href="/pricing/" class="btn btn-ghost">See plans</a></div><p class="hero-signin">Already have an account? <a href="${DIY_URL}" rel="noopener">Sign in to Research Centric OPS →</a></p>`
       : '';
@@ -261,10 +284,10 @@ const MOCKS = {
   <div class="mock-body mock-2">
     <div><h4>The brief</h4>
       <dl class="mock-dl"><dt>Market</dt><dd>Germany</dd><dt>Audience</dt><dd>B2B Decision Makers</dd><dt>Incidence</dt><dd>35%</dd><dt>Interview length</dt><dd>15 minutes</dd><dt>Sample size</dt><dd>200</dd><dt>Geography</dt><dd>National</dd></dl></div>
-    <div><h4>Recommended CPI</h4><div class="mock-big">$15.38</div><p class="mock-mute">CPI range $13.53 – $18.52 · Field time 14–22 days</p>
+    <div><h4>Recommended CPI</h4><div class="mock-big">$15.38</div><p class="mock-mute">CPI range $13.53 – $18.52 · Field time 5–7 days</p>
       <div class="mock-cases"><div><small>Worst case</small><b>211</b></div><div><small>Expected</small><b>386</b></div><div><small>Confidence</small><b class="ok">Very High</b></div></div>
       <h4 style="margin-top:16px">Target universe</h4>
-      <ul class="mock-ul"><li><span>Estimated target universe</span><b>Anchored</b></li><li><span>Online share (adjusted for age &amp; type)</span><b>Measured</b></li><li><span>Assumed IR · conversion</span><b>35% · shown</b></li></ul></div>
+      <ul class="mock-ul"><li><span>Estimated target universe</span><b>1.9M · Anchored</b></li><li><span>Online share (adjusted for age &amp; type)</span><b>62% · Measured</b></li><li><span>Assumed IR · conversion</span><b>35% · 14%</b></li></ul></div>
   </div></div>`,
   builder: `<div class="mock" aria-label="Example Survey Builder screen">
   <div class="mock-bar"><i></i><i></i><i></i><span><b class="bar-brand">Research Centric OPS</b> / projects / builder</span></div>
@@ -306,7 +329,7 @@ function platformIndex() {
 <section>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">The way it works today</span><h2>Six tools. Four teams. <em class="s">Endless</em> hand-offs.</h2><p>The tools are fine. The seams between them are not: every hand-off between them means a file, an email and someone waiting.</p></div>
-    <div class="seams reveal">${[['Feasibility & cost', 'A spreadsheet, three supplier emails, and a day of waiting for a bid.'], ['Scripting & hosting', 'A survey platform with its own login, its own question library and its own rules.'], ['Translation', 'Word files out to a vendor, corrected files back, re-scripted by hand.'], ['Sample sourcing', 'Supplier portals, redirect links pasted by hand, quotas tracked in a second sheet.'], ['Data & coding', 'A raw export, a cleaning script, open ends sent to a coding house, weights in a stats package.'], ['Tables & reporting', 'A tab spec, a table book nobody reads, and a deck rebuilt by hand every wave.']].map(([t, d], i) => `<div class="seam"><span>0${i + 1}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
+    <div class="seams reveal">${[['Feasibility & cost', 'A spreadsheet, three supplier emails, and a day of waiting for a bid.'], ['Scripting & hosting', 'A survey platform with its own login, its own question library and its own rules.'], ['Translation', 'Word files out to a vendor, corrected files back, re-scripted by hand.'], ['Sample sourcing', 'Supplier portals, redirect links pasted by hand, quotas tracked in a second sheet.'], ['Data & open ends', 'A raw export, a cleaning script, open ends sent to an outside vendor, weights in a stats package.'], ['Tables & reporting', 'A tab spec, a table book nobody reads, and a deck rebuilt by hand every wave.']].map(([t, d], i) => `<div class="seam"><span>0${i + 1}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
   </div>
 </section>
 
@@ -330,7 +353,7 @@ function platformIndex() {
     <div class="sec-head reveal"><span class="eyebrow">Side by side</span><h2>Same jobs. <em class="s">None</em> of the seams.</h2></div>
     <div class="cmp reveal" role="table" aria-label="Typical tools compared with Research Centric OPS">
       <div class="cmp-h" role="row"><span role="columnheader">The job</span><span role="columnheader">Typically done with</span><span role="columnheader">In Research Centric OPS</span></div>
-      ${[['Feasibility & price', 'Excel, supplier emails, past jobs', 'CPI, range and confidence per market, in seconds'], ['Survey build', 'A separate scripting platform', '33 question types, logic and preflight checks'], ['Translation', 'Word files out, re-scripted by hand', 'A translation version per language, in the survey'], ['Sample & suppliers', 'Portals, manual redirects, a quota sheet', 'Opinion Genie, API partners and a live quota engine'], ['Data quality', 'Spot checks after fieldwork', 'Seven checks built into every survey link'], ['Cleaning & open ends', 'Stats package plus a coding vendor', 'Cleaning rules, weighting and open-end quality checks'], ['Tables & reporting', 'Tab spec, table book, hand-built deck', 'Banner tables, built-in reports, PowerPoint export'], ['Billing', 'A finance chase at month end', 'Invoicing with CSV export and usage-based billing']].map(r => `<div role="row"><b role="cell">${r[0]}</b><span role="cell" class="old">${r[1]}</span><span role="cell" class="new">${check}${r[2]}</span></div>`).join('')}
+      ${[['Feasibility & price', 'Excel, supplier emails, past jobs', 'CPI, range and confidence per market, in seconds'], ['Survey build', 'A separate scripting platform', '33 question types, logic and preflight checks'], ['Translation', 'Word files out, re-scripted by hand', 'A translation version per language, in the survey'], ['Sample & suppliers', 'Portals, manual redirects, a quota sheet', 'Opinion Genie, API partners and a live quota engine'], ['Data quality', 'Spot checks after fieldwork', 'Seven checks built into every survey link'], ['Cleaning & open ends', 'Stats package plus an open-end vendor', 'Cleaning rules, weighting and open-end quality checks'], ['Tables & reporting', 'Tab spec, table book, hand-built deck', 'Banner tables, built-in reports, PowerPoint export'], ['Billing', 'A finance chase at month end', 'Invoicing with CSV export and usage-based billing']].map(r => `<div role="row"><b role="cell">${r[0]}</b><span role="cell" class="old">${r[1]}</span><span role="cell" class="new">${check}${r[2]}</span></div>`).join('')}
     </div>
   </div>
 </section>
@@ -338,7 +361,7 @@ function platformIndex() {
 <section>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Where the margin goes</span><h2>Where your margin <em class="s">leaks</em>.</h2></div>
-    <div class="feat-grid reveal cols-4">${[['doc', 'Re-keying the same study', 'The audience is typed into the bid sheet, the supplier portal, the screener and the tab spec: four chances to disagree with yourself.'], ['wallet', 'Quoting from memory', 'A price based on what a similar study cost last year, which nobody can reconstruct three weeks later.'], ['clock', 'Waiting on a bid', 'The client wants a number in the meeting, but the supplier replies tomorrow.'], ['users', 'No single record', 'The only person who knows the project\'s real status is the one who hasn\'t gone on leave yet.']].map(([ic, t, d]) => `<div class="feat"><div class="ico">${icon(ic)}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
+    <div class="feat-grid reveal cols-4">${[['doc', 'Re-keying the same study', 'The audience is typed into the bid sheet, the supplier portal, the screener and the tab spec: four chances to disagree with yourself.'], ['wallet', 'Quoting from memory', 'A price based on what a similar study cost last year, which nobody can reconstruct three weeks later.'], ['clock', 'Waiting on a bid', 'The client wants a number in the meeting, but the supplier replies tomorrow.'], ['users', 'No single source of truth', 'The only person who knows the project\'s real status is the one who hasn\'t gone on leave yet.']].map(([ic, t, d]) => `<div class="feat"><div class="ico">${icon(ic)}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
   </div>
 </section>
 
@@ -373,13 +396,12 @@ function platformIndex() {
     </div>
   </div>
 </section>
-${band()}
+${read('src/api-section.html')}
 ${contactSection().replace('<option>Platform demo</option>', '<option selected>Platform demo</option>')}`;
   return layout({ url: '/platform/', title: 'Research Centric OPS platform', description: 'Feasibility and costing, survey building, translation, sample collection, data quality checks and data processing, all on one platform.', body });
 }
 
 function modulePage(m) {
-  const others = modules.filter(x => x !== m);
   const body = `${pageHero({ trail: [['/platform/', 'Platform'], [null, m.name]], eyebrow: `Platform · ${m.step}`, h1: m.h1, lead: m.lead, ctas: 'demo' })}
 
 <section style="padding-top:64px">
@@ -430,10 +452,9 @@ ${m.extras ? `<section>
 <section${m.extras || m.groups ? ' style="background:var(--paper-2)"' : ''}>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">One platform</span><h2>One platform, <em class="s">end to end</em>.</h2></div>
-    <div class="rel-grid reveal cols-4">${others.map(o => relCard(modUrl(o.slug), o.name, o.short, 'Explore')).join('')}</div>
+    <div class="rel-grid reveal cols-3">${PLATFORM_SEQ.map(p => p.url === modUrl(m.slug) ? relCard(p.url, p.name, p.short, 'You are here').replace('class="rel"', 'class="rel is-current" aria-current="page"').replace('You are here →', 'You are here') : relCard(p.url, p.name, p.short, 'Explore')).join('')}</div>
   </div>
 </section>
-${band()}
 ${contactSection().replace('<option>Platform demo</option>', '<option selected>Platform demo</option>')}`;
   return layout({ url: modUrl(m.slug), title: `${m.name} | Research Centric OPS`, description: strip(m.lead), body });
 }
@@ -446,8 +467,7 @@ function methodologiesPage() {
     <p class="note reveal" style="margin-top:36px">The full catalogue of ${methodologyTotal} is in the app; the groups above show the main designs. NPS is available as a question type in the Survey Builder. Which methodologies you get depends on your plan. <a href="/pricing/#compare" style="color:var(--accent-ink);font-weight:600">Compare plans →</a></p>
   </div>
 </section>
-${band()}
-${contactSection()}`;
+${contactFor('Platform demo')}`;
   return layout({ url: '/platform/methodologies/', title: 'Research methodologies', description: `${methodologyTotal} methodologies with built-in reports: Van Westendorp, Gabor-Granger, CBC conjoint, MaxDiff, TURF, Kano, concept and A/B tests, card sorting, tree testing, first click, heatmaps and more.`, body });
 }
 
@@ -490,6 +510,7 @@ function pricingPage() {
 <section id="compare" style="background:var(--paper-2)">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Compare every plan</span><h2>Every plan, <em class="s">side by side</em>.</h2></div>
+    <p class="swipe-hint">Swipe to compare all plans →</p>
     <div class="ctable reveal" role="table" aria-label="Plan comparison">
       <div class="ct-row ct-head" role="row"><span role="columnheader">Feature</span>${plans.map(p => `<span role="columnheader">${p.name}</span>`).join('')}</div>
       ${compare.map(([g, rows]) => `<div class="ct-group" role="row"><span role="cell">${g}</span></div>${rows.map(r => `<div class="ct-row" role="row"><span role="cell">${r[0]}</span>${r.slice(1).map(v => `<span role="cell">${cell(v)}</span>`).join('')}</div>`).join('')}`).join('')}
@@ -514,7 +535,7 @@ function pricingPage() {
 <section style="background:var(--paper-2)">
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Where the money comes from</span><h2>Four savings. Only <em class="s">one</em> is a licence.</h2></div>
-    <div class="feat-grid reveal cols-4">${[['Vendor fees', 'Coding house, tabulation bureau and translation management.'], ['Licence consolidation', 'Scripting platform, stats package and panel integrations.'], ['Operations hours', 'No more re-keying the same study into four systems or chasing status.'], ['Bids won', 'You stop losing opportunities because the quote arrived the next day.']].map(([t, d]) => `<div class="feat"><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
+    <div class="feat-grid reveal cols-4">${[['Vendor fees', 'Open-end vendors, tabulation bureau and translation management.'], ['Licence consolidation', 'Scripting platform, stats package and panel integrations.'], ['Operations hours', 'No more re-keying the same study into four systems or chasing status.'], ['Bids won', 'You stop losing opportunities because the quote arrived the next day.']].map(([t, d]) => `<div class="feat"><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
     <div class="note reveal" style="margin-top:28px"><b>The honest version:</b> the licence saving is the smallest of the four. Operations hours are the largest, and the hardest to see on an invoice. We don't quote industry-average percentages. In a working session, we fill in the numbers from your own last four projects.</div>
   </div>
 </section>
@@ -524,11 +545,29 @@ ${contactSection().replace('<option>Platform plans</option>', '<option selected>
 }
 
 
+// Secondary hero button per service (CPI only where fieldwork is priced)
+const SERVICE_ALT = {
+  'questionnaire-design': ['/contact/?need=Full-service%20study', 'Get a questionnaire audit'],
+  'survey-programming': ['/platform/survey-builder/', 'See it in the platform'],
+  'translations': ['/platform/translation/', 'See it in the platform'],
+  'data-processing': ['/platform/data-reporting/', 'See it in the platform'],
+  'insights-reporting': ['/contact/?need=Full-service%20study', 'Request a sample report'],
+  'workflow-automation': ['/workflow-hub.html', 'Try the live demo'],
+};
+const AUD_TYPE = { 'research-agencies': 'Research agency', 'brands-insight-teams': 'Brand / insight team', 'startups': 'Startup', 'advertising-media': 'Advertising / media', 'panel-sample-companies': 'Panel / sample company' };
+// The quote form with the right "I need" option and "I am a…" chip preselected
+const contactFor = (need, type) => {
+  let html = contactSection();
+  if (need) html = html.replace(`<option>${need}</option>`, `<option selected>${need}</option>`);
+  if (type) html = html.replace(' checked>', '>').replace(`value="${type}">`, `value="${type}" checked>`);
+  return html;
+};
+
 function solutionPage(s) {
   const isAddon = s === automation;
   const need = isAddon ? 'Workflow automation' : s.slug === 'online-sampling' ? 'Sample only' : 'Full-service study';
   const aud = (s.audiences || []).map(a => audBySlug[a]);
-  const body = `${pageHero({ trail: [['/solutions/', 'Services'], [null, s.name]], eyebrow: isAddon ? 'Enterprise add-on' : 'Managed services', h1: s.h1, lead: s.lead, stats: s.stats, need })}
+  const body = `${pageHero({ trail: [['/solutions/', 'Services'], [null, s.name]], eyebrow: isAddon ? 'Enterprise add-on' : 'Managed services', h1: s.h1, lead: s.lead, stats: s.stats, need, ...(SERVICE_ALT[s.slug] ? { alt: SERVICE_ALT[s.slug] } : {}) })}
 ${isAddon ? `<section style="padding:48px 0 0"><div class="wrap"><a class="demo-cta reveal" href="/workflow-hub.html"><span><small>Interactive demo</small><b>Explore the workflow automation suites and launch the live dashboard simulator</b></span>${arrow}</a></div></section>` : ''}
 
 <section>
@@ -542,7 +581,7 @@ ${isAddon ? `<section style="padding:48px 0 0"><div class="wrap"><a class="demo-
   <div class="wrap split">
     <div class="sticky reveal">
       <span class="eyebrow">How it works</span>
-      <h2>Clear steps. <em class="s" style="color:var(--accent)">Zero</em> surprises.</h2>
+      <h2>${s.stepsTitle.replace('<em>', '<em class="s" style="color:var(--accent)">')}</h2>
       <p class="lead2">Every project has a named project manager, sign-off points and live status updates.</p>
       <h4 style="margin:32px 0 14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--sans);color:var(--on-dark-muted)">Deliverables</h4>
       <div class="chips">${s.deliverables.map(d => `<span class="chip" style="background:transparent;color:var(--on-dark);border-color:var(--line-dark)">${d}</span>`).join('')}</div>
@@ -567,8 +606,6 @@ ${faqBlock(s.faqs)}
   </div>
 </section>
 
-${band(isAddon ? 'Want to see where automation would save your team time?' : undefined, isAddon ? 'Book a 30-minute workflow audit call with our automation team.' : undefined)}
-
 ${contactSection().replace(`<option>${need}</option>`, `<option selected>${need}</option>`)}
 ${faqSchema(s.faqs)}`;
   return layout({ url: solUrl(s.slug), title: strip(s.name), description: strip(s.lead), body });
@@ -579,7 +616,7 @@ function solutionsIndex() {
 <section>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Research services</span><h2>From brief to <em class="s">boardroom</em>.</h2></div>
-    <div class="feat-grid reveal">${services.map(s => `<a class="feat rel" href="${solUrl(s.slug)}"><div class="ico">${icon(s.icon)}</div><h3>${s.name}</h3><p>${s.short}</p><span class="more">Learn more →</span></a>`).join('')}</div>
+    <div class="feat-grid svc-grid reveal">${services.map(s => `<a class="feat rel" href="${solUrl(s.slug)}"><div class="ico">${icon(s.icon)}</div><h3>${s.name}</h3><p>${s.short}</p><span class="more">Learn more →</span></a>`).join('')}</div>
     <a class="demo-cta reveal" href="/platform/" style="margin-top:28px"><span><small>Prefer to run it yourself?</small><b>The same capabilities are available as a platform: Research Centric OPS</b></span>${arrow}</a>
   </div>
 </section>
@@ -589,15 +626,15 @@ function solutionsIndex() {
     <ul class="checks reveal" style="color:var(--on-dark)">${automation.features.map(([, t, d]) => `<li>${check}<span><b style="color:#fff">${t}.</b> <span style="color:var(--on-dark-muted)">${d}</span></span></li>`).join('')}</ul>
   </div>
 </section>
-${band()}
 ${contactSection()}`;
   return layout({ url: '/solutions/', title: 'Managed research services', description: 'Questionnaire design, survey programming, translations, online sampling with built-in quality checks, data processing, insight reporting, project management and enterprise workflow automation.', body });
 }
 
 function audiencePage(a) {
   const others = audiences.filter(x => x !== a);
-  const need = a.slug === 'research-agencies' ? 'Sample only' : a.slug === 'panel-sample-companies' ? 'Platform demo' : 'Full-service study';
-  const body = `${pageHero({ trail: [['/who-we-serve/', 'Who we serve'], [null, a.name]], eyebrow: `For ${a.name.toLowerCase()}`, h1: a.h1, lead: a.lead, stats: a.stats, need })}
+  const need = a.slug === 'research-agencies' ? 'Sample only' : a.slug === 'panel-sample-companies' ? 'Supply partnership' : 'Full-service study';
+  const supplier = a.slug === 'panel-sample-companies';
+  const body = `${pageHero({ trail: [['/who-we-serve/', 'Who we serve'], [null, a.name]], eyebrow: `For ${a.name.toLowerCase()}`, h1: a.h1, lead: a.lead, stats: a.stats, need, ...(supplier ? { primary: 'Become a supply partner', alt: ['/platform/sample-collection/', 'See the integration'] } : {}) })}
 
 <section class="dark" style="padding-top:24px">
   <div class="wrap">
@@ -616,7 +653,7 @@ ${a.platform ? `<section style="padding-bottom:0">
       <span class="eyebrow">Typical projects</span>
       <h2>What ${a.name.toLowerCase()} use us for</h2>
       <div class="chips lg" style="margin-top:24px">${a.studies.map(s => `<span class="chip">${s}</span>`).join('')}</div>
-      <div class="quote-mini" style="margin-top:36px">“${a.quote[0]}”<small>${a.quote[1]}</small></div>
+      ${a.quote ? `<div class="quote-mini" style="margin-top:36px">“${a.quote[0]}”<small>${a.quote[1]}</small></div>` : `<div class="promise" style="margin-top:36px"><small>Our promise</small>${a.promise}</div>`}
     </div>
     <div class="reveal">
       <span class="eyebrow">Recommended services</span>
@@ -627,12 +664,8 @@ ${a.platform ? `<section style="padding-bottom:0">
 
 <section style="background:var(--paper-2)">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">How it works</span><h2>From brief to clean data in <em class="s">three</em> steps.</h2></div>
-    <div class="steps reveal">
-      <div class="step"><span class="num">01</span><span class="when">Within 24 hours</span><h3>Discover & design</h3><p>Objectives, audience, method, budget and timeline, returned as a feasibility and cost plan.</p></div>
-      <div class="step"><span class="num">02</span><span class="when">Typically 48–72 hours</span><h3>Collect & validate</h3><p>Programming, launch, and real-time monitoring of quotas and quality.</p></div>
-      <div class="step"><span class="num">03</span><span class="when">On close</span><h3>Deliver & advise</h3><p>Clean data in your format, plus tables and an insight report if you need them.</p></div>
-    </div>
+    <div class="sec-head reveal"><span class="eyebrow">How it works</span><h2>${a.stepsTitle.replace('<em>', '<em class="s">')}</h2></div>
+    <div class="steps reveal">${a.steps.map(([when, t, d], i) => `<div class="step"><span class="num">0${i + 1}</span><span class="when">${when}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
   </div>
 </section>
 
@@ -640,12 +673,12 @@ ${faqBlock(a.faqs)}
 
 <section style="background:var(--paper-2);padding-top:88px">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="eyebrow">Also serving</span><h2>Also <em class="s">trusted</em> by.</h2></div>
+    <div class="sec-head reveal"><span class="eyebrow">Also serving</span><h2>Other teams we <em class="s">work</em> with.</h2></div>
     <div class="rel-grid reveal cols-4">${others.map(o => relCard(audUrl(o.slug), o.name, o.short, 'See how we help')).join('')}</div>
   </div>
 </section>
 
-${contactSection().replace(`<option>${need}</option>`, `<option selected>${need}</option>`)}
+${contactFor(need, AUD_TYPE[a.slug])}
 ${faqSchema(a.faqs)}`;
   return layout({ url: audUrl(a.slug), title: `For ${a.name}`, description: strip(a.lead), body });
 }
@@ -654,16 +687,21 @@ function audiencesIndex() {
   const body = `${pageHero({ trail: [[null, 'Who we serve']], eyebrow: 'Who we serve', h1: 'Five teams. <em class="s">One</em> research engine.', lead: 'Whether you resell sample, run research in-house, need answers for a launch or have to prove a campaign worked, we adapt the platform, the service and the price to you.' })}
 <section>
   <div class="wrap">
-    <div class="rel-grid reveal cols-2">${audiences.map(a => `<a class="rel" href="${audUrl(a.slug)}" style="padding:36px"><span class="eyebrow" style="margin-bottom:14px">For ${a.name.toLowerCase()}</span><h3 style="font-size:26px">${strip(a.h1)}</h3><p>${a.short}</p><div class="chips" style="margin-bottom:20px">${a.studies.slice(0, 3).map(s => `<span class="chip">${s}</span>`).join('')}</div><span class="more">See how we help →</span></a>`).join('')}</div>
+    <div class="rel-grid reveal cols-2">${audiences.map(a => `<a class="rel" href="${audUrl(a.slug)}" style="padding:36px"><span class="eyebrow" style="margin-bottom:14px">For ${a.name.toLowerCase()}</span><h3 style="font-size:26px">${strip(a.h1)}</h3><p>${strip(a.lead).split('. ')[0]}.</p><div class="chips" style="margin-bottom:20px">${a.studies.slice(0, 3).map(s => `<span class="chip">${s}</span>`).join('')}</div><span class="more">See how we help →</span></a>`).join('')}</div>
   </div>
 </section>
-${band()}
+<section id="industries" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Industries</span><h2>Fluent in <em class="s">your</em> category.</h2></div>
+    <div class="ind reveal">${['Technology & SaaS', 'Healthcare & Pharma', 'Financial Services', 'Automotive', 'Retail & CPG', 'Telecom & Mobile', 'Advertising & Media', 'Entertainment & Gaming', 'Travel & Hospitality', 'Energy & CleanTech', 'Manufacturing', 'Real Estate', 'Education', 'Legal & Professional Services', 'Market Research'].map(i => `<span>${i}</span>`).join('')}</div>
+  </div>
+</section>
 ${contactSection()}`;
   return layout({ url: '/who-we-serve/', title: 'Who we serve', description: 'Research COPS works with market research agencies, brands and insight teams, startups, advertising and media agencies, and panel and sample companies.', body });
 }
 
 function aboutPage() {
-  const body = `${pageHero({ trail: [[null, 'About']], eyebrow: 'About Research COPS', h1: 'Research <em class="s">Centric</em> Ops.', lead: 'We are a market research operations company based in Greater Noida, India, and the team behind the Research Centric OPS platform. We help agencies, brands, startups, advertisers and panel companies collect data they can trust and turn it into decisions.', stats: [['44', 'Market profiles'], [String(methodologyTotal), 'Methodologies in the platform'], ['98%', 'Client satisfaction']], ctas: false })}
+  const body = `${pageHero({ trail: [[null, 'About']], eyebrow: 'About Research COPS', h1: 'Research <em class="s">Centric</em> Ops.', lead: 'We are a market research operations company based in Greater Noida, India, and the team behind the Research Centric OPS platform. We help agencies, brands, startups, advertisers and panel companies collect data they can trust and turn it into decisions.', stats: [['44', 'Market profiles'], [String(methodologyTotal), 'Methodologies in the platform'], ['70', 'Audience types in 8 categories']], ctas: false })}
 
 <section>
   <div class="wrap split">
@@ -700,7 +738,7 @@ function aboutPage() {
         <div class="stat"><strong>44</strong><p>Market profiles in Feasibility &amp; Costing</p></div>
         <div class="stat"><strong>70</strong><p>Audience types in 8 categories</p></div>
         <div class="stat"><strong>${methodologyTotal}</strong><p>Methodologies, each with a built-in report</p></div>
-        <div class="stat"><strong>24/7</strong><p>Project support</p></div>
+        <div class="stat"><strong>6</strong><p>Workflow steps on one platform</p></div>
       </div>
     </div>
   </div>
@@ -732,7 +770,7 @@ ${contactSection().replace('<section id="contact" class="dark">', '<section id="
 }
 
 function homePage() {
-  const body = read('src/home.html').replace('{{BAND}}', band()).replace('{{CONTACT}}', contactSection()) + orgSchema;
+  const body = read('src/home.html').replace('{{BAND}}', '').replace('{{CONTACT}}', contactSection()) + orgSchema;
   return layout({ url: '/', title: 'Research COPS | Best Operating System for Your Research', description: 'One platform and one team for every step of a research project: feasibility and costing, survey building, translation, verified B2B, healthcare and consumer sample in 44 markets, data quality checks and data processing.', body });
 }
 

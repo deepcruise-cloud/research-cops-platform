@@ -146,7 +146,7 @@ if ($('estForm')) {
     $('oN').textContent = n.toLocaleString(); $('oLoi').textContent = loi + ' min';
     $('rCpi').innerHTML = usd(cpi) + '<span> /complete</span>';
     $('rTotal').textContent = usd(total);
-    $('rTime').textContent = score >= 72 ? '48–72 hours' : score >= 50 ? '4–6 days' : '7–10 days';
+    $('rTime').textContent = score >= 72 ? '2–4 days' : score >= 50 ? '5–7 days' : '7–10 days';
   };
   ['ePanel', 'eCountry', 'eIr', 'eSize', 'eN', 'eLoi'].forEach(id => $(id).addEventListener('input', calc)); calc();
 

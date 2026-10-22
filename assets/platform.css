@@ -178,3 +178,15 @@ a.pill:hover{border-color:var(--accent)}
 
 /* Step number on the platform overview cards (research sequence) */
 .feat .seq-n{display:block;font:600 12px var(--display);letter-spacing:.12em;color:var(--accent-ink);margin:-6px 0 6px}
+
+/* Phones: plan comparison keeps the feature column pinned; supplier board scrolls sideways */
+.swipe-hint{display:none;margin:0 0 10px;font-size:13px;color:var(--muted)}
+@media (max-width:768px){
+  .swipe-hint{display:block}
+  .ct-row{grid-template-columns:150px repeat(5,92px);min-width:610px;font-size:13.5px}
+  .ct-group{min-width:610px}
+  .ct-row>span:first-child{position:sticky;left:0;z-index:1;background:#fff;box-shadow:6px 0 10px -8px rgba(0,0,0,.25)}
+  .ct-head>span:first-child{background:var(--ink)}
+  .mock-table{overflow-x:auto}
+  .mock-table>div{min-width:520px}
+}

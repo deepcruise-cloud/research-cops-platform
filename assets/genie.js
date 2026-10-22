@@ -4,7 +4,7 @@
 (function () {
   const esc = s => (window.RC ? RC.esc(s) : String(s));
   const css = `
-.genie-fab{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;background:#061413 url('/support_genie_avatar.png') center/cover;box-shadow:0 12px 30px -8px rgba(0,0,0,.45),0 0 0 3px #04cbc2}
+.genie-fab{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;background:#061413 url('/assets/genie-avatar.png') center/cover;box-shadow:0 12px 30px -8px rgba(0,0,0,.45),0 0 0 3px #04cbc2}
 .genie-fab:focus-visible{outline:3px solid #04cbc2;outline-offset:3px}
 .genie-hint{position:fixed;right:92px;bottom:34px;z-index:60;background:#fff;color:#0d1b1a;font:500 13.5px Inter,system-ui,sans-serif;padding:9px 14px;border-radius:12px;box-shadow:0 10px 30px -10px rgba(0,0,0,.35);max-width:220px}
 .genie-hint button{background:none;border:0;margin-left:8px;cursor:pointer;color:#6b7f7c;font-size:15px}
@@ -29,7 +29,7 @@
 .genie-form input:focus{outline:2px solid rgba(4,203,194,.5)}
 .genie-form button{background:#04cbc2;color:#04211f;border:0;border-radius:10px;padding:0 14px;font-weight:600;cursor:pointer}
 body.cookie-banner-active .genie-hint{display:none}
-@media (max-width:768px){body.cookie-banner-active .genie-fab{bottom:240px}}
+@media (max-width:768px){body.cookie-banner-active .genie-fab{display:none}}
 @media (max-width:520px){.genie-hint{display:none}.genie{right:16px;bottom:88px}.genie-fab{right:16px;bottom:16px}}`;
   const style = document.createElement("style"); style.textContent = css; document.head.appendChild(style);
 
@@ -38,7 +38,7 @@ body.cookie-banner-active .genie-hint{display:none}
   const hint = document.createElement("div"); hint.className = "genie-hint";
   hint.innerHTML = 'Need a CPI or feasibility check? Ask Genie.<button aria-label="Dismiss">×</button>';
   const box = document.createElement("div"); box.className = "genie"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", "Support Genie chat");
-  box.innerHTML = `<div class="genie-head"><img src="/support_genie_avatar.png" alt=""><div><b>Support Genie</b><small>● Online · replies instantly</small></div><button type="button" aria-label="Close chat">×</button></div>
+  box.innerHTML = `<div class="genie-head"><img src="/assets/genie-avatar.png" alt=""><div><b>Support Genie</b><small>● Online · replies instantly</small></div><button type="button" aria-label="Close chat">×</button></div>
     <div class="genie-log" aria-live="polite"></div><div class="genie-chips"></div>
     <form class="genie-form"><input placeholder="Type a message…" aria-label="Message"><button type="submit">Send</button></form>`;
   document.body.append(fab, hint, box);
@@ -54,7 +54,7 @@ body.cookie-banner-active .genie-hint{display:none}
 
   // ---- conversation state ----
   const st = { step: null, est: {}, lead: {}, topic: "" };
-  const calendly = () => `<a href="${(window.RC && RC.calendly) || "https://calendly.com/researchcops/30min"}" target="_blank" rel="noopener">Book a 30-min call</a>`;
+  const calendly = () => `<a href="${(window.RC && RC.calendly) || "https://calendly.com/deepak-monga-researchcops/30min"}" target="_blank" rel="noopener">Book a 30-min call</a>`;
   const BASE = { consumer: 3.2, b2b: 9.5, hcp: 24, patients: 12 };
 
   function menu() {

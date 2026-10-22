@@ -178,3 +178,13 @@ a.sol{display:block}
 .cookie-banner-actions .btn-outline{border-color:rgba(255,255,255,.22);color:var(--on-dark);background:transparent}
 .cookie-banner-actions .btn-outline:hover{border-color:var(--accent)}
 @media (max-width:768px){.cookie-banner-card{bottom:0;left:0;right:0;width:100%;max-width:100%;border-radius:18px 18px 0 0;padding:18px 16px}}
+
+/* Promise line (a statement from us, deliberately not styled as a testimonial) */
+.promise{padding:16px 18px;border-left:3px solid var(--accent);background:rgba(4,203,194,.06);border-radius:0 12px 12px 0;font:600 16px/1.5 var(--display);color:var(--text)}
+.dark .promise{color:#fff}
+.promise small{display:block;margin-bottom:6px;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* No lone last card: it spans the row */
+.svc-grid>.feat:last-child:nth-child(3n+1){grid-column:1/-1}
+.rel-grid.cols-2>a:last-child:nth-child(odd){grid-column:1/-1}
+@media (max-width:900px){.svc-grid>.feat:last-child:nth-child(3n+1){grid-column:auto}}
+.rel.is-current{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}

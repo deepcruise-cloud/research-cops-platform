@@ -26,10 +26,10 @@
               
               <!-- Feed Section Selector Tabs -->
               <div class="feed-section-tabs" style="display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                <button id="tab-latest-news" class="feed-tab-btn active" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--turquoise-accent); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid var(--turquoise-accent); transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                <button id="tab-latest-news" class="feed-tab-btn" style="display: none; background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--turquoise-accent); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid var(--turquoise-accent); transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
                   Latest Trends & News
                 </button>
-                <button id="tab-curated-blogs" class="feed-tab-btn" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid transparent; transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                <button id="tab-curated-blogs" class="feed-tab-btn active" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid transparent; transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
                   Insights & Blogs
                 </button>
               </div>
@@ -43,7 +43,7 @@
                   <span style="position: absolute; right: 16px; top: 12px; color: var(--text-muted);">🔍</span>
                 </div>
                 
-                <div class="category-tags-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <div class="category-tags-row" style="display: none; gap: 8px; flex-wrap: wrap;">
                   <button class="filter-tag active" data-filter="all">All Feed</button>
                   <button class="filter-tag" data-filter="Tech">Tech</button>
                   <button class="filter-tag" data-filter="Business">Business</button>
@@ -160,16 +160,16 @@
             
             <!-- Dynamic Poll Card -->
             <div class="poll-card glass-card" style="margin-bottom: 30px;">
-              <div class="poll-badge">Live Operations Poll</div>
-              <h3 id="poll-widget-question">What is your organization's primary operational bottleneck?</h3>
-              <p class="poll-sub">Help us profile operational challenges. Cast your vote below.</p>
+              <div class="poll-badge">Research pulse poll</div>
+              <h3 id="poll-widget-question">What slows your fieldwork down most?</h3>
+              <p class="poll-sub">Tell us where projects get stuck. Cast your vote below.</p>
               
               <div class="poll-select-wrapper" style="margin-bottom: 18px;">
-                <label for="poll-active-select" style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">Select Operational Topic:</label>
+                <label for="poll-active-select" style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">Select a topic</label>
                 <select id="poll-active-select" style="padding: 10px 14px; background: rgba(5, 10, 10, 0.8); font-size: 13.5px; border-radius: var(--radius-sm);">
-                  <option value="poll-1">Operational Bottlenecks</option>
-                  <option value="poll-2">ERP Integration Tech</option>
-                  <option value="poll-3">HRMS Automation Hurdles</option>
+                  <option value="poll-1">Fieldwork bottlenecks</option>
+                  <option value="poll-2">Data quality</option>
+                  <option value="poll-3">Research tooling</option>
                 </select>
               </div>
               
@@ -178,7 +178,7 @@
                   <label class="poll-option-label" for="opt-a-input">
                     <input type="radio" name="poll-vote" id="opt-a-input" value="a" required>
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-a">Manual Billing & Reconciliation</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-a">Slow or vague supplier bids</span>
                     <span class="poll-option-pct" id="poll-widget-pct-a">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-a" style="width: 0%;"></div>
                   </label>
@@ -186,7 +186,7 @@
                   <label class="poll-option-label" for="opt-b-input">
                     <input type="radio" name="poll-vote" id="opt-b-input" value="b">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-b">Siloed HRMS & Employee Data</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-b">Fraud and poor-quality completes</span>
                     <span class="poll-option-pct" id="poll-widget-pct-b">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-b" style="width: 0%;"></div>
                   </label>
@@ -194,7 +194,7 @@
                   <label class="poll-option-label" for="opt-c-input">
                     <input type="radio" name="poll-vote" id="opt-c-input" value="c">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-c">Legacy ERP Integration Issues</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-c">Quota and supplier management</span>
                     <span class="poll-option-pct" id="poll-widget-pct-c">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-c" style="width: 0%;"></div>
                   </label>
@@ -202,7 +202,7 @@
                   <label class="poll-option-label" for="opt-d-input">
                     <input type="radio" name="poll-vote" id="opt-d-input" value="d">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-d">Inefficient Document Workflows</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-d">Translation and re-scripting</span>
                     <span class="poll-option-pct" id="poll-widget-pct-d">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-d" style="width: 0%;"></div>
                   </label>

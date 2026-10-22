@@ -50,7 +50,7 @@
     return Promise.resolve(lead);
   }
 
-  let calendly = "https://calendly.com/researchcops/30min";
+  let calendly = "https://calendly.com/deepak-monga-researchcops/30min";
 
   // Footer + Calendly settings edited in admin (settings/footer)
   function applySettings(data) {
