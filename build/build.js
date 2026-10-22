@@ -114,7 +114,7 @@ const footer = () => `<footer class="rc-chrome">
     <div class="fgrid">
       <div>
         <a href="/" class="flogo" aria-label="Research COPS home">${logoMark(48)}<span><span class="logo-word"><span>Research</span> COPS</span><span class="logo-sub">RESEARCH CENTRIC OPS</span></span></a>
-        <p id="footer-desc" class="fdesc">Research Centric Ops. One platform and one team for every step of a research project, from feasibility and sample to data and reporting.</p>
+        <p class="fdesc">Best Operating System for<br>Your Research Projects.</p>
       </div>
       <div><h5>Platform</h5><ul><li><a href="/platform/">Overview</a></li>${PLATFORM_SEQ.map(p => `<li><a href="${p.url}">${p.name}</a></li>`).join('')}<li><a href="/pricing/">Plans</a></li></ul></div>
       <div><h5>Services</h5><ul>${services.slice(0, 6).map(s => `<li><a href="${solUrl(s.slug)}">${s.name}</a></li>`).join('')}<li><a href="${solUrl(automation.slug)}">Workflow automation</a></li></ul></div>
