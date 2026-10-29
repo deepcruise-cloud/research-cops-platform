@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Content admin · Research COPS</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Michroma&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#052624;--ink-2:#0a3a37;--accent:#04cbc2;--accent-ink:#03807a;--paper:#f6f9f8;--card:#fff;--line:#d9e5e3;--muted:#4f7470;--warn:#a15c00;--warn-bg:#fff6e5;--err:#b42318;--err-bg:#fdecea;--ok:#067a52}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:15px/1.5 Inter,system-ui,sans-serif;color:var(--ink-2);background:var(--paper)}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--accent-ink)}
+.brand{font-family:Michroma,sans-serif;font-weight:700;letter-spacing:.04em}
+[hidden]{display:none!important}
+
+/* Sign-in */
+.login{min-height:100vh;display:grid;place-items:center;background:var(--ink);padding:24px}
+.login form{width:min(400px,100%);background:#fff;border-radius:16px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.login h1{font:600 22px 'Space Grotesk',sans-serif;margin:0 0 4px;color:var(--ink)}
+.login p{margin:0 0 22px;color:var(--muted);font-size:14px}
+.login label{display:block;font-weight:600;font-size:13px;margin:14px 0 6px}
+.login input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px}
+.login .err{color:var(--err);font-size:13px;min-height:20px;margin-top:10px}
+
+/* Top bar */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:12px 20px;background:var(--ink);color:#fff}
+.top .brand{font-size:13px}
+.top .sub{color:#9cc5c1;font-size:13px}
+.top .grow{flex:1}
+.status{font-size:13px;color:#cfe7e4;white-space:nowrap}
+.status.dirty{color:#ffd27a}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;border-radius:9px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;background:#fff;color:var(--ink);border-color:var(--line);text-decoration:none}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#032a28}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-sm{padding:5px 10px;font-size:13px}
+.btn-danger{color:var(--err)}
+.banner{padding:10px 20px;font-size:14px;background:var(--warn-bg);color:var(--warn);border-bottom:1px solid #f1d9a6}
+
+/* Layout */
+.shell{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 56px)}
+.side{border-right:1px solid var(--line);background:#fff;padding:14px 10px 40px;overflow:auto;max-height:calc(100vh - 56px);position:sticky;top:56px}
+.side h4{margin:16px 10px 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.side button{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;border:0;background:none;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:14px}
+.side button:hover{background:var(--paper)}
+.side button.on{background:#e3f6f4;color:var(--ink);font-weight:600}
+.side .dot{width:7px;height:7px;border-radius:50%;background:#e8a33a;flex:none}
+.main{padding:28px 32px 120px;max-width:980px}
+.main h2{font:600 26px 'Space Grotesk',sans-serif;margin:0 0 4px;color:var(--ink)}
+.main .intro{color:var(--muted);margin:0 0 22px}
+.main .intro a{font-weight:600}
+fieldset{border:1px solid var(--line);border-radius:14px;background:#fff;padding:18px 20px 8px;margin:0 0 18px}
+legend{font:600 15px 'Space Grotesk',sans-serif;color:var(--ink);padding:0 6px}
+.f{margin:0 0 16px}
+.f>label,.f>.lab{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:13px;margin-bottom:6px}
+.f .hint{font-weight:400;color:var(--muted)}
+.count{font-weight:500;color:var(--muted);font-size:12px;white-space:nowrap}
+.count.over{color:var(--err)}
+.f input[type=text],.f input[type=url],.f input[type=email],.f select,.f textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.f textarea{min-height:96px;resize:vertical}
+.rich-wrap{border:1px solid var(--line);border-radius:9px;background:#fff}
+.rich-wrap:focus-within,.f input:focus,.f textarea:focus,.f select:focus{outline:2px solid rgba(4,203,194,.35);border-color:var(--accent)}
+.rich-bar{display:flex;gap:4px;padding:4px 6px;border-bottom:1px solid var(--line);background:#fafcfc;border-radius:9px 9px 0 0}
+.rich-bar button{border:1px solid transparent;background:none;border-radius:6px;padding:2px 8px;font-size:13px;cursor:pointer}
+.rich-bar button:hover{border-color:var(--line);background:#fff}
+.rich-bar .acc{font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;color:var(--accent-ink)}
+.rich{padding:9px 11px;min-height:40px;outline:none}
+.rich.para{min-height:72px}
+.rich em.s,.rich em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent-ink);font-size:1.12em}
+.rich a{color:var(--accent-ink);text-decoration:underline}
+.f.changed>label::before,.f.changed>.lab::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#e8a33a;margin-right:6px;vertical-align:middle}
+.f.changed>label,.f.changed>.lab{justify-content:flex-start}
+.f.changed .count{margin-left:auto}
+
+/* Lists */
+.list{display:grid;gap:10px;margin-bottom:8px}
+.item{border:1px solid var(--line);border-radius:12px;padding:12px 12px 2px;background:#fbfdfd}
+.item-head{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12px;color:var(--muted);font-weight:600}
+.item-head .grow{flex:1}
+.item-head button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:1px 8px;cursor:pointer;font-size:12px}
+.item-head button:disabled{opacity:.35;cursor:default}
+.cols{display:grid;gap:10px}
+@media(min-width:900px){.cols.c2{grid-template-columns:1fr 2fr}.cols.c3{grid-template-columns:160px 1fr 2fr}}
+.check-row{display:flex;gap:8px;align-items:center;font-size:14px;margin:0 0 14px}
+.note{border-left:3px solid var(--accent);background:#eef8f7;padding:10px 14px;border-radius:0 10px 10px 0;color:var(--ink-2);font-size:14px;margin:0 0 18px}
+
+/* Dialog */
+dialog{border:0;border-radius:16px;padding:0;width:min(640px,94vw);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(5,38,36,.55)}
+.dlg{padding:24px}
+.dlg h3{font:600 20px 'Space Grotesk',sans-serif;margin:0 0 6px;color:var(--ink)}
+.dlg ul{padding:0;list-style:none;margin:14px 0;max-height:46vh;overflow:auto}
+.dlg li{padding:9px 12px;border-radius:9px;margin-bottom:6px;font-size:14px}
+.dlg li.err{background:var(--err-bg);color:var(--err)}
+.dlg li.warn{background:var(--warn-bg);color:var(--warn)}
+.dlg li.ok{background:#e9f7f1;color:var(--ok)}
+.dlg li small{display:block;color:var(--muted);margin-top:2px}
+.dlg li button{border:0;background:none;color:inherit;text-decoration:underline;cursor:pointer;padding:0;font:inherit}
+.dlg .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.hist td,.hist th{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:14px}
+.hist{width:100%;border-collapse:collapse;margin:12px 0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:14px;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+@media(max-width:820px){.shell{grid-template-columns:1fr}.side{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}.main{padding:20px 16px 100px}.top{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<section class="login" id="login" hidden>
+  <form id="loginForm">
+    <div class="brand" style="color:var(--accent-ink);font-size:12px;margin-bottom:14px">RESEARCH COPS</div>
+    <h1>Content admin</h1>
+    <p>Edit the website's text. Sign in with your admin account.</p>
+    <label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" required>
+    <label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px" type="submit">Sign in</button>
+    <div class="err" id="loginErr" role="alert"></div>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="top">
+    <span class="brand">RESEARCH COPS</span><span class="sub">Content admin</span>
+    <span class="grow"></span>
+    <span class="status" id="status" aria-live="polite">Loading…</span>
+    <button class="btn btn-ghost btn-sm" id="btnHistory" type="button">History</button>
+    <button class="btn btn-ghost btn-sm" id="btnMore" type="button">Export</button>
+    <button class="btn btn-ghost btn-sm" id="btnSave" type="button">Save draft</button>
+    <button class="btn btn-primary btn-sm" id="btnPublish" type="button">Publish</button>
+    <span class="sub" id="who"></span>
+    <button class="btn btn-ghost btn-sm" id="btnOut" type="button">Sign out</button>
+  </header>
+  <div class="banner" id="banner" hidden></div>
+  <div class="shell">
+    <nav class="side" id="side" aria-label="Sections"></nav>
+    <main class="main" id="main"></main>
+  </div>
+</div>
+
+<dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="/assets/content-admin.js"></script>
+</body>
+</html>

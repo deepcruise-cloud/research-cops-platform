@@ -6,12 +6,21 @@
 // admin.html, admin.js, workflow-hub-app.js and the Firebase setup are never touched.
 const fs = require('fs');
 const path = require('path');
+const C = require('./content-store');
 const { ICONS, services, automation, audiences } = require('./content');
 const { DIY_URL, modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases } = require('./platform');
 
 const ROOT = path.join(__dirname, '..');
 const SITE_URL = 'https://www.researchcops.com';
 const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
+// Company details (Content admin → Company). The phone link is derived from the display number.
+const CO = { ...C.company, phoneTel: C.company.phone.replace(/[^\d+]/g, '') };
+// {{path.to.value}} placeholders in src/home.html and build/contact.html
+const fillTokens = (html, ctx) => html.replace(/\{\{([\w.]+)\}\}/g, (m, p) => {
+  const v = p.split('.').reduce((o, k) => (o == null ? o : o[k]), ctx);
+  if (typeof v !== 'string') throw new Error(`Missing content for {{${p}}}`);
+  return v;
+});
 
 const allSolutions = [...services, automation];
 const bySlug = Object.fromEntries(allSolutions.map(s => [s.slug, s]));
@@ -124,45 +133,26 @@ const footer = () => `<footer class="rc-chrome">
     </div>
     <div class="fcontact-row">
       <ul class="fcontact">
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a id="footer-phone" href="tel:+9101206051391">+91 0120 605 1391</a></div></li>
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span id="footer-emails"><a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br><a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a></span></div></li>
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span id="footer-address">T4-A11, NX One Avenue, Plot No. 17, Techzone 4,<br>Greater Noida, Uttar Pradesh 201306</span></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a id="footer-phone" href="tel:${CO.phoneTel}">${CO.phone}</a></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span id="footer-emails"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><br><a href="mailto:${CO.emailBidding}">${CO.emailBidding}</a></span></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span id="footer-address">${CO.addressLine1},<br>${CO.addressLine2}</span></div></li>
       </ul>
       <div class="social">
-        <a href="https://www.linkedin.com/company/research-cops" aria-label="LinkedIn" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>
-        <a href="https://www.youtube.com/@researchcops" aria-label="YouTube" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
-        <a href="https://www.instagram.com/researchcops" aria-label="Instagram" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
-        <a href="https://www.facebook.com/researchcops" aria-label="Facebook" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a>
+        <a href="${attr(CO.social.linkedin)}" aria-label="LinkedIn" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>
+        <a href="${attr(CO.social.youtube)}" aria-label="YouTube" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
+        <a href="${attr(CO.social.instagram)}" aria-label="Instagram" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="${attr(CO.social.facebook)}" aria-label="Facebook" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a>
       </div>
     </div>
-    <div class="fbottom"><span>© ${new Date().getFullYear()} Research COPS. All rights reserved.</span><span>Greater Noida, India · Serving clients in 44 countries</span></div>
+    <div class="fbottom"><span>© ${new Date().getFullYear()} Research COPS. All rights reserved.</span><span>${CO.footerLine}</span></div>
   </div>
 </footer>`;
 
-// Search-result descriptions, kept to 160 characters or fewer
-const DESC = {
-  "/": "One platform and one team for every research step: feasibility, survey building, translation, sample in 44 markets, quality checks and data processing.",
-  "/platform/feasibility-costing/": "Pick markets, audience, sample size, LOI and incidence. Get a recommended CPI, feasibility range and field time for each market in seconds.",
-  "/platform/survey-builder/": "33 question types, logic, piping, quotas and randomisation, with automatic preflight checks and an LOI estimate before you launch.",
-  "/platform/translation/": "A translation version per language, with built-in machine translation, an optional AI provider and localised respondent screens, including RTL.",
-  "/platform/sample-collection/": "Field through Opinion Genie and API-integrated partners. Allocate quotas by supplier, soft-launch, and track completes and incidence live.",
-  "/platform/data-reporting/": "Clean, weight, run banner tables and organise open ends into a theme framework, with a built-in report for every methodology.",
-  "/platform/methodologies/": "24 methodologies with built-in reports, including Van Westendorp, Gabor-Granger, CBC conjoint, MaxDiff, TURF, Kano and concept tests.",
-  "/platform/security/": "Geo-IP, proxy/VPN, fingerprinting, human verification and quality scores on every survey link, plus 2FA, SSO, role-based access and an audit log.",
-  "/solutions/": "Questionnaire design, programming, translations, online sampling, data processing, reporting and project management from one research team.",
-  "/solutions/questionnaire-design/": "Research leads turn your business objective into a survey respondents finish, with screeners, logic notes, an LOI estimate and a tab plan.",
-  "/solutions/survey-programming/": "Mobile-first survey programming with complex logic, piping and quotas. Every script is tested by a second programmer before launch.",
-  "/solutions/online-sampling/": "Verified B2B, healthcare and consumer respondents from Opinion Genie and vetted partners, profiled in advance and screened for fraud.",
-  "/solutions/end-to-end-project-management/": "One project manager runs your whole study, from feasibility and design to fieldwork, data and reporting, with live status updates.",
-  "/solutions/workflow-automation/": "An optional add-on that connects your research pipelines with CRM, HRMS, ERP and finance systems, so work moves without re-keying.",
-  "/who-we-serve/research-agencies/": "Fast, transparent bids and clean data under your brand: sample-only projects, hard-to-reach B2B audiences and survey ops on demand.",
-  "/who-we-serve/brands-insight-teams/": "Run studies in-house on Research Centric OPS or have our team run them. Leadership gets a short, clear answer on who to target and how to price.",
-  "/who-we-serve/panel-sample-companies/": "Connect your panel by API or redirects. Projects create, launch, pause and resume target groups, set CPI and completes goals, and sync quotas.",
-  "/about/": "Research COPS is a market research operations company in Greater Noida, India, and the team behind the Research Centric OPS platform."
-};
-
 function head({ url, title, description, extraHead = '' }) {
-  description = DESC[url] || description;
+  // Titles and descriptions edited in the Content admin (Search & sharing)
+  const m = C.meta[url] || {};
+  title = m.title || title;
+  description = m.description || description;
   const full = url === '/' ? title : `${title} · Research COPS`;
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -227,7 +217,7 @@ ${tail(`<script src="/${script}"></script>`)}
 }
 
 // ---------- Reusable sections ----------
-const contactSection = () => read('build/contact.html');
+const contactSection = () => fillTokens(read('build/contact.html'), { contact: C.pages.contactBlock, company: CO });
 
 const band = (h = 'Bring a live brief. Leave with a <em class="s">price</em>.', p = 'A working session on one of your real briefs, quoted live against your own expectation of the number.') => `<div class="band">
   <div class="wrap">
@@ -273,7 +263,7 @@ const faqBlock = (faqs, bg = '') => `<section${bg ? ` style="background:${bg}"` 
 
 const relCard = (url, title, desc, more = 'Learn more') => `<a class="rel" href="${url}"><h3>${title}</h3><p>${desc}</p><span class="more">${more} →</span></a>`;
 const faqSchema = faqs => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) })}</script>`;
-const orgSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Research COPS', alternateName: 'Research Centric Ops', url: SITE_URL, logo: SITE_URL + '/logo_brand.png', email: 'info-team@researchcops.com', telephone: '+91-0120-605-1391', address: { '@type': 'PostalAddress', streetAddress: 'T4-A11, NX One Avenue, Plot No. 17, Techzone 4', addressLocality: 'Greater Noida', addressRegion: 'Uttar Pradesh', postalCode: '201306', addressCountry: 'IN' } })}</script>`;
+const orgSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Research COPS', alternateName: 'Research Centric Ops', url: SITE_URL, logo: SITE_URL + '/logo_brand.png', email: CO.emailInfo, telephone: CO.phone.replace(/\s+/g, '-'), address: { '@type': 'PostalAddress', streetAddress: CO.addressLine1, addressLocality: 'Greater Noida', addressRegion: 'Uttar Pradesh', postalCode: '201306', addressCountry: 'IN' } })}</script>`;
 
 // "Today vs here" strip used on platform pages
 const todayHere = (today, here) => `<div class="th reveal"><div class="th-today"><small>Today</small><p>${today}</p></div><div class="th-arrow">${arrow}</div><div class="th-here"><small>In Research COPS</small><p>${here}</p></div></div>`;
@@ -325,7 +315,7 @@ const MOCKS = {
 
 // ---------- Page templates ----------
 function platformIndex() {
-  const body = `${pageHero({ trail: [[null, 'Platform']], eyebrow: 'Research Centric OPS', h1: 'One platform. Every <em class="s">step</em>.', lead: 'Feasibility and costing, survey building, translation, sample collection, data quality checks and data processing, all on one platform. The audience you price in Feasibility is the audience you screen, field and report.', ctas: 'demo', stats: [['6', 'Steps on one platform'], [String(methodologyTotal), 'Methodologies, each with a built-in report'], ['44', 'Market profiles in Feasibility']] })}
+  const body = `${pageHero({ trail: [[null, 'Platform']], eyebrow: 'Research Centric OPS', h1: C.pages.platform.h1, lead: C.pages.platform.lead, ctas: 'demo', stats: [['6', 'Steps on one platform'], [String(methodologyTotal), 'Methodologies, each with a built-in report'], ['44', 'Market profiles in Feasibility']] })}
 
 <section>
   <div class="wrap">
@@ -461,7 +451,7 @@ ${contactSection().replace('<option>Platform demo</option>', '<option selected>P
 }
 
 function methodologiesPage() {
-  const body = `${pageHero({ trail: [['/platform/', 'Platform'], [null, 'Methodologies']], eyebrow: 'Methodologies built in', h1: `${methodologyTotal} methods. <em class="s">Zero</em> blank pages.`, lead: 'Pricing, product and UX/CX designs come ready to field, each with a built-in report. You get a working design, not a blank questionnaire and a note to the analyst.', ctas: 'demo' })}
+  const body = `${pageHero({ trail: [['/platform/', 'Platform'], [null, 'Methodologies']], eyebrow: 'Methodologies built in', h1: C.pages.methodologies.h1, lead: C.pages.methodologies.lead, ctas: 'demo' })}
 <section>
   <div class="wrap">
     <div class="meth reveal cols-3">${methodologies.map(([g, list]) => `<div class="meth-col"><h3>${g} <span style="color:var(--muted);font-weight:500">· ${list.length}</span></h3><ul>${list.map(x => `<li>${check}${x}</li>`).join('')}</ul></div>`).join('')}</div>
@@ -473,7 +463,7 @@ ${contactFor('Platform demo')}`;
 }
 
 function securityPage() {
-  const body = `${pageHero({ trail: [['/platform/', 'Platform'], [null, 'Data quality checks']], eyebrow: 'Data quality checks & security', h1: 'Fraud stops at the <em class="s">link</em>.', lead: 'Fraud and quality checks are built into every survey link, and accounts are protected with two-factor authentication, single sign-on, role-based access and an audit log.', ctas: 'demo' })}
+  const body = `${pageHero({ trail: [['/platform/', 'Platform'], [null, 'Data quality checks']], eyebrow: 'Data quality checks & security', h1: C.pages.security.h1, lead: C.pages.security.lead, ctas: 'demo' })}
 <section>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Built into every survey link</span><h2>Seven checks. <em class="s">Every</em> response.</h2></div>
@@ -492,14 +482,14 @@ function securityPage() {
     <div class="feat-grid reveal cols-4">${security.map(([ic, t, d]) => `<div class="feat"><div class="ico">${icon(ic)}</div><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
   </div>
 </section>
-${faqBlock([['Do you support single sign-on?', 'Yes, through OpenID Connect.'], ['Is two-factor authentication available?', 'Yes: TOTP two-factor authentication and password OTP.'], ['How do you handle data-subject requests?', 'Requests such as erasure are handled on request by our team. Contact info-team@researchcops.com.'], ['Do you use a third-party CAPTCHA?', 'No. Survey links use our own human-verification check.']])}
+${faqBlock(C.pages.security.faqs)}
 ${contactSection().replace('<option>Platform demo</option>', '<option selected>Platform demo</option>')}`;
   return layout({ url: '/platform/security/', title: 'Data quality checks & security', description: 'Geo-IP, proxy/VPN, fingerprinting, human-verification and quality-score checks on every survey link, plus 2FA, SSO (OpenID Connect), role-based access and an audit log.', body });
 }
 
 function pricingPage() {
   const cell = v => v === true ? `<span class="yes" aria-label="Included">${check}</span>` : v === false ? '<span class="no" aria-label="Not included">–</span>' : v === 'R' ? '<span class="add">On request</span>' : `<span>${v}</span>`;
-  const body = `${pageHero({ trail: [[null, 'Pricing']], eyebrow: 'Plans & pricing', h1: 'Start small. <em class="s">Scale</em> on one platform.', lead: 'Each plan adds to the one before: start with the Survey Builder and grow into feasibility, translation, sample collection, data processing and the AI assistant. Fieldwork is quoted separately, per project.', ctas: false, slim: true })}
+  const body = `${pageHero({ trail: [[null, 'Pricing']], eyebrow: 'Plans & pricing', h1: C.pages.pricing.h1, lead: C.pages.pricing.lead, ctas: false, slim: true })}
 
 <section style="padding-top:64px">
   <div class="wrap">
@@ -540,7 +530,7 @@ function pricingPage() {
     <div class="note reveal" style="margin-top:28px"><b>The honest version:</b> the licence saving is the smallest of the four. Operations hours are the largest, and the hardest to see on an invoice. We don't quote industry-average percentages. In a working session, we fill in the numbers from your own last four projects.</div>
   </div>
 </section>
-${faqBlock([['Why aren\'t prices listed?', 'Plans are priced on modules, seats and AI credits, and many clients combine them with fieldwork. Tell us what you need and we will send exact pricing within one business day.'], ['Is fieldwork included?', 'No. Fieldwork (sample) is quoted separately, per project, on a cost-per-complete basis.'], ['What are AI credits?', 'AI features, such as the AI Survey Assistant on Sigma, use AI credits. Each plan includes a monthly allowance: Alpha 200, Beta 500, Gamma 1,500, Sigma 4,000.'], ['How do I get an account?', `Register at <a href="${DIY_URL}" style="color:var(--accent-ink)">diy.researchcops.com</a>. New accounts are activated after admin approval.`]])}
+${faqBlock(C.pages.pricing.faqs)}
 ${contactSection().replace('<option>Platform plans</option>', '<option selected>Platform plans</option>')}`;
   return layout({ url: '/pricing/', title: 'Pricing & plans', description: 'Compare Research Centric OPS plans (Alpha, Beta, Gamma, Sigma and Custom): modules, methodologies, exports, AI credits and seats.', body });
 }
@@ -613,7 +603,7 @@ ${faqSchema(s.faqs)}`;
 }
 
 function solutionsIndex() {
-  const body = `${pageHero({ trail: [[null, 'Services']], eyebrow: 'Managed research services', h1: 'Your research team, <em class="s">on demand</em>.', lead: 'Seven research services that work separately or together, plus an enterprise automation add-on, all managed by one team with one point of contact.' })}
+  const body = `${pageHero({ trail: [[null, 'Services']], eyebrow: 'Managed research services', h1: C.pages.solutions.h1, lead: C.pages.solutions.lead })}
 <section>
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">Research services</span><h2>From brief to <em class="s">boardroom</em>.</h2></div>
@@ -685,7 +675,7 @@ ${faqSchema(a.faqs)}`;
 }
 
 function audiencesIndex() {
-  const body = `${pageHero({ trail: [[null, 'Who we serve']], eyebrow: 'Who we serve', h1: 'Five teams. <em class="s">One</em> research engine.', lead: 'Whether you resell sample, run research in-house, need answers for a launch or have to prove a campaign worked, we adapt the platform, the service and the price to you.' })}
+  const body = `${pageHero({ trail: [[null, 'Who we serve']], eyebrow: 'Who we serve', h1: C.pages.whoWeServe.h1, lead: C.pages.whoWeServe.lead })}
 <section>
   <div class="wrap">
     <div class="rel-grid reveal cols-2">${audiences.map(a => `<a class="rel" href="${audUrl(a.slug)}" style="padding:36px"><span class="eyebrow" style="margin-bottom:14px">For ${a.name.toLowerCase()}</span><h3 style="font-size:26px">${strip(a.h1)}</h3><p>${strip(a.lead).split('. ')[0]}.</p><div class="chips" style="margin-bottom:20px">${a.studies.slice(0, 3).map(s => `<span class="chip">${s}</span>`).join('')}</div><span class="more">See how we help →</span></a>`).join('')}</div>
@@ -702,7 +692,7 @@ ${contactSection()}`;
 }
 
 function aboutPage() {
-  const body = `${pageHero({ trail: [[null, 'About']], eyebrow: 'About Research COPS', h1: 'Research <em class="s">Centric</em> Ops.', lead: 'We are a market research operations company based in Greater Noida, India, and the team behind the Research Centric OPS platform. We help agencies, brands, startups, advertisers and panel companies collect data they can trust and turn it into decisions.', stats: [['44', 'Market profiles'], [String(methodologyTotal), 'Methodologies in the platform'], ['70', 'Audience types in 8 categories']], ctas: false })}
+  const body = `${pageHero({ trail: [[null, 'About']], eyebrow: 'About Research COPS', h1: C.pages.about.h1, lead: C.pages.about.lead, stats: [['44', 'Market profiles'], [String(methodologyTotal), 'Methodologies in the platform'], ['70', 'Audience types in 8 categories']], ctas: false })}
 
 <section>
   <div class="wrap split">
@@ -711,10 +701,8 @@ function aboutPage() {
       <h2>Built by researchers who were tired of the <em class="s">seams</em>.</h2>
     </div>
     <div class="reveal prose" style="max-width:none">
-      <p>Research COPS began as a fieldwork and survey-operations partner for market research agencies. The work they need sounds simple and is hard to do well: find the right respondents, program the survey correctly, keep the fraud out and deliver on time.</p>
-      <p>Over time our clients asked us to do more: write the questionnaire, translate it into new markets, process the data and present what it means. We now run the full research lifecycle, either as a white-label team behind an agency or as the research partner for brands and startups without a research department.</p>
-      <p>Running hundreds of projects taught us where the time and margin really go: in the seams between tools. So we built <strong>Research Centric OPS</strong>, one platform where the RFQ, the quote, the script, the sample, the data and the report all live in the same project. Alongside it sits <strong>Opinion Genie</strong>, our own panel, working with a network of API-integrated partner panels. You can sign in to the platform at <a href="${DIY_URL}">diy.researchcops.com</a>.</p>
-      <div class="note" style="margin-top:28px">Our name is our approach: <strong>Research Centric Ops</strong>. We put the research first, and run the operations behind it with the discipline of a well-run engineering team.</div>
+      ${C.pages.about.story.map(p => `<p>${p}</p>`).join('\n      ')}
+      <div class="note" style="margin-top:28px">${C.pages.about.note}</div>
     </div>
   </div>
 </section>
@@ -723,10 +711,7 @@ function aboutPage() {
   <div class="wrap">
     <div class="sec-head reveal"><span class="eyebrow">What we stand for</span><h2>Four promises. <em class="s">Every</em> project.</h2></div>
     <div class="values reveal">
-      <div class="feat"><div class="ico">${icon('shield')}</div><h3>Quality first</h3><p>We check every complete, and we replace fraudulent responses rather than hiding them.</p></div>
-      <div class="feat"><div class="ico">${icon('wallet')}</div><h3>Prices you can explain</h3><p>Itemised, reproducible quotes with stated assumptions and no hidden fees.</p></div>
-      <div class="feat"><div class="ico">${icon('clock')}</div><h3>Responsiveness</h3><p>Support around the clock, and same-day bids on most RFQs.</p></div>
-      <div class="feat"><div class="ico">${icon('target')}</div><h3>Decisions, not data</h3><p>We measure success by what you can do with the results.</p></div>
+      ${C.pages.about.values.map(([ic, t, d]) => `<div class="feat"><div class="ico">${icon(ic)}</div><h3>${t}</h3><p>${d}</p></div>`).join('\n      ')}
     </div>
   </div>
 </section>
@@ -752,10 +737,10 @@ function aboutPage() {
       <div class="map" aria-hidden="true"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#04cbc2" stroke-width="1"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
       <div class="info">
         <h3>Greater Noida, India</h3>
-        <p>T4-A11, NX One Avenue, Plot No. 17, Techzone 4,<br>Greater Noida, Uttar Pradesh 201306</p>
-        <p><a href="tel:+9101206051391" style="color:var(--accent-ink);font-weight:600">+91 0120 605 1391</a></p>
-        <p><a href="mailto:info-team@researchcops.com" style="color:var(--accent-ink);font-weight:600">info-team@researchcops.com</a></p>
-        <a class="btn btn-dark" style="margin-top:8px" href="https://www.google.com/maps/search/?api=1&query=NX+One+Avenue+Techzone+4+Greater+Noida" rel="noopener" target="_blank">Open in Google Maps ${arrow}</a>
+        <p>${CO.addressLine1},<br>${CO.addressLine2}</p>
+        <p><a href="tel:${CO.phoneTel}" style="color:var(--accent-ink);font-weight:600">${CO.phone}</a></p>
+        <p><a href="mailto:${CO.emailInfo}" style="color:var(--accent-ink);font-weight:600">${CO.emailInfo}</a></p>
+        <a class="btn btn-dark" style="margin-top:8px" href="${attr(CO.mapsUrl)}" rel="noopener" target="_blank">Open in Google Maps ${arrow}</a>
       </div>
     </div>
   </div>
@@ -765,13 +750,17 @@ ${contactSection()}`;
 }
 
 function contactPage() {
-  const body = `${pageHero({ trail: [[null, 'Contact']], eyebrow: 'Contact', h1: 'Your next study starts <em class="s">here</em>.', lead: 'Get feasibility, timing and a fixed quote within one business day, or book a live demo of the platform. You can also request our panel book or API access.', ctas: false, slim: true })}
+  const body = `${pageHero({ trail: [[null, 'Contact']], eyebrow: 'Contact', h1: C.pages.contact.h1, lead: C.pages.contact.lead, ctas: false, slim: true })}
 ${contactSection().replace('<section id="contact" class="dark">', '<section id="contact" class="dark" style="padding-top:24px">')}`;
   return layout({ url: '/contact/', title: 'Contact, quote & demo', description: 'Request a quote, platform demo, feasibility check or panel book from Research COPS. Email info-team@researchcops.com or call +91 0120 605 1391.', body });
 }
 
 function homePage() {
-  const body = read('src/home.html').replace('{{BAND}}', '').replace('{{CONTACT}}', contactSection()) + orgSchema;
+  const hero = C.home.hero, w = t => `<span class="w" aria-hidden="true">${t}</span>`;
+  const words = s => s.trim().split(/\s+/);
+  const h1 = `<h1 class="hero-h1" aria-label="${attr(strip(`${hero.line1} ${hero.line2} ${hero.typed}.`))}">${words(hero.line1).map((t, i) => i ? w(t) : w(t).replace('class="w"', 'class="w best"')).join(' ')}<br class="hb"> ${words(hero.line2).map(w).join(' ')} ${w(`<em class="s shine" id="heroWord">${hero.typed}</em><span class="caret"></span>.`)}</h1>`;
+  const [top, bottom] = read('src/home.html').replace('{{BAND}}', '').split('{{CONTACT}}');
+  const body = fillTokens(top.replace('{{HERO_H1}}', h1), { home: C.home }) + contactSection() + fillTokens(bottom, { home: C.home }) + orgSchema;
   return layout({ url: '/', title: 'Research COPS | Best Operating System for Your Research', description: 'One platform and one team for every step of a research project: feasibility and costing, survey building, translation, verified B2B, healthcare and consumer sample in 44 markets, data quality checks and data processing.', body });
 }
 
@@ -834,7 +823,7 @@ for (const [file, html] of pages) {
 const urls = pages.map(([f]) => f).filter(f => !['404.html', 'solution.html'].includes(f)).map(f => SITE_URL + '/' + f.replace(/index\.html$/, ''));
 urls.push(SITE_URL + '/workflow-hub.html');
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`);
-fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /admin.html\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /admin.html\nDisallow: /content-admin.html\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 fs.writeFileSync(path.join(ROOT, 'vercel.json'), vercelJson());
 // workflow-hub.html is hand-maintained (it carries the demo simulator), so only its shared
 // header, footer and scripts are refreshed here, between the rc:header / rc:footer / rc:tail markers.

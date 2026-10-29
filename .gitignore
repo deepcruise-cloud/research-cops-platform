@@ -2,3 +2,6 @@ node_modules/
 .claude/
 # Regenerable bundles of docs/screenshots
 docs/screenshots-*.zip
+
+# Copy fetched from the Content admin at build time
+build/.content-live.json
