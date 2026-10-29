@@ -31,6 +31,9 @@ header.rc-chrome .wrap{display:flex;align-items:center;justify-content:space-bet
 .rc-chrome .dd-menu{position:absolute;top:100%;left:-24px;min-width:580px;padding:14px;margin-top:10px;background:#0b201f;border:1px solid var(--line-dark);border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;gap:4px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s,transform .18s,visibility .18s}
 .rc-chrome .dd-menu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
 .rc-chrome .dd:hover .dd-menu,.rc-chrome .dd:focus-within .dd-menu,.rc-chrome .dd.open .dd-menu{opacity:1;visibility:visible;transform:none}
+/* Only one menu at a time: hovering another menu hides one that was opened by click or focus */
+.rc-chrome .nav-links:has(.dd:hover) .dd:not(:hover) .dd-menu{opacity:0;visibility:hidden;transform:translateY(6px)}
+.rc-chrome .nav-links:has(.dd:hover) .dd:not(:hover) .dd-btn svg{transform:none}
 .rc-chrome .dd-menu.one{grid-template-columns:1fr;min-width:340px}
 .rc-chrome .dd-menu a{display:block;padding:12px 14px;border-radius:10px}
 .rc-chrome .dd-menu a:hover,.rc-chrome .dd-menu a[aria-current=page]{background:rgba(4,203,194,.08)}

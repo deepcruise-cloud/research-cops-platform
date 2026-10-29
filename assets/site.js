@@ -18,6 +18,12 @@ document.querySelectorAll('.dd-btn').forEach(b => b.addEventListener('click', ()
   document.querySelectorAll('.dd.open').forEach(x => { x.classList.remove('open'); x.querySelector('.dd-btn').setAttribute('aria-expanded', false); });
   dd.classList.toggle('open', open); b.setAttribute('aria-expanded', open);
 }));
+// Moving to another menu closes the one opened by click, and releases its keyboard focus
+document.querySelectorAll('.dd').forEach(dd => dd.addEventListener('mouseenter', () => {
+  document.querySelectorAll('.dd.open').forEach(x => { if (x !== dd) { x.classList.remove('open'); x.querySelector('.dd-btn').setAttribute('aria-expanded', false); } });
+  const f = document.activeElement;
+  if (f && f.closest('.dd') && !dd.contains(f)) f.blur();
+}));
 document.addEventListener('click', e => { if (!e.target.closest('.dd')) document.querySelectorAll('.dd.open').forEach(x => x.classList.remove('open')); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.dd.open').forEach(x => x.classList.remove('open')); });
 
