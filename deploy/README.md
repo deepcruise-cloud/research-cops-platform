@@ -62,7 +62,7 @@ sudo mkdir -p /opt/researchcops/app && sudo tar -xzf /tmp/researchcops-site-*.ta
 ```bash
 sudo bash /opt/researchcops/app/deploy/server-setup.sh
 sudo nano /etc/researchcops/publish.env        # ALLOWED_EDITORS=you@researchcops.com,colleague@researchcops.com
-sudo systemctl start researchcops-publish
+sudo systemctl enable --now researchcops-publish
 curl -s http://127.0.0.1:3061/api/publish/health
 ```
 

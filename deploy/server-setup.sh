@@ -42,8 +42,7 @@ sudo -u rcweb env APP_DIR="$APP" SITE_ROOT="$SITE" node "$APP/deploy/release.js"
 say "Publish service (installed, not started)"
 cp "$APP/deploy/researchcops-publish.service" /etc/systemd/system/
 systemctl daemon-reload
-systemctl enable researchcops-publish >/dev/null
-echo "Start it once ALLOWED_EDITORS is filled in: systemctl start researchcops-publish"
+echo "Once ALLOWED_EDITORS is filled in: systemctl enable --now researchcops-publish"
 
 say "nginx site (copied, NOT enabled)"
 cp "$APP/deploy/nginx/researchcops.conf" /etc/nginx/sites-available/researchcops.conf
