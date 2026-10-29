@@ -139,10 +139,10 @@ const footer = () => `<footer class="rc-chrome">
         <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span class="fc-address">${CO.addressLine1},<br>${CO.addressLine2}</span></div></li>
       </ul>
       <div class="social">
-        <a href="${attr(CO.social.linkedin)}" aria-label="LinkedIn" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>
-        <a href="${attr(CO.social.youtube)}" aria-label="YouTube" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
-        <a href="${attr(CO.social.instagram)}" aria-label="Instagram" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
-        <a href="${attr(CO.social.facebook)}" aria-label="Facebook" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a>
+        <a href="${attr(CO.social.linkedin)}" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>
+        <a href="${attr(CO.social.youtube)}" aria-label="YouTube (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
+        <a href="${attr(CO.social.instagram)}" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="${attr(CO.social.facebook)}" aria-label="Facebook (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a>
       </div>
     </div>
     <div class="fbottom"><span>© ${new Date().getFullYear()} Research COPS. All rights reserved.</span><span>${CO.footerLine}</span></div>
@@ -165,8 +165,12 @@ function head({ url, title, description, extraHead = '' }) {
 <meta property="og:type" content="website">
 <meta property="og:url" content="${SITE_URL}${url}">
 <meta property="og:site_name" content="Research COPS">
-<meta property="og:image" content="${SITE_URL}/logo_brand.png">
+<meta property="og:image" content="${SITE_URL}/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Research COPS: Best Operating System for Your Research Projects">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${SITE_URL}/assets/og-image.png">
 ${FAVICON}
 ${FONTS}
 ${extraHead}`;
@@ -264,7 +268,7 @@ const faqBlock = (faqs, bg = '') => `<section${bg ? ` style="background:${bg}"` 
 
 const relCard = (url, title, desc, more = 'Learn more') => `<a class="rel" href="${url}"><h3>${title}</h3><p>${desc}</p><span class="more">${more} →</span></a>`;
 const faqSchema = faqs => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) })}</script>`;
-const orgSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Research COPS', alternateName: 'Research Centric Ops', url: SITE_URL, logo: SITE_URL + '/logo_brand.png', email: CO.emailInfo, telephone: CO.phone.replace(/\s+/g, '-'), address: { '@type': 'PostalAddress', streetAddress: CO.addressLine1, addressLocality: 'Greater Noida', addressRegion: 'Uttar Pradesh', postalCode: '201306', addressCountry: 'IN' } })}</script>`;
+const orgSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Research COPS', alternateName: 'Research Centric Ops', url: SITE_URL, logo: SITE_URL + '/assets/icon-512.png', email: CO.emailInfo, telephone: CO.phone.replace(/\s+/g, '-'), address: { '@type': 'PostalAddress', streetAddress: CO.addressLine1, addressLocality: 'Greater Noida', addressRegion: 'Uttar Pradesh', postalCode: '201306', addressCountry: 'IN' } })}</script>`;
 
 // "Today vs here" strip used on platform pages
 const todayHere = (today, here) => `<div class="th reveal"><div class="th-today"><small>Today</small><p>${today}</p></div><div class="th-arrow">${arrow}</div><div class="th-here"><small>In Research COPS</small><p>${here}</p></div></div>`;
