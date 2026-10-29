@@ -14,6 +14,7 @@ const ROOT = path.join(__dirname, '..');
 const SITE_URL = 'https://www.researchcops.com';
 const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 // Company details (Content admin → Company). The phone link is derived from the display number.
+// The footer fields have no footer-* ids on purpose: admin.html settings no longer overwrite them.
 const CO = { ...C.company, phoneTel: C.company.phone.replace(/[^\d+]/g, '') };
 // {{path.to.value}} placeholders in src/home.html and build/contact.html
 const fillTokens = (html, ctx) => html.replace(/\{\{([\w.]+)\}\}/g, (m, p) => {
@@ -133,9 +134,9 @@ const footer = () => `<footer class="rc-chrome">
     </div>
     <div class="fcontact-row">
       <ul class="fcontact">
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a id="footer-phone" href="tel:${CO.phoneTel}">${CO.phone}</a></div></li>
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span id="footer-emails"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><br><a href="mailto:${CO.emailBidding}">${CO.emailBidding}</a></span></div></li>
-        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span id="footer-address">${CO.addressLine1},<br>${CO.addressLine2}</span></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a class="fc-phone" href="tel:${CO.phoneTel}">${CO.phone}</a></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span class="fc-emails"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><br><a href="mailto:${CO.emailBidding}">${CO.emailBidding}</a></span></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span class="fc-address">${CO.addressLine1},<br>${CO.addressLine2}</span></div></li>
       </ul>
       <div class="social">
         <a href="${attr(CO.social.linkedin)}" aria-label="LinkedIn" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>

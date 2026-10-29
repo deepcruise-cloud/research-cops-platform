@@ -52,20 +52,12 @@
 
   let calendly = "https://calendly.com/deepak-monga-researchcops/30min";
 
-  // Footer + Calendly settings edited in admin (settings/footer)
+  // Calendly link from admin.html settings (settings/footer). Address, phone and emails come
+  // from the Content admin (built into the page), so they are not taken from here.
   function applySettings(data) {
-    if (!data) return;
-    const $ = id => document.getElementById(id);
-    if (data.description && $("footer-desc")) $("footer-desc").textContent = data.description;
-    if (data.phone && $("footer-phone")) { $("footer-phone").textContent = data.phone; $("footer-phone").href = "tel:" + data.phone.replace(/[^\d+]/g, ""); }
-    if ((data.emailInfo || data.emailBidding) && $("footer-emails")) {
-      $("footer-emails").innerHTML = [data.emailInfo, data.emailBidding].filter(Boolean).map(e => `<a href="mailto:${esc(e)}">${esc(e)}</a>`).join("<br>");
-    }
-    if (data.address && $("footer-address")) $("footer-address").innerHTML = esc(data.address).replace(/\n/g, "<br>");
-    if (data.calendly) {
-      calendly = data.calendly;
-      document.querySelectorAll("[data-calendly]").forEach(a => (a.href = calendly));
-    }
+    if (!data || !data.calendly) return;
+    calendly = data.calendly;
+    document.querySelectorAll("[data-calendly]").forEach(a => (a.href = calendly));
   }
 
   // Latest blogs from admin (collection "blogs"), rendered into [data-latest-blogs]
