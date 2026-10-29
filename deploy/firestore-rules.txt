@@ -1,0 +1,28 @@
+// Firestore rules to ADD for the Content admin (Firebase console → Firestore → Rules).
+// Merge these into your existing rules inside `match /databases/{database}/documents { … }`.
+// Do not replace the rules that already protect leads, blogs, news, polls, policies and settings.
+// Replace the example emails with the people allowed to edit website content
+// (the same list as ALLOWED_EDITORS in /etc/researchcops/publish.env).
+
+    function isContentEditor() {
+      return request.auth != null
+        && request.auth.token.email in ['editor1@researchcops.com', 'editor2@researchcops.com'];
+    }
+
+    // siteContent/published is read by the website build without signing in.
+    // siteContent/draft is the editors' work in progress.
+    match /siteContent/{docId} {
+      allow read: if docId == 'published' || isContentEditor();
+      allow write: if isContentEditor();
+    }
+
+    // Every published version, for History → Load into editor
+    match /siteContentVersions/{versionId} {
+      allow read: if isContentEditor();
+      allow create: if isContentEditor();
+      allow update, delete: if false;
+    }
+
+// While you are in the rules, please also check `leads` (contact form and chatbot submissions):
+//   match /leads/{id} { allow create: if true; allow read, update, delete: if <admins only>; }
+// If leads can be read without signing in, customer contact details are public.

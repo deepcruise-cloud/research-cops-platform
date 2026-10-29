@@ -1,0 +1,34 @@
+# systemd unit for the Content admin publish service.
+# Install: sudo cp deploy/researchcops-publish.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now researchcops-publish
+# Runs as its own user (rcweb), separate from the ERP, with write access only to the website folders.
+[Unit]
+Description=Research COPS website publish service (Content admin)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=rcweb
+Group=rcweb
+WorkingDirectory=/opt/researchcops/app
+ExecStart=/usr/bin/node /opt/researchcops/app/deploy/publish-service.js
+Environment=PORT=3061
+Environment=APP_DIR=/opt/researchcops/app
+Environment=SITE_ROOT=/var/www/researchcops
+Environment=KEEP_RELEASES=8
+# Emails allowed to publish, comma-separated (set in /etc/researchcops/publish.env)
+EnvironmentFile=/etc/researchcops/publish.env
+Restart=on-failure
+RestartSec=5
+
+# Hardening: it can only write the website folder and /tmp
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/researchcops
+MemoryMax=512M
+CPUQuota=50%
+
+[Install]
+WantedBy=multi-user.target
