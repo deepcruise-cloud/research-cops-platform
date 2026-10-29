@@ -45,5 +45,7 @@ systemctl daemon-reload
 echo "Once ALLOWED_EDITORS is filled in: systemctl enable --now researchcops-publish"
 
 say "nginx site (copied, NOT enabled)"
-cp "$APP/deploy/nginx/researchcops.conf" /etc/nginx/sites-available/researchcops.conf
+mkdir -p /etc/nginx/snippets
+cp "$APP/deploy/nginx/researchcops-redirects.conf" /etc/nginx/snippets/researchcops-redirects.conf
+cp "$APP/deploy/nginx/researchcops.conf" "$APP/deploy/nginx/researchcops-http.conf" /etc/nginx/sites-available/
 echo "Next: follow 'Go live' in deploy/README.md (certificate, enable site, nginx -t, reload)."
