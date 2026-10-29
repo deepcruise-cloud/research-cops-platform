@@ -51,6 +51,9 @@ const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Michroma&display=swap" rel="stylesheet">`;
 const FAVICON = `<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">`;
 // Colour theme trial: set to '' to go back to the original near-black ink
 const THEME = '\n<link rel="stylesheet" href="/assets/brand.css">\n<link rel="stylesheet" href="/assets/theme-teal.css">';
@@ -268,6 +271,8 @@ const faqBlock = (faqs, bg = '') => `<section${bg ? ` style="background:${bg}"` 
 
 const relCard = (url, title, desc, more = 'Learn more') => `<a class="rel" href="${url}"><h3>${title}</h3><p>${desc}</p><span class="more">${more} →</span></a>`;
 const faqSchema = faqs => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) })}</script>`;
+// Tells Google the site's name (shown above search results)
+const siteSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Research COPS', alternateName: ['Research Centric OPS', 'researchcops.com'], url: SITE_URL + '/' })}</script>`;
 const orgSchema = `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Research COPS', alternateName: 'Research Centric Ops', url: SITE_URL, logo: SITE_URL + '/assets/icon-512.png', email: CO.emailInfo, telephone: CO.phone.replace(/\s+/g, '-'), address: { '@type': 'PostalAddress', streetAddress: CO.addressLine1, addressLocality: 'Greater Noida', addressRegion: 'Uttar Pradesh', postalCode: '201306', addressCountry: 'IN' } })}</script>`;
 
 // "Today vs here" strip used on platform pages
@@ -765,7 +770,7 @@ function homePage() {
   const words = s => s.trim().split(/\s+/);
   const h1 = `<h1 class="hero-h1" aria-label="${attr(strip(`${hero.line1} ${hero.line2} ${hero.typed}.`))}">${words(hero.line1).map((t, i) => i ? w(t) : w(t).replace('class="w"', 'class="w best"')).join(' ')}<br class="hb"> ${words(hero.line2).map(w).join(' ')} ${w(`<em class="s shine" id="heroWord">${hero.typed}</em><span class="caret"></span>.`)}</h1>`;
   const [top, bottom] = read('src/home.html').replace('{{BAND}}', '').split('{{CONTACT}}');
-  const body = fillTokens(top.replace('{{HERO_H1}}', h1), { home: C.home }) + contactSection() + fillTokens(bottom, { home: C.home }) + orgSchema;
+  const body = fillTokens(top.replace('{{HERO_H1}}', h1), { home: C.home }) + contactSection() + fillTokens(bottom, { home: C.home }) + siteSchema + orgSchema;
   return layout({ url: '/', title: 'Research COPS | Best Operating System for Your Research', description: 'One platform and one team for every step of a research project: feasibility and costing, survey building, translation, verified B2B, healthcare and consumer sample in 44 markets, data quality checks and data processing.', body });
 }
 
