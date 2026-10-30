@@ -4,8 +4,6 @@
 // Plan prices are intentionally not published (decision of 22 Oct 2026).
 // The copy lives in build/site-content.json under "platform" (edited in the Content admin).
 
-const DIY_URL = 'https://diy.researchcops.com';
-
 const { modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases } = require('./content-store').platform;
 
-module.exports = { DIY_URL, modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases };
+module.exports = { modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases };

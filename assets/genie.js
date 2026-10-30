@@ -83,7 +83,7 @@ body.cookie-banner-active .genie-hint{display:none}
     chips([["Feasibility for my audience", startEstimate], ["Download panel book", () => startLead("Panel book request")], ["Main menu", menu]]);
   }
   function platformInfo() {
-    say('Research Centric OPS runs every step of a study on one platform: Feasibility & Costing, Survey Builder, Translation, Sample Collection, data quality checks, and Data Processing & Reporting, with 33 question types and 24 methodologies.\n\n<a href="/platform/">Explore the platform</a> · <a href="/pricing/">See plans</a> · <a href="https://diy.researchcops.com" target="_blank" rel="noopener">Sign in</a>');
+    say('Research Centric OPS runs every step of a study on one platform: Feasibility & Costing, Survey Builder, Translation, Sample Collection, data quality checks, and Data Processing & Reporting, with 33 question types and 24 methodologies.\n\n<a href="/platform/">Explore the platform</a> · <a href="/pricing/">See plans</a>');
     chips([["Book a live demo", () => startLead("Platform demo request")], ["Main menu", menu]]);
   }
   function automationInfo() {

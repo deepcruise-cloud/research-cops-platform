@@ -26,7 +26,7 @@ What changed on the website so it matches "Research COPS DIY — Product Referen
 - **Security & data quality:** the 7 link checks; cleaning rules; consent screen; 2FA (TOTP and password OTP); SSO via OpenID Connect; roles; audit log. "Designed for GDPR and CCPA", never "certified". Dedicated-instance, data-residency and "agreements in product" claims are removed.
 - **Pricing:** cumulative plan contents, AI credits and seats exactly as in section 10. The compare table only shows what the brief states. A new "Included in the platform" grid covers section 12. Removed: projects and responses limits, own-domain/white-label, annual discount, support tiers.
 - **Panel & sample companies:** rebuilt around the real partner integration (API target groups, redirects, reconciliation). No white-label or self-serve-quote claims.
-- **Sign in:** header, platform pages, pricing, About and Genie now link to https://diy.researchcops.com.
+- **Sign in:** removed (30 Oct 2026). All links and redirects to https://diy.researchcops.com have been taken out of the public site — the header/mobile "Sign in", the platform-hero "Already have an account?" line, the pricing "Already a customer?" line, the Genie "Sign in" link and the account-FAQ link. `DIY_URL` has been removed from `build/platform.js`. The diy subdomain's DNS/hosting is untouched (see `deploy/`). To restore sign-in later, re-add `DIY_URL` and the links.
 
 ## Open questions for the product team
 

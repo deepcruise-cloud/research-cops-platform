@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const C = require('./content-store');
 const { ICONS, services, automation, audiences } = require('./content');
-const { DIY_URL, modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases } = require('./platform');
+const { modules, methodologyTotal, methodologies, qualityChecks, security, plans, compare, extras, useCases } = require('./platform');
 
 const ROOT = path.join(__dirname, '..');
 const SITE_URL = 'https://www.researchcops.com';
@@ -105,7 +105,6 @@ function header(current) {
       <a href="/about/"${cur('/about/', current)}>About</a>
     </nav>
     <div class="nav-cta">
-      <a href="${DIY_URL}" class="nav-signin" rel="noopener">Sign in</a>
       <a href="/contact/" class="btn btn-primary">Get a quote</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -114,7 +113,7 @@ function header(current) {
   </div>
 </header>
 <div class="mobile-menu rc-chrome" id="mobileMenu">
-  <div class="mm-actions"><a href="/contact/" class="btn btn-primary">Get a quote</a><a href="${DIY_URL}" class="btn btn-ghost" rel="noopener">Sign in</a></div>
+  <div class="mm-actions"><a href="/contact/" class="btn btn-primary">Get a quote</a></div>
   ${mm('Platform', [['/platform/', 'Platform overview'], ...PLATFORM_SEQ.map(p => [p.url, p.name]), ['/platform/methodologies/', 'Methodologies'], ['/contact/?need=Platform%20demo', 'Book a platform demo']])}
   ${mm('Services', [...allSolutions.map(s => [solUrl(s.slug), s.name]), ['/solutions/', 'All services']])}
   ${mm('Who we serve', audiences.map(a => [audUrl(a.slug), a.name]))}
@@ -244,7 +243,7 @@ const pageHero = ({ trail, eyebrow, h1, lead, stats, ctas = 'quote', slim = fals
   const ctaHtml = ctas === 'quote'
     ? `<div class="hero-ctas"><a href="/contact/${q}" class="btn btn-primary">${primary} ${arrow}</a><a href="${alt[0]}" class="btn btn-ghost">${alt[1]}</a></div>`
     : ctas === 'demo'
-      ? `<div class="hero-ctas"><a href="/contact/?need=Platform%20demo" class="btn btn-primary">Book a demo ${arrow}</a><a href="/pricing/" class="btn btn-ghost">See plans</a></div><p class="hero-signin">Already have an account? <a href="${DIY_URL}" rel="noopener">Sign in to Research Centric OPS →</a></p>`
+      ? `<div class="hero-ctas"><a href="/contact/?need=Platform%20demo" class="btn btn-primary">Book a demo ${arrow}</a><a href="/pricing/" class="btn btn-ghost">See plans</a></div>`
       : '';
   return `<section class="page-hero dark${slim ? ' slim' : ''}">
   <div class="wrap">
@@ -504,7 +503,7 @@ function pricingPage() {
 <section style="padding-top:64px">
   <div class="wrap">
     <div class="plans reveal">${plans.map(p => `<div class="plan${p.popular ? ' pop' : ''}">${p.popular ? '<span class="plan-tag">Most popular</span>' : ''}<h3>${p.name}</h3><p class="plan-sub">${p.tag}</p><div class="plan-price">${p.name === 'Custom' ? 'Built to order' : 'Talk to sales'}</div><ul>${p.items.map(i => i.endsWith('plus:') ? `<li class="plan-plus">${i}</li>` : `<li>${check}${i}</li>`).join('')}</ul><a class="btn ${p.popular ? 'btn-primary' : 'btn-line'}" href="/contact/?need=Platform%20plans" style="justify-content:center">${p.name === 'Custom' ? 'Build my plan' : `Get ${p.name} pricing`}</a></div>`).join('')}</div>
-    <p class="plan-foot reveal">AI features use AI credits · Already a customer? <a href="${DIY_URL}" style="color:var(--accent-ink);font-weight:600">Sign in to Research Centric OPS</a></p>
+    <p class="plan-foot reveal">AI features use AI credits.</p>
   </div>
 </section>
 
