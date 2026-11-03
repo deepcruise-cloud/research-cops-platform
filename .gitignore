@@ -1,0 +1,10 @@
+node_modules/
+.claude/
+# Regenerable bundles of docs/screenshots
+docs/screenshots-*.zip
+
+# Copy fetched from the Content admin at build time
+build/.content-live.json
+
+# Upload bundles made by deploy/make-bundle.sh
+researchcops-site-*.tar.gz

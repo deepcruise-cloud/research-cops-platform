@@ -1,0 +1,52 @@
+/* Research COPS: deep-teal theme (approved 22 Oct 2026, then deepened for more contrast).
+   Replaces the original near-black ink (#061413) with a deep brand teal everywhere.
+   Loaded last on every page; set THEME = '' in build/build.js to revert. */
+:root{
+  --ink:#052624;        /* was #061413; first trial #083331 */
+  --ink-2:#08302d;      /* panels, menus */
+  --ink-3:#0d3f3b;      /* raised surfaces */
+  --line-dark:#184c47;  /* hairlines on dark */
+  --on-dark-body:#b3d3d0;
+  --on-dark-muted:#84b1ac;
+}
+
+/* Header when scrolled + dropdowns */
+.nav.scrolled,header.rc-chrome{background:rgba(5,38,36,.92)}
+.dd-menu,.rc-chrome .dd-menu{background:#08302d}
+.mobile-menu.open,.mobile-menu.rc-chrome.open{background:#052624}
+
+/* Hero glow: a touch more turquoise so accents pop against the deeper base */
+.hero::before,.page-hero::before{background:
+  radial-gradient(900px 500px at 85% 10%,rgba(4,203,194,.22),transparent 60%),
+  radial-gradient(700px 500px at 0% 100%,rgba(3,128,122,.32),transparent 60%)}
+
+/* Product panels: hero workflow, mock screens, code sample */
+.flow{background:linear-gradient(180deg,#0a3633,#062c29)}
+.flow-bar,.mock-bar,.code-top{background:rgba(0,0,0,.18)}
+.flow-bar i,.mock-bar i,.code-top i{background:#245650}
+.flow-track{background:#143f3b}
+.flow-steps li b,.fs-chips span,.flow-foot button{border-color:#2a5f59}
+.mock{background:#072d2a}
+.code{background:#031b19}
+
+/* Bands and footer */
+.band{background:linear-gradient(120deg,#04524e,#073a37 60%,#052624)}
+footer,footer.rc-chrome{background:#052624;border-top:1px solid #184c47}
+
+/* Support Genie (styles injected by genie.js) */
+html body .genie-fab{background-color:#052624}
+html body .genie{background:#08302d;border-color:#184c47}
+html body .genie-head,html body .genie-form input{background:#052624;border-color:#184c47}
+html body .gm.bot{background:#0d3f3b}
+html body .genie-chips button{border-color:#2a5f59}
+
+/* Cookie banner */
+.cookie-banner-card{background:#08302d}
+
+/* Legacy pages (insights / policy) use styles.css variables */
+body{--bg-dark:#052624}
+
+/* Text on light sections: dark-teal headings and a teal accent word instead of near-black */
+:root{--text:#0a3a37;--body:#34514e;--muted:#4f7470}
+h1 em.s,h2 em.s,h3 em.s{color:var(--accent-ink)}
+.dark h1 em.s,.dark h2 em.s,.dark h3 em.s,.hero h1 em.s,.page-hero h1 em.s,.way-dark em.s,.statement p em.s{color:var(--accent)}

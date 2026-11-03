@@ -1,0 +1,245 @@
+  <main style="margin-top: 100px; min-height: 80vh;">
+    
+    <!-- Hero / Header Summary -->
+    <section style="padding: 60px 0 20px 0; position: relative; z-index: 2;">
+      <div class="container" style="max-width: 1200px;">
+        <div class="badge badge-teal" style="margin-bottom: 12px;">Research Intelligence</div>
+        <h1 style="font-family: var(--font-family-display); font-size: 40px; font-weight: 700; color: var(--text-light); margin-bottom: 10px;">
+          Insights & <span class="text-gradient">Intelligence Hub</span>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 16px; max-width: 700px; line-height: 1.6;">
+          Practical guides on feasibility and CPI, sampling, data quality and research methods, plus product news from the Research Centric OPS team.
+        </p>
+      </div>
+    </section>
+
+    <!-- Two-Column Hub Layout Grid -->
+    <section style="padding: 20px 0 80px 0; position: relative; z-index: 2;">
+      <div class="container" style="max-width: 1200px;">
+        <div class="insights-hub-grid">
+          
+          <!-- LEFT COLUMN: Main Articles & Search Feed -->
+          <div class="hub-feed-column">
+            
+            <!-- Feed View (Search, Filters, and List) -->
+            <div id="feed-view-container">
+              
+              <!-- Feed Section Selector Tabs -->
+              <div class="feed-section-tabs" style="display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                <button id="tab-latest-news" class="feed-tab-btn" style="display: none; background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--turquoise-accent); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid var(--turquoise-accent); transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                  Latest Trends & News
+                </button>
+                <button id="tab-curated-blogs" class="feed-tab-btn active" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid transparent; transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                  Insights & Blogs
+                </button>
+              </div>
+
+              <!-- Search and Filter Bar -->
+              <div class="glass-card search-filter-box" style="padding: 20px; margin-bottom: 30px; border-radius: var(--radius-md);">
+                
+                <div class="search-input-wrapper" style="position: relative; margin-bottom: 15px;">
+                  <input type="text" id="insights-search-input" placeholder="Search by title, keywords or details..." 
+                         style="width: 100%; padding: 12px 16px; background: #0b1111; border: 1px solid var(--glass-border); border-radius: var(--radius-md); color: var(--text-light); outline: none; font-size: 14.5px;">
+                  <span style="position: absolute; right: 16px; top: 12px; color: var(--text-muted);">🔍</span>
+                </div>
+                
+                <div class="category-tags-row" style="display: none; gap: 8px; flex-wrap: wrap;">
+                  <button class="filter-tag active" data-filter="all">All Feed</button>
+                  <button class="filter-tag" data-filter="Tech">Tech</button>
+                  <button class="filter-tag" data-filter="Business">Business</button>
+                  <button class="filter-tag" data-filter="Finance">Finance</button>
+                  <button class="filter-tag" data-filter="Global">Global</button>
+                  <button class="filter-tag" data-filter="Sports">Sports</button>
+                  <button class="filter-tag" data-filter="Other">Other</button>
+                </div>
+              </div>
+              
+              <!-- Feed Content Container -->
+              <div id="insights-feed-list" class="feed-cards-list">
+                <!-- Static Fallback Items -->
+                <!-- Item 1: blog-featured -->
+                <div class="blog-card glass-card insights-feed-card" onclick="window.location.search = '?type=blog&id=blog-featured'">
+                  <div style="width: 100%; height: 160px; overflow: hidden; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.04);">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="feed-card-image">
+                  </div>
+                  <div style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1;">
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--turquoise-accent); margin-bottom: 8px;">Tech</div>
+                    <h4 style="font-family: var(--font-family-display); font-size: 15.5px; font-weight: 600; color: var(--text-light); line-height: 1.45; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 44px;">
+                      Designing Mobile-First Surveys Without Compromising Data Quality
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 10px; font-size: 11.5px; color: var(--text-muted);">
+                      <span>📅 June 2026</span>
+                      <span>⏱ 6 min read</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item 2: blog-1 -->
+                <div class="blog-card glass-card insights-feed-card" onclick="window.location.search = '?type=blog&id=blog-1'">
+                  <div style="width: 100%; height: 160px; overflow: hidden; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.04);">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="feed-card-image">
+                  </div>
+                  <div style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1;">
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--turquoise-accent); margin-bottom: 8px;">Global</div>
+                    <h4 style="font-family: var(--font-family-display); font-size: 15.5px; font-weight: 600; color: var(--text-light); line-height: 1.45; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 44px;">
+                      Targeting Hard-to-Reach B2B Decision Makers: A Practical Guide to Feasibility and CPI Modeling
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 10px; font-size: 11.5px; color: var(--text-muted);">
+                      <span>📅 May 2026</span>
+                      <span>⏱ 6 min read</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item 3: news-1 -->
+                <div class="blog-card glass-card insights-feed-card" onclick="window.location.search = '?type=news&id=news-1'">
+                  <div style="width: 100%; height: 160px; overflow: hidden; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.04);">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="feed-card-image">
+                  </div>
+                  <div style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1;">
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--turquoise-accent); margin-bottom: 8px;">News: Global</div>
+                    <h4 style="font-family: var(--font-family-display); font-size: 15.5px; font-weight: 600; color: var(--text-light); line-height: 1.45; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 44px;">
+                      Opinion Genie Panel Reach Expands to 2.5M Respondents
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 10px; font-size: 11.5px; color: var(--text-muted);">
+                      <span>📅 June 2026</span>
+                      <span>⏱ Quick read</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Item 4: blog-2 -->
+                <div class="blog-card glass-card insights-feed-card" onclick="window.location.search = '?type=blog&id=blog-2'">
+                  <div style="width: 100%; height: 160px; overflow: hidden; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.04);">
+                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=600" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;" class="feed-card-image">
+                  </div>
+                  <div style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1;">
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--turquoise-accent); margin-bottom: 8px;">Tech</div>
+                    <h4 style="font-family: var(--font-family-display); font-size: 15.5px; font-weight: 600; color: var(--text-light); line-height: 1.45; margin-bottom: 12px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 44px;">
+                      Defending Against Survey Fraud: Device Fingerprints, Speeders, and Behavioral Signals in Online Sampling
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 10px; font-size: 11.5px; color: var(--text-muted);">
+                      <span>📅 April 2026</span>
+                      <span>⏱ 5 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Reader View Container (Initially Hidden) -->
+            <div id="reader-view-container" class="glass-card reader-wrapper" style="display: none; padding: 40px; border-radius: var(--radius-lg);">
+              <!-- Close Action Header -->
+              <div class="reader-back-header" style="margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 15px;">
+                <button id="reader-back-btn" class="btn btn-secondary btn-sm" style="display: flex; align-items: center; gap: 8px; padding: 8px 16px;">
+                  &larr; Back to Insights
+                </button>
+                <div class="reader-meta-group" style="font-size: 13px; color: var(--text-muted);">
+                  Published by <strong style="color: var(--turquoise-accent);">Research Centric Ops</strong>
+                </div>
+              </div>
+              
+              <!-- Full Article Content -->
+              <article id="reader-article-content">
+                <!-- Dynamically populated -->
+              </article>
+
+              <!-- Footer Back Button -->
+              <div style="margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; text-align: left;">
+                <button id="reader-back-btn-footer" class="btn btn-secondary" style="padding: 10px 20px;">
+                  &larr; Return to News & Blogs
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Sidebar (Poll and Trends) -->
+          <div class="hub-sidebar-column">
+            
+            <!-- Dynamic Poll Card -->
+            <div class="poll-card glass-card" style="margin-bottom: 30px;">
+              <div class="poll-badge">Research pulse poll</div>
+              <h3 id="poll-widget-question">What slows your fieldwork down most?</h3>
+              <p class="poll-sub">Tell us where projects get stuck. Cast your vote below.</p>
+              
+              <div class="poll-select-wrapper" style="margin-bottom: 18px;">
+                <label for="poll-active-select" style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">Select a topic</label>
+                <select id="poll-active-select" style="padding: 10px 14px; background: rgba(5, 10, 10, 0.8); font-size: 13.5px; border-radius: var(--radius-sm);">
+                  <option value="poll-1">Fieldwork bottlenecks</option>
+                  <option value="poll-2">Data quality</option>
+                  <option value="poll-3">Research tooling</option>
+                </select>
+              </div>
+              
+              <form id="poll-widget-form">
+                <div class="poll-options-container">
+                  <label class="poll-option-label" for="opt-a-input">
+                    <input type="radio" name="poll-vote" id="opt-a-input" value="a" required>
+                    <span class="poll-option-custom"></span>
+                    <span class="poll-option-text" id="poll-widget-lbl-a">Slow or vague supplier bids</span>
+                    <span class="poll-option-pct" id="poll-widget-pct-a">0%</span>
+                    <div class="poll-option-bg-bar" id="poll-widget-bar-a" style="width: 0%;"></div>
+                  </label>
+                  
+                  <label class="poll-option-label" for="opt-b-input">
+                    <input type="radio" name="poll-vote" id="opt-b-input" value="b">
+                    <span class="poll-option-custom"></span>
+                    <span class="poll-option-text" id="poll-widget-lbl-b">Fraud and poor-quality completes</span>
+                    <span class="poll-option-pct" id="poll-widget-pct-b">0%</span>
+                    <div class="poll-option-bg-bar" id="poll-widget-bar-b" style="width: 0%;"></div>
+                  </label>
+                  
+                  <label class="poll-option-label" for="opt-c-input">
+                    <input type="radio" name="poll-vote" id="opt-c-input" value="c">
+                    <span class="poll-option-custom"></span>
+                    <span class="poll-option-text" id="poll-widget-lbl-c">Quota and supplier management</span>
+                    <span class="poll-option-pct" id="poll-widget-pct-c">0%</span>
+                    <div class="poll-option-bg-bar" id="poll-widget-bar-c" style="width: 0%;"></div>
+                  </label>
+                  
+                  <label class="poll-option-label" for="opt-d-input">
+                    <input type="radio" name="poll-vote" id="opt-d-input" value="d">
+                    <span class="poll-option-custom"></span>
+                    <span class="poll-option-text" id="poll-widget-lbl-d">Translation and re-scripting</span>
+                    <span class="poll-option-pct" id="poll-widget-pct-d">0%</span>
+                    <div class="poll-option-bg-bar" id="poll-widget-bar-d" style="width: 0%;"></div>
+                  </label>
+                </div>
+                
+                <button type="submit" id="poll-widget-submit" class="btn btn-secondary btn-sm btn-block" style="margin-top: 15px;">Cast Vote</button>
+              </form>
+              
+              <div id="poll-widget-voted-msg" style="display: none; text-align: center; margin-top: 15px; font-size: 13.5px; color: var(--turquoise-accent); font-weight: 600;">
+                ✓ Vote Recorded! Thanks for participating.
+              </div>
+              
+              <div class="poll-widget-footer">
+                <span id="poll-widget-total-votes">Total Votes: 0</span>
+              </div>
+            </div>
+
+            <!-- Platform facts card (figures from the DIY product brief) -->
+            <div class="glass-card trend-panel-box" style="padding: 30px; border-radius: var(--radius-lg);">
+              <h3 style="font-family: var(--font-family-display); font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--text-light);">Explore Research Centric OPS</h3>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">44</div><div style="font-size: 12.5px; color: var(--text-muted);">Market profiles</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">70</div><div style="font-size: 12.5px; color: var(--text-muted);">Audience types</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">33</div><div style="font-size: 12.5px; color: var(--text-muted);">Question types</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">24</div><div style="font-size: 12.5px; color: var(--text-muted);">Methodologies</div></div>
+              </div>
+              <div style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);">
+                <h4 style="font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 8px;">One platform</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">The audience you price in Feasibility is the audience you screen, field and report.</p>
+                <a href="/platform/" style="font-size: 13.5px; font-weight: 600; color: var(--turquoise-accent);">Explore the platform &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>

@@ -1,0 +1,2423 @@
+{
+  "_note": "Editable website copy. Edited in /content-admin.html; the build reads it (build/content-store.js).",
+  "company": {
+    "phone": "+91 0120 605 1391",
+    "emailInfo": "info-team@researchcops.com",
+    "emailBidding": "Bidding-team@researchcops.com",
+    "addressLine1": "NX One Avenue, Plot No - 17, T3, B-809, Techzone 4",
+    "addressLine2": "Greater Noida, UP 201306",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=NX+One+Avenue+Techzone+4+Greater+Noida",
+    "footerLine": "Greater Noida, India · Serving clients in 44 countries",
+    "social": {
+      "linkedin": "https://www.linkedin.com/company/research-cops",
+      "youtube": "https://www.youtube.com/@researchcops",
+      "instagram": "https://www.instagram.com/researchcops",
+      "facebook": "https://www.facebook.com/researchcops"
+    }
+  },
+  "home": {
+    "hero": {
+      "line1": "Best Operating System for",
+      "line2": "Your",
+      "typed": "Research Projects",
+      "cta1": "Book a platform demo",
+      "cta2": "Estimate a project",
+      "checks": [
+        "Instant feasibility &amp; pricing",
+        "Transparent CPI, no hidden fees",
+        "GDPR & CCPA aligned"
+      ],
+      "pill": "every step of a Project, All in One Platform"
+    },
+    "stats": [
+      {
+        "n": "44",
+        "label": "Market profiles in Feasibility &amp; Costing"
+      },
+      {
+        "n": "70",
+        "label": "Audience types in 8 categories"
+      },
+      {
+        "n": "33",
+        "label": "Question types in the Survey Builder"
+      },
+      {
+        "n": "24",
+        "label": "Methodologies, each with a built-in report"
+      }
+    ],
+    "intro": {
+      "h2": "Run it <em class=\"s\">yourself</em>. Or hand it to us.",
+      "p": "The same research operation, offered two ways. Many clients do both: they license the platform and call in our team when they need extra capacity.",
+      "platform": {
+        "h3": "One platform. One login. One subscription.",
+        "p": "The RFQ, the quote, the script, the sample, the data and the report are the same object. The audience you priced is the audience you screened.",
+        "items": [
+          "Feasibility & Costing in seconds",
+          "Survey Builder, 33 question types",
+          "Translation, one version per language",
+          "Sample Collection & live quotas",
+          "Data quality checks on every link",
+          "Data processing & reporting"
+        ]
+      },
+      "services": {
+        "h3": "Our research team runs it from brief to boardroom.",
+        "p": "One project manager, one point of contact. We write it, field it, clean it and tell you what it means, or white-label it for your client.",
+        "items": [
+          "Same-day feasibility & bids",
+          "Questionnaire design & programming",
+          "Translations in 25+ languages",
+          "Verified B2B, HCP & consumer sample",
+          "Fraud & quality checks on every complete",
+          "Data processing, tables & insight reports"
+        ]
+      }
+    },
+    "audiences": {
+      "h2": "Five teams. <em class=\"s\">One</em> research engine.",
+      "p": "Whether you resell sample, run research in-house, need answers for a launch or have to prove a campaign worked, we adapt the platform, the service and the price to you.",
+      "tabs": [
+        {
+          "h3": "A white-label fieldwork team that bids fast and delivers clean.",
+          "lead": "Hand us the screener and the quotas. We return a feasibility and CPI quote, usually the same day, then program, field, clean and deliver under your brand.",
+          "checks": [
+            "<b>Quick bids.</b> Same-day feasibility and CPI by market, with incidence and field time spelled out.",
+            "<b>Hard-to-reach B2B.</b> IT, finance and C-suite decision-makers, plus healthcare professionals.",
+            "<b>Full survey ops.</b> Programming, translations into 25+ languages, data processing and tables.",
+            "<b>You only pay for valid completes.</b> We remove and replace fraudulent responses before delivery."
+          ],
+          "promise": "Same-day bids, white-label delivery, and poor completes replaced before you see the data."
+        },
+        {
+          "h3": "Customer and market evidence for your next decision.",
+          "lead": "We design the study, reach your buyers and turn the results into a short report your leadership will actually read: who to target, what to say and what to price.",
+          "checks": [
+            "<b>Questionnaire design.</b> Research leads write surveys built for completion and honest answers.",
+            "<b>Segmentation & personas.</b> STP frameworks built on real responses, not assumptions.",
+            "<b>Brand & concept testing.</b> Compare positioning, messaging and creative before launch.",
+            "<b>Decision-ready reports.</b> Charts, an executive summary and clear recommendations."
+          ],
+          "promise": "A one-page answer for leadership, backed by data you can defend."
+        },
+        {
+          "h3": "Validate the idea before you spend the runway.",
+          "lead": "Studies from 50 respondents and up, priced for early-stage budgets. Talk to your real target buyers in days, not quarters, and get data you can put in front of investors.",
+          "checks": [
+            "<b>Problem & demand validation.</b> Confirm the pain and its size with your exact ICP.",
+            "<b>Willingness to pay.</b> Van Westendorp and conjoint-lite pricing studies.",
+            "<b>Market sizing inputs.</b> Penetration and intent data for TAM/SAM models.",
+            "<b>Start small.</b> Pay per complete and add markets as you grow."
+          ],
+          "promise": "Get to a confident go or no-go before you write the first line of code."
+        },
+        {
+          "h3": "Prove what your creative and your media actually did.",
+          "lead": "Pre-test ads with the right audience, measure brand lift after a flight, and give clients independent numbers that hold up in a quarterly review.",
+          "checks": [
+            "<b>Ad & creative pre-testing.</b> Recall, appeal, message take-out and purchase intent.",
+            "<b>Brand lift studies.</b> Exposed vs. control designs across markets.",
+            "<b>Audience profiling.</b> Media habits of gamers, parents, auto intenders and more.",
+            "<b>Fast turnaround.</b> Consumer studies typically close in 2–4 days in field."
+          ],
+          "promise": "Independent numbers your client can take into a quarterly review."
+        },
+        {
+          "h3": "Plug your panel into live project demand.",
+          "lead": "Connect as an API-integrated partner or a redirect-based supplier, and receive target groups from projects running in Research Centric OPS.",
+          "checks": [
+            "<b>API integration.</b> Target groups are created, launched, paused and resumed through your API, with CPI and completes goals.",
+            "<b>Profiling &amp; quota sync.</b> Kept in step through server-to-server calls.",
+            "<b>Redirect option.</b> No API? Tokenised links and postbacks work too.",
+            "<b>Reconciliation.</b> Completes checked against your counts and exportable as CSV."
+          ],
+          "promise": "Plug in once, then receive target groups as projects launch."
+        }
+      ]
+    },
+    "services": {
+      "h2": "Every step, <em class=\"s\">done</em> for you.",
+      "p": "Six services that work separately or together, all managed by one project team with one point of contact.",
+      "cards": [
+        {
+          "p": "Surveys written by research leads to reduce drop-off and bias, with an analysis plan built in.",
+          "tag": "Screeners · logic · quotas"
+        },
+        {
+          "p": "Mobile-first scripting with complex logic, piping and quota control, tested before launch and hosted securely.",
+          "tag": "Mobile-first · QA tested"
+        },
+        {
+          "p": "Translation and cultural adaptation in 25+ languages, so questions mean the same thing in every market.",
+          "tag": "25+ languages"
+        },
+        {
+          "p": "Verified B2B, healthcare and consumer respondents from our Opinion Genie panel and API-integrated partners, screened by built-in fraud checks.",
+          "tag": "Opinion Genie + partners · 44 markets"
+        },
+        {
+          "p": "Cleaning, weighting, open-end quality checks and banner tables, delivered as SPSS, Excel or CSV.",
+          "tag": "SPSS · Excel · CSV · PowerPoint"
+        },
+        {
+          "p": "Charts, executive summaries and recommendation decks for marketing and leadership teams.",
+          "tag": "Dashboards · decks · consulting"
+        }
+      ]
+    },
+    "estimator": {
+      "h2": "A CPI in <em class=\"s\">seconds</em>. Not a day.",
+      "p": "Set your audience, market, sample size and survey length to get an indicative cost per interview, a total budget and an estimated field time."
+    },
+    "quality": {
+      "h2": "Fraud stops at the <em class=\"s\" style=\"color:var(--accent)\">link</em>.",
+      "p": "Fraud and quality checks are built into every survey link. Poor-quality and gibberish open ends are flagged, then reviewed by a researcher, and cleaning rules track every complete that's removed."
+    },
+    "testimonials": {
+      "h2": "Trusted where accuracy <em class=\"s\">matters</em>.",
+      "items": [
+        {
+          "quote": "We were impressed with their insights into our target audience. The team was very professional throughout.",
+          "role": "Project Manager",
+          "org": "Sampling company"
+        },
+        {
+          "quote": "They understood our goals and built a customised research plan that fit both our budget and our timeline.",
+          "role": "Senior Research Associate",
+          "org": "Market research consulting firm"
+        },
+        {
+          "quote": "Always responsive. The quality of the research and the recommendations we got were excellent.",
+          "role": "Research Consultant",
+          "org": "Research firm, Australia"
+        }
+      ]
+    },
+    "insights": {
+      "h2": "Sharper research, <em class=\"s\">in writing</em>."
+    }
+  },
+  "pages": {
+    "contactBlock": {
+      "h2": "Brief us. We'll <em class=\"s\" style=\"color:var(--accent)\">price</em> it.",
+      "p": "Share a few details and a research lead will reply within one business day with feasibility, timing and a fixed quote, or a time for a live platform demo."
+    },
+    "platform": {
+      "h1": "One platform. Every <em class=\"s\">step</em>.",
+      "lead": "Feasibility and costing, survey building, translation, sample collection, data quality checks and data processing, all on one platform. The audience you price in Feasibility is the audience you screen, field and report."
+    },
+    "methodologies": {
+      "h1": "24 methods. <em class=\"s\">Zero</em> blank pages.",
+      "lead": "Pricing, product and UX/CX designs come ready to field, each with a built-in report. You get a working design, not a blank questionnaire and a note to the analyst."
+    },
+    "security": {
+      "h1": "Fraud stops at the <em class=\"s\">link</em>.",
+      "lead": "Fraud and quality checks are built into every survey link, and accounts are protected with two-factor authentication, single sign-on, role-based access and an audit log.",
+      "faqs": [
+        [
+          "Do you support single sign-on?",
+          "Yes, through OpenID Connect."
+        ],
+        [
+          "Is two-factor authentication available?",
+          "Yes: TOTP two-factor authentication and password OTP."
+        ],
+        [
+          "How do you handle data-subject requests?",
+          "Requests such as erasure are handled on request by our team. Contact info-team@researchcops.com."
+        ],
+        [
+          "Do you use a third-party CAPTCHA?",
+          "No. Survey links use our own human-verification check."
+        ]
+      ]
+    },
+    "pricing": {
+      "h1": "Start small. <em class=\"s\">Scale</em> on one platform.",
+      "lead": "Each plan adds to the one before: start with the Survey Builder and grow into feasibility, translation, sample collection, data processing and the AI assistant. Fieldwork is quoted separately, per project.",
+      "faqs": [
+        [
+          "Why aren't prices listed?",
+          "Plans are priced on modules, seats and AI credits, and many clients combine them with fieldwork. Tell us what you need and we will send exact pricing within one business day."
+        ],
+        [
+          "Is fieldwork included?",
+          "No. Fieldwork (sample) is quoted separately, per project, on a cost-per-complete basis."
+        ],
+        [
+          "What are AI credits?",
+          "AI features, such as the AI Survey Assistant on Sigma, use AI credits. Each plan includes a monthly allowance: Alpha 200, Beta 500, Gamma 1,500, Sigma 4,000."
+        ],
+        [
+          "How do I get an account?",
+          "Contact our team to request an account. New accounts are activated after admin approval."
+        ]
+      ]
+    },
+    "solutions": {
+      "h1": "Your research team, <em class=\"s\">on demand</em>.",
+      "lead": "Seven research services that work separately or together, plus an enterprise automation add-on, all managed by one team with one point of contact."
+    },
+    "whoWeServe": {
+      "h1": "Five teams. <em class=\"s\">One</em> research engine.",
+      "lead": "Whether you resell sample, run research in-house, need answers for a launch or have to prove a campaign worked, we adapt the platform, the service and the price to you."
+    },
+    "about": {
+      "h1": "Research <em class=\"s\">Centric</em> Ops.",
+      "lead": "We are a market research operations company based in Greater Noida, India, and the team behind the Research Centric OPS platform. We help agencies, brands, startups, advertisers and panel companies collect data they can trust and turn it into decisions.",
+      "story": [
+        "Research COPS began as a fieldwork and survey-operations partner for market research agencies. The work they need sounds simple and is hard to do well: find the right respondents, program the survey correctly, keep the fraud out and deliver on time.",
+        "Over time our clients asked us to do more: write the questionnaire, translate it into new markets, process the data and present what it means. We now run the full research lifecycle, either as a white-label team behind an agency or as the research partner for brands and startups without a research department.",
+        "Running hundreds of projects taught us where the time and margin really go: in the seams between tools. So we built <strong>Research Centric OPS</strong>, one platform where the RFQ, the quote, the script, the sample, the data and the report all live in the same project. Alongside it sits <strong>Opinion Genie</strong>, our own panel, working with a network of API-integrated partner panels."
+      ],
+      "note": "Our name is our approach: <strong>Research Centric Ops</strong>. We put the research first, and run the operations behind it with the discipline of a well-run engineering team.",
+      "values": [
+        [
+          "shield",
+          "Quality first",
+          "We check every complete, and we replace fraudulent responses rather than hiding them."
+        ],
+        [
+          "wallet",
+          "Prices you can explain",
+          "Itemised, reproducible quotes with stated assumptions and no hidden fees."
+        ],
+        [
+          "clock",
+          "Responsiveness",
+          "Support around the clock, and same-day bids on most RFQs."
+        ],
+        [
+          "target",
+          "Decisions, not data",
+          "We measure success by what you can do with the results."
+        ]
+      ]
+    },
+    "contact": {
+      "h1": "Your next study starts <em class=\"s\">here</em>.",
+      "lead": "Get feasibility, timing and a fixed quote within one business day, or book a live demo of the platform. You can also request our panel book or API access."
+    }
+  },
+  "services": [
+    {
+      "slug": "questionnaire-design",
+      "stepsTitle": "From objective to <em>sign-off</em>.",
+      "icon": "design",
+      "name": "Questionnaire design",
+      "short": "Surveys that measure the right thing and get finished.",
+      "h1": "Better questions, <em class=\"s\">better</em> answers.",
+      "lead": "Research leads turn your business objective into a survey that respondents finish and that produces data you can act on.",
+      "stats": [
+        [
+          "24 hrs",
+          "Typical first-draft turnaround"
+        ],
+        [
+          "2",
+          "Review rounds included"
+        ],
+        [
+          "Mobile-first",
+          "Designed for phone respondents"
+        ]
+      ],
+      "featuresTitle": "Designed around the decision you need to make",
+      "features": [
+        [
+          "target",
+          "Objective mapping",
+          "We start from the decision your team must make and tie every question to it."
+        ],
+        [
+          "users",
+          "Tight screeners",
+          "Screeners that qualify the right people and filter out professional survey takers."
+        ],
+        [
+          "layers",
+          "Proven question types",
+          "MaxDiff, Van Westendorp, conjoint-lite, NPS, brand funnels and concept tests."
+        ],
+        [
+          "clock",
+          "Length discipline",
+          "We cut each survey to the shortest LOI that still answers your objectives, which protects data quality and budget."
+        ],
+        [
+          "shield",
+          "Bias control",
+          "Neutral wording, randomised lists and balanced scales reduce order and acquiescence bias."
+        ],
+        [
+          "doc",
+          "Analysis plan included",
+          "Each questionnaire comes with a tab plan, so the results answer the questions you asked."
+        ]
+      ],
+      "steps": [
+        [
+          "Discovery call",
+          "Business objective, audience, hypotheses and how the results will be used."
+        ],
+        [
+          "First draft",
+          "A full questionnaire with logic notes and an LOI estimate, usually within 24 hours."
+        ],
+        [
+          "Review rounds",
+          "Two rounds of revisions with you. We flag any trade-offs between length and coverage."
+        ],
+        [
+          "Ready to program",
+          "A final, signed-off document ready for scripting, with translation notes where needed."
+        ]
+      ],
+      "deliverables": [
+        "Screener + main questionnaire",
+        "Routing & logic notes",
+        "LOI estimate",
+        "Tab / analysis plan",
+        "Translation brief"
+      ],
+      "faqs": [
+        [
+          "Can you review a questionnaire we already wrote?",
+          "Yes. A questionnaire audit is a fixed-fee service. We send back tracked changes, the reason for each one, and a revised LOI estimate."
+        ],
+        [
+          "Do you design for mobile respondents?",
+          "Always. More than half of respondents now take surveys on a phone, so we avoid large grids and long lists."
+        ],
+        [
+          "Which methodologies do you support?",
+          "U&A, brand health, concept and ad testing, pricing (Van Westendorp, Gabor-Granger), MaxDiff, segmentation and customer satisfaction."
+        ]
+      ],
+      "audiences": [
+        "brands-insight-teams",
+        "startups",
+        "research-agencies"
+      ],
+      "related": [
+        "survey-programming",
+        "online-sampling",
+        "insights-reporting"
+      ]
+    },
+    {
+      "slug": "survey-programming",
+      "stepsTitle": "From document to <em>live link</em>.",
+      "icon": "code",
+      "name": "Survey programming & hosting",
+      "short": "Mobile-first scripting with complex logic, tested before launch.",
+      "h1": "Scripted right the <em class=\"s\">first</em> time.",
+      "lead": "Mobile-first survey programming with complex logic, piping, quotas and randomisation. Every script is tested by a second programmer before it goes live, and hosted on secure infrastructure.",
+      "stats": [
+        [
+          "48 hrs",
+          "Typical programming turnaround"
+        ],
+        [
+          "2-step",
+          "Independent QA on every script"
+        ],
+        [
+          "Live",
+          "Quota & quality monitoring"
+        ]
+      ],
+      "featuresTitle": "Complex surveys, without the bugs",
+      "features": [
+        [
+          "code",
+          "Advanced logic",
+          "Skip and display logic, piping, loops, hidden variables and least-fill quotas."
+        ],
+        [
+          "layers",
+          "Advanced exercises",
+          "MaxDiff, conjoint, card sorts, heatmaps, drag-and-drop ranking and media embeds."
+        ],
+        [
+          "bolt",
+          "Mobile-first UX",
+          "Layouts that work on any screen size and keep respondents engaged."
+        ],
+        [
+          "shield",
+          "Built-in quality traps",
+          "Attention checks, speeder flags and duplicate detection are programmed into every survey."
+        ],
+        [
+          "globe",
+          "Multi-language builds",
+          "One script with every language version, so changes apply across all markets at once."
+        ],
+        [
+          "plug",
+          "Panel integration",
+          "Redirects, status codes and quota sync for our panel, your panel, or any third-party supplier."
+        ]
+      ],
+      "steps": [
+        [
+          "Questionnaire handover",
+          "You send the final document. We flag any unclear logic before we start scripting."
+        ],
+        [
+          "Programming",
+          "A test link is ready, typically within 48 hours, with a change log."
+        ],
+        [
+          "Independent QA",
+          "A second programmer tests every path, quota and device, using dummy data."
+        ],
+        [
+          "Launch & monitor",
+          "A soft launch with a data check, then live hosting with real-time monitoring."
+        ]
+      ],
+      "deliverables": [
+        "Test & live links",
+        "Dummy-data check",
+        "QA checklist",
+        "Real-time quota dashboard",
+        "Raw data export"
+      ],
+      "faqs": [
+        [
+          "Can you host a survey with our own sample?",
+          "Yes. We provide redirect links and status codes for your panel or any third-party supplier."
+        ],
+        [
+          "How many revision rounds are included?",
+          "Two rounds of changes on the test link are included. Further changes are quoted at a small hourly rate."
+        ],
+        [
+          "Is respondent data secure?",
+          "Surveys are hosted on encrypted infrastructure with access controls. Data handling follows GDPR and CCPA principles."
+        ]
+      ],
+      "audiences": [
+        "research-agencies",
+        "brands-insight-teams"
+      ],
+      "related": [
+        "questionnaire-design",
+        "translations",
+        "data-processing"
+      ]
+    },
+    {
+      "slug": "translations",
+      "stepsTitle": "From source to <em>every</em> market.",
+      "icon": "translate",
+      "name": "Translations",
+      "short": "Translation and cultural adaptation in 25+ languages.",
+      "h1": "Same question, same <em class=\"s\">meaning</em>, in every market.",
+      "lead": "Native-speaker translation and cultural adaptation of surveys, stimuli and open-ended responses in 25+ languages, so multi-country data is truly comparable.",
+      "stats": [
+        [
+          "25+",
+          "Languages"
+        ],
+        [
+          "2-pass",
+          "Translate + independent review"
+        ],
+        [
+          "48 hrs",
+          "Typical survey turnaround"
+        ]
+      ],
+      "featuresTitle": "Translation built for research",
+      "features": [
+        [
+          "users",
+          "Native research linguists",
+          "Translators who know survey conventions, scales and the vocabulary of your sector."
+        ],
+        [
+          "globe",
+          "Cultural adaptation",
+          "Brands, currencies, examples and income bands localised for each market."
+        ],
+        [
+          "shield",
+          "Independent review",
+          "A second linguist checks every translation against the source."
+        ],
+        [
+          "code",
+          "In-script overlays",
+          "We check translations inside the live survey, so nothing is cut off or misplaced."
+        ],
+        [
+          "doc",
+          "Open-end translation",
+          "Verbatims translated back to English for open-end quality checks and reporting."
+        ],
+        [
+          "layers",
+          "Stimulus & reports",
+          "Concept boards, ad scripts and final reports translated as well."
+        ]
+      ],
+      "steps": [
+        [
+          "Source lock",
+          "We work from the final source text, with a glossary of brand and technical terms."
+        ],
+        [
+          "Translate",
+          "A native research linguist translates and adapts the text for each market."
+        ],
+        [
+          "Review",
+          "An independent reviewer checks the translation, and any disagreements are resolved with notes."
+        ],
+        [
+          "In-survey check",
+          "Each language version is checked inside the programmed survey before launch."
+        ]
+      ],
+      "deliverables": [
+        "Translated questionnaire",
+        "Glossary",
+        "Reviewer notes",
+        "In-survey check sign-off",
+        "Translated open-ends"
+      ],
+      "faqs": [
+        [
+          "Which languages do you cover?",
+          "All major European and Asian languages, plus Arabic, Hebrew, Portuguese (BR/PT), Spanish (LATAM/ES), Hindi and other Indian languages. Ask us about any others."
+        ],
+        [
+          "Do you use machine translation?",
+          "Only as a starting draft, survey text and stimuli are always translated and reviewed by people."
+        ],
+        [
+          "Can you handle right-to-left languages?",
+          "Yes. Arabic and Hebrew are programmed and checked with the correct right-to-left layout."
+        ]
+      ],
+      "audiences": [
+        "research-agencies",
+        "advertising-media"
+      ],
+      "related": [
+        "survey-programming",
+        "online-sampling",
+        "data-processing"
+      ]
+    },
+    {
+      "slug": "online-sampling",
+      "stepsTitle": "From brief to <em>clean</em> completes.",
+      "icon": "sampling",
+      "name": "Online sampling",
+      "short": "Verified B2B, healthcare & consumer respondents in 44 countries.",
+      "h1": "Reach the <em class=\"s\">exact</em> respondents your study needs.",
+      "lead": "Verified B2B decision-makers, healthcare professionals and consumers from our Opinion Genie panel and vetted partners. Profiled in advance, screened for fraud, and delivered on time.",
+      "stats": [
+        [
+          "Opinion Genie",
+          "Our own panel, plus API-integrated partners"
+        ],
+        [
+          "44",
+          "Countries we field in"
+        ],
+        [
+          "Same day",
+          "Typical feasibility turnaround"
+        ]
+      ],
+      "featuresTitle": "Sample that holds up when the client asks questions",
+      "features": [
+        [
+          "target",
+          "Deep B2B profiling",
+          "Target by job role, seniority, department, industry, company size and purchase authority, without a long screener."
+        ],
+        [
+          "users",
+          "Healthcare professionals",
+          "Physicians, specialists, nurses and pharmacists, verified against professional credentials."
+        ],
+        [
+          "globe",
+          "Multi-country fieldwork",
+          "Run one study across North America, Europe, APAC, LATAM and MEA, with local quotas managed for you."
+        ],
+        [
+          "shield",
+          "Fraud & quality checks",
+          "Geo-IP, proxy/VPN, fingerprinting, human-verification and a quality score on every complete."
+        ],
+        [
+          "layers",
+          "Mid-field flexibility",
+          "Add quotas, markets or sample size mid-field. Studies start from 50 completes."
+        ],
+        [
+          "bolt",
+          "Fast feasibility",
+          "Feasibility, incidence and CPI by country, usually back to you the same business day."
+        ]
+      ],
+      "steps": [
+        [
+          "Send your brief",
+          "Target audience, markets, sample size, LOI, incidence and timeline. A screener is helpful but optional."
+        ],
+        [
+          "Feasibility & CPI",
+          "We confirm reach by country and send a fixed CPI quote, with no hidden fees."
+        ],
+        [
+          "Soft launch",
+          "We send about 10% of the sample first, check the data with you, and then go to full launch."
+        ],
+        [
+          "Field & replace",
+          "Live quota tracking. We remove fraudulent or poor-quality completes and replace them at no cost."
+        ]
+      ],
+      "deliverables": [
+        "Sample-only (your survey link)",
+        "Redirect & quota setup",
+        "Daily field reports",
+        "Removal & replacement log",
+        "Final respondent IDs"
+      ],
+      "faqs": [
+        [
+          "Where does your sample come from?",
+          "Our proprietary Opinion Genie panel, plus a network of vetted partner panels. We blend sources and de-duplicate across them, so a respondent can only complete your study once."
+        ],
+        [
+          "Do you work as a white-label supplier?",
+          "Yes. Many of our clients are research agencies. We never contact your end client, and all reporting can carry your brand."
+        ],
+        [
+          "What is your minimum project size?",
+          "We field studies from 50 completes. Very niche B2B or HCP audiences may need a minimum fee, which we state in the quote."
+        ],
+        [
+          "How do you price sample?",
+          "On a cost-per-complete (CPI) basis. CPI depends on audience, country, incidence, LOI and quotas. You pay only for valid completes."
+        ]
+      ],
+      "audiences": [
+        "research-agencies",
+        "brands-insight-teams",
+        "startups",
+        "advertising-media"
+      ],
+      "related": [
+        "survey-programming",
+        "questionnaire-design",
+        "data-processing"
+      ]
+    },
+    {
+      "slug": "data-processing",
+      "stepsTitle": "From raw file to <em>checked</em> tables.",
+      "icon": "data",
+      "name": "Data processing",
+      "short": "Cleaning, weighting, open-end checks and banner tables.",
+      "h1": "Clean data, ready for <em class=\"s\">analysis</em>.",
+      "lead": "Data cleaning, weighting, open-end quality checks and banner tables, delivered in SPSS, Excel or CSV, in the format your analysts already use.",
+      "stats": [
+        [
+          "24 hrs",
+          "Typical tables turnaround"
+        ],
+        [
+          "SPSS · XLSX",
+          "And CSV, Q, triple-S"
+        ],
+        [
+          "100%",
+          "Tables checked against raw data"
+        ]
+      ],
+      "featuresTitle": "Data your analysts can use straight away",
+      "features": [
+        [
+          "shield",
+          "Data cleaning",
+          "Speeders, straight-liners and inconsistent answers are removed and logged."
+        ],
+        [
+          "layers",
+          "Weighting",
+          "RIM and cell weighting to census or custom targets, with efficiency reported."
+        ],
+        [
+          "doc",
+          "Open-end quality checks & framework",
+          "Poor-quality and gibberish answers flagged, then a theme framework built from the data, applied consistently across languages."
+        ],
+        [
+          "chart",
+          "Banner tables",
+          "Cross-tabs with significance testing, nets and custom breaks to your specification."
+        ],
+        [
+          "data",
+          "Any format",
+          "SPSS (.sav), Excel, CSV, Q or triple-S."
+        ],
+        [
+          "clock",
+          "Trackers",
+          "Consistent wave-on-wave processing with automated trend tables."
+        ]
+      ],
+      "steps": [
+        [
+          "Tab plan",
+          "You share the banner and stub specs, or we draft them from the questionnaire."
+        ],
+        [
+          "Clean & check",
+          "Quality checks and a removals log, then an open-end framework for your approval."
+        ],
+        [
+          "Weight & tabulate",
+          "Weighting applied, then tables run with significance testing."
+        ],
+        [
+          "Check & deliver",
+          "Every table is spot-checked against the raw data before delivery."
+        ]
+      ],
+      "deliverables": [
+        "Clean raw data file",
+        "Removal log",
+        "Open-end framework",
+        "Banner tables",
+        "Data map"
+      ],
+      "faqs": [
+        [
+          "Can you process data from a survey you did not field?",
+          "Yes. Send the raw data and questionnaire and we can clean it, run open-end quality checks and tabulate it."
+        ],
+        [
+          "Which significance tests do you run?",
+          "Column proportions and means tests at 90/95/99%, with effective base adjustment when the data is weighted."
+        ],
+        [
+          "Can you build dashboards?",
+          "Yes, as part of our insights and reporting service."
+        ]
+      ],
+      "audiences": [
+        "research-agencies",
+        "brands-insight-teams"
+      ],
+      "related": [
+        "insights-reporting",
+        "survey-programming",
+        "online-sampling"
+      ]
+    },
+    {
+      "slug": "insights-reporting",
+      "stepsTitle": "From tables to a <em>story</em>.",
+      "icon": "chart",
+      "name": "Insights & report writing",
+      "short": "Executive summaries, dashboards and recommendation decks.",
+      "h1": "From data to a <em class=\"s\">decision</em>.",
+      "lead": "Charts, executive summaries and recommendation decks that marketing and leadership teams can act on. You get a clear story and next steps, not a pile of tables.",
+      "stats": [
+        [
+          "1 page",
+          "Executive summary, always"
+        ],
+        [
+          "5–7 days",
+          "Typical full report"
+        ],
+        [
+          "Consulting",
+          "Workshops & read-outs"
+        ]
+      ],
+      "featuresTitle": "Reporting written for decision-makers",
+      "features": [
+        [
+          "doc",
+          "Executive summary",
+          "The answer first: what we found, what it means and what to do next."
+        ],
+        [
+          "chart",
+          "Visual storytelling",
+          "Clean charts with one message per slide, in your brand template if you like."
+        ],
+        [
+          "target",
+          "Segmentation & STP",
+          "Segments, targeting and positioning built from the data."
+        ],
+        [
+          "layers",
+          "Dashboards",
+          "Interactive dashboards for trackers and multi-market studies."
+        ],
+        [
+          "users",
+          "Live read-outs",
+          "A walk-through with your team, plus a Q&A with stakeholders."
+        ],
+        [
+          "bolt",
+          "Marketing consulting",
+          "Go-to-market, pricing and messaging recommendations based on the data."
+        ]
+      ],
+      "steps": [
+        [
+          "Story plan",
+          "We agree the key questions and the structure of the story before writing."
+        ],
+        [
+          "Analysis",
+          "Cross-tabs, drivers, segmentation and statistical testing."
+        ],
+        [
+          "Draft deck",
+          "A full draft with executive summary for your review."
+        ],
+        [
+          "Read-out",
+          "A final deck plus a presentation to your team or end client."
+        ]
+      ],
+      "deliverables": [
+        "Executive summary",
+        "Full PowerPoint report",
+        "Dashboard (optional)",
+        "Verbatim highlights",
+        "Read-out session"
+      ],
+      "faqs": [
+        [
+          "Can you write the report under our brand?",
+          "Yes. We regularly produce white-label reports in our agency clients' templates."
+        ],
+        [
+          "Do you only report on data you collected?",
+          "No. We can analyse and report on any data set, including your own CRM or past studies."
+        ],
+        [
+          "What does a report cost?",
+          "It depends on scope. Reporting is quoted separately from fieldwork, usually as a fixed fee per study."
+        ]
+      ],
+      "audiences": [
+        "brands-insight-teams",
+        "startups",
+        "advertising-media"
+      ],
+      "related": [
+        "data-processing",
+        "questionnaire-design",
+        "end-to-end-project-management"
+      ]
+    },
+    {
+      "slug": "end-to-end-project-management",
+      "stepsTitle": "Four gates. <em>Zero</em> surprises.",
+      "icon": "pm",
+      "name": "End-to-end project management",
+      "short": "One team from RFP to final deliverable.",
+      "h1": "One team, from brief to <em class=\"s\">boardroom</em>.",
+      "lead": "A dedicated project manager runs your whole study: feasibility, design, programming, translation, sampling, quality checks, data and reporting, with one point of contact and live status updates throughout.",
+      "stats": [
+        [
+          "1",
+          "Point of contact"
+        ],
+        [
+          "4",
+          "Sign-off gates per project"
+        ],
+        [
+          "Daily",
+          "Field status updates"
+        ]
+      ],
+      "featuresTitle": "Your research, fully managed",
+      "features": [
+        [
+          "users",
+          "Dedicated PM",
+          "A named project manager who knows your study and is available in your time zone."
+        ],
+        [
+          "clock",
+          "Live status",
+          "Daily field updates and a real-time quota dashboard."
+        ],
+        [
+          "shield",
+          "Quality gates",
+          "Sign-off checkpoints at questionnaire, script, soft launch and data stages."
+        ],
+        [
+          "layers",
+          "Vendor coordination",
+          "We manage every partner panel, translator and specialist for you."
+        ],
+        [
+          "wallet",
+          "Fixed budgets",
+          "A clear quote up front, with change requests priced before any work starts."
+        ],
+        [
+          "doc",
+          "Full documentation",
+          "Methodology notes, field reports and data maps for your files."
+        ]
+      ],
+      "steps": [
+        [
+          "Plan & design",
+          "Objectives, audience, method, timeline and budget, agreed within 24 hours of the brief."
+        ],
+        [
+          "Build",
+          "Questionnaire, translations and survey programming, each with a sign-off step."
+        ],
+        [
+          "Field",
+          "Soft launch, full launch and real-time quality monitoring."
+        ],
+        [
+          "Deliver",
+          "Clean data, tables and an insight report, plus a debrief."
+        ]
+      ],
+      "deliverables": [
+        "Project plan & timeline",
+        "Daily field reports",
+        "Clean data + tables",
+        "Insight report",
+        "Methodology appendix"
+      ],
+      "faqs": [
+        [
+          "Can we buy just part of the process?",
+          "Yes. Every service is available on its own. Full management is simply the easiest option when you want one accountable partner."
+        ],
+        [
+          "How do you communicate during a project?",
+          "By email, a shared status sheet or your project tool, plus scheduled calls at each milestone."
+        ],
+        [
+          "What happens if field is slow?",
+          "We tell you early, with options such as extra sources, quota relaxation or a timeline change, before it affects your deadline."
+        ]
+      ],
+      "audiences": [
+        "brands-insight-teams",
+        "startups",
+        "advertising-media",
+        "research-agencies"
+      ],
+      "related": [
+        "online-sampling",
+        "insights-reporting",
+        "questionnaire-design"
+      ]
+    }
+  ],
+  "automation": {
+    "slug": "workflow-automation",
+    "stepsTitle": "From audit to <em>go-live</em>.",
+    "icon": "flow",
+    "name": "Enterprise workflow automation",
+    "short": "Connect research pipelines with your CRM, HRMS, ERP and finance systems.",
+    "h1": "Automate the work <em class=\"s\">around</em> your research.",
+    "lead": "An optional add-on for enterprise and agency clients. We connect your research pipelines, CRM, HRMS, ERP and finance systems, so quotes, projects, invoices and reports move without manual re-keying.",
+    "stats": [
+      [
+        "CRM · HRMS · ERP",
+        "Systems we connect"
+      ],
+      [
+        "Audit first",
+        "A fixed-fee workflow audit"
+      ],
+      [
+        "Phased",
+        "Rollout with staff training"
+      ]
+    ],
+    "featuresTitle": "Where automation saves the most time",
+    "features": [
+      [
+        "plug",
+        "CRM & research pipelines",
+        "Sync RFQs, quotes and project status between your CRM and your research tools."
+      ],
+      [
+        "wallet",
+        "Billing & ledgers",
+        "Automatic invoicing from completed quotas, plus reconciliation with your accounting ledger."
+      ],
+      [
+        "users",
+        "HRMS integration",
+        "Connect people data, resourcing and payroll inputs for project teams and field staff."
+      ],
+      [
+        "data",
+        "Legacy ERP bridges",
+        "Two-way connections to older ERP systems through APIs, files or scheduled jobs."
+      ],
+      [
+        "doc",
+        "Document workflows",
+        "Generate, route and approve SOWs, POs and reports with a full audit trail."
+      ],
+      [
+        "chart",
+        "Operations dashboards",
+        "One view of pipeline, margin, field status and utilisation across systems."
+      ]
+    ],
+    "steps": [
+      [
+        "Process audit",
+        "We map your current workflows and find the manual steps that cost the most."
+      ],
+      [
+        "Blueprint",
+        "Integration design, data mapping and security review, signed off by your IT team."
+      ],
+      [
+        "Build & test",
+        "Connectors, automations and dashboards built in a staging environment."
+      ],
+      [
+        "Go live & support",
+        "Phased rollout, staff training and ongoing monitoring under an SLA."
+      ]
+    ],
+    "deliverables": [
+      "Workflow audit report",
+      "Integration blueprint",
+      "Connectors & automations",
+      "Ops dashboard",
+      "Runbook & SLA"
+    ],
+    "faqs": [
+      [
+        "Do I need this to buy research from you?",
+        "No. Automation is an optional add-on. Most clients use our research services on their own."
+      ],
+      [
+        "Which systems do you integrate with?",
+        "Common CRMs, HRMS, ERP and accounting platforms, plus any system that has an API, a database or file exports. Tell us your stack and we will confirm."
+      ],
+      [
+        "How is it priced?",
+        "An initial audit at a fixed fee, then a project quote for the build and an optional monthly support plan."
+      ]
+    ],
+    "related": [
+      "end-to-end-project-management",
+      "data-processing",
+      "online-sampling"
+    ]
+  },
+  "audiences": [
+    {
+      "slug": "research-agencies",
+      "stepsTitle": "From bid to delivery in <em>three</em> steps.",
+      "steps": [
+        [
+          "Same day",
+          "Bid",
+          "Send the screener and quotas. We return feasibility and CPI by market, with incidence stated."
+        ],
+        [
+          "Typically 2–7 days in field",
+          "Field under your brand",
+          "We program or host, field and replace poor completes, with daily status updates."
+        ],
+        [
+          "On close",
+          "Deliver",
+          "Clean data and tables in your template, ready to brand as yours."
+        ]
+      ],
+      "name": "Market research agencies",
+      "short": "White-label fieldwork that bids fast and delivers clean.",
+      "h1": "Your white-label <em class=\"s\">fieldwork</em> team.",
+      "lead": "Fast, transparent bids and clean data delivered under your brand. Research agencies use us for sample-only projects, hard-to-reach B2B audiences and full survey operations when their own team is at capacity.",
+      "stats": [
+        [
+          "Same day",
+          "Typical feasibility turnaround"
+        ],
+        [
+          "NDA",
+          "White-label as standard"
+        ],
+        [
+          "0",
+          "Contact with your end client"
+        ]
+      ],
+      "pains": [
+        [
+          "Slow or vague bids",
+          "Feasibility that takes days, with no breakdown by country or incidence, costs you the pitch.",
+          "<b>Our fix:</b> same-day feasibility and CPI by market, with incidence assumptions stated."
+        ],
+        [
+          "Quality you can't defend",
+          "Bots and professional respondents get past suppliers, and your client finds them first.",
+          "<b>Our fix:</b> built-in fraud and quality checks, with poor completes replaced before you see the data."
+        ],
+        [
+          "Capacity crunches",
+          "Peaks in programming, translation or tabs stretch your team and push back deadlines.",
+          "<b>Our fix:</b> on-demand survey ops that work in your templates, to your standards."
+        ]
+      ],
+      "studies": [
+        "Programming + hosting",
+        "Translations",
+        "Sample-only B2B",
+        "HCP & specialist studies",
+        "Multi-country trackers",
+        "Banner tables & open-end checks"
+      ],
+      "services": [
+        "online-sampling",
+        "survey-programming",
+        "data-processing",
+        "translations"
+      ],
+      "platform": [
+        "Win more, deliver more, save more",
+        "License Research Centric OPS and answer bids the same day. Keep the delivery margin that used to go to vendor fees and re-keying, and stop losing a project when the person running it is away."
+      ],
+      "quote": [
+        "The team was always responsive, and the quality of their research and the recommendations were excellent.",
+        "Research Consultant, Australian research firm"
+      ],
+      "faqs": [
+        [
+          "Do you work under NDA and white label?",
+          "Yes, as standard. We sign your NDA, never contact your end client, and can brand all outputs as yours."
+        ],
+        [
+          "Can you connect to our survey platform?",
+          "Yes. We work with any platform that supports redirects, using tokenised links and postbacks so status updates automatically."
+        ],
+        [
+          "Do you offer partner pricing?",
+          "Yes. Agencies with regular volume get partner rate cards and priority bidding."
+        ]
+      ]
+    },
+    {
+      "slug": "brands-insight-teams",
+      "stepsTitle": "From question to decision in <em>three</em> steps.",
+      "steps": [
+        [
+          "Within 24 hours",
+          "Scope",
+          "We turn your business question into a study design, with options at different budgets."
+        ],
+        [
+          "Typically 2–7 days in field",
+          "Field",
+          "Questionnaire, sample and quality checks, with live status while you are in field."
+        ],
+        [
+          "5–7 days after close",
+          "Decide",
+          "A one-page answer and a full report, read out to your team."
+        ]
+      ],
+      "name": "Brands & insight teams",
+      "short": "Run research in-house, or have us run it for you.",
+      "h1": "Evidence for your next <em class=\"s\">big</em> decision, on your terms.",
+      "lead": "Run studies in-house on Research Centric OPS, or have our team design, field and report them for you. Either way, leadership gets a short, clear answer: who to target, what to say and how to price.",
+      "stats": [
+        [
+          "44",
+          "Countries we field in"
+        ],
+        [
+          "2–3 weeks",
+          "Brief to report, typically"
+        ],
+        [
+          "1 page",
+          "Executive summary, always"
+        ]
+      ],
+      "pains": [
+        [
+          "Decisions made on hunches",
+          "Positioning and campaigns are chosen by the loudest opinion in the room.",
+          "<b>Our fix:</b> fast, affordable studies that put real buyer data behind the decision."
+        ],
+        [
+          "Data without direction",
+          "Dashboards full of numbers, but no clear answer to \"so what should we do?\"",
+          "<b>Our fix:</b> reports that lead with recommendations, written by researchers who know marketing."
+        ],
+        [
+          "Hard-to-reach B2B buyers",
+          "Your buyers are IT, finance or C-suite leaders who rarely take surveys.",
+          "<b>Our fix:</b> a profiled B2B panel targeted by role, seniority and company size."
+        ]
+      ],
+      "studies": [
+        "Brand health & awareness",
+        "Message & positioning tests",
+        "Customer satisfaction & NPS",
+        "Pricing research",
+        "Segmentation & personas",
+        "Win/loss analysis"
+      ],
+      "services": [
+        "questionnaire-design",
+        "online-sampling",
+        "insights-reporting",
+        "end-to-end-project-management"
+      ],
+      "platform": [
+        "Run it in house",
+        "Price a study before you commit budget, run recurring trackers without an agency retainer, and keep every wave, script and data set under your own governance."
+      ],
+      "quote": [
+        "They took the time to understand our goals and created a customised research plan that met our budget and timeline.",
+        "Senior Research Associate, market research consulting firm"
+      ],
+      "faqs": [
+        [
+          "We have never commissioned research. Where do we start?",
+          "With a 30-minute call. We help turn your question into a study design and give you options at different budgets."
+        ],
+        [
+          "Can you survey our own customers?",
+          "Yes. We can program and host a survey for your customer list, and add panel sample for comparison."
+        ],
+        [
+          "How much does a typical study cost?",
+          "It depends on audience and scope. Use the CPI estimator on our homepage for fieldwork, and we will quote design and reporting separately."
+        ]
+      ]
+    },
+    {
+      "slug": "startups",
+      "stepsTitle": "From idea to evidence in <em>three</em> steps.",
+      "steps": [
+        [
+          "Within 24 hours",
+          "Define your buyer",
+          "We sharpen the questions and the exact audience you need to hear from."
+        ],
+        [
+          "Typically 2–4 days in field",
+          "Talk to real buyers",
+          "Independent respondents who match your ICP, screened for fraud."
+        ],
+        [
+          "On close",
+          "Show the data",
+          "Clean results and charts you can put in front of investors."
+        ]
+      ],
+      "name": "Startups",
+      "short": "Validate demand and pricing before you spend the runway.",
+      "h1": "Validate the idea before you spend the <em class=\"s\">runway</em>.",
+      "lead": "Studies from 50 respondents, priced for early-stage budgets. Talk to your real target buyers in days, and get data you can put in front of investors.",
+      "stats": [
+        [
+          "50",
+          "Minimum completes"
+        ],
+        [
+          "2–4 days",
+          "Typical consumer field time"
+        ],
+        [
+          "Pay per complete",
+          "No retainers"
+        ]
+      ],
+      "pains": [
+        [
+          "Feedback from friendly faces",
+          "Friends, investors and early fans tell you what you want to hear.",
+          "<b>Our fix:</b> independent respondents who match your exact ICP."
+        ],
+        [
+          "Guesswork pricing",
+          "Prices are set to match a competitor or pulled from thin air.",
+          "<b>Our fix:</b> willingness-to-pay studies that show the price your market will accept."
+        ],
+        [
+          "Investor pushback",
+          "\"How do you know people want this?\" is hard to answer without data.",
+          "<b>Our fix:</b> demand and market-sizing data presented in a clean, credible format."
+        ]
+      ],
+      "studies": [
+        "Problem & demand validation",
+        "Concept testing",
+        "Pricing & willingness to pay",
+        "Market sizing inputs",
+        "Competitor perception",
+        "Feature prioritisation (MaxDiff)"
+      ],
+      "services": [
+        "questionnaire-design",
+        "online-sampling",
+        "insights-reporting"
+      ],
+      "promise": "Get to a confident go or no-go before you write the first line of code.",
+      "faqs": [
+        [
+          "Is research worth it at pre-seed?",
+          "A focused 100–300 person study often costs less than one month of an engineer's time, and it can save you from building the wrong product."
+        ],
+        [
+          "Can you help us write the survey?",
+          "Yes. Founders often bring a rough list of questions, and we turn it into a clean, unbiased survey."
+        ],
+        [
+          "Can we start in one market and expand later?",
+          "Absolutely. Start with your launch market and add countries as you grow, using the same questionnaire."
+        ]
+      ]
+    },
+    {
+      "slug": "advertising-media",
+      "stepsTitle": "From creative to proof in <em>three</em> steps.",
+      "steps": [
+        [
+          "Within 24 hours",
+          "Design the test",
+          "A monadic pre-test or an exposed-versus-control lift design, matched to the campaign."
+        ],
+        [
+          "Typically 2–4 days in field",
+          "Field",
+          "Ads embedded in the survey, shown to the right audience, with quality-checked completes."
+        ],
+        [
+          "On close",
+          "Report",
+          "Recall, appeal and lift, in your client template or as a white-label report."
+        ]
+      ],
+      "name": "Advertising & media",
+      "short": "Pre-test creative and prove campaign impact.",
+      "h1": "Prove what your creative <em class=\"s\">actually</em> did.",
+      "lead": "Pre-test ads with the right audience, measure brand lift after a campaign, and give clients independent numbers that hold up in a quarterly review.",
+      "stats": [
+        [
+          "2–4 days",
+          "Typical pre-test field time"
+        ],
+        [
+          "Exposed vs control",
+          "Lift study design"
+        ],
+        [
+          "44",
+          "Markets for global campaigns"
+        ]
+      ],
+      "pains": [
+        [
+          "Creative chosen by committee",
+          "The winning concept is the one the client liked, not the one the audience responded to.",
+          "<b>Our fix:</b> fast monadic pre-tests that show recall, appeal and message take-out."
+        ],
+        [
+          "Media metrics aren't enough",
+          "Impressions and clicks don't prove the brand moved.",
+          "<b>Our fix:</b> brand-lift studies that compare exposed and control audiences."
+        ],
+        [
+          "Niche audiences",
+          "Gamers, auto intenders or parents of toddlers are hard to reach at scale.",
+          "<b>Our fix:</b> pre-profiled consumer segments, ready to field."
+        ]
+      ],
+      "studies": [
+        "Creative & ad pre-testing",
+        "Brand lift",
+        "Campaign tracking",
+        "Audience profiling",
+        "Media consumption studies",
+        "Post-campaign ROI"
+      ],
+      "services": [
+        "online-sampling",
+        "survey-programming",
+        "insights-reporting",
+        "translations"
+      ],
+      "promise": "Independent numbers your client can take into a quarterly review.",
+      "faqs": [
+        [
+          "Can respondents view video and display ads in the survey?",
+          "Yes. We embed video, audio, display and social mock-ups, and track view completion."
+        ],
+        [
+          "How do you build a control group?",
+          "We match control respondents to the exposed group on demographics and media habits, then compare brand metrics."
+        ],
+        [
+          "Can results go into our client presentation?",
+          "Yes. We deliver charts in your template, or as a white-label report."
+        ]
+      ]
+    },
+    {
+      "slug": "panel-sample-companies",
+      "stepsTitle": "From connection to reconciled completes in <em>three</em> steps.",
+      "steps": [
+        [
+          "Set-up",
+          "Connect",
+          "Integrate through your API, or with tokenised redirects and postbacks."
+        ],
+        [
+          "Live",
+          "Receive target groups",
+          "Projects create, launch, pause and resume target groups with CPI and completes goals."
+        ],
+        [
+          "Month end",
+          "Reconcile",
+          "Completes reviewed against your counts and exportable as CSV."
+        ]
+      ],
+      "name": "Panel & sample companies",
+      "short": "Plug your panel into live project demand.",
+      "h1": "Plug your panel into <em class=\"s\">live</em> demand.",
+      "lead": "Connect as an API-integrated partner or a redirect-based supplier. Projects in Research Centric OPS can create, launch, pause and resume target groups through your API, set CPI and completes goals, and sync profiling and quotas.",
+      "stats": [
+        [
+          "2",
+          "Ways to connect: API or redirects"
+        ],
+        [
+          "Live",
+          "Quota & profiling sync"
+        ],
+        [
+          "44",
+          "Countries of project demand"
+        ]
+      ],
+      "pains": [
+        [
+          "Projects set up by hand",
+          "Every new project means emails, links and a quota sheet typed into your system.",
+          "<b>Our fix:</b> target groups created, launched, paused and resumed through your API."
+        ],
+        [
+          "Status that drifts",
+          "Completes, terminates and quotas fall out of step between systems.",
+          "<b>Our fix:</b> profiling and quota sync through the API, or tokenised redirects with postbacks."
+        ],
+        [
+          "Counts that do not match",
+          "Month-end arguments about how many completes were really delivered.",
+          "<b>Our fix:</b> reconciliation of completes against supplier counts, exportable as CSV."
+        ]
+      ],
+      "studies": [
+        "API target groups",
+        "Redirect integrations",
+        "Quota & profiling sync",
+        "Supply-preference allocation",
+        "Recontact studies",
+        "Tracker waves"
+      ],
+      "services": [
+        "online-sampling",
+        "end-to-end-project-management",
+        "data-processing"
+      ],
+      "platform": [
+        "Built-in partner integrations",
+        "Sample Collection connects API-integrated partners and redirect-based suppliers, with a live quota engine, postback-failure alerts and reconciliation against supplier counts."
+      ],
+      "quote": [
+        "We were impressed with the depth of audience insight and the professionalism of the team.",
+        "Project Manager, sampling company"
+      ],
+      "faqs": [
+        [
+          "What does the API integration cover?",
+          "Through your API and server-to-server security, projects can create, launch, pause and resume target groups, set the CPI and completes goal, and sync profiling and quotas."
+        ],
+        [
+          "We do not have an API. Can we still supply?",
+          "Yes. Redirect-based suppliers work with tokenised links and postbacks."
+        ],
+        [
+          "How are completes reconciled?",
+          "Completes are computed and reviewed against supplier counts, and the reconciliation can be exported as CSV."
+        ]
+      ]
+    }
+  ],
+  "platform": {
+    "modules": [
+      {
+        "slug": "feasibility-costing",
+        "icon": "wallet",
+        "name": "Feasibility & Costing",
+        "step": "Price",
+        "short": "A CPI, a feasibility range and a field time for every market, in seconds.",
+        "h1": "Quote with <em class=\"s\">confidence</em>. In seconds.",
+        "lead": "Pick the markets, audience, targeting, sample size, LOI and incidence. Research Centric OPS returns a recommended CPI, a feasibility range and a field time for each market, plus the target universe and the share of it that is online.",
+        "today": "A bid sheet, three supplier emails, and a day of waiting.",
+        "here": "Priced in seconds: the universe, the online share, and a confidence label on every number.",
+        "mock": "feasibility",
+        "features": [
+          [
+            "globe",
+            "44 market profiles",
+            "Each market priced and sized on its own profile. Multi-market studies get a result per market."
+          ],
+          [
+            "users",
+            "70 audience types",
+            "In 8 categories: B2C, B2B, Business Functions, Healthcare Professionals, Patients, Education, Government and Specialized."
+          ],
+          [
+            "target",
+            "90 targeting questions",
+            "Narrow the audience with targeting questions and see the effect on price and feasibility straight away."
+          ],
+          [
+            "wallet",
+            "CPI and CPI range",
+            "A recommended CPI and a range for every market, with the assumed incidence and conversion shown."
+          ],
+          [
+            "layers",
+            "Feasibility as a range",
+            "Worst-case to expected completes, a field time in days, and a confidence band from Very Low to Very High."
+          ],
+          [
+            "doc",
+            "Quote to study in one click",
+            "Create the study directly from the quote, so the audience you priced is the audience you screen."
+          ]
+        ],
+        "universe": true
+      },
+      {
+        "slug": "survey-builder",
+        "icon": "code",
+        "name": "Survey Builder",
+        "step": "Build",
+        "short": "33 question types, full logic, quotas and preflight checks.",
+        "h1": "Build it <em class=\"s\">once</em>. Field it everywhere.",
+        "lead": "33 question types, display and skip logic, piping, loops, randomisation and quotas, with automatic preflight checks and an estimated LOI before you launch. Surveys work smoothly on phones, and grids become cards on mobile.",
+        "today": "A separate scripting platform, with its own login and its own library.",
+        "here": "Built where the study lives, with preflight checks before launch.",
+        "mock": "builder",
+        "features": [
+          [
+            "layers",
+            "33 question types",
+            "Standard, grid, advanced and content blocks, including MaxDiff, CBC conjoint, ranking, constant sum, card sorting, tree testing, first click and heatmaps."
+          ],
+          [
+            "code",
+            "Logic & flow",
+            "Display logic; skip to a question or page; terminate or disqualify; piping and carry-forward; loops; randomisation of pages, groups, questions, choices and rows."
+          ],
+          [
+            "target",
+            "Quotas",
+            "Quotas set in the survey, with quota-full handling."
+          ],
+          [
+            "shield",
+            "Preflight before launch",
+            "Automatic validation checks, plus a preview of one question, a page or the whole survey, and an estimated LOI."
+          ],
+          [
+            "doc",
+            "Library, templates & themes",
+            "A shared question library, survey templates and brand themes."
+          ],
+          [
+            "bolt",
+            "Mobile-friendly",
+            "Touch-friendly controls for respondents on phones; matrix questions turn into cards on small screens."
+          ]
+        ],
+        "groups": [
+          [
+            "Standard",
+            [
+              "Single choice",
+              "Multi-select",
+              "Dropdown",
+              "Short text",
+              "Long text",
+              "Number",
+              "Email",
+              "Phone",
+              "Date",
+              "Slider",
+              "Range",
+              "Star rating",
+              "Likert",
+              "NPS"
+            ]
+          ],
+          [
+            "Grids",
+            [
+              "Matrix (single)",
+              "Matrix (multiple)"
+            ]
+          ],
+          [
+            "Advanced",
+            [
+              "Ranking",
+              "Constant sum",
+              "MaxDiff (single screen)",
+              "MaxDiff (designed sets)",
+              "CBC conjoint task",
+              "Pair choice",
+              "First click",
+              "Card sorting",
+              "Tree testing",
+              "Heatmap click",
+              "Text highlight"
+            ]
+          ],
+          [
+            "Content blocks",
+            [
+              "Heading",
+              "Text",
+              "Image",
+              "Video",
+              "Divider"
+            ]
+          ]
+        ],
+        "ai": [
+          [
+            "AI Draft",
+            "Builds a draft survey from a brief."
+          ],
+          [
+            "AI Survey Architect",
+            "Builds a draft from a structured brief."
+          ],
+          [
+            "Questionnaire import",
+            "Upload Word, PDF or Excel. Programming notes such as ASK IF, TERMINATE, SKIP TO and RANDOMIZE become real logic."
+          ],
+          [
+            "AI edit",
+            "Describe a change, review the diff, then apply it."
+          ],
+          [
+            "AI QA review",
+            "Flags leading, double-barrelled and unbalanced questions. Advisory only: the rule-based checks decide whether a survey can publish."
+          ]
+        ]
+      },
+      {
+        "slug": "translation",
+        "icon": "translate",
+        "name": "Translation",
+        "step": "Translate",
+        "short": "Multi-language surveys inside the project, not around it.",
+        "h1": "One script. <em class=\"s\">Every</em> market.",
+        "lead": "Each survey gets a translation version per language. Built-in machine translation runs on our own servers, with an optional AI translation provider, and respondent screens are localised, including right-to-left languages.",
+        "today": "Word files out to a vendor, corrected files back, re-scripted by hand.",
+        "here": "A translation version per language, inside the same survey and project.",
+        "mock": null,
+        "features": [
+          [
+            "globe",
+            "One version per language",
+            "Translation versions of each survey, one per language, kept with the survey in the project."
+          ],
+          [
+            "bolt",
+            "Built-in machine translation",
+            "Runs on our own servers, with an optional AI translation provider."
+          ],
+          [
+            "doc",
+            "Localised respondent screens",
+            "Buttons and messages are localised for respondents, not just the questions."
+          ],
+          [
+            "code",
+            "Right-to-left support",
+            "Right-to-left languages such as Arabic and Hebrew are supported in the respondent screens."
+          ],
+          [
+            "layers",
+            "Ready for the next wave",
+            "A new tracker wave is created with its surveys, allocations and translations."
+          ],
+          [
+            "chart",
+            "Open ends in any language",
+            "Open ends in other languages are translated first, then quality-checked and organised into the open-end framework in Data Processing."
+          ]
+        ]
+      },
+      {
+        "slug": "sample-collection",
+        "icon": "sampling",
+        "name": "Sample Collection",
+        "step": "Field",
+        "short": "Opinion Genie plus API-integrated partners, a live quota engine and field controls.",
+        "h1": "Every supplier. <em class=\"s\">One</em> live board.",
+        "lead": "Field through our own panel, Opinion Genie, and API-integrated partner panels. Allocate quotas by supply preference, soft-launch, then watch completes, incidence and quotas per supplier, and pause or resume any market.",
+        "today": "Supplier portals, pasted redirects, and quotas tracked in a second sheet.",
+        "here": "One live board: allocations, quotas and completes per supplier.",
+        "mock": "sample",
+        "features": [
+          [
+            "users",
+            "Opinion Genie + partners",
+            "Our own panel, plus API-integrated partners (create, launch, pause and resume target groups; set CPI and completes goal; sync profiling and quotas) and redirect-based suppliers with tokenised links and postbacks."
+          ],
+          [
+            "shield",
+            "Launch with confidence",
+            "A launch-readiness check and soft launch, plus a field test page to verify supplier redirects end to end."
+          ],
+          [
+            "layers",
+            "Live field monitor",
+            "Completes, incidence and quotas per supplier, with postback-failure alerts. Pause and resume a whole project or a subset of markets."
+          ],
+          [
+            "target",
+            "Live quota engine",
+            "Quotas with quota-full handling, prescreen quotas, and allocations by supply preference."
+          ],
+          [
+            "clock",
+            "Trackers & waves",
+            "Create a new wave as a child project with its surveys, allocations and translations, then report wave over wave."
+          ],
+          [
+            "wallet",
+            "Reconciliation",
+            "Compute, review and export (CSV) completes against supplier counts."
+          ]
+        ],
+        "extras": [
+          [
+            "Multi-market projects",
+            "A parent project with child market projects, questionnaire sync across markets and rollup reporting."
+          ],
+          [
+            "Recontact",
+            "Signed recontact links, with a separate recontact CPI."
+          ],
+          [
+            "Client link pools",
+            "Upload unique client survey links, assigned one per respondent."
+          ],
+          [
+            "Invite-forward",
+            "Forward invites to suppliers for tracker waves."
+          ]
+        ]
+      },
+      {
+        "slug": "data-reporting",
+        "icon": "chart",
+        "name": "Data Processing & Reporting",
+        "step": "Clean & Report",
+        "short": "Cleaning, weighting, crosstabs, open-end quality checks and exports.",
+        "h1": "Clean data. <em class=\"s\">Clear</em> answers.",
+        "lead": "Clean with built-in and custom rules, weight with RIM or cell weighting, run banner tables, flag poor open ends and organise the rest into a theme framework, all on the response set you collected. Every methodology has its own built-in report.",
+        "today": "Export to a stats package, verbatims sent to an outside open-end vendor.",
+        "here": "Cleaned, weighted and checked in place, so the deck and the data always agree.",
+        "mock": "data",
+        "features": [
+          [
+            "shield",
+            "Cleaning rules",
+            "Speeder, straight-liner, duplicate, partial, poor open-end and attention-check rules, plus custom rules. Removed completes are tracked."
+          ],
+          [
+            "layers",
+            "Weighting",
+            "RIM and cell weighting, with trimming and diagnostics, plus derived variables."
+          ],
+          [
+            "chart",
+            "Banner tables",
+            "Crosstabs, including pooled multi-wave crosstabs, and automated insights."
+          ],
+          [
+            "doc",
+            "Open-end quality checks & framework",
+            "Poor-quality and gibberish open ends are flagged for review, and answers are organised into a theme framework. Other languages are translated first, and the framework can be exported."
+          ],
+          [
+            "data",
+            "Exports",
+            "CSV, SPSS (.sav), Excel banner book and PowerPoint deck, plus MaxDiff and CBC exports."
+          ],
+          [
+            "target",
+            "A report for every method",
+            "An on-screen dashboard, and a dedicated report for each methodology."
+          ]
+        ]
+      }
+    ],
+    "methodologyTotal": 24,
+    "methodologies": [
+      [
+        "Pricing",
+        [
+          "Van Westendorp PSM",
+          "Gabor-Granger (with price-ladder preset)",
+          "Feature Matrix",
+          "Brand-Price Trade-Off (BPTO)",
+          "Dynamic Pricing",
+          "Bundle Pricing"
+        ]
+      ],
+      [
+        "Product",
+        [
+          "Concept Test",
+          "A/B Test",
+          "Recall",
+          "Text Highlight",
+          "Comparative",
+          "Paired Comparison (Bradley-Terry)",
+          "Kano",
+          "CBC Conjoint (with market simulator)",
+          "MaxDiff",
+          "TURF"
+        ]
+      ],
+      [
+        "UX / CX",
+        [
+          "Card Sorting",
+          "Tree Testing",
+          "First Click",
+          "Heatmap",
+          "Driver Analysis",
+          "Journey Mapping"
+        ]
+      ]
+    ],
+    "qualityChecks": [
+      [
+        "Geo-IP country check",
+        "The respondent must be in the target country."
+      ],
+      [
+        "Proxy, VPN & hosting-IP blocking",
+        "Masked and data-centre traffic is blocked, with limits on IP changes during the survey."
+      ],
+      [
+        "Fingerprinting & duplicate checks",
+        "Unique link, unique IP and unique device. Previous respondents can be excluded across a project."
+      ],
+      [
+        "Human-verification challenge",
+        "Our own check, not a third-party CAPTCHA."
+      ],
+      [
+        "Behaviour & quality score",
+        "Speeder and straight-liner detection, poor open-end detection, attention checks and a 0–100 quality score per response."
+      ],
+      [
+        "Device allow-list",
+        "Run mobile-only or desktop-only studies."
+      ],
+      [
+        "Email authenticity check",
+        "Where a survey collects email addresses."
+      ]
+    ],
+    "security": [
+      [
+        "users",
+        "Role-based access",
+        "Client owner and Client user roles, with access set per account. Multi-client accounts can have support staff assigned per client."
+      ],
+      [
+        "shield",
+        "Two-factor authentication",
+        "TOTP two-factor authentication and password OTP."
+      ],
+      [
+        "plug",
+        "Single sign-on",
+        "Sign in through your identity provider with OpenID Connect."
+      ],
+      [
+        "doc",
+        "Audit log",
+        "An audit log of activity in the account."
+      ]
+    ],
+    "plans": [
+      {
+        "name": "Alpha",
+        "tag": "Build surveys and read results.",
+        "items": [
+          "Survey Builder",
+          "Research Center",
+          "On-screen and CSV results",
+          "Core product methodologies",
+          "200 AI credits / month",
+          "1 seat"
+        ]
+      },
+      {
+        "name": "Beta",
+        "tag": "Add feasibility, sample and the UX toolkit.",
+        "popular": true,
+        "items": [
+          "Everything in Alpha, plus:",
+          "Feasibility & Costing",
+          "Sample Collection",
+          "Question library",
+          "Excel banner book",
+          "UX methodologies",
+          "500 AI credits / month · 3 seats"
+        ]
+      },
+      {
+        "name": "Gamma",
+        "tag": "Translation, processing and team work.",
+        "items": [
+          "Everything in Beta, plus:",
+          "Translation",
+          "Data Processing",
+          "Templates & themes",
+          "PowerPoint and SPSS export",
+          "Team users",
+          "1,500 AI credits / month · 10 seats"
+        ]
+      },
+      {
+        "name": "Sigma",
+        "tag": "Advanced pricing and the AI assistant.",
+        "items": [
+          "Everything in Gamma, plus:",
+          "Advanced pricing methods (BPTO, Dynamic, Bundle)",
+          "AI Survey Assistant",
+          "4,000 AI credits / month",
+          "Unlimited seats"
+        ]
+      },
+      {
+        "name": "Custom",
+        "tag": "The modules and methods you need.",
+        "items": [
+          "Pick the modules you need",
+          "Methodologies to suit your work",
+          "Seats and AI credits to match",
+          "Scoped with our team"
+        ]
+      }
+    ],
+    "compare": [
+      [
+        "Modules",
+        [
+          [
+            "Feasibility & Costing",
+            false,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Survey Builder",
+            true,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Translation",
+            false,
+            false,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Sample Collection",
+            false,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Data Processing",
+            false,
+            false,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Research Center",
+            true,
+            true,
+            true,
+            true,
+            "R"
+          ]
+        ]
+      ],
+      [
+        "Resources",
+        [
+          [
+            "Question library",
+            false,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Templates",
+            false,
+            false,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Brand themes",
+            false,
+            false,
+            true,
+            true,
+            "R"
+          ]
+        ]
+      ],
+      [
+        "Methodologies",
+        [
+          [
+            "Core product methodologies",
+            true,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "UX methodologies",
+            false,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Advanced pricing (BPTO, Dynamic, Bundle)",
+            false,
+            false,
+            false,
+            true,
+            "R"
+          ]
+        ]
+      ],
+      [
+        "Results & exports",
+        [
+          [
+            "On-screen results",
+            true,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "CSV export",
+            true,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "Excel banner book",
+            false,
+            true,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "PowerPoint and SPSS export",
+            false,
+            false,
+            true,
+            true,
+            "R"
+          ],
+          [
+            "PDF and Word reports",
+            false,
+            false,
+            false,
+            "Coming soon",
+            "R"
+          ]
+        ]
+      ],
+      [
+        "AI & seats",
+        [
+          [
+            "AI Survey Assistant",
+            false,
+            false,
+            false,
+            true,
+            "R"
+          ],
+          [
+            "AI credits per month",
+            "200",
+            "500",
+            "1,500",
+            "4,000",
+            "Scoped"
+          ],
+          [
+            "Seats",
+            "1",
+            "3",
+            "10",
+            "Unlimited",
+            "Scoped"
+          ]
+        ]
+      ]
+    ],
+    "extras": [
+      [
+        "users",
+        "Multi-client accounts",
+        "Run several clients from one account, with support staff assigned per client."
+      ],
+      [
+        "bolt",
+        "In-app support chat",
+        "Chat with our team inside the platform, with unread alerts and notifications."
+      ],
+      [
+        "wallet",
+        "Invoicing & usage billing",
+        "Invoicing with CSV export, and usage-based billing."
+      ],
+      [
+        "shield",
+        "Self-registration",
+        "Sign up yourself; accounts are activated after admin approval."
+      ],
+      [
+        "target",
+        "Live polling for events",
+        "QR-code voting with PIN-protected judges, and results export."
+      ],
+      [
+        "doc",
+        "In-app user guide",
+        "Step-by-step help inside the platform."
+      ]
+    ],
+    "useCases": [
+      [
+        "Multi-market tracker",
+        "Several markets, several waves",
+        "A parent project with child markets keeps the questionnaire in sync. Each new wave is created as a child project with its surveys, allocations and translations, and the report runs wave over wave.",
+        "No more rebuilding the study from scratch every wave."
+      ],
+      [
+        "Healthcare study",
+        "Professionals and patients",
+        "Healthcare Professionals and Patients are audience categories of their own. Feasibility shows the target universe, the online share and a confidence label before anything is promised.",
+        "No more selling a study the sample can't deliver."
+      ],
+      [
+        "In-house insight team",
+        "Concept tests, on demand",
+        "Price the study, build it from a template, field it through Opinion Genie and partners, and read the built-in concept-test report, all in one project.",
+        "No more agency set-up fee on every small test."
+      ]
+    ]
+  },
+  "meta": {
+    "/": {
+      "title": "Research COPS | Best Operating System for Your Research",
+      "description": "One platform and one team for every research step: feasibility, survey building, translation, sample in 44 markets, quality checks and data processing."
+    },
+    "/about/": {
+      "title": "About us",
+      "description": "Research COPS is a market research operations company in Greater Noida, India, and the team behind the Research Centric OPS platform."
+    },
+    "/contact/": {
+      "title": "Contact, quote & demo",
+      "description": "Request a quote, platform demo, feasibility check or panel book from Research COPS. Email info-team@researchcops.com or call +91 0120 605 1391."
+    },
+    "/platform/data-reporting/": {
+      "title": "Data Processing & Reporting | Research Centric OPS",
+      "description": "Clean, weight, run banner tables and organise open ends into a theme framework, with a built-in report for every methodology."
+    },
+    "/platform/feasibility-costing/": {
+      "title": "Feasibility & Costing | Research Centric OPS",
+      "description": "Pick markets, audience, sample size, LOI and incidence. Get a recommended CPI, feasibility range and field time for each market in seconds."
+    },
+    "/platform/": {
+      "title": "Research Centric OPS platform",
+      "description": "Feasibility and costing, survey building, translation, sample collection, data quality checks and data processing, all on one platform."
+    },
+    "/platform/methodologies/": {
+      "title": "Research methodologies",
+      "description": "24 methodologies with built-in reports, including Van Westendorp, Gabor-Granger, CBC conjoint, MaxDiff, TURF, Kano and concept tests."
+    },
+    "/platform/sample-collection/": {
+      "title": "Sample Collection | Research Centric OPS",
+      "description": "Field through Opinion Genie and API-integrated partners. Allocate quotas by supplier, soft-launch, and track completes and incidence live."
+    },
+    "/platform/security/": {
+      "title": "Data quality checks & security",
+      "description": "Geo-IP, proxy/VPN, fingerprinting, human verification and quality scores on every survey link, plus 2FA, SSO, role-based access and an audit log."
+    },
+    "/platform/survey-builder/": {
+      "title": "Survey Builder | Research Centric OPS",
+      "description": "33 question types, logic, piping, quotas and randomisation, with automatic preflight checks and an LOI estimate before you launch."
+    },
+    "/platform/translation/": {
+      "title": "Translation | Research Centric OPS",
+      "description": "A translation version per language, with built-in machine translation, an optional AI provider and localised respondent screens, including RTL."
+    },
+    "/pricing/": {
+      "title": "Pricing & plans",
+      "description": "Compare Research Centric OPS plans (Alpha, Beta, Gamma, Sigma and Custom): modules, methodologies, exports, AI credits and seats."
+    },
+    "/solutions/data-processing/": {
+      "title": "Data processing",
+      "description": "Data cleaning, weighting, open-end quality checks and banner tables, delivered in SPSS, Excel or CSV, in the format your analysts already use."
+    },
+    "/solutions/end-to-end-project-management/": {
+      "title": "End-to-end project management",
+      "description": "One project manager runs your whole study, from feasibility and design to fieldwork, data and reporting, with live status updates."
+    },
+    "/solutions/": {
+      "title": "Managed research services",
+      "description": "Questionnaire design, programming, translations, online sampling, data processing, reporting and project management from one research team."
+    },
+    "/solutions/insights-reporting/": {
+      "title": "Insights & report writing",
+      "description": "Charts, executive summaries and recommendation decks that marketing and leadership teams can act on. You get a clear story and next steps, not a pile of tables."
+    },
+    "/solutions/online-sampling/": {
+      "title": "Online sampling",
+      "description": "Verified B2B, healthcare and consumer respondents from Opinion Genie and vetted partners, profiled in advance and screened for fraud."
+    },
+    "/solutions/questionnaire-design/": {
+      "title": "Questionnaire design",
+      "description": "Research leads turn your business objective into a survey respondents finish, with screeners, logic notes, an LOI estimate and a tab plan."
+    },
+    "/solutions/survey-programming/": {
+      "title": "Survey programming & hosting",
+      "description": "Mobile-first survey programming with complex logic, piping and quotas. Every script is tested by a second programmer before launch."
+    },
+    "/solutions/translations/": {
+      "title": "Translations",
+      "description": "Native-speaker translation and cultural adaptation of surveys, stimuli and open-ended responses in 25+ languages, so multi-country data is truly comparable."
+    },
+    "/solutions/workflow-automation/": {
+      "title": "Enterprise workflow automation",
+      "description": "An optional add-on that connects your research pipelines with CRM, HRMS, ERP and finance systems, so work moves without re-keying."
+    },
+    "/who-we-serve/advertising-media/": {
+      "title": "For Advertising & media",
+      "description": "Pre-test ads with the right audience, measure brand lift after a campaign, and give clients independent numbers that hold up in a quarterly review."
+    },
+    "/who-we-serve/brands-insight-teams/": {
+      "title": "For Brands & insight teams",
+      "description": "Run studies in-house on Research Centric OPS or have our team run them. Leadership gets a short, clear answer on who to target and how to price."
+    },
+    "/who-we-serve/": {
+      "title": "Who we serve",
+      "description": "Research COPS works with market research agencies, brands and insight teams, startups, advertising and media agencies, and panel and sample companies."
+    },
+    "/who-we-serve/panel-sample-companies/": {
+      "title": "For Panel & sample companies",
+      "description": "Connect your panel by API or redirects. Projects create, launch, pause and resume target groups, set CPI and completes goals, and sync quotas."
+    },
+    "/who-we-serve/research-agencies/": {
+      "title": "For Market research agencies",
+      "description": "Fast, transparent bids and clean data under your brand: sample-only projects, hard-to-reach B2B audiences and survey ops on demand."
+    },
+    "/who-we-serve/startups/": {
+      "title": "For Startups",
+      "description": "Studies from 50 respondents, priced for early-stage budgets. Talk to your real target buyers in days, and get data you can put in front of investors."
+    },
+    "/insights.html": {
+      "title": "Insights",
+      "description": "Research methods, B2B sampling, data quality and industry news from Research COPS."
+    },
+    "/policy.html": {
+      "title": "Legal & policies",
+      "description": "Research COPS privacy policy, terms and conditions, and cookie policy."
+    },
+    "/404.html": {
+      "title": "Page not found",
+      "description": "Page not found."
+    }
+  }
+}

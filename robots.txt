@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /content-admin.html
+Sitemap: https://www.researchcops.com/sitemap.xml

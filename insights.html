@@ -1,108 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <script src="theme.js"></script>
+<script src="/theme.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insights · Research COPS</title>
+<meta name="description" content="Research methods, B2B sampling, data quality and industry news from Research COPS.">
+<link rel="canonical" href="https://www.researchcops.com/insights.html">
+<meta property="og:title" content="Insights · Research COPS">
+<meta property="og:description" content="Research methods, B2B sampling, data quality and industry news from Research COPS.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.researchcops.com/insights.html">
+<meta property="og:site_name" content="Research COPS">
+<meta property="og:image" content="https://www.researchcops.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Research COPS: Best Operating System for Your Research Projects">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.researchcops.com/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&family=Michroma&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/assets/chrome.css">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Research Centric Ops | Insights & Intelligence Hub</title>
-  <meta name="description" content="Stay ahead with the latest B2B research methodologies, technology updates, safety rules, and online data collection trends from Research Centric Ops.">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Styling -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- SEO and Link Previews -->
-  <link rel="canonical" href="https://researchcops.com/insights.html">
-  <meta property="og:title" content="Research Centric Ops | Insights & Intelligence Hub">
-  <meta property="og:description" content="Stay ahead with the latest B2B research methodologies, data collection trends, and intelligence insights.">
-  <meta property="og:image" content="https://researchcops.com/logo_brand.png">
-  <meta property="og:url" content="https://researchcops.com/insights.html">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Research Centric Ops | Insights & Intelligence Hub">
-  <meta name="twitter:description" content="Stay ahead with the latest B2B research methodologies, data collection trends, and intelligence insights.">
-  <meta name="twitter:image" content="https://researchcops.com/logo_brand.png">
+<link rel="stylesheet" href="/assets/brand.css">
+<link rel="stylesheet" href="/assets/theme-teal.css">
 </head>
-<body class="admin-body" style="background-color: #050a0a;">
-
-  <!-- Ambient Glowing Background Nodes -->
-  <div class="radial-glow glow-1"></div>
-  <div class="radial-glow glow-2"></div>
-
-  <!-- Header Navigation -->
-  <header id="main-header" class="header-floating">
-    <div class="nav-container">
-      <a href="index.html" class="logo-wrapper">
-        <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
-          <!-- Top Half (Dark) -->
-          <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#060f0e" />
-          <!-- Bottom Half (White) -->
-          <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
-          <!-- Outer Shield border stroke -->
-          <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-          <!-- Horizontal Divider line -->
-          <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
-          <!-- Concentric target circles inside top half -->
-          <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
-          <g transform="rotate(-110, 12, 7.2)">
-            <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
-            <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
-            <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
-          </g>
-        </svg>
-        <div class="logo-text-group">
-          <span class="logo-text"><span class="logo-accent">Research</span> COPS</span>
-          <span class="logo-tagline">Research Centric Ops</span>
-        </div>
-      </a>
-
-      <nav id="nav-menu" class="nav-links">
-        <a href="index.html#services" class="nav-link">Platform</a>
-
-        <!-- Solutions Dropdown -->
-        <div class="nav-dropdown">
-          <a href="#" class="nav-link dropdown-toggle">Solutions <span class="chevron">&#9662;</span></a>
-          <div class="dropdown-menu">
-            <a href="solution.html?id=management">Deepsight Insights (DI) Research Core Engine</a>
-            <a href="solution.html?id=sampling">DI Response Engine</a>
-            <a href="solution.html?id=development">DI - Survey Design Engine</a>
-            <a href="solution.html?id=translations">DI Translation Engine</a>
-            <a href="solution.html?id=processing">DI Survey Security Engine</a>
-            <a href="solution.html?id=consulting">DI Analytics Engine</a>
-            <div class="dropdown-divider"></div>
-            <a href="index.html#demographics">Panel Demographics</a>
-            <a href="index.html#api-section">CRM API Integration</a>
-            <div class="dropdown-divider"></div>
-            <a href="workflow-hub.html" style="font-weight: 600; color: #04cbc2;">Enterprise Workflow Automation Hub</a>
-          </div>
-        </div>
-
-        <a href="index.html#estimator" class="nav-link">Pricing</a>
-        <a href="insights.html" class="nav-link active">Insights</a>
-      </nav>
-
-      <div class="nav-actions">
-
-          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle color theme">
-            <svg class="theme-toggle-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <svg class="theme-toggle-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            <span class="theme-toggle-label">Light Mode</span>
-        </button>
-        <a href="index.html#contact" class="btn btn-primary btn-sm">Get a Quote</a>
-        <button id="mobile-toggle" class="hamburger" aria-label="Toggle navigation menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+<a href="#main" class="skip">Skip to content</a>
+<header class="nav rc-chrome" id="nav">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="Research COPS home">
+      <svg class="rc-mark" width="44" height="44" viewBox="0 0 24 24" aria-hidden="true" shape-rendering="geometricPrecision">
+        <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#04524e"/>
+        <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc"/>
+        <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="7.2" r=".8" fill="#04cbc2"/>
+        <g class="rings">
+          <circle cx="12" cy="7.2" r="1.6" stroke="#fff" stroke-width=".8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round"/>
+          <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width=".8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round"/>
+          <circle cx="12" cy="7.2" r="3.6" stroke="#fff" stroke-width=".8" fill="none" stroke-dasharray="17 5.6" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div><div class="logo-word"><span class="lw-r">Research</span> <i class="lw-c">C</i><i class="lw-ops">OPS</i></div><span class="logo-sub" aria-label="Research Centric OPS"><span class="ls ls-r">Research</span> <span class="ls ls-c"><span class="ls-cap">C</span><span class="ls-tail">entric</span></span> <span class="ls ls-ops">OPS</span></span></div>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <div class="dd"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Platform <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button><div class="dd-menu"><a href="/platform/"><b>Platform overview</b><small>Every step of a study, on one platform.</small></a><a href="/platform/feasibility-costing/"><b>Feasibility & Costing</b><small>A CPI, a feasibility range and a field time for every market, in seconds.</small></a><a href="/platform/survey-builder/"><b>Survey Builder</b><small>33 question types, full logic, quotas and preflight checks.</small></a><a href="/platform/translation/"><b>Translation</b><small>Multi-language surveys inside the project, not around it.</small></a><a href="/platform/sample-collection/"><b>Sample Collection</b><small>Opinion Genie plus API-integrated partners, a live quota engine and field controls.</small></a><a href="/platform/security/"><b>Data quality checks</b><small>Seven fraud and quality checks on every survey link, plus account security.</small></a><a href="/platform/data-reporting/"><b>Data Processing & Reporting</b><small>Cleaning, weighting, crosstabs, open-end quality checks and exports.</small></a><a href="/platform/methodologies/"><b>24 methodologies</b><small>Pricing, product and UX/CX designs, each with a built-in report.</small></a><a class="addon" href="/contact/?need=Platform%20demo"><b>Book a platform demo</b><small>A 30-minute walkthrough on one of your own briefs.</small></a></div></div>
+      <div class="dd"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Services <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button><div class="dd-menu"><a href="/solutions/questionnaire-design/"><b>Questionnaire design</b><small>Surveys that measure the right thing and get finished.</small></a><a href="/solutions/survey-programming/"><b>Survey programming & hosting</b><small>Mobile-first scripting with complex logic, tested before launch.</small></a><a href="/solutions/translations/"><b>Translations</b><small>Translation and cultural adaptation in 25+ languages.</small></a><a href="/solutions/online-sampling/"><b>Online sampling</b><small>Verified B2B, healthcare & consumer respondents in 44 countries.</small></a><a href="/solutions/data-processing/"><b>Data processing</b><small>Cleaning, weighting, open-end checks and banner tables.</small></a><a href="/solutions/insights-reporting/"><b>Insights & report writing</b><small>Executive summaries, dashboards and recommendation decks.</small></a><a href="/solutions/end-to-end-project-management/"><b>End-to-end project management</b><small>One team from RFP to final deliverable.</small></a><a class="addon" href="/solutions/workflow-automation/"><b>Enterprise workflow automation<span class="badge">Add-on</span></b><small>Connect research pipelines with your CRM, HRMS, ERP and finance systems.</small></a></div></div>
+      <div class="dd"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Who we serve <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button><div class="dd-menu one"><a href="/who-we-serve/research-agencies/"><b>Market research agencies</b><small>White-label fieldwork that bids fast and delivers clean.</small></a><a href="/who-we-serve/brands-insight-teams/"><b>Brands & insight teams</b><small>Run research in-house, or have us run it for you.</small></a><a href="/who-we-serve/startups/"><b>Startups</b><small>Validate demand and pricing before you spend the runway.</small></a><a href="/who-we-serve/advertising-media/"><b>Advertising & media</b><small>Pre-test creative and prove campaign impact.</small></a><a href="/who-we-serve/panel-sample-companies/"><b>Panel & sample companies</b><small>Plug your panel into live project demand.</small></a></div></div>
+      <a href="/pricing/">Pricing</a>
+      <a href="/insights.html" aria-current="page">Insights</a>
+      <a href="/about/">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="/contact/" class="btn btn-primary">Get a quote</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
     </div>
-  </header>
-
-  <!-- Main Content Wrapper -->
+  </div>
+</header>
+<div class="mobile-menu rc-chrome" id="mobileMenu">
+  <div class="mm-actions"><a href="/contact/" class="btn btn-primary">Get a quote</a></div>
+  <details class="mm-d"><summary>Platform</summary><a href="/platform/">Platform overview</a><a href="/platform/feasibility-costing/">Feasibility & Costing</a><a href="/platform/survey-builder/">Survey Builder</a><a href="/platform/translation/">Translation</a><a href="/platform/sample-collection/">Sample Collection</a><a href="/platform/security/">Data quality checks</a><a href="/platform/data-reporting/">Data Processing & Reporting</a><a href="/platform/methodologies/">Methodologies</a><a href="/contact/?need=Platform%20demo">Book a platform demo</a></details>
+  <details class="mm-d"><summary>Services</summary><a href="/solutions/questionnaire-design/">Questionnaire design</a><a href="/solutions/survey-programming/">Survey programming & hosting</a><a href="/solutions/translations/">Translations</a><a href="/solutions/online-sampling/">Online sampling</a><a href="/solutions/data-processing/">Data processing</a><a href="/solutions/insights-reporting/">Insights & report writing</a><a href="/solutions/end-to-end-project-management/">End-to-end project management</a><a href="/solutions/workflow-automation/">Enterprise workflow automation</a><a href="/solutions/">All services</a></details>
+  <details class="mm-d"><summary>Who we serve</summary><a href="/who-we-serve/research-agencies/">Market research agencies</a><a href="/who-we-serve/brands-insight-teams/">Brands & insight teams</a><a href="/who-we-serve/startups/">Startups</a><a href="/who-we-serve/advertising-media/">Advertising & media</a><a href="/who-we-serve/panel-sample-companies/">Panel & sample companies</a></details>
+  <details class="mm-d"><summary>Company</summary><a href="/pricing/">Pricing & plans</a><a href="/#estimator">CPI estimator</a><a href="/insights.html">Insights</a><a href="/about/">About</a><a href="/contact/">Contact</a></details>
+</div>
+<div id="main" style="padding-top:20px">
   <main style="margin-top: 100px; min-height: 80vh;">
     
     <!-- Hero / Header Summary -->
@@ -113,7 +91,7 @@
           Insights & <span class="text-gradient">Intelligence Hub</span>
         </h1>
         <p style="color: var(--text-muted); font-size: 16px; max-width: 700px; line-height: 1.6;">
-          Explore advanced workflow automation case studies, enterprise integration guides, real-time business operations trends, and security audits from our systems engineering team.
+          Practical guides on feasibility and CPI, sampling, data quality and research methods, plus product news from the Research Centric OPS team.
         </p>
       </div>
     </section>
@@ -131,10 +109,10 @@
               
               <!-- Feed Section Selector Tabs -->
               <div class="feed-section-tabs" style="display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                <button id="tab-latest-news" class="feed-tab-btn active" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--turquoise-accent); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid var(--turquoise-accent); transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                <button id="tab-latest-news" class="feed-tab-btn" style="display: none; background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--turquoise-accent); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid var(--turquoise-accent); transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
                   Latest Trends & News
                 </button>
-                <button id="tab-curated-blogs" class="feed-tab-btn" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid transparent; transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
+                <button id="tab-curated-blogs" class="feed-tab-btn active" style="background: none; border: none; font-family: var(--font-family-display); font-size: 17.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 10px 16px 12px 16px; border-bottom: 3px solid transparent; transition: var(--transition-smooth); position: relative; margin-bottom: -1px; white-space: nowrap;">
                   Insights & Blogs
                 </button>
               </div>
@@ -148,7 +126,7 @@
                   <span style="position: absolute; right: 16px; top: 12px; color: var(--text-muted);">🔍</span>
                 </div>
                 
-                <div class="category-tags-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <div class="category-tags-row" style="display: none; gap: 8px; flex-wrap: wrap;">
                   <button class="filter-tag active" data-filter="all">All Feed</button>
                   <button class="filter-tag" data-filter="Tech">Tech</button>
                   <button class="filter-tag" data-filter="Business">Business</button>
@@ -265,16 +243,16 @@
             
             <!-- Dynamic Poll Card -->
             <div class="poll-card glass-card" style="margin-bottom: 30px;">
-              <div class="poll-badge">Live Operations Poll</div>
-              <h3 id="poll-widget-question">What is your organization's primary operational bottleneck?</h3>
-              <p class="poll-sub">Help us profile operational challenges. Cast your vote below.</p>
+              <div class="poll-badge">Research pulse poll</div>
+              <h3 id="poll-widget-question">What slows your fieldwork down most?</h3>
+              <p class="poll-sub">Tell us where projects get stuck. Cast your vote below.</p>
               
               <div class="poll-select-wrapper" style="margin-bottom: 18px;">
-                <label for="poll-active-select" style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">Select Operational Topic:</label>
+                <label for="poll-active-select" style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">Select a topic</label>
                 <select id="poll-active-select" style="padding: 10px 14px; background: rgba(5, 10, 10, 0.8); font-size: 13.5px; border-radius: var(--radius-sm);">
-                  <option value="poll-1">Operational Bottlenecks</option>
-                  <option value="poll-2">ERP Integration Tech</option>
-                  <option value="poll-3">HRMS Automation Hurdles</option>
+                  <option value="poll-1">Fieldwork bottlenecks</option>
+                  <option value="poll-2">Data quality</option>
+                  <option value="poll-3">Research tooling</option>
                 </select>
               </div>
               
@@ -283,7 +261,7 @@
                   <label class="poll-option-label" for="opt-a-input">
                     <input type="radio" name="poll-vote" id="opt-a-input" value="a" required>
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-a">Manual Billing & Reconciliation</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-a">Slow or vague supplier bids</span>
                     <span class="poll-option-pct" id="poll-widget-pct-a">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-a" style="width: 0%;"></div>
                   </label>
@@ -291,7 +269,7 @@
                   <label class="poll-option-label" for="opt-b-input">
                     <input type="radio" name="poll-vote" id="opt-b-input" value="b">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-b">Siloed HRMS & Employee Data</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-b">Fraud and poor-quality completes</span>
                     <span class="poll-option-pct" id="poll-widget-pct-b">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-b" style="width: 0%;"></div>
                   </label>
@@ -299,7 +277,7 @@
                   <label class="poll-option-label" for="opt-c-input">
                     <input type="radio" name="poll-vote" id="opt-c-input" value="c">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-c">Legacy ERP Integration Issues</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-c">Quota and supplier management</span>
                     <span class="poll-option-pct" id="poll-widget-pct-c">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-c" style="width: 0%;"></div>
                   </label>
@@ -307,7 +285,7 @@
                   <label class="poll-option-label" for="opt-d-input">
                     <input type="radio" name="poll-vote" id="opt-d-input" value="d">
                     <span class="poll-option-custom"></span>
-                    <span class="poll-option-text" id="poll-widget-lbl-d">Inefficient Document Workflows</span>
+                    <span class="poll-option-text" id="poll-widget-lbl-d">Translation and re-scripting</span>
                     <span class="poll-option-pct" id="poll-widget-pct-d">0%</span>
                     <div class="poll-option-bg-bar" id="poll-widget-bar-d" style="width: 0%;"></div>
                   </label>
@@ -325,50 +303,19 @@
               </div>
             </div>
 
-            <!-- Operations Trends Card -->
+            <!-- Platform facts card (figures from the DIY product brief) -->
             <div class="glass-card trend-panel-box" style="padding: 30px; border-radius: var(--radius-lg);">
-              <h3 style="font-family: var(--font-family-display); font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--text-light);">
-                🔥 Operations Feasibility Metrics
-              </h3>
-              
-              <div class="trend-node-list" style="display: flex; flex-direction: column; gap: 20px;">
-                <div class="trend-node-item">
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--text-light);">
-                    <span>ERP Database Sync Rate</span>
-                    <span style="color: var(--turquoise-accent); font-weight: 600;">99.98% (Secure)</span>
-                  </div>
-                  <div style="height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow:hidden;">
-                    <div style="width: 99.9%; height: 100%; background: var(--turquoise-accent); border-radius:3px;"></div>
-                  </div>
-                </div>
-
-                <div class="trend-node-item">
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--text-light);">
-                    <span>Automated Ledger Match Uptime</span>
-                    <span style="color: var(--turquoise-accent); font-weight: 600;">99.2% (High)</span>
-                  </div>
-                  <div style="height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow:hidden;">
-                    <div style="width: 99.2%; height: 100%; background: var(--turquoise-accent); border-radius:3px;"></div>
-                  </div>
-                </div>
-
-                <div class="trend-node-item">
-                  <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--text-light);">
-                    <span>HRMS Automation Dispatch Rate</span>
-                    <span style="color: #10b981; font-weight: 600;">85.0% (Optimized)</span>
-                  </div>
-                  <div style="height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow:hidden;">
-                    <div style="width: 85%; height: 100%; background: #10b981; border-radius:3px;"></div>
-                  </div>
-                </div>
+              <h3 style="font-family: var(--font-family-display); font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--text-light);">Explore Research Centric OPS</h3>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">44</div><div style="font-size: 12.5px; color: var(--text-muted);">Market profiles</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">70</div><div style="font-size: 12.5px; color: var(--text-muted);">Audience types</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">33</div><div style="font-size: 12.5px; color: var(--text-muted);">Question types</div></div>
+                <div><div style="font-family: var(--font-family-display); font-size: 28px; font-weight: 700; color: var(--turquoise-accent);">24</div><div style="font-size: 12.5px; color: var(--text-muted);">Methodologies</div></div>
               </div>
-
-              <!-- General Analytics Info Block -->
-              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04);">
-                <h4 style="font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 8px;">Integration Middleware Active</h4>
-                <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.4;">
-                  Our custom middleware connectors and automated data validation scripts actively monitor database endpoints to preserve ledger integrity and eliminate manual reconciliation errors.
-                </p>
+              <div style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);">
+                <h4 style="font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 8px;">One platform</h4>
+                <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px;">The audience you price in Feasibility is the audience you screen, field and report.</p>
+                <a href="/platform/" style="font-size: 13.5px; font-weight: 600; color: var(--turquoise-accent);">Explore the platform &rarr;</a>
               </div>
             </div>
 
@@ -380,104 +327,54 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="container footer-container" style="max-width: 1200px;">
-      <div class="footer-brand">
-        <a href="index.html" class="logo-wrapper">
-          <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
-            <!-- Top Half (Dark) -->
-            <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#060f0e" />
-            <!-- Bottom Half (White) -->
-            <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc" />
-            <!-- Outer Shield border stroke -->
-            <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
-            <!-- Horizontal Divider line -->
-            <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round" />
-            <!-- Concentric target circles inside top half -->
-            <circle cx="12" cy="7.2" r="0.8" fill="#04cbc2" />
-            <g transform="rotate(-110, 12, 7.2)">
-              <circle cx="12" cy="7.2" r="1.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round" />
-              <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width="0.8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round" />
-              <circle cx="12" cy="7.2" r="3.6" stroke="#ffffff" stroke-width="0.8" fill="none" stroke-dasharray="17.0 5.6" stroke-linecap="round" />
-            </g>
-          </svg>
-          <div class="logo-text-group">
-            <span class="logo-text"><span class="logo-accent">Research</span> COPS</span>
-            <span class="logo-tagline">Research Centric Ops</span>
-          </div>
-        </a>
-        <p class="footer-desc" id="footer-desc">
-          Precision data collection infrastructure for global market research. 2M+ verified panelists globally through our partner network and our panel Opinion Genie.
-        </p>
-        <div class="footer-social-wrapper">
-          <a href="https://m.facebook.com/ResearchCOPS" target="_blank" rel="noopener noreferrer" title="Facebook">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://instagram.com/researchcops1111" target="_blank" rel="noopener noreferrer" title="Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/company/researchcops" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/channel/UCLIMnaQD8RTwLNbROi1OQQQ" target="_blank" rel="noopener noreferrer" title="YouTube">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
-        </div>
+</div>
+<footer class="rc-chrome">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="/" class="flogo" aria-label="Research COPS home"><svg class="rc-mark" width="48" height="48" viewBox="0 0 24 24" aria-hidden="true" shape-rendering="geometricPrecision">
+        <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4V12h17.6v-.8c0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="#04524e"/>
+        <path d="M3.2 12c0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8H3.2z" fill="#f8fafc"/>
+        <path d="M12 2c-2.5 0-4.5-.8-5.8-.8-1.7 0-3 1.6-3 4.3 0 1.3.6 2.5.6 3.3 0 .7-.6 1.4-.6 2.4 0 4.5 3.8 9.2 8.8 10.8 5-1.6 8.8-6.3 8.8-10.8 0-1-.6-1.7-.6-2.4 0-.8.6-2 .6-3.3 0-2.7-1.3-4.3-3-4.3-1.3 0-3.3.8-5.8.8z" fill="none" stroke="#04cbc2" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <line x1="3.2" y1="12" x2="20.8" y2="12" stroke="#04cbc2" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="7.2" r=".8" fill="#04cbc2"/>
+        <g class="rings">
+          <circle cx="12" cy="7.2" r="1.6" stroke="#fff" stroke-width=".8" fill="none" stroke-dasharray="7.5 2.5" stroke-linecap="round"/>
+          <circle cx="12" cy="7.2" r="2.6" stroke="#04cbc2" stroke-width=".8" fill="none" stroke-dasharray="12.2 4.1" stroke-linecap="round"/>
+          <circle cx="12" cy="7.2" r="3.6" stroke="#fff" stroke-width=".8" fill="none" stroke-dasharray="17 5.6" stroke-linecap="round"/>
+        </g>
+      </svg><span><span class="logo-word"><span>Research</span> COPS</span><span class="logo-sub">RESEARCH CENTRIC OPS</span></span></a>
+        <p class="fdesc ftag"><span class="best">Best</span> Operating System for<br>Your <em class="s">Research Projects</em>.</p>
+        <p class="fsteps" aria-label="Price, Build, Translate, Field, Report and Analyze. One Platform."><span aria-hidden="true">Price</span><i aria-hidden="true">→</i><span aria-hidden="true">Build</span><i aria-hidden="true">→</i><span aria-hidden="true">Translate</span><i aria-hidden="true">→</i><span aria-hidden="true">Field</span><i aria-hidden="true">→</i><span aria-hidden="true">Report &amp; Analyze</span><b class="fop" aria-hidden="true">One Platform</b></p>
       </div>
-
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <a href="index.html#services">About</a>
-          <a href="index.html#services">Services</a>
-          <a href="http://www.researchcops.com/home/panel" target="_blank" rel="noopener noreferrer">Panel Book</a>
-          <a href="insights.html">Insights</a>
-          <a href="index.html#estimator">CPI Calculator</a>
-        </div>
-        <div class="footer-col">
-          <h4>Network</h4>
-          <a href="http://www.opiniongenie.com" target="_blank" rel="noopener noreferrer">Opinion Genie</a>
-          <a href="index.html#demographics">Demographics</a>
-          <a href="index.html#api-section">API Docs</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <span class="contact-detail"><strong>Phone:</strong> <a id="footer-phone" href="tel:+91-0120-605-1391">+91-0120-605-1391</a></span>
-          <span class="contact-detail"><strong>Emails:</strong><br>
-            <span id="footer-emails">
-              <a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br>
-              <a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a>
-            </span>
-          </span>
-          <span class="contact-detail"><strong>Office:</strong><br>
-            <span id="footer-address">
-              T4-A11, NX One Avenue, Plot No - 17,<br>Techzone 4, Greater Noida, UP 201306
-            </span>
-          </span>
-        </div>
+      <div><h5>Platform</h5><ul><li><a href="/platform/">Overview</a></li><li><a href="/platform/feasibility-costing/">Feasibility & Costing</a></li><li><a href="/platform/survey-builder/">Survey Builder</a></li><li><a href="/platform/translation/">Translation</a></li><li><a href="/platform/sample-collection/">Sample Collection</a></li><li><a href="/platform/security/">Data quality checks</a></li><li><a href="/platform/data-reporting/">Data Processing & Reporting</a></li><li><a href="/pricing/">Plans</a></li></ul></div>
+      <div><h5>Services</h5><ul><li><a href="/solutions/questionnaire-design/">Questionnaire design</a></li><li><a href="/solutions/survey-programming/">Survey programming & hosting</a></li><li><a href="/solutions/translations/">Translations</a></li><li><a href="/solutions/online-sampling/">Online sampling</a></li><li><a href="/solutions/data-processing/">Data processing</a></li><li><a href="/solutions/insights-reporting/">Insights & report writing</a></li><li><a href="/solutions/workflow-automation/">Workflow automation</a></li></ul></div>
+      <div><h5>Who we serve</h5><ul><li><a href="/who-we-serve/research-agencies/">Market research agencies</a></li><li><a href="/who-we-serve/brands-insight-teams/">Brands & insight teams</a></li><li><a href="/who-we-serve/startups/">Startups</a></li><li><a href="/who-we-serve/advertising-media/">Advertising & media</a></li><li><a href="/who-we-serve/panel-sample-companies/">Panel & sample companies</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="/about/">About us</a></li><li><a href="/insights.html">Insights</a></li><li><a href="/contact/">Contact</a></li><li><a href="/policy.html?id=privacy">Privacy policy</a></li><li><a href="/policy.html?id=terms">Terms & conditions</a></li><li><a href="/policy.html?id=cookies">Cookie policy</a></li></ul></div>
+    </div>
+    <div class="fcontact-row">
+      <ul class="fcontact">
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></span><div><small>Phone</small><a class="fc-phone" href="tel:+9101206051391">+91 0120 605 1391</a></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><small>Email</small><span class="fc-emails"><a href="mailto:info-team@researchcops.com">info-team@researchcops.com</a><br><a href="mailto:Bidding-team@researchcops.com">Bidding-team@researchcops.com</a></span></div></li>
+        <li><span class="fi" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Office</small><span class="fc-address">NX One Avenue, Plot No - 17, T3, B-809, Techzone 4,<br>Greater Noida, UP 201306</span></div></li>
+      </ul>
+      <div class="social">
+        <a href="https://www.linkedin.com/company/research-cops" aria-label="LinkedIn (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/></svg></a>
+        <a href="https://www.youtube.com/@researchcops" aria-label="YouTube (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/></svg></a>
+        <a href="https://www.instagram.com/researchcops" aria-label="Instagram (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/researchcops" aria-label="Facebook (opens in a new tab)" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg></a>
       </div>
     </div>
-
-    <div class="copyright-bar">
-      <div class="container" style="max-width: 1200px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-        <p>&copy; 2026 Research Centric Ops (Research COPS). All rights reserved.</p>
-        <p style="margin: 0; font-size: 13px;">
-          <a href="policy.html?id=privacy" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Privacy Policy</a>
-          <a href="policy.html?id=terms" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Terms & Conditions</a>
-          <a href="policy.html?id=cookies" style="color: var(--text-muted); text-decoration: none; margin-left: 15px;" class="policy-footer-link">Cookies Policy</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Firebase Scripts (Modular imports) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-  
-  <!-- JavaScript Controller -->
-  <script src="insights.js"></script>
-  <script src="cookie-consent.js" defer></script>
+    <div class="fbottom"><span>© 2026 Research COPS. All rights reserved.</span><span>Greater Noida, India · Serving clients in 44 countries</span></div>
+  </div>
+</footer>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="/insights.js"></script>
+<script src="/assets/rc-data.js"></script>
+<script src="/assets/site.js"></script>
+<script src="/assets/genie.js" defer></script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>

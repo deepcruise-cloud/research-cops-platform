@@ -1,0 +1,11 @@
+# Not part of the public site
+build/
+src/
+docs/
+node_modules/
+README.md
+check_*.js
+search_*.js
+extract_styles.js
+generate_logos.js
+server.js

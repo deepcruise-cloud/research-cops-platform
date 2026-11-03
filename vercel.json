@@ -1,0 +1,127 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "management"
+        }
+      ],
+      "destination": "/solutions/end-to-end-project-management/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "sampling"
+        }
+      ],
+      "destination": "/solutions/online-sampling/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "development"
+        }
+      ],
+      "destination": "/solutions/questionnaire-design/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "translations"
+        }
+      ],
+      "destination": "/solutions/translations/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "processing"
+        }
+      ],
+      "destination": "/solutions/data-processing/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "consulting"
+        }
+      ],
+      "destination": "/solutions/insights-reporting/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "automation"
+        }
+      ],
+      "destination": "/solutions/workflow-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "id",
+          "value": "workflow-hub"
+        }
+      ],
+      "destination": "/solutions/workflow-automation/",
+      "permanent": true
+    },
+    {
+      "source": "/solution.html",
+      "destination": "/solutions/online-sampling/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy",
+      "destination": "/policy.html?id=privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/policy.html?id=terms",
+      "permanent": true
+    },
+    {
+      "source": "/cookies",
+      "destination": "/policy.html?id=cookies",
+      "permanent": true
+    },
+    {
+      "source": "/insights",
+      "destination": "/insights.html",
+      "permanent": true
+    }
+  ]
+}

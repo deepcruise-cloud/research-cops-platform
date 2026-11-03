@@ -881,7 +881,7 @@ const SOLUTION_DATA = {
   sampling: {
     badge: "DI Response Engine",
     title: "DI Response Engine",
-    desc: "Access over 2 million pre-profiled B2B professionals, healthcare specialists, and consumer audiences across 31 countries. Sourced through our verified partner networks and our proprietary panel Opinion Genie to deliver high-fidelity target cohorts.",
+    desc: "Access over 2 million pre-profiled B2B professionals, healthcare specialists, and consumer audiences across 44 countries. Sourced through our verified partner networks and our proprietary panel Opinion Genie to deliver high-fidelity target cohorts.",
     capabilities: [
       { title: "Double Opt-In Panels", text: "Respondents pass through multi-tier verification before entering the active sample pool." },
       { title: "Dynamic Sampling Router", text: "Automated respondent allocation matching demographics to active targets." },

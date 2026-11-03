@@ -1,0 +1,281 @@
+[
+  {
+    "file": "01-home",
+    "url": "/",
+    "title": "Home",
+    "shots": {
+      "desktop": "01-home-desktop.jpg",
+      "mobile": "01-home-mobile.jpg"
+    }
+  },
+  {
+    "file": "02-platform",
+    "url": "/platform/",
+    "title": "Platform overview",
+    "shots": {
+      "desktop": "02-platform-desktop.jpg",
+      "mobile": "02-platform-mobile.jpg"
+    }
+  },
+  {
+    "file": "03-feasibility-costing",
+    "url": "/platform/feasibility-costing/",
+    "title": "Platform · Feasibility & Costing",
+    "shots": {
+      "desktop": "03-feasibility-costing-desktop.jpg",
+      "mobile": "03-feasibility-costing-mobile.jpg"
+    }
+  },
+  {
+    "file": "04-survey-builder",
+    "url": "/platform/survey-builder/",
+    "title": "Platform · Survey Builder",
+    "shots": {
+      "desktop": "04-survey-builder-desktop.jpg",
+      "mobile": "04-survey-builder-mobile.jpg"
+    }
+  },
+  {
+    "file": "05-sample-collection",
+    "url": "/platform/sample-collection/",
+    "title": "Platform · Sample Collection",
+    "shots": {
+      "desktop": "05-sample-collection-desktop.jpg",
+      "mobile": "05-sample-collection-mobile.jpg"
+    }
+  },
+  {
+    "file": "06-translation",
+    "url": "/platform/translation/",
+    "title": "Platform · Translation",
+    "shots": {
+      "desktop": "06-translation-desktop.jpg",
+      "mobile": "06-translation-mobile.jpg"
+    }
+  },
+  {
+    "file": "07-data-reporting",
+    "url": "/platform/data-reporting/",
+    "title": "Platform · Data Processing & Reporting",
+    "shots": {
+      "desktop": "07-data-reporting-desktop.jpg",
+      "mobile": "07-data-reporting-mobile.jpg"
+    }
+  },
+  {
+    "file": "08-methodologies",
+    "url": "/platform/methodologies/",
+    "title": "Platform · Methodologies",
+    "shots": {
+      "desktop": "08-methodologies-desktop.jpg",
+      "mobile": "08-methodologies-mobile.jpg"
+    }
+  },
+  {
+    "file": "09-security",
+    "url": "/platform/security/",
+    "title": "Platform · Security & procurement",
+    "shots": {
+      "desktop": "09-security-desktop.jpg",
+      "mobile": "09-security-mobile.jpg"
+    }
+  },
+  {
+    "file": "10-pricing",
+    "url": "/pricing/",
+    "title": "Pricing & plans",
+    "shots": {
+      "desktop": "10-pricing-desktop.jpg",
+      "mobile": "10-pricing-mobile.jpg"
+    }
+  },
+  {
+    "file": "11-services",
+    "url": "/solutions/",
+    "title": "Services overview",
+    "shots": {
+      "desktop": "11-services-desktop.jpg",
+      "mobile": "11-services-mobile.jpg"
+    }
+  },
+  {
+    "file": "12-online-sampling",
+    "url": "/solutions/online-sampling/",
+    "title": "Service · Online sampling",
+    "shots": {
+      "desktop": "12-online-sampling-desktop.jpg",
+      "mobile": "12-online-sampling-mobile.jpg"
+    }
+  },
+  {
+    "file": "13-questionnaire-design",
+    "url": "/solutions/questionnaire-design/",
+    "title": "Service · Questionnaire design",
+    "shots": {
+      "desktop": "13-questionnaire-design-desktop.jpg",
+      "mobile": "13-questionnaire-design-mobile.jpg"
+    }
+  },
+  {
+    "file": "14-survey-programming",
+    "url": "/solutions/survey-programming/",
+    "title": "Service · Survey programming & hosting",
+    "shots": {
+      "desktop": "14-survey-programming-desktop.jpg",
+      "mobile": "14-survey-programming-mobile.jpg"
+    }
+  },
+  {
+    "file": "15-translations",
+    "url": "/solutions/translations/",
+    "title": "Service · Translations",
+    "shots": {
+      "desktop": "15-translations-desktop.jpg",
+      "mobile": "15-translations-mobile.jpg"
+    }
+  },
+  {
+    "file": "16-data-processing",
+    "url": "/solutions/data-processing/",
+    "title": "Service · Data processing",
+    "shots": {
+      "desktop": "16-data-processing-desktop.jpg",
+      "mobile": "16-data-processing-mobile.jpg"
+    }
+  },
+  {
+    "file": "17-insights-reporting",
+    "url": "/solutions/insights-reporting/",
+    "title": "Service · Insights & report writing",
+    "shots": {
+      "desktop": "17-insights-reporting-desktop.jpg",
+      "mobile": "17-insights-reporting-mobile.jpg"
+    }
+  },
+  {
+    "file": "18-project-management",
+    "url": "/solutions/end-to-end-project-management/",
+    "title": "Service · End-to-end project management",
+    "shots": {
+      "desktop": "18-project-management-desktop.jpg",
+      "mobile": "18-project-management-mobile.jpg"
+    }
+  },
+  {
+    "file": "19-workflow-automation",
+    "url": "/solutions/workflow-automation/",
+    "title": "Service · Workflow automation (add-on)",
+    "shots": {
+      "desktop": "19-workflow-automation-desktop.jpg",
+      "mobile": "19-workflow-automation-mobile.jpg"
+    }
+  },
+  {
+    "file": "20-who-we-serve",
+    "url": "/who-we-serve/",
+    "title": "Who we serve overview",
+    "shots": {
+      "desktop": "20-who-we-serve-desktop.jpg",
+      "mobile": "20-who-we-serve-mobile.jpg"
+    }
+  },
+  {
+    "file": "21-research-agencies",
+    "url": "/who-we-serve/research-agencies/",
+    "title": "Audience · Market research agencies",
+    "shots": {
+      "desktop": "21-research-agencies-desktop.jpg",
+      "mobile": "21-research-agencies-mobile.jpg"
+    }
+  },
+  {
+    "file": "22-brands-insight-teams",
+    "url": "/who-we-serve/brands-insight-teams/",
+    "title": "Audience · Brands & insight teams",
+    "shots": {
+      "desktop": "22-brands-insight-teams-desktop.jpg",
+      "mobile": "22-brands-insight-teams-mobile.jpg"
+    }
+  },
+  {
+    "file": "23-startups",
+    "url": "/who-we-serve/startups/",
+    "title": "Audience · Startups",
+    "shots": {
+      "desktop": "23-startups-desktop.jpg",
+      "mobile": "23-startups-mobile.jpg"
+    }
+  },
+  {
+    "file": "24-advertising-media",
+    "url": "/who-we-serve/advertising-media/",
+    "title": "Audience · Advertising & media",
+    "shots": {
+      "desktop": "24-advertising-media-desktop.jpg",
+      "mobile": "24-advertising-media-mobile.jpg"
+    }
+  },
+  {
+    "file": "25-panel-sample-companies",
+    "url": "/who-we-serve/panel-sample-companies/",
+    "title": "Audience · Panel & sample companies",
+    "shots": {
+      "desktop": "25-panel-sample-companies-desktop.jpg",
+      "mobile": "25-panel-sample-companies-mobile.jpg"
+    }
+  },
+  {
+    "file": "26-about",
+    "url": "/about/",
+    "title": "About",
+    "shots": {
+      "desktop": "26-about-desktop.jpg",
+      "mobile": "26-about-mobile.jpg"
+    }
+  },
+  {
+    "file": "27-contact",
+    "url": "/contact/",
+    "title": "Contact, quote & demo",
+    "shots": {
+      "desktop": "27-contact-desktop.jpg",
+      "mobile": "27-contact-mobile.jpg"
+    }
+  },
+  {
+    "file": "28-insights",
+    "url": "/insights.html",
+    "title": "Insights (admin-driven)",
+    "shots": {
+      "desktop": "28-insights-desktop.jpg",
+      "mobile": "28-insights-mobile.jpg"
+    }
+  },
+  {
+    "file": "29-privacy",
+    "url": "/policy.html?id=privacy",
+    "title": "Privacy policy (admin-editable)",
+    "shots": {
+      "desktop": "29-privacy-desktop.jpg",
+      "mobile": "29-privacy-mobile.jpg"
+    }
+  },
+  {
+    "file": "30-terms",
+    "url": "/policy.html?id=terms",
+    "title": "Terms & conditions (admin-editable)",
+    "shots": {
+      "desktop": "30-terms-desktop.jpg",
+      "mobile": "30-terms-mobile.jpg"
+    }
+  },
+  {
+    "file": "31-workflow-hub",
+    "url": "/workflow-hub.html",
+    "title": "Workflow automation demo (rebranded)",
+    "shots": {
+      "desktop": "31-workflow-hub-desktop.jpg",
+      "mobile": "31-workflow-hub-mobile.jpg"
+    }
+  }
+]

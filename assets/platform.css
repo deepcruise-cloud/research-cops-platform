@@ -1,0 +1,192 @@
+/* Research COPS: platform, pricing and homepage "two ways" components (loads after pages.css) */
+
+a.pill{transition:border-color .2s}
+a.pill:hover{border-color:var(--accent)}
+.fcontact{margin-top:18px;display:grid;gap:6px;font-size:13.5px}
+.fcontact a:hover{color:var(--accent)}
+
+/* Two ways: platform vs services */
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.way{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;padding:40px;background:#fff;transition:transform .2s,box-shadow .2s}
+.way:hover{transform:translateY(-3px);box-shadow:0 30px 60px -40px rgba(6,20,19,.45)}
+.way h3{font-size:clamp(24px,2.4vw,30px);margin:16px 0 14px}
+.way p{color:var(--muted);font-size:16px;margin-bottom:22px}
+.way ul{list-style:none;display:grid;gap:10px;margin-bottom:28px}
+.way li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--text)}
+.way li svg{color:var(--accent-ink);flex:none;margin-top:3px}
+.way .more{margin-top:auto;font-weight:600;color:var(--accent-ink)}
+.way-dark{background:radial-gradient(600px 300px at 100% 0%,rgba(4,203,194,.16),transparent 60%),var(--ink);border-color:var(--line-dark)}
+.way-dark .eyebrow{color:var(--accent)}
+.way-dark h3{color:#fff}
+.way-dark p{color:var(--on-dark-body)}
+.way-dark li{color:var(--on-dark)}
+.way-dark li svg,.way-dark .more{color:var(--accent)}
+
+/* Side-by-side comparison table */
+.cmp{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.cmp>div{display:grid;grid-template-columns:1fr 1.2fr 1.3fr;gap:20px;padding:16px 24px;border-bottom:1px solid var(--line);align-items:center;font-size:15px}
+.cmp>div:last-child{border:0}
+.cmp .cmp-h{background:var(--paper-2);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.cmp b{color:var(--text);font-weight:600}
+.cmp .old{color:var(--muted)}
+.cmp .new{display:flex;gap:10px;align-items:center;color:var(--text);font-weight:500}
+.cmp .new svg{color:var(--accent-ink);flex:none}
+
+/* Platform overview */
+.seams{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.seam{background:#fff;padding:30px}
+.seam span{font-family:var(--display);font-size:13px;font-weight:600;color:var(--accent-ink)}
+.seam h3{font-size:19px;margin:10px 0 8px}
+.seam p{font-size:15px;color:var(--muted)}
+.statement{max-width:900px}
+.statement p{font-family:var(--display);font-size:clamp(30px,4.2vw,52px);line-height:1.15;color:#fff;letter-spacing:-.02em;margin:18px 0 22px}
+.statement p em.s{color:var(--accent)}
+.statement small{display:block;font-size:18px;color:var(--on-dark-body);max-width:720px}
+
+/* Today vs here */
+.th{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
+.th>div{border-radius:16px;padding:24px 28px}
+.th small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.th p{font-size:17px;line-height:1.5}
+.th-today{background:var(--paper-2);border:1px solid var(--line)}
+.th-today small{color:#b4533e}
+.th-today p{color:var(--body)}
+.th-here{background:var(--ink);border:1px solid var(--line-dark)}
+.th-here small{color:var(--accent)}
+.th-here p{color:#fff}
+.th-arrow{display:grid;place-items:center;color:var(--accent-ink)}
+
+/* Product mock screens */
+.mock{background:#0a1d1c;border:1px solid var(--line-dark);border-radius:18px;overflow:hidden;color:var(--on-dark-body);box-shadow:0 40px 80px -40px rgba(6,20,19,.6);font-size:14px}
+.mock-bar{display:flex;gap:6px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line-dark);background:#061413}
+.mock-bar i{width:10px;height:10px;border-radius:50%;background:#1f3b39}
+.mock-bar span{margin-left:12px;font:12px ui-monospace,Consolas,monospace;color:var(--on-dark-muted)}
+.mock-body{padding:26px}
+.mock-2{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
+.mock h4{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark-muted);font-weight:600;margin-bottom:12px}
+.mock-dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px}
+.mock-dl dt{color:var(--on-dark-muted)}
+.mock-dl dd{color:var(--on-dark);font-weight:600;text-align:right}
+.mock-big{font-family:var(--display);font-size:46px;color:#fff;font-weight:600;line-height:1}
+.mock-mute{color:var(--on-dark-muted);font-size:13px;margin-top:6px}
+.mock-q{color:#fff;font-size:16px;margin-bottom:6px}
+.mock-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.mock-cases.four{grid-template-columns:repeat(4,1fr);margin:0 0 20px}
+.mock-cases div{background:rgba(255,255,255,.03);border:1px solid var(--line-dark);border-radius:10px;padding:10px 12px}
+.mock-cases small{display:block;font-size:11px;color:var(--on-dark-muted);text-transform:uppercase;letter-spacing:.06em}
+.mock-cases b{font-family:var(--display);font-size:19px;color:#fff;font-weight:600}
+.mock .ok{color:#34d399!important}
+.mock .warn{color:#fbbf24!important}
+.mock-tag{display:inline-block;margin-top:12px;font-size:12.5px;color:#34d399;background:rgba(16,185,129,.12);padding:3px 10px;border-radius:999px}
+.mock-ul{list-style:none;display:grid;gap:0}
+.mock-ul li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line-dark)}
+.mock-ul b{color:var(--on-dark)}
+.mock-flow{list-style:none;display:grid;gap:6px}
+.mock-flow li{padding:10px 12px;border:1px solid var(--line-dark);border-radius:9px;color:var(--on-dark)}
+.mock-flow li.on{border-color:var(--accent);background:rgba(4,203,194,.08);color:#fff}
+.mock-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.mock-tabs span{font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--line-dark)}
+.mock-tabs span.on{background:var(--accent);color:#04211f;border-color:var(--accent);font-weight:600}
+.mock-table{border:1px solid var(--line-dark);border-radius:10px;overflow:hidden;margin-bottom:20px}
+.mock-table>div{display:grid;grid-template-columns:1.6fr .6fr .6fr .7fr 1.2fr;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line-dark)}
+.mock-table>div:last-child{border:0}
+.mock-table .mt-h{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--on-dark-muted);background:rgba(255,255,255,.02)}
+.mock-table span{color:var(--on-dark)}
+.mock-quotas{display:grid;gap:10px}
+.mock-quotas>div{display:grid;grid-template-columns:150px 1fr 54px;gap:12px;align-items:center;font-size:13px}
+.mock-quotas b{color:var(--on-dark);text-align:right}
+.mock-note{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:right}
+
+/* Rate card bands + factors */
+.bands{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bands div,.factors div{border:1px solid var(--line-dark);border-radius:12px;padding:18px 20px;background:rgba(255,255,255,.025)}
+.bands b,.factors b{display:block;color:#fff;font-family:var(--display);font-size:18px;font-weight:600}
+.bands span,.factors span{font-size:14px;color:var(--on-dark-muted)}
+.factors{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.factors b{font-size:15.5px;color:var(--accent)}
+
+/* Methodologies */
+.meth{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.meth-col{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff}
+.meth-col h3{font-size:18px;margin-bottom:16px}
+.meth-col ul{list-style:none;display:grid;gap:10px}
+.meth-col li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.meth-col li svg{color:var(--accent-ink);flex:none;margin-top:3px;width:18px;height:18px}
+
+/* Plans */
+.plans{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;padding:28px 22px;background:#fff}
+.plan.pop{border-color:var(--accent-ink);box-shadow:0 30px 60px -40px rgba(3,128,122,.6)}
+.plan-tag{position:absolute;top:-12px;left:22px;background:var(--accent);color:#04211f;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.plan h3{font-size:24px}
+.plan-sub{font-size:14px;color:var(--muted);margin:6px 0 18px;min-height:42px}
+.plan-price{font-family:var(--display);font-size:20px;font-weight:600;color:var(--text);padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+.plan ul{list-style:none;display:grid;gap:9px;margin-bottom:24px;font-size:14px}
+.plan li{display:flex;gap:8px;align-items:flex-start}
+.plan li svg{color:var(--accent-ink);flex:none;width:16px;height:16px;margin-top:3px}
+.plan .btn{margin-top:auto;padding:12px 14px;font-size:14px}
+.plan-foot{margin-top:24px;font-size:13.5px;color:var(--muted);text-align:center}
+
+/* Compare table */
+.ctable{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;overflow-x:auto}
+.ct-row{display:grid;grid-template-columns:minmax(220px,2fr) repeat(5,minmax(90px,1fr));border-bottom:1px solid var(--line);font-size:14.5px;min-width:720px}
+.ct-row>span{padding:12px 16px;display:flex;align-items:center}
+.ct-row>span:not(:first-child){justify-content:center;text-align:center}
+.ct-head{background:var(--ink);color:#fff;font-family:var(--display);font-weight:600;font-size:15px;position:sticky;top:0}
+.ct-group{background:var(--paper-2);border-bottom:1px solid var(--line);min-width:720px}
+.ct-group span{display:block;padding:12px 16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:700}
+.ctable .yes{color:var(--accent-ink)}
+.ctable .yes svg{width:18px;height:18px}
+.ctable .no{color:#b8c6c4}
+.ctable .add{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+
+/* Demo CTA strip */
+.demo-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 28px;border-radius:16px;background:var(--ink);color:#fff;border:1px solid var(--line-dark);transition:border-color .2s}
+.demo-cta:hover{border-color:var(--accent)}
+.demo-cta small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:4px}
+.demo-cta b{font-weight:600;font-size:16.5px;color:#fff;line-height:1.45}
+.demo-cta svg{color:var(--accent);flex:none}
+
+@media (max-width:1080px){
+  .ways,.mock-2{grid-template-columns:1fr}
+  .seams{grid-template-columns:1fr 1fr}
+  .meth{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:720px){
+  .way{padding:28px 22px}
+  .cmp>div{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+  .cmp .cmp-h{display:none!important}
+  .seams,.meth,.bands,.factors{grid-template-columns:1fr}
+  .th{grid-template-columns:1fr}
+  .th-arrow{transform:rotate(90deg);padding:4px 0}
+  .plans{grid-template-columns:1fr}
+  .mock-body{padding:18px}
+  .mock-cases,.mock-cases.four{grid-template-columns:1fr 1fr}
+  .mock-table{overflow-x:auto}
+  .mock-table>div{min-width:520px}
+  .mock-quotas>div{grid-template-columns:110px 1fr 48px}
+  .demo-cta{padding:18px 20px}
+}
+.feat-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.feat-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:1080px){.feat-grid.cols-4{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.feat-grid.cols-4,.feat-grid.cols-2{grid-template-columns:1fr}}
+.meth.cols-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:1080px){.meth.cols-3{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.meth.cols-3{grid-template-columns:1fr}}
+
+/* Step number on the platform overview cards (research sequence) */
+.feat .seq-n{display:block;font:600 12px var(--display);letter-spacing:.12em;color:var(--accent-ink);margin:-6px 0 6px}
+
+/* Phones: plan comparison keeps the feature column pinned; supplier board scrolls sideways */
+.swipe-hint{display:none;margin:0 0 10px;font-size:13px;color:var(--muted)}
+@media (max-width:768px){
+  .swipe-hint{display:block}
+  .ct-row{grid-template-columns:150px repeat(5,92px);min-width:610px;font-size:13.5px}
+  .ct-group{min-width:610px}
+  .ct-row>span:first-child{position:sticky;left:0;z-index:1;background:#fff;box-shadow:6px 0 10px -8px rgba(0,0,0,.25)}
+  .ct-head>span:first-child{background:var(--ink)}
+  .mock-table{overflow-x:auto}
+  .mock-table>div{min-width:520px}
+}

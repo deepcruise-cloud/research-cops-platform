@@ -1,0 +1,109 @@
+  <style>
+    /* Policy Layout specific styles */
+    .policy-container {
+      margin-top: 130px;
+      margin-bottom: 80px;
+    }
+    
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 2.2fr;
+      gap: 40px;
+      align-items: start;
+    }
+    
+    .policy-grid > * { min-width: 0; }
+
+    .policy-sidebar {
+      position: sticky;
+      top: 110px;
+    }
+    
+    .policy-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+    }
+    
+    .policy-nav-link {
+      display: block;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-family: var(--font-family-display);
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: var(--transition-smooth);
+    }
+    
+    .policy-nav-link:hover {
+      color: var(--text-light);
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(4, 203, 194, 0.08);
+    }
+    
+    .policy-nav-link.active {
+      color: var(--turquoise-accent);
+      background: rgba(4, 203, 194, 0.06);
+      border-color: rgba(4, 203, 194, 0.15);
+      box-shadow: 0 0 15px rgba(4, 203, 194, 0.05);
+    }
+    
+    .policy-content-card {
+      padding: 40px;
+      min-height: 500px;
+    }
+    
+    .policy-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .policy-header h1 {
+      font-size: 32px;
+      color: var(--text-light);
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    
+    .policy-last-updated {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+    
+    .policy-loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+      color: var(--turquoise-accent);
+      font-family: monospace;
+    }
+    
+    @media (max-width: 768px) {
+      .policy-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .policy-sidebar {
+        position: relative;
+        top: 0;
+      }
+      .policy-nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+      }
+      .policy-nav-link {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .policy-content-card {
+        padding: 25px;
+      }
+    }
+  </style>
