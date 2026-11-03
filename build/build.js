@@ -805,8 +805,64 @@ const vercelJson = () => JSON.stringify({
 const legacyInsights = () => legacyLayout({ url: '/insights.html', title: 'Insights', description: 'Research methods, B2B sampling, data quality and industry news from Research COPS.', main: read('src/legacy/insights-main.html'), script: 'insights.js' });
 const legacyPolicy = () => legacyLayout({ url: '/policy.html', title: 'Legal & policies', description: 'Research COPS privacy policy, terms and conditions, and cookie policy.', styles: read('src/legacy/policy-head.html'), main: read('src/legacy/policy-main.html'), script: 'policy.js' });
 
+// Connect hub — the destination of the business-card / collateral QR (https://www.researchcops.com/connect/).
+// Social links come from the Content admin (company.social), so they can change without reprinting the QR.
+function connectPage() {
+  const meta = {
+    linkedin:  { label: 'LinkedIn',  handle: '/company/research-cops', fill: true,  icon: '<path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4 0-3.2-1.95-3.2S13 13.5 13 15.1V21H9z"/>' },
+    youtube:   { label: 'YouTube',   handle: '@researchcops', fill: true,  icon: '<path d="M23 7.2a3 3 0 00-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 001 7.2 31 31 0 00.6 12 31 31 0 001 16.8a3 3 0 002.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 002.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12z"/>' },
+    instagram: { label: 'Instagram', handle: '@researchcops', fill: false, icon: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/>' },
+    facebook:  { label: 'Facebook',  handle: '/researchcops', fill: true,  icon: '<path d="M14 8h3V4h-3a4 4 0 00-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/>' },
+  };
+  const cap = k => k.charAt(0).toUpperCase() + k.slice(1);
+  const svg = m => m.fill
+    ? `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${m.icon}</svg>`
+    : `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">${m.icon}</svg>`;
+  const generic = { fill: false, icon: '<path d="M10 13a5 5 0 007 0l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-2 2a5 5 0 007 7l1-1"/>' };
+  const buttons = Object.entries(CO.social).filter(([, v]) => v).map(([k, v]) => {
+    const m = meta[k] || { ...generic, label: cap(k), handle: '' };
+    return `<a class="clink" href="${attr(v)}" target="_blank" rel="noopener"><span class="clink-ic">${svg(m)}</span><span class="clink-tx"><b>${m.label}</b>${m.handle ? `<small>${m.handle}</small>` : ''}</span><svg class="clink-go" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>`;
+  }).join('');
+  const body = `<section class="connect"><div class="wrap connect-in">
+    <a href="/" class="connect-logo" aria-label="Research COPS home">${logoMark(52)}<span><span class="logo-word"><span>Research</span> COPS</span><span class="logo-sub">RESEARCH CENTRIC OPS</span></span></a>
+    <p class="connect-tag"><span class="best">Best</span> Operating System for Your <em class="s">Research Projects</em>.</p>
+    <p class="connect-lead">Connect with us — all our channels, one tap.</p>
+    <div class="clinks">${buttons}</div>
+    <div class="connect-actions"><a class="btn btn-primary" href="/contact/?need=Quote%20or%20demo">Get a quote / book a demo</a><a class="btn btn-ghost" href="/">Visit our website</a></div>
+    <div class="connect-direct"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><span aria-hidden="true">·</span><a href="tel:${CO.phoneTel}">${CO.phone}</a></div>
+  </div></section>
+  <style>
+    .connect{padding:clamp(26px,7vw,60px) 0 76px;}
+    .connect-in{max-width:460px;text-align:center;}
+    .connect-logo{display:inline-flex;align-items:center;gap:13px;text-decoration:none;color:inherit;margin-bottom:20px;}
+    .connect-logo .logo-word{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:23px;color:#fff;line-height:1;}
+    .connect-logo .logo-word>span{color:var(--accent);}
+    .connect-logo .logo-sub{display:block;font-size:9px;letter-spacing:.32em;color:var(--on-dark-muted);font-weight:600;margin-top:5px;}
+    .connect-tag{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:clamp(20px,5vw,25px);line-height:1.28;color:#fff;margin:0 0 6px;letter-spacing:-.01em;}
+    .connect-tag .best{color:var(--accent);border-bottom:3px solid var(--accent);padding-bottom:1px;}
+    .connect-tag .s{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400;}
+    .connect-lead{color:var(--on-dark-body);font-size:15px;margin:0 0 24px;}
+    .clinks{display:flex;flex-direction:column;gap:11px;}
+    .clink{display:flex;align-items:center;gap:14px;padding:14px 17px;border:1px solid var(--line-dark);border-radius:14px;background:rgba(4,203,194,.04);text-decoration:none;transition:border-color .18s,background .18s,transform .18s;}
+    .clink:hover{border-color:var(--accent);background:rgba(4,203,194,.09);transform:translateY(-1px);}
+    .clink-ic{width:40px;height:40px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(4,203,194,.1);color:var(--accent);}
+    .clink-tx{flex:1;text-align:left;display:flex;flex-direction:column;gap:1px;}
+    .clink-tx b{font-weight:600;font-size:15.5px;color:#fff;}
+    .clink-tx small{color:var(--on-dark-muted);font-size:12.5px;}
+    .clink-go{color:var(--on-dark-muted);flex:none;}
+    .clink:hover .clink-go{color:var(--accent);}
+    .connect-actions{display:flex;flex-direction:column;gap:10px;margin:24px 0 18px;}
+    .connect-actions .btn{justify-content:center;}
+    .connect-direct{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--on-dark-muted);}
+    .connect-direct a{color:var(--on-dark-body);text-decoration:none;}
+    .connect-direct a:hover{color:var(--accent);}
+  </style>`;
+  return layout({ url: '/connect/', title: 'Connect with Research COPS', description: 'All of Research COPS in one place — LinkedIn, YouTube, Instagram, Facebook, and quick ways to reach our team.', body });
+}
+
 const pages = [
   ['index.html', homePage()],
+  ['connect/index.html', connectPage()],
   ['404.html', notFound()],
   ['platform/index.html', platformIndex()],
   ...modules.map(m => [`platform/${m.slug}/index.html`, modulePage(m)]),
