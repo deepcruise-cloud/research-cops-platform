@@ -6,7 +6,7 @@
 
     function isContentEditor() {
       return request.auth != null
-        && request.auth.token.email in ['info-team@researchcops.com', 'deep.cruise@gmail.com'];
+        && request.auth.token.email in ['info-team@researchcops.com', 'deep.cruise@gmail.com', 'deepak.monga@researchcops.com'];
     }
 
     // siteContent/published is read by the website build without signing in.
