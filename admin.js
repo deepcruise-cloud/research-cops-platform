@@ -426,16 +426,9 @@ function setupAuth() {
       loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
         loginError.textContent = "";
-        const email = document.getElementById("login-email").value.trim();
-        const password = document.getElementById("login-password").value;
-
-        // Simple hardcoded login for sandbox testing
-        if (email === "admin@researchcops.com" && password === "adminpassword") {
-          sessionStorage.setItem("rc_admin_logged_in", "true");
-          checkSession();
-        } else {
-          loginError.textContent = "Invalid login credentials. Hint: use admin@researchcops.com / adminpassword";
-        }
+        // Offline/hard-coded login removed (security): admin access requires the
+        // live Firebase Authentication service and an allow-listed editor account.
+        loginError.textContent = "Sign-in is temporarily unavailable — the authentication service couldn't be reached. Please refresh and try again.";
       });
     }
 
