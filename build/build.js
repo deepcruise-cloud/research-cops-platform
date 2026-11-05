@@ -821,39 +821,71 @@ function connectPage() {
   const generic = { fill: false, icon: '<path d="M10 13a5 5 0 007 0l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-2 2a5 5 0 007 7l1-1"/>' };
   const buttons = Object.entries(CO.social).filter(([, v]) => v).map(([k, v]) => {
     const m = meta[k] || { ...generic, label: cap(k), handle: '' };
-    return `<a class="clink" href="${attr(v)}" target="_blank" rel="noopener"><span class="clink-ic">${svg(m)}</span><span class="clink-tx"><b>${m.label}</b>${m.handle ? `<small>${m.handle}</small>` : ''}</span><svg class="clink-go" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>`;
+    return `<a class="clink clink-${meta[k] ? k : 'other'}" href="${attr(v)}" target="_blank" rel="noopener" aria-label="${m.label} (opens in a new tab)"><span class="clink-ic">${svg(m)}</span><span class="clink-tx"><b>${m.label}</b>${m.handle ? `<small>${m.handle}</small>` : ''}</span><span class="clink-go" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></a>`;
   }).join('');
   const body = `<section class="connect"><div class="wrap connect-in">
-    <a href="/" class="connect-logo" aria-label="Research COPS home">${logoMark(52)}<span><span class="logo-word"><span>Research</span> COPS</span><span class="logo-sub">RESEARCH CENTRIC OPS</span></span></a>
     <p class="connect-tag"><span class="best">Best</span> Operating System for Your <em class="s">Research Projects</em>.</p>
     <p class="connect-lead">Connect with us — all our channels, one tap.</p>
+    <a class="cweb" href="/">
+      <span class="cweb-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 4 5.6 4 9s-1.4 6.4-4 9c-2.6-2.6-4-5.6-4-9s1.4-6.4 4-9z"/></svg></span>
+      <span class="cweb-tx"><b>Visit our website</b><small>www.researchcops.com</small></span>
+      <span class="cweb-go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <p class="clabel"><span>Follow us</span></p>
     <div class="clinks">${buttons}</div>
-    <div class="connect-actions"><a class="btn btn-primary" href="/contact/?need=Quote%20or%20demo">Get a quote / book a demo</a><a class="btn btn-ghost" href="/">Visit our website</a></div>
-    <div class="connect-direct"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><span aria-hidden="true">·</span><a href="tel:${CO.phoneTel}">${CO.phone}</a></div>
+    <div class="connect-actions"><a class="cquote" href="/contact/?need=Quote%20or%20demo">Get a quote / book a demo</a></div>
+    <div class="connect-direct"><a href="mailto:${CO.emailInfo}">${CO.emailInfo}</a><a href="tel:${CO.phoneTel}">${CO.phone}</a></div>
   </div></section>
   <style>
-    .connect{padding:clamp(26px,7vw,60px) 0 76px;}
+    .connect{padding:calc(78px + clamp(26px,6vw,56px)) 0 76px;color:var(--on-dark-body);background:radial-gradient(120% 60% at 50% -8%,rgba(4,203,194,.2),transparent 62%),radial-gradient(90% 50% at 100% 100%,rgba(4,203,194,.08),transparent 60%),var(--ink);}
     .connect-in{max-width:460px;text-align:center;}
-    .connect-logo{display:inline-flex;align-items:center;gap:13px;text-decoration:none;color:inherit;margin-bottom:20px;}
-    .connect-logo .logo-word{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:23px;color:#fff;line-height:1;}
-    .connect-logo .logo-word>span{color:var(--accent);}
-    .connect-logo .logo-sub{display:block;font-size:9px;letter-spacing:.32em;color:var(--on-dark-muted);font-weight:600;margin-top:5px;}
     .connect-tag{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:clamp(20px,5vw,25px);line-height:1.28;color:#fff;margin:0 0 6px;letter-spacing:-.01em;}
     .connect-tag .best{color:var(--accent);border-bottom:3px solid var(--accent);padding-bottom:1px;}
     .connect-tag .s{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent);font-weight:400;}
     .connect-lead{color:var(--on-dark-body);font-size:15px;margin:0 0 24px;}
-    .clinks{display:flex;flex-direction:column;gap:11px;}
-    .clink{display:flex;align-items:center;gap:14px;padding:14px 17px;border:1px solid var(--line-dark);border-radius:14px;background:rgba(4,203,194,.04);text-decoration:none;transition:border-color .18s,background .18s,transform .18s;}
-    .clink:hover{border-color:var(--accent);background:rgba(4,203,194,.09);transform:translateY(-1px);}
-    .clink-ic{width:40px;height:40px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(4,203,194,.1);color:var(--accent);}
-    .clink-tx{flex:1;text-align:left;display:flex;flex-direction:column;gap:1px;}
-    .clink-tx b{font-weight:600;font-size:15.5px;color:#fff;}
-    .clink-tx small{color:var(--on-dark-muted);font-size:12.5px;}
-    .clink-go{color:var(--on-dark-muted);flex:none;}
-    .clink:hover .clink-go{color:var(--accent);}
-    .connect-actions{display:flex;flex-direction:column;gap:10px;margin:24px 0 18px;}
-    .connect-actions .btn{justify-content:center;}
-    .connect-direct{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--on-dark-muted);}
+    /* Website: the one solid, glowing hero button on the page */
+    .cweb{position:relative;overflow:hidden;display:flex;align-items:center;gap:15px;min-height:78px;padding:14px 16px;border-radius:19px;text-decoration:none;color:#042220;background:linear-gradient(135deg,#46f2e8 0%,#08cfc6 48%,#03a79f 100%);box-shadow:0 18px 40px -14px rgba(4,203,194,.6),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -10px 22px -10px rgba(2,70,66,.5);transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s;}
+    .cweb::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(130% 90% at 18% -25%,rgba(255,255,255,.45),transparent 58%);pointer-events:none;}
+    .cweb::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;z-index:2;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);transition:left .7s ease;pointer-events:none;}
+    .cweb:hover{transform:translateY(-2px);box-shadow:0 24px 50px -14px rgba(4,203,194,.82),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -10px 22px -10px rgba(2,70,66,.5);}
+    .cweb:hover::after{left:120%;}
+    .cweb-ic,.cweb-tx,.cweb-go{position:relative;z-index:1;}
+    .cweb-ic{width:50px;height:50px;flex:none;border-radius:15px;display:grid;place-items:center;background:linear-gradient(160deg,#064a44,#03211f);color:#4ef5ea;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 18px -8px rgba(0,0,0,.55);}
+    .cweb-tx{flex:1;text-align:left;display:flex;flex-direction:column;gap:2px;min-width:0;}
+    .cweb-tx b{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:18px;letter-spacing:-.01em;line-height:1.2;}
+    .cweb-tx small{font-size:13px;font-weight:600;color:#06403c;}
+    .cweb-go{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(4,33,31,.16);transition:transform .22s,background .22s;}
+    .cweb:hover .cweb-go{transform:translateX(3px);background:rgba(4,33,31,.26);}
+    /* Label between the website and the social rows */
+    .clabel{display:flex;align-items:center;gap:12px;margin:26px 0 13px;color:var(--on-dark-muted);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;}
+    .clabel::before,.clabel::after{content:"";flex:1;height:1px;background:var(--line-dark);}
+    /* Social: frosted glass rows that glow in each network's own colour */
+    .clinks{display:flex;flex-direction:column;gap:12px;}
+    .clink{position:relative;overflow:hidden;--c:#04cbc2;display:flex;align-items:center;gap:15px;min-height:72px;padding:12px 14px;border:1px solid rgba(255,255,255,.085);border-radius:17px;text-decoration:none;background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.022));box-shadow:0 12px 30px -20px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.1);-webkit-backdrop-filter:blur(10px) saturate(1.25);backdrop-filter:blur(10px) saturate(1.25);transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,border-color .22s;}
+    .clink::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(85% 120% at 6% 0%,var(--c),transparent 42%);opacity:.14;pointer-events:none;transition:opacity .22s;}
+    .clink>*{position:relative;z-index:1;}
+    .clink:hover,.clink:active{transform:translateY(-2px);border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 18px 36px -18px rgba(0,0,0,.95),0 10px 30px -14px var(--c),inset 0 1px 0 rgba(255,255,255,.14);}
+    .clink:hover::before,.clink:active::before{opacity:.28;}
+    .clink-ic{position:relative;width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -3px 7px rgba(0,0,0,.28),0 6px 18px -7px var(--c);}
+    .clink-ic::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.25),transparent 55%);pointer-events:none;}
+    .clink-ic svg{position:relative;z-index:1;}
+    .clink-linkedin{--c:#0a66c2;}.clink-linkedin .clink-ic{background:linear-gradient(145deg,#2d8ae6,#0a66c2);}
+    .clink-youtube{--c:#ff2d2d;}.clink-youtube .clink-ic{background:linear-gradient(145deg,#ff4a3d,#e00000);}
+    .clink-instagram{--c:#d62976;}.clink-instagram .clink-ic{background:radial-gradient(circle at 30% 107%,#fdc468 0%,#fa7e1e 25%,#d62976 52%,#962fbf 76%,#4f5bd5 100%);}
+    .clink-facebook{--c:#1877f2;}.clink-facebook .clink-ic{background:linear-gradient(145deg,#3b8bff,#1464d8);}
+    .clink-other{--c:#04cbc2;}.clink-other .clink-ic{background:linear-gradient(145deg,#0b9f98,#04726c);}
+    .clink-tx{flex:1;text-align:left;display:flex;flex-direction:column;gap:2px;min-width:0;}
+    .clink-tx b{font-weight:650;font-size:16px;color:#fff;line-height:1.25;letter-spacing:-.005em;}
+    .clink-tx small{color:var(--on-dark-muted);font-size:12.5px;overflow-wrap:anywhere;}
+    .clink-go{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;color:var(--on-dark-body);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);transition:transform .22s,color .22s,background .22s,border-color .22s;}
+    .clink:hover .clink-go{color:#fff;background:var(--c);border-color:transparent;transform:translate(2px,-2px);box-shadow:0 7px 16px -6px var(--c);}
+    /* Quote: quiet, so the website stays the one main action */
+    .connect-actions{margin:22px 0 18px;}
+    .cquote{display:flex;align-items:center;justify-content:center;min-height:50px;padding:12px 18px;border-radius:14px;border:1px solid rgba(4,203,194,.45);color:var(--accent);font-weight:600;font-size:14.5px;text-decoration:none;transition:background .2s,border-color .2s;}
+    .cquote:hover{background:rgba(4,203,194,.1);border-color:var(--accent);}
+    .cweb:focus-visible,.clink:focus-visible,.cquote:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+    @media (prefers-reduced-motion:reduce){.cweb,.cweb::after,.cweb-go,.clink,.clink-go,.cquote{transition:none;}.cweb:hover,.clink:hover,.cweb:hover .cweb-go,.clink:hover .clink-go{transform:none;}.cweb::after{display:none;}}
+    .connect-direct{display:flex;flex-direction:column;gap:7px;align-items:center;font-size:13.5px;color:var(--on-dark-muted);}
     .connect-direct a{color:var(--on-dark-body);text-decoration:none;}
     .connect-direct a:hover{color:var(--accent);}
   </style>`;
